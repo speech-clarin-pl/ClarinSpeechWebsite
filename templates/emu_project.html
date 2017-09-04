@@ -238,7 +238,7 @@
                                         </a>
                                     {% else %}
                                         <a class="btn btn-secondary btn-lg"
-                                           title="{% trans %}Przetwarzam..."{% endtrans %}>
+                                           title="{% trans %}Przetwarzam...{% endtrans %}">
                                             <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
                                         </a>
                                     {% endif %}
@@ -298,7 +298,7 @@
                                         </a>
                                     {% else %}
                                         <a class="btn btn-secondary btn-lg"
-                                           title="{% trans %}Przetwarzam..."{% endtrans %}>
+                                           title="{% trans %}Przetwarzam...{% endtrans %}">
                                             <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
                                         </a>
                                     {% endif %}
@@ -321,7 +321,7 @@
                                     {% if 'audio' in bundle and bundle.audio.file and 'trans' in bundle and bundle.trans.file %}
                                         <a href="align/{{ proj._id }}/{{ name|urlencode }}"
                                            class="btn btn-warning btn-sm ask-any"
-                                           title="{% trans %}Wygeneruj automatycznie"{% endtrans %}>
+                                           title="{% trans %}Wygeneruj automatycznie{% endtrans %}">
                                             <i class="fa fa-cogs" aria-hidden="true"></i>
                                         </a>
                                     {% endif %}
@@ -333,7 +333,7 @@
                     <td>
                         <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}"
                            class="btn btn-danger ask-delete"
-                           title="{% trans %}Usuń całą paczkę"{% endtrans %}>
+                           title="{% trans %}Usuń całą paczkę{% endtrans %}">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                         </a>
                     </td>
