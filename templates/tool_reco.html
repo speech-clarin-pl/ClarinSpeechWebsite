@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>{% trans %}Pełne rozpoznawanie mowy{% endtrans %}</h1>
+
+    <p><a href="/tools">{% trans %}Powrót do listy narzędzi{% endtrans %}</a></p>
+
+    <div class="card form-group card-block">
+        <h4 class="card-title">{% trans %}Opis narzędzia{% endtrans %}</h4>
+        <p class="card-text">{% trans %}Zamiana nagrania mowy na zapis ortograficzny.{% endtrans %}</p>
+    </div>
+
+    <div class="card form-group card-block">
+        <div class="form-group">
+            <label for="audio">{% trans %}Wczytaj nagranie:{% endtrans %}</label>
+            <input id="audio" name="audio" class="form-control-file" type="file">
+        </div>
+        <div class="form-group">
+            <button id="convert_btn" class="btn btn-primary form-control">
+                {% trans %}Rozpocznij{% endtrans %}
+            </button>
+        </div>
+    </div>
+
+    <div id="error-msg" class="alert alert-danger fade" role="alert">{% trans %}Wewnętrzny błąd serwera!
+        Skontaktuj się z administratorem!{% endtrans %}</div>
+
+    <div class="card form-group card-block">
+        <h3><a data-toggle="collapse" href="#serviceHelp">
+            {% trans %}Przykład korzystania z usługi z linii poleceń{% endtrans %}
+        </a></h3>
+
+        <div class="collapse" id="serviceHelp">
+            <p>{% trans %}Usługe uruchamiamy następującym poleceniem:{% endtrans %}</p>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        function convert() {
+
+            var fd = new FormData();
+            var audio = document.getElementById('audio');
+            fd.append('file', audio.files[0]);
+            $.ajax({
+                url: '/tools/speech/reco',
+                data: fd,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    res = JSON.parse(data);
+                    id = res['output'];
+                    window.location = '/tools/ui/view/' + id;
+                },
+                error: function (data) {
+                    $("#error-msg").addClass('show');
+                }
+            });
+        }
+
+        $('#convert_btn').click(convert);
+    </script>
+
+{% endblock %}

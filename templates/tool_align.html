@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% if forced %}
+        <h1>{% trans %}Segmentacja krótkich nagrań{% endtrans %}</h1>
+    {% else %}
+        <h1>{% trans %}Segmentacja długich nagrań{% endtrans %}</h1>
+    {% endif %}
+
+    <p><a href="/tools">{% trans %}Powrót do listy narzędzi{% endtrans %}</a></p>
+
+    <div class="card form-group card-block">
+        <h4 class="card-title">{% trans %}Opis narzędzia{% endtrans %}</h4>
+        <p class="card-text">{% trans %}Dopasowanie czasowe tekstu do nagrania. Podział nagrania na segmenty (wyrazy i
+            fonemy).{% endtrans %}</p>
+
+        {% if forced %}
+            <p class="card-text">{% trans %}Narzędzie to jest dostosowane do przetwarzania stosunkowo krótkich nagrań
+                (poniżej minuty). Dłuższe nagrania mogą spowodować powstanie błędu.{% endtrans %}</p>
+        {% else %}
+            <p class="card-text">{% trans %}Narzędzie to jest dostosowane do przetwarzania długich nagrań. Może
+                spodowować powstanie błędu na bardzo krótkich nagraniach (kilka sekund długości).{% endtrans %}</p>
+        {% endif %}
+    </div>
+
+    <div class="card form-group card-block">
+        <div class="form-group">
+            <label for="audio">{% trans %}Wczytaj nagranie:{% endtrans %}</label>
+            <input id="audio" name="audio" class="form-control-file" type="file">
+        </div>
+        <div class="form-group">
+            <label for="transcript">{% trans %}Wczytaj transkrypcję:{% endtrans %}</label>
+            <input id="transcript" name="transcript" class="form-control-file" type="file">
+        </div>
+        <div class="form-group">
+            <button id="convert_btn" class="btn btn-primary form-control">
+                {% trans %}Konwertuj{% endtrans %}
+            </button>
+        </div>
+    </div>
+
+    <div id="error-msg" class="alert alert-danger fade" role="alert">{% trans %}Wewnętrzny błąd serwera!
+        Skontaktuj się z administratorem!{% endtrans %}</div>
+
+    <div class="card form-group card-block">
+        <h3><a data-toggle="collapse" href="#serviceHelp">
+            {% trans %}Przykład korzystania z usługi z linii poleceń{% endtrans %}
+        </a></h3>
+
+        <div class="collapse" id="serviceHelp">
+            <p>{% trans %}Usługe uruchamiamy następującym poleceniem:{% endtrans %}</p>
+
+            <p><code>curl -s -F "audio=@audio.wav;transcript=@trans.txt" {{ server_url }}tools/align/forced</code>
+            </p>
+
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript">
+
+        function convert() {
+
+            var fd = new FormData();
+            var audio = document.getElementById('audio');
+            var transcript = document.getElementById('transcript');
+            fd.append('audio', audio.files[0]);
+            fd.append('transcript', transcript.files[0]);
+            $.ajax({
+                {% if forced %}
+                    url: '/tools/speech/forcealign',
+                {% else %}
+                    url: '/tools/speech/segmentalign',
+                {% endif %}
+                data: fd,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    res = JSON.parse(data);
+                    id = res['output'];
+                    window.location = '/tools/ui/view/' + id;
+                },
+                error: function (data) {
+                    $("#error-msg").addClass('show');
+                }
+            });
+        }
+
+        $('#convert_btn').click(convert);
+    </script>
+
+{% endblock %}

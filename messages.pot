@@ -1,0 +1,74 @@
+# Translations template for PROJECT.
+# Copyright (C) 2017 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-08-14 14:01+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: templates/index.html:4
+msgid "Narzędzia i usługi do przetwarzania nagrań mowy"
+msgstr ""
+
+#: templates/index.html:6
+msgid ""
+"Następująca strona zawiera narzędzia i zasoby do analizy i przetwarzania "
+"korpusów i nagrań\n"
+"        zawierających mowę."
+msgstr ""
+
+#: templates/index.html:9
+msgid "Poniżej można znaleźć odnośniki do różnych części serwisu:"
+msgstr ""
+
+#: templates/index.html:19
+msgid "Korpusy i inne zasoby"
+msgstr ""
+
+#: templates/index.html:32 templates/tools.html:4
+msgid "Usługi mowy"
+msgstr ""
+
+#: templates/index.html:45
+msgid "Narzędzie do tworzenia korpusu EMU-SMDS"
+msgstr ""
+
+#: templates/layout.html:39
+msgid "Strona główna"
+msgstr ""
+
+#: templates/layout.html:40
+msgid "Repozytorium"
+msgstr ""
+
+#: templates/layout.html:41
+msgid "Dla partnerów"
+msgstr ""
+
+#: templates/layout.html:42
+msgid "Kontakt"
+msgstr ""
+
+#: templates/tools.html:9
+msgid "Transkrypcja"
+msgstr ""
+
+#: templates/tools.html:12
+msgid "Transkrpycja pojedynczego wyrazu"
+msgstr ""
+
+#: templates/tools.html:13
+msgid "Transkrypcja listy wyrazów"
+msgstr ""
+

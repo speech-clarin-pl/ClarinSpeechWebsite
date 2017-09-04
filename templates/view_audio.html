@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>{% trans %}Plik audio{% endtrans %}</h1>
+
+    <p><a href="/tools">{% trans %}Powrót do listy narzędzi{% endtrans %}</a></p>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
+
+    <div class="card form-group card-block">
+        <p>{% trans %}Zoom:{% endtrans %}</p>
+        <div>
+            <input id="slider" type="range" min="1" max="200" value="1" style="width: 100%">
+        </div>
+
+        <div id="waveform"></div>
+        <div>
+            <button class="btn btn-primary" onclick="wavesurfer.playPause()">
+                <span class="fa fa-play"></span>
+                Odtwórz/Zatrzymaj
+            </button>
+            <a id="link" class="btn btn-info" target="_blank">
+                <span class="fa fa-download"></span>
+                Pobierz
+            </a>
+        </div>
+        <div id="progress-msg" class="alert alert-info fade show" role="alert">
+            <span class="fa fa-refresh fa-spin"></span>
+            {% trans %}Pracuję...{% endtrans %}
+        </div>
+    </div>
+
+    <div id="error-msg" class="alert fade" role="alert">
+    </div>
+
+    <div class="card form-group card-block">
+        <p>{% trans %}Identyfikator zasobu:{% endtrans %}</p>
+
+        <p><a href="/tools/ui/view/{{ res_id }}">{{ res_id }}</a></p>
+
+        <p>{% trans %}Wyliczony z:{% endtrans %}</p>
+        {% if from_id %}
+            <p><a href="/tools/ui/view/{{ from_id }}" target="_blank">{{ from_id }}</a></p>
+        {% else %}
+            <p>{% trans %}Nieznany! Naciśnij F5 żeby odświeżyć!{% endtrans %}</p>
+        {% endif %}
+    </div>
+
+    <script type="text/javascript">
+
+        var wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: 'green',
+            progressColor: 'blue',
+            normalize: true,
+            height: 256
+        });
+
+        var slider = document.querySelector('#slider');
+
+        slider.oninput = function () {
+            var zoomLevel = Number(slider.value);
+            wavesurfer.zoom(zoomLevel);
+        };
+
+        $.ajaxSetup({cache: false});
+
+        var fail_count = 10;
+        var time_delay = 100;
+
+        function display() {
+            $.get('/tools/status/' + encodeURI('{{ res_id }}'))
+                .done(function (data) {
+                    if (data == 'ok') {
+                        wavesurfer.load('/tools/download/' + encodeURI('{{ res_id }}'));
+                        $('#link').attr('href', '/tools/download/' + encodeURI('{{ res_id }}'));
+                        $("#progress-msg").alert('close');
+                    } else if (data == 'wait') {
+                        if (fail_count > 0) {
+                            setTimeout(display, time_delay);
+                            time_delay += 100;
+                            fail_count--;
+                        } else {
+                            $('#progress-msg').alert('close');
+                            $('#error-msg').addClass('show');
+                            $('#error-msg').addClass('alert-warning');
+                            $('#error-msg').html('{% trans %}Nie udało się jeszcze przetworzyć zasobu! \
+                            Wciśnij F5 żeby spróbować ponownie za chwilę...{% endtrans %}');
+                        }
+                    } else {
+                        $('#progress-msg').alert('close');
+                        $('#error-msg').addClass('show');
+                        $('#error-msg').addClass('alert-danger');
+                        $('#error-msg').html('{% trans %}Błąd przetwarzania zasobu! \
+                            Skontaktuj się z administratorem!{% endtrans %}');
+                    }
+                }).fail(function (data) {
+                $('#progress-msg').alert('close');
+                $('#error-msg').addClass('show');
+                $('#error-msg').addClass('alert-danger');
+                $('#error-msg').html('{% trans %}Błąd przetwarzania zasobu! \
+                            Skontaktuj się z administratorem!{% endtrans %}');
+
+            });
+        }
+
+        display();
+
+
+    </script>
+
+{% endblock %}

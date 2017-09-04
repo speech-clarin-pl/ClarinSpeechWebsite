@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <h1>{% trans %}Narzędzie do tworzenia korpusu EMU-SDMS{% endtrans %}</h1>
+
+    <a href="/">{% trans %}Powrót na stronę główną{% endtrans %}</a>
+
+    <div class="gap-md">&nbsp;</div>
+
+    <div class="row" id="main_buttons">
+        <div class="col-md-5">
+            <a href="new">
+                <div class="card" style="background-color: darkseagreen">
+                    <div class="card-img-top">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-block">
+                        <h4 class="card-title">{% trans %}Nowy projekt{% endtrans %}</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-5">
+            <a href="search">
+                <div class="card" style="background-color: dodgerblue">
+                    <div class="card-img-top">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-block">
+                        <h4 class="card-title">{% trans %}Wyszukaj projekt{% endtrans %}</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

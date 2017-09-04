@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>{% trans %}Segmentacja{% endtrans %}</h1>
+
+    <p><a href="/tools">{% trans %}Powrót do listy narzędzi{% endtrans %}</a></p>
+
+    <div class="card form-group card-block">
+        <div class="row">
+            <a id="result_ctm" target="_blank" class="btn btn-info" style="margin-left: 10px">CTM</a>
+            <a id="result_textgrid" target="_blank" class="btn btn-info" style="margin-left: 10px">TextGrid</a>
+            <a id="result_textgrid_sampa" target="_blank" class="btn btn-warning" style="margin-left: 10px">TextGrid
+                (Sampa)</a>
+            <a id="result_textgrid_ipa" target="_blank" class="btn btn-warning" style="margin-left: 10px">TextGrid
+                (IPA)</a>
+            <a id="result_emu" target="_blank" class="btn btn-info" style="margin-left: 10px">annot (EMU)</a>
+        </div>
+
+        <div id="progress-msg" class="alert alert-info fade show" role="alert">
+            <span class="fa fa-refresh fa-spin"></span>
+            {% trans %}Pracuję...{% endtrans %}
+        </div>
+    </div>
+
+    <div id="error-msg" class="alert fade" role="alert">
+    </div>
+
+    <div class="card form-group card-block">
+        <p>{% trans %}Identyfikator zasobu:{% endtrans %}</p>
+
+        <p><a href="/tools/ui/view/{{ res_id }}">{{ res_id }}</a></p>
+
+        <p>{% trans %}Wyliczony z:{% endtrans %}</p>
+        {% if from_audio %}
+            <p><a href="/tools/ui/view/{{ from_audio }}" target="_blank">{{ from_audio }}</a></p>
+            <p><a href="/tools/ui/view/{{ from_trans }}" target="_blank">{{ from_trans }}</a></p>
+        {% else %}
+            <p>{% trans %}Nieznany! Naciśnij F5 żeby odświeżyć!{% endtrans %}</p>
+        {% endif %}
+    </div>
+
+    <script type="text/javascript">
+
+        $.ajaxSetup({cache: false});
+
+        var fail_count = 10;
+        var time_delay = 100;
+
+        function display() {
+            $.get('/tools/status/' + encodeURI('{{ res_id }}'))
+                .done(function (data) {
+                        if (data == 'ok') {
+                            var seg_id = encodeURI('{{ res_id }}');
+                            $('#result_ctm').attr('href', '/tools/download/' + seg_id);
+                            $('#result_textgrid').attr('href', '/tools/textgrid/' + seg_id);
+                            $('#result_textgrid_sampa').attr('href', '/tools/textgrid/' + seg_id + '?script=sampa');
+                            $('#result_textgrid_ipa').attr('href', '/tools/textgrid/' + seg_id + '?script=ipa');
+                            $('#result_emu').attr('href', '/tools/annot/' + seg_id);
+                            $("#progress-msg").alert('close');
+                        } else if (data == 'wait') {
+                            if (fail_count > 0) {
+                                setTimeout(display, time_delay);
+                                time_delay += 100;
+                                fail_count--;
+                            } else {
+                                $('#progress-msg').alert('close');
+                                $('#error-msg').addClass('show');
+                                $('#error-msg').addClass('alert-warning');
+                                $('#error-msg').html('{% trans %}Nie udało się jeszcze przetworzyć zasobu! \
+                            Wciśnij F5 żeby spróbować ponownie za chwilę...{% endtrans %}');
+                            }
+                        } else {
+                            $('#progress-msg').alert('close');
+                            $('#error-msg').addClass('show');
+                            $('#error-msg').addClass('alert-danger');
+                            $('#error-msg').html('{% trans %}Błąd przetwarzania zasobu! \
+                            Skontaktuj się z administratorem!{% endtrans %}');
+                        }
+                    }
+                ).fail(function (data) {
+
+                $('#progress-msg').alert('close');
+                $('#error-msg').addClass('show');
+                $('#error-msg').addClass('alert-danger');
+                $('#error-msg').html('{% trans %}Błąd przetwarzania zasobu! \
+                            Skontaktuj się z administratorem!{% endtrans %}');
+
+            });
+        }
+
+        display();
+    </script>
+
+{% endblock %}

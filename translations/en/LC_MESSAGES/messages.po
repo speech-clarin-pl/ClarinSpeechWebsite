@@ -1,0 +1,76 @@
+# English translations for CLARIN-PL speech website.
+# Copyright (C) 2017 CLARIN-PL
+# This file is distributed under the same license as the  project.
+# FIRST AUTHOR <danijel@pja.edu.pl>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version:  0.1\n"
+"Report-Msgid-Bugs-To: danijel@pja.edu.pl\n"
+"POT-Creation-Date: 2017-08-14 14:01+0200\n"
+"PO-Revision-Date: 2017-08-14 13:29+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: templates/index.html:4
+msgid "Narzędzia i usługi do przetwarzania nagrań mowy"
+msgstr "Speech processing tools and services"
+
+#: templates/index.html:6
+msgid ""
+"Następująca strona zawiera narzędzia i zasoby do analizy i przetwarzania "
+"korpusów i nagrań\n"
+"        zawierających mowę."
+msgstr ""
+"This website contains tools and resources for analysis and processingof "
+"recordings containing speech."
+
+#: templates/index.html:9
+msgid "Poniżej można znaleźć odnośniki do różnych części serwisu:"
+msgstr "Links to subsections of this webiste are listed below:"
+
+#: templates/index.html:19
+msgid "Korpusy i inne zasoby"
+msgstr "Corpora and other resources"
+
+#: templates/index.html:32 templates/tools.html:4
+msgid "Usługi mowy"
+msgstr "Speech services"
+
+#: templates/index.html:45
+msgid "Narzędzie do tworzenia korpusu EMU-SMDS"
+msgstr "Tool for the creation of EMU-SMDS corpora"
+
+#: templates/layout.html:39
+msgid "Strona główna"
+msgstr "Main page"
+
+#: templates/layout.html:40
+msgid "Repozytorium"
+msgstr "Repository"
+
+#: templates/layout.html:41
+msgid "Dla partnerów"
+msgstr "For partners"
+
+#: templates/layout.html:42
+msgid "Kontakt"
+msgstr "Contact"
+
+#: templates/tools.html:9
+msgid "Transkrypcja"
+msgstr "Phonetization"
+
+#: templates/tools.html:12
+msgid "Transkrpycja pojedynczego wyrazu"
+msgstr "Phonetization of a single word"
+
+#: templates/tools.html:13
+msgid "Transkrypcja listy wyrazów"
+msgstr "Phonetization of a list of words"
+

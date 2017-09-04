@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>{% trans %}Zasoby{% endtrans %}</h1>
+
+    <p><a href="/tools">{% trans %}Powrót do listy narzędzi{% endtrans %}</a></p>
+
+    <div class="card form-group card-block">
+        <p>{% trans %}Identyfikator zasobu pierwszego:{% endtrans %}</p>
+
+        <p><a href="/tools/ui/view/{{ res_a }}">{{ res_a }}</a></p>
+
+        <p>{% trans %}Identyfikator zasobu drugiego:{% endtrans %}</p>
+
+        <p><a href="/tools/ui/view/{{ res_b }}">{{ res_b }}</a></p>
+    </div>
+
+
+{% endblock %}

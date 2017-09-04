@@ -1,0 +1,455 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <a href="/emu">{% trans %}Powrót{% endtrans %}</a>
+
+    <h1>{% trans %}Projekt EMU{% endtrans %}</h1>
+
+    <div class="card form-control card-block">
+        <div class="form-group row">
+            <p class="col-2">{% trans %}Stworzony przez{% endtrans %}</p>
+            <p class="col-6"><b>{{ proj.owner }}</b></p>
+            <p class="col-4">{{ create_date }}</p>
+        </div>
+        <div class="form-group row">
+            <p class="col-2">{% trans %}Opis{% endtrans %}</p>
+            <p class="col-10"><b>{{ proj.description }}</b></p>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <button id="btn_modify" type="button" class="btn btn-info" data-toggle="collapse" href="#project"
+                        aria-expanded="false" aria-controls="project" style="width: 100%">
+                    {% trans %}Modyfikuj{% endtrans %}
+                </button>
+            </div>
+        </div>
+
+        <div class="collapse" id="project">
+            <div class="card form-control card-block">
+                <form action="modify/{{ proj._id }}" method="POST" onsubmit="return verify_submit()">
+
+                    <div class="form-group row">
+                        <label for="owner" class="col-2 col-form-label">{% trans %}Właściciel{% endtrans %}</label>
+                        <div class="col-10">
+                            <input id="owner" name="owner" value="{{ proj.owner }}" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="desc" class="col-2 col-form-label">{% trans %}Opis{% endtrans %}</label>
+                        <div class="col-10">
+                            <textarea id="desc" name="desc" class="form-control"
+                                      rows="3">{{ proj.description }}</textarea>
+                        </div>
+                    </div>
+
+                    <div id="pass_row" class="form-group">
+                        <div class="row">
+                            <label for="pass" class="col-2 col-form-label ">{% trans %}Hasło{% endtrans %}</label>
+                            <div class="col-5">
+                                <input type="password" id="pass" name="pass" value="{{ pass_check }}"
+                                       class="form-control form-control-danger"
+                                       placeholder="{% trans %}Hasło{% endtrans %}">
+                                <input type="hidden" id="pass_check" name="pass_check" value="{{ pass_check }}">
+                            </div>
+                            <div class="col-5">
+                                <input type="password" id="pass_rep" class="form-control form-control-danger"
+                                       placeholder="{% trans %}Powtórz hasło{% endtrans %}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="pass_fb" class="col-sm-3 offset-sm-2 form-control-feedback invisible">
+                                {% trans %}Hasła nie są takie same!{% endtrans %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-7">&nbsp;</div>
+                        <div class="col-2">
+                            <a class="btn btn-danger ask-delete" style="width:100%" href="remove/{{ proj._id }}">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                {% trans %}Usuń{% endtrans %}
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <button id="btn_save" type="submit" class="btn btn-primary" style="width:100%">
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                {% trans %}Zapisz{% endtrans %}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <script type="text/javascript">
+                    $('#pass').change(verify_password);
+                    $('#pass_rep').change(verify_password);
+
+                    function verify_submit() {
+                        if (!confirm('{% trans %}Czy na pewno chcesz zapisać zmiany?{% endtrans %}')) {
+                            $('#pass').val($('#pass_check').val());
+                            $('#pass-rep').val($('#pass_check').val());
+                            return false;
+                        }
+                        if ($('#pass').val() != $('#pass_check').val()) {
+                            if (!verify_password()) {
+                                alert('{% trans %}Hasła się nie zgadzają!{% endtrans %}');
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+
+                    function verify_password() {
+                        if ($('#pass').val() != $('#pass_rep').val()) {
+                            $('#pass_row').addClass('has-danger');
+                            $('#pass_fb').removeClass('invisible');
+                            return false;
+                        } else {
+                            $('#pass_row').removeClass('has-danger');
+                            $('#pass_fb').addClass('invisible');
+                            return true;
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!-- END top page info and form -->
+
+    <div class="card form-control card-block">
+
+        <form action="add_audio/{{ proj._id }}" class="dropzone form-group" id="addAudio">
+            <div class="dz-message needsclick">
+                {% trans %}Przeciągnij tutaj albo kliknij żeby wgrać plik(i) audio.{% endtrans %}
+            </div>
+        </form>
+
+        <div class="progress form-group">
+            <div id="uploadProgress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+        </div>
+
+        <table class="table">
+            <thead class="thead-inverse">
+            <tr>
+                <th class="col-xs-4">{% trans %}Nazwa paczki i sesji{% endtrans %}</th>
+                <th class="col-xs-2">{% trans %}Plik audio{% endtrans %}</th>
+                <th class="col-xs-2">{% trans %}Transkrypcja{% endtrans %}</th>
+                <th class="col-xs-2">{% trans %}Segmentacja{% endtrans %}</th>
+                <th class="col-xs-1">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set disable = {'asr': False, 'align' : False, 'emu': False} %}
+            {% for name,bundle in bundles %}
+                <tr>
+                    <td>
+                        <form action="rename/{{ proj._id }}/{{ name }}" method="post" class="bundle-names">
+                            <div class="row">
+                                <label class="col-form-label col-2">
+                                    <small>SESS</small>
+                                </label>
+                                <input name="session" value="{{ bundle.session }}" oldvalue="{{ bundle.session }}"
+                                       class="form-control col-9">
+                            </div>
+                            <div class="row">
+                                <label class="col-form-label col-2">
+                                    <small>NAME</small>
+                                </label>
+                                <input name="name" value="{{ name }}" oldvalue="{{ name }}" class="form-control col-9">
+                            </div>
+                        </form>
+                    </td>
+                    <!--AUDIO-->
+                    <td>
+                        {% if 'audio' in bundle %}
+                            <div class="row">
+                                {% if bundle.audio.file %}
+                                    <a href="/tools/ui/view/{{ bundle.audio._id }}" class="btn btn-secondary btn-lg">
+                                        <i class="fa fa-file-audio-o fa-2x" aria-hidden="true"></i>
+                                    </a>
+                                {% else %}
+                                    {% if disable.update({'asr':True}) %}{% endif %}
+                                    {% if disable.update({'align':True}) %}{% endif %}
+                                    {% if disable.update({'emu':True}) %}{% endif %}
+                                    {% if 'error' in bundle.audio %}
+                                        <a class="btn btn-secondary btn-lg"
+                                           title="{% trans %}Wystąpił błąd!{% endtrans %}">
+                                            <i class="fa fa-times-circle fa-2x" style="color: red"></i>
+                                        </a>
+                                    {% else %}
+                                        <a class="btn btn-secondary btn-lg"
+                                           title="{% trans %}Przetwarzam..."{% endtrans %}>
+                                            <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                                <div>
+                                    <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?audio"
+                                       class="btn btn-danger btn-sm ask-delete"
+                                       title="{% trans %}Usuń{% endtrans %}">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        {% else %}
+                            {% if disable.update({'asr':True}) %}{% endif %}
+                            {% if disable.update({'align':True}) %}{% endif %}
+                            {% if disable.update({'emu':True}) %}{% endif %}
+                            <div class="row">
+                                <a class="btn btn-secondary btn-lg disabled">
+                                    <i class="fa fa-file-audio-o fa-2x" aria-hidden="true"></i>
+                                </a>
+                                <div>
+                                    <label for="audio{{ name }}" type="file" class="btn btn-info btn-sm">
+                                        <i class="fa fa-upload" aria-hidden="true"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <form action="add_audio/{{ proj._id }}" method="post" enctype="multipart/form-data"
+                                  style="display: none">
+                                <input type="hidden" name="name" value="{{ name }}">
+                                <input id="audio{{ name }}" name="file" type="file" onchange="form.submit()">
+                            </form>
+                        {% endif %}
+                    </td>
+                    <!--TRANSCRIPTION-->
+                    <td>
+                        {% if 'trans' in bundle %}
+                            <div class="row">
+                                {% if bundle.trans.file %}
+                                    {% if 'audio' in bundle and bundle.audio.file %}
+                                        <a href="/tools/ui/multiview/{{ bundle.trans._id }}/{{ bundle.audio._id }}"
+                                           class="btn btn-secondary btn-lg">
+                                            <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="/tools/ui/view/{{ bundle.trans._id }}"
+                                           class="btn btn-secondary btn-lg">
+                                            <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    {% if disable.update({'align':True}) %}{% endif %}
+                                    {% if 'error' in bundle.trans %}
+                                        <a class="btn btn-secondary btn-lg"
+                                           title="{% trans %}Wystąpił błąd!{% endtrans %}">
+                                            <i class="fa fa-times-circle fa-2x" style="color: red"></i>
+                                        </a>
+                                    {% else %}
+                                        <a class="btn btn-secondary btn-lg"
+                                           title="{% trans %}Przetwarzam..."{% endtrans %}>
+                                            <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                                <div>
+                                    <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?trans"
+                                       class="btn btn-danger btn-sm ask-delete"
+                                       title="{% trans %}Usuń"{% endtrans %}>
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        {% else %}
+                            {% if disable.update({'align':True}) %}{% endif %}
+                            <div class="row">
+                                <a class="btn btn-secondary btn-lg disabled">
+                                    <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                                </a>
+                                <div>
+                                    <div>
+                                        <label for="trans{{ name }}" type="file" class="btn btn-info btn-sm">
+                                            <i class="fa fa-upload" aria-hidden="true"></i>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        {% if 'audio' in bundle and bundle.audio.file %}
+                                            <a href="reco/{{ proj._id }}/{{ name|urlencode }}"
+                                               class="btn btn-warning btn-sm ask-any"
+                                               title="{% trans %}Wygeneruj automatycznie"{% endtrans %}>
+                                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <form action="add_trans/{{ proj._id }}" method="post" enctype="multipart/form-data"
+                                  style="display: none">
+                                <input type="hidden" name="name" value="{{ name }}">
+                                <input id="trans{{ name }}" name="file" type="file" onchange="form.submit()">
+                            </form>
+                        {% endif %}
+                    </td>
+                    <!--SEGMENTATION-->
+                    <td>
+                        {% if 'seg' in bundle %}
+                            <div class="row">
+                                {% if bundle.seg.file %}
+                                    <a href="/tools/ui/view/{{ bundle.seg._id }}" class="btn btn-secondary btn-lg">
+                                        <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
+                                    </a>
+                                {% else %}
+                                    {% if disable.update({'emu':True}) %}{% endif %}
+                                    {% if 'error' in bundle.seg %}
+                                        <a class="btn btn-secondary btn-lg"
+                                           title="{% trans %}Wystąpił błąd!{% endtrans %}">
+                                            <i class="fa fa-times-circle fa-2x" style="color: red"></i>
+                                        </a>
+                                    {% else %}
+                                        <a class="btn btn-secondary btn-lg"
+                                           title="{% trans %}Przetwarzam..."{% endtrans %}>
+                                            <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                                <div>
+                                    <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?seg"
+                                       class="btn btn-danger btn-sm ask-delete"
+                                       title="{% trans %}Usuń"{% endtrans %}>
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        {% else %}
+                            {% if disable.update({'emu':True}) %}{% endif %}
+                            <div class="row">
+                                <a class="btn btn-secondary btn-lg disabled">
+                                    <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
+                                </a>
+                                <div>
+                                    {% if 'audio' in bundle and bundle.audio.file and 'trans' in bundle and bundle.trans.file %}
+                                        <a href="align/{{ proj._id }}/{{ name|urlencode }}"
+                                           class="btn btn-warning btn-sm ask-any"
+                                           title="{% trans %}Wygeneruj automatycznie"{% endtrans %}>
+                                            <i class="fa fa-cogs" aria-hidden="true"></i>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </td>
+                    <!--TOOLS-->
+                    <td>
+                        <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}"
+                           class="btn btn-danger ask-delete"
+                           title="{% trans %}Usuń całą paczkę"{% endtrans %}>
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!--TOOLS for whole bundle-->
+
+    <div class="card form-control card-block emu-toolbar">
+
+        <h3>{% trans %}Narzędzia dla całego projektu{% endtrans %}</h3>
+
+        <p>{% trans %}Niektóre akcje są dostępne tylko w obecności wszystkich plików danego rodzaju.{% endtrans %}</p>
+
+        <p>{% trans %}Pliki są generowane automatycznie tylko dla brakujących pozycji.{% endtrans %}</p>
+
+        <div class="row">
+            {% if disable.asr %}
+                <a class="btn btn-warning btn-lg col-2 disabled">
+            {% else %}
+                <a href="reco/{{ proj._id }}" class="btn btn-warning btn-lg col-2 ask-any"
+                   title="{% trans %}Wykonaj rozpoznawanie plików audio dla całego projektu{% endtrans %}">
+            {% endif %}
+            <i class="fa fa-file-audio-o fa-2x"></i>
+            <i class="fa fa-arrow-right fa-2x"></i>
+            <i class="fa fa-file-text-o fa-2x"></i>
+            </a>
+            <div class="col-1">&nbsp;</div>
+            {% if disable.align %}
+                <a class="btn btn-warning btn-lg col-2 disabled">
+            {% else %}
+                <a href="align/{{ proj._id }}" class="btn btn-warning btn-lg col-2 ask-any"
+                   title="{% trans %}Wykonaj segmentacji nagrań dla całego projektu{% endtrans %}">
+            {% endif %}
+            <i class="fa fa-file-text-o fa-2x"></i>
+            <i class="fa fa-arrow-right fa-2x"></i>
+            <i class="fa fa-file-code-o fa-2x"></i>
+            </a>
+            <div class="col-1">&nbsp;</div>
+            {% if disable.emu %}
+                <a class="btn btn-info btn-lg col-2 disabled">
+            {% else %}
+                <a href="webapp/{{ proj._id }}" class="btn btn-info btn-lg col-2" target="_blank"
+                   title="{% trans %}Otwórz projekt w aplikacji EMU-WebApp{% endtrans %}">
+            {% endif %}
+            <img src={{ url_for('static', filename='img/emuIcon.png') }}>
+            </a>
+            <div class="col-1">&nbsp;</div>
+            {% if disable.emu %}
+                <a class="btn btn-info btn-lg col-2 disabled">
+            {% else %}
+                <a href="download/{{ proj._id }}" class="btn btn-info btn-lg col-2"
+                   title="{% trans %}Ściągnij cały projekt{% endtrans %}">
+            {% endif %}
+            <i class="fa fa-download fa-2x"></i>
+            </a>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        Dropzone.options.addAudio = {
+            maxFilesize: 100,
+            init: function () {
+                this.on('queuecomplete', function () {
+                    location.reload(true);
+                });
+                this.on('totaluploadprogress', function (uploadProgress, totalBytes, totalBytesSent) {
+                    bar = $('#uploadProgress');
+                    bar.html(uploadProgress + '%');
+                    bar.css('width', uploadProgress + '%');
+                    bar.attr('aria-valuenow', uploadProgress);
+                });
+            }
+        };
+
+        $(".ask-delete").each(function () {
+            $(this).click(function () {
+                if (!confirm('{% trans %}Czy na pewno chcesz usunąć zasób?{% endtrans %}'))
+                    return false;
+            });
+        });
+
+        $(".ask-any").each(function () {
+            $(this).click(function () {
+                if (!confirm('{% trans %}Czy na pewno chcesz wykonać akcję?{% endtrans %}'))
+                    return false;
+            });
+        });
+
+        var bundle_names = {{ bundle_names|tojson }};
+
+        $(".bundle-names").each(function () {
+            $(this).keypress(function (e) {
+                if (e.which == 13) {
+
+                    new_value = e.target.value;
+                    old_value = e.target.attributes['oldvalue'].value;
+
+                    if (old_value != new_value) {
+
+                        if (e.target.name == 'name') {
+                            if ($.inArray(new_value, bundle_names) >= 0) {
+                                alert('{% trans %}Taka nazwa już istnieje!{% endtrans %}');
+                                return false;
+                            }
+                        }
+
+                        $(this).closest('form').submit();
+                    }
+                }
+            });
+        })
+
+    </script>
+
+{% endblock %}

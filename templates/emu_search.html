@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <h1>{% trans %}Wyszukiwanie projektu{% endtrans %}</h1>
+
+    <a href="/emu">{% trans %}Powrót{% endtrans %}</a>
+
+    <div class="card form-group card-block">
+        <h3><a data-toggle="collapse" href="#filter" aria-expanded="false" aria-controls="filter">
+            {% trans %}Filtry{% endtrans %}
+        </a></h3>
+        <div class="collapse" id="filter">
+            <form method="post">
+                <div class="form-group">
+                    <label for="owner">{% trans %}Właściciel{% endtrans %}</label>
+                    <input class="form-control" id="owner" name="owner" value="{{ filter['owner'] }}">
+                </div>
+                <div class="form-group">
+                    <label for="description">{% trans %}Opis{% endtrans %}</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                           value="{{ filter['description'] }}">
+                </div>
+                <div class="form-group">
+                    <label for="afterdate">{% trans %}Po dacie{% endtrans %}</label>
+                    <input type="date" class="form-control" id="afterdate" name="afterdate"
+                           value="{{ filter['afterdatestr'] }}">
+                </div>
+                <div class="form-group">
+                    <label for="beforedate">{% trans %}Przed datą{% endtrans %}</label>
+                    <input type="date" class="form-control" id="beforedate" name="beforedate"
+                           value="{{ filter['beforedatestr'] }}">
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary" style="width: 100%">
+                            {% trans %}Filtruj{% endtrans %}
+                        </button>
+                    </div>
+                    <div class="col-2">
+                        <a href="search?reset" class="btn btn-secondary" style="width: 100%">
+                            {% trans %}Resetuj{% endtrans %}
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card form-group card-block">
+        <table class="table">
+            <thead class="thead-inverse">
+            <tr>
+                <th>{% trans %}Identyfikator{% endtrans %}</th>
+                <th>{% trans %}Właściciel{% endtrans %}</th>
+                <th>{% trans %}Opis{% endtrans %}</th>
+                <th>{% trans %}Data stworzenia{% endtrans %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for proj in projects %}
+                <tr>
+                    <td>
+                        <a href="/emu/project/{{ proj._id }}">{{ proj._id }}</a>
+                    </td>
+                    <td>
+                        {{ proj.owner }}
+                    </td>
+                    <td>
+                        {{ proj.description }}
+                    </td>
+                    <td>
+                        {{ proj.datestr }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+        <nav>
+            <ul class="pagination">
+                {% for p in range(pagination_start,pagination_end) %}
+                    {% set text = (p + 1)|string %}
+                    {% if p == pagination_start and p>0 %}
+                        {% set text = '...' + text %}
+                    {% elif p==pagination_end-1 and p<(page_num-1) %}
+                        {% set text = text + '...' %}
+                    {% endif %}
+                    {% if p == page %}
+                        <li class="page-item active">
+                            <a class="page-link" href="/emu/search/{{ p }}">{{ p + 1 }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="/emu/search/{{ p }}">{{ text }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+
+{% endblock %}

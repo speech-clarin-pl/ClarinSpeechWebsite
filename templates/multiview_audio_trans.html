@@ -1,0 +1,184 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>{% trans %}Plik audio{% endtrans %}</h1>
+
+    <p><a href="/tools">{% trans %}Powrót do listy narzędzi{% endtrans %}</a></p>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
+
+    <div class="card form-group card-block">
+        <p>{% trans %}Zoom:{% endtrans %}</p>
+        <div>
+            <input id="slider" type="range" min="1" max="200" value="1" style="width: 100%">
+        </div>
+        <div id="waveform"></div>
+        <div>
+            <button class="btn btn-primary" onclick="wavesurfer.playPause()">
+                <span class="fa fa-play"></span>
+                Odtwórz/Zatrzymaj
+            </button>
+            <a id="link" class="btn btn-info" target="_blank">
+                <span class="fa fa-download"></span>
+                Pobierz
+            </a>
+        </div>
+        <div id="progress-msg-audio" class="alert alert-info fade show" role="alert">
+            <span class="fa fa-refresh fa-spin"></span>
+            {% trans %}Pracuję...{% endtrans %}
+        </div>
+    </div>
+
+    <div class="card form-group card-block">
+
+        <form id="edit-form" action="/tools/text/modify/{{ trans_id }}" method="POST">
+            <input type="hidden" name="redirect_url" value="{{ request.url }}">
+            <textarea id="result" name="text" class="form-control" style="height: 20em;" readonly="true"></textarea>
+            <div class="row form-group">
+                <div class="col-2">
+                    <button id="edit-btn" class="btn btn-info" type="button" style="width:100%;">
+                        {% trans %}Edytuj{% endtrans %}
+                    </button>
+                </div>
+                <div class="col-2">
+                    <button id="save-btn" class="btn btn-primary invisible" type="submit" style="width:100%;">
+                        {% trans %}Zapisz{% endtrans %}
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div id="progress-msg-trans" class="alert alert-info fade show" role="alert">
+            <span class="fa fa-refresh fa-spin"></span>
+            {% trans %}Pracuję...{% endtrans %}
+        </div>
+    </div>
+
+    <div id="error-msg" class="alert fade" role="alert">
+    </div>
+
+    <div class="card form-group card-block">
+        <p>{% trans %}Identyfikator pliku audio:{% endtrans %}</p>
+
+        <p><a href="/tools/ui/view/{{ audio_id }}">{{ audio_id }}</a></p>
+
+        <p>{% trans %}Identyfikator transkrypcji:{% endtrans %}</p>
+
+        <p><a href="/tools/ui/view/{{ trans_id }}">{{ trans_id }}</a></p>
+    </div>
+
+    <script type="text/javascript">
+
+        var wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: 'green',
+            progressColor: 'blue',
+            normalize: true,
+            height: 256
+        });
+
+        var slider = document.querySelector('#slider');
+
+        slider.oninput = function () {
+            var zoomLevel = Number(slider.value);
+            wavesurfer.zoom(zoomLevel);
+        };
+
+        $.ajaxSetup({cache: false});
+
+        var fail_count_audio = 10;
+        var time_delay_audio = 100;
+
+        function display_audio() {
+            $.get('/tools/status/' + encodeURI('{{ audio_id }}'))
+                .done(function (data) {
+                    if (data == 'ok') {
+                        wavesurfer.load('/tools/download/' + encodeURI('{{ audio_id }}'));
+                        $('#link').attr('href', '/tools/download/' + encodeURI('{{ audio_id }}'));
+                        $("#progress-msg-audio").alert('close');
+                    } else if (data == 'wait') {
+                        if (fail_count_audio > 0) {
+                            setTimeout(display_audio, time_delay_audio);
+                            time_delay_audio += 100;
+                            fail_count_audio--;
+                        } else {
+                            $('#progress-msg-audio').alert('close');
+                            $('#error-msg').addClass('show');
+                            $('#error-msg').addClass('alert-warning');
+                            $('#error-msg').html('{% trans %}Nie udało się jeszcze przetworzyć zasobu! \
+                            Wciśnij F5 żeby spróbować ponownie za chwilę...{% endtrans %}');
+                        }
+                    } else {
+                        $('#progress-msg-audio').alert('close');
+                        $('#error-msg').addClass('show');
+                        $('#error-msg').addClass('alert-danger');
+                        $('#error-msg').html('{% trans %}Błąd przetwarzania zasobu! \
+                            Skontaktuj się z administratorem!{% endtrans %}');
+                    }
+                }).fail(function (data) {
+                $('#progress-msg-audio').alert('close');
+                $('#error-msg').addClass('show');
+                $('#error-msg').addClass('alert-danger');
+                $('#error-msg').html('{% trans %}Błąd przetwarzania zasobu! \
+                            Skontaktuj się z administratorem!{% endtrans %}');
+
+            });
+        }
+
+        display_audio();
+
+        var fail_count_trans = 10;
+        var time_delay_trans = 100;
+
+        function display_trans() {
+            $.get('/tools/download/' + encodeURI('{{ trans_id }}'))
+                .done(function (data) {
+                    $('#result').val(data);
+                    $("#progress-msg-trans").alert('close');
+                }).fail(function (data) {
+                if (data['status'] == 503) {
+                    if (fail_count_trans > 0) {
+                        setTimeout(display_trans, time_delay_trans);
+                        time_delay_trans += 100;
+                        fail_count_trans--;
+                    } else {
+                        $('#progress-msg-trans').alert('close');
+                        $('#error-msg').addClass('show');
+                        $('#error-msg').addClass('alert-warning');
+                        $('#error-msg').html('{% trans %}Nie udało się jeszcze przetworzyć zasobu! \
+                            Wciśnij F5 żeby spróbować ponownie za chwilę...{% endtrans %}');
+                    }
+                } else {
+                    $('#progress-msg-trans').alert('close');
+                    $('#error-msg').addClass('show');
+                    $('#error-msg').addClass('alert-danger');
+                    $('#error-msg').html('{% trans %}Błąd przetwarzania zasobu! \
+                            Skontaktuj się z administratorem!{% endtrans %}');
+                }
+            });
+        }
+
+        display_trans();
+
+        var editting = false;
+        $('#edit-btn').click(function () {
+            if (editting) {
+                $('#result').attr('readonly', true);
+                $('#save-btn').addClass('invisible');
+                $('#edit-btn').html('{% trans %}Edytuj{% endtrans %}')
+                editting = false;
+            } else {
+                $('#result').removeAttr('readonly');
+                $('#save-btn').removeClass('invisible');
+                $('#edit-btn').html('{% trans %}Tylko odczyt{% endtrans %}')
+                editting = true;
+            }
+        });
+
+        $('#edit-form').submit(function () {
+            return confirm('{% trans %}Czy na pewno chcesz zmodyfikować ten zasób pewien?{% endtrans %}');
+        });
+
+    </script>
+
+{% endblock %}

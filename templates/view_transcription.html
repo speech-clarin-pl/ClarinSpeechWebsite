@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>{% trans %}Transkrypcja{% endtrans %}</h1>
+
+    <p><a href="/tools">{% trans %}Powrót do listy narzędzi{% endtrans %}</a></p>
+
+    <div class="card form-group card-block">
+        <textarea id="result" class="form-control" style="height: 20em;" readonly="true"></textarea>
+        <div id="progress-msg" class="alert alert-info fade show" role="alert">
+            <span class="fa fa-refresh fa-spin"></span>
+            {% trans %}Pracuję...{% endtrans %}
+        </div>
+    </div>
+
+    <div id="error-msg" class="alert fade" role="alert">
+    </div>
+
+    <div class="card form-group card-block">
+        <p>{% trans %}Identyfikator zasobu:{% endtrans %}</p>
+
+        <p><a href="/tools/ui/view/{{ res_id }}">{{ res_id }}</a></p>
+
+        <p>{% trans %}Wyliczony z:{% endtrans %}</p>
+        {% if from_id %}
+            <p><a href="/tools/ui/view/{{ from_id }}" target="_blank">{{ from_id }}</a></p>
+        {% else %}
+            <p>{% trans %}Nieznany! Naciśnij F5 żeby odświeżyć!{% endtrans %}</p>
+        {% endif %}
+
+        {% if from_audio %}
+            <p><a href="/tools/ui/multiview/{{ from_id }}/{{ res_id }}" class="btn btn-info">
+                Otwórz razem z audio
+            </a></p>
+        {% endif %}
+    </div>
+
+    <script type="text/javascript">
+
+        $.ajaxSetup({cache: false});
+
+        var fail_count = 10;
+        var time_delay = 100;
+
+        function display() {
+            $.get('/tools/download/' + encodeURI('{{ res_id }}'))
+                .done(function (data) {
+                    $('#result').val(data);
+                    $("#progress-msg").alert('close');
+                }).fail(function (data) {
+                if (data['status'] == 503) {
+                    if (fail_count > 0) {
+                        setTimeout(display, time_delay);
+                        time_delay += 100;
+                        fail_count--;
+                    } else {
+                        $('#progress-msg').alert('close');
+                        $('#error-msg').addClass('show');
+                        $('#error-msg').addClass('alert-warning');
+                        $('#error-msg').html('{% trans %}Nie udało się jeszcze przetworzyć zasobu! \
+                            Wciśnij F5 żeby spróbować ponownie za chwilę...{% endtrans %}');
+                    }
+                } else {
+                    $('#progress-msg').alert('close');
+                    $('#error-msg').addClass('show');
+                    $('#error-msg').addClass('alert-danger');
+                    $('#error-msg').html('{% trans %}Błąd przetwarzania zasobu! \
+                            Skontaktuj się z administratorem!{% endtrans %}');
+                }
+            });
+        }
+
+        display();
+    </script>
+
+{% endblock %}

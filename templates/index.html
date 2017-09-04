@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <h1>{% trans %}Narzędzia i usługi do przetwarzania nagrań mowy{% endtrans %}</h1>
+
+    <div class="gap-md">&nbsp;</div>
+
+    <div class="row" id="main_buttons">
+        <div class="col-md-4">
+            <a href="#">
+                <div class="card">
+                    <div class="card-img-top">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-block">
+                        <h4 class="card-title">{% trans %}Korpusy i inne zasoby{% endtrans %}</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a href="tools">
+                <div class="card">
+                    <div class="card-img-top">
+                        <i class="fa fa-wrench" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-block">
+                        <h4 class="card-title">{% trans %}Usługi mowy{% endtrans %}</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a href="emu">
+                <div class="card">
+                    <div class="card-img-top">
+                        <img src={{ url_for('static', filename='img/emuIcon.png') }}>
+                    </div>
+                    <div class="card-block">
+                        <h4 class="card-title">{% trans %}Narzędzie do tworzenia korpusu EMU-SDMS{% endtrans %}</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!--<li><a href="#"></a></li>
+    <li><a href="#"></a>-->
+
+{% endblock %}

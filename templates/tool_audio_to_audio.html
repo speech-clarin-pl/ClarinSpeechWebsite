@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <h1>{% trans %}Normalizacja audio{% endtrans %}</h1>
+
+    <p><a href="/tools">{% trans %}Powrót do listy narzędzi{% endtrans %}</a></p>
+
+    <div class="card form-group card-block">
+        <h4 class="card-title">{% trans %}Opis narzędzia{% endtrans %}</h4>
+        <p class="card-text">{% trans %}Konwersja pliku multimedialnego (audio lub wideo) na plik audio typu WAV, o
+            częstotliwości próbkowania 16 kHz, jednym kanale (mono) oraz rozdzielczości 16 bitów.{% endtrans %}</p>
+    </div>
+
+    <div class="card form-group card-block">
+
+        <p>{% trans %}Wczytaj plik multimedialny:{% endtrans %}</p>
+
+        <span class="input-group">
+                    <input id="file" name="file" class="form-control" type="file">
+                <span class="input-group-btn">
+                    <button id="convert_btn" class="btn btn-primary">{% trans %}Konwertuj{% endtrans %}</button>
+                </span>
+            </span>
+    </div>
+
+    <div id="error-msg" class="alert alert-danger fade" role="alert">{% trans %}Wewnętrzny błąd serwera!
+        Skontaktuj się z administratorem!{% endtrans %}</div>
+
+    <div class="card form-group card-block">
+        <h3><a data-toggle="collapse" href="#serviceHelp">
+            {% trans %}Przykład korzystania z usługi z linii poleceń{% endtrans %}
+        </a></h3>
+
+        <div class="collapse" id="serviceHelp">
+            <p>{% trans %}Usługe uruchamiamy następującym poleceniem:{% endtrans %}</p>
+
+            <p><code>curl -s -F "file=@audio.mp3" {{ server_url }}tools/audio/normalize</code></p>
+
+            <p>{% trans %}Co wygeneruje identyfikatory plików wejścia i wyjścia w formacie JSON,
+                np:{% endtrans %}</p>
+
+            <p><code>{"input": "59a29a9939ec7816a70529e3", "output": "59a2eaad39ec785da49ac86a"}</code></p>
+
+            <p>{% trans %}Plik można pobrać według identyfikatora poleceniem <code>download</code>,
+                np:{% endtrans %}</p>
+
+            <p><code>curl {{ server_url }}/tools/download/59a2eaad39ec785da49ac86a -o output.wav</code></p>
+
+            <p>{% trans %}Jeśli plik jest jeszcze przetwarzany, otrzymamy kod statusu 503. W przypadku błędu
+                otrzymamy kod 500. Status można sprawdzić również poleceniem <code>status</code>, np:{% endtrans %}
+            </p>
+
+            <p><code>curl {{ server_url }}/tools/status/59a2eaad39ec785da49ac86a</code></p>
+
+            <p>{% trans %}Polecenie to może zwrócić wartości <code>ok</code> jak plik jest gotowy do ściągnięcia,
+                <code>wait</code> jeśli jest wciąż przetwarzany, oraz <code>error</code> (z opisem) jeśli wystąpił
+                błąd.{% endtrans %}</p>
+
+            <p>{% trans %}Plik wejściowy można też nagrać poleceniem <code>upload</code>, np:{% endtrans %}</p>
+
+            <p><code>curl -s -F "file=@audio.mp3" {{ server_url }}tools/upload</code></p>
+
+            <p>{% trans %}Co wygeneruje identyfikator pliku wejściowego, który można przekazać do pierwszego
+                polecenia, jak wyżej:{% endtrans %}</p>
+
+            <p><code>curl {{ server_url }}/tools/audio/normalize/59a29a9939ec7816a70529e3</code></p>
+
+            <p>{% trans %}Co wygenertuje identyfikator pliku wyjściowego, który można przekazać do poleceń
+                <code>download</code> oraz <code>status</code>, tak jak pokazano wyżej.{% endtrans %}</p>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        function convert() {
+
+            var fd = new FormData();
+            var input = document.getElementById('file');
+            //fd.append('file', $('#file').prop('files')[0]);
+            fd.append('file', input.files[0]);
+            $.ajax({
+                url: '/tools/audio/normalize',
+                data: fd,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    res = JSON.parse(data);
+                    id = res['output'];
+                    window.location = '/tools/ui/view/' + id;
+                },
+                error: function (data) {
+                    $("#error-msg").addClass('show');
+                }
+            });
+        }
+
+        $('#convert_btn').click(convert);
+    </script>
+{% endblock %}
