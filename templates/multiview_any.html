@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
-    <h1>{% trans %}Zasoby{% endtrans %}</h1>
+    <h1>{% trans %}zasoby{% endtrans %}</h1>
 
-    <a href="#" onclick="window.history.back()">{% trans %}Powrót{% endtrans %}</a></p>
+    <a href="#" onclick="window.history.back()">{% trans %}powrót{% endtrans %}</a></p>
 
     <div class="card form-group card-block">
-        <p>{% trans %}Identyfikator zasobu pierwszego:{% endtrans %}</p>
+        <p>{% trans %}ident_pierwszy{% endtrans %}</p>
 
         <p><a href="/tools/ui/view/{{ res_a }}">{{ res_a }}</a></p>
 
-        <p>{% trans %}Identyfikator zasobu drugiego:{% endtrans %}</p>
+        <p>{% trans %}ident_drugi{% endtrans %}</p>
 
         <p><a href="/tools/ui/view/{{ res_b }}">{{ res_b }}</a></p>
     </div>

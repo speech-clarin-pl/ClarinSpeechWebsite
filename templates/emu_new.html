@@ -1,36 +1,36 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <h1>{% trans %}Nowy projekt{% endtrans %}</h1>
+    <h1>{% trans %}nowy_projekt{% endtrans %}</h1>
 
-    <a href="/emu">{% trans %}Powrót{% endtrans %}</a>
+    <a href="/emu">{% trans %}powrót{% endtrans %}</a>
 
     <div class="card form-group card-block">
         <form action="create" method="post">
             <div class="form-group">
-                <label for="owner">{% trans %}Właściciel{% endtrans %}</label>
+                <label for="owner">{% trans %}właściciel{% endtrans %}</label>
                 <input class="form-control" id="owner" name="owner" aria-describedby="owner-help" value="Anonymous">
                 <small id="owner-help" class="form-text text-muted">
-                    {% trans %}Nazwa ta nie jest obowiązkowa, ale ułatwi wyszukiwanie w przyszłości.{% endtrans %}
+                    {% trans %}właściciel_opis{% endtrans %}
                 </small>
             </div>
             <div class="form-group">
-                <label for="desc">{% trans %}Opis{% endtrans %}</label>
+                <label for="desc">{% trans %}opis{% endtrans %}</label>
                 <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
                 <small id="desc-help" class="form-text text-muted">
-                    {% trans %}Opisz krótko zawartość korpusu.{% endtrans %}
+                    {% trans %}opis_opis{% endtrans %}
                 </small>
             </div>
             <div class="form-group">
-                <label for="pass">{% trans %}Hasło{% endtrans %}</label>
+                <label for="pass">{% trans %}hasło{% endtrans %}</label>
                 <input type="password" class="form-control" id="pass" name="pass" aria-describedby="pass-help"
-                       placeholder="{% trans %}Hasło{% endtrans %}">
+                       placeholder="{% trans %}hasło{% endtrans %}">
                 <small id="pass-help" class="form-text text-muted">
-                    {% trans %}Wpisując hasło, zablokujemy dostęp osobom niepowołanym. Jeśli nie chcesz, zostaw puste.{% endtrans %}
+                    {% trans %}hasło_opis{% endtrans %}
                 </small>
             </div>
-            <button type="submit" class="btn btn-primary">{% trans %}Stwórz{% endtrans %}</button>
-            <a href="/emu" class="btn btn-info">Anuluj</a>
+            <button type="submit" class="btn btn-primary">{% trans %}stwórz{% endtrans %}</button>
+            <a href="/emu" class="btn btn-info">anuluj</a>
         </form>
     </div>
 {% endblock %}

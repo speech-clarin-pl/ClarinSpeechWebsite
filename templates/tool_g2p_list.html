@@ -1,33 +1,33 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <h1>{% trans %}Transkrypcja listy wyrazów{% endtrans %}</h1>
+    <h1>{% trans %}g2p_wordlist_tytuł{% endtrans %}</h1>
 
-    <a href="#" onclick="window.history.back()">{% trans %}Powrót{% endtrans %}</a></p>
+    <a href="#" onclick="window.history.back()">{% trans %}powrót{% endtrans %}</a></p>
 
     <div class="card form-group card-block">
-        <h4 class="card-title">{% trans %}Opis narzędzia{% endtrans %}</h4>
-        <p class="card-text">{% trans %}Konwersja listy wyrazów z zapisu ortograficznego na fonetyczny.{% endtrans %}</p>
+        <h4 class="card-title">{% trans %}opis_narzędzia{% endtrans %}</h4>
+        <p class="card-text">{% trans %}opis_g2p_wordlist{% endtrans %}</p>
     </div>
 
     <div class="card form-group card-block">
-        <p>{% trans %}Wczytaj plik tekstowy:{% endtrans %}</p>
+        <p>{% trans %}wczytaj_tekstowy{% endtrans %}</p>
         <span class="input-group">
                     <input id="file" name="file" class="form-control" type="file">
                 <span class="input-group-btn">
-                    <button id="convert_btn" class="btn btn-primary">{% trans %}Konwertuj{% endtrans %}</button>
+                    <button id="convert_btn" class="btn btn-primary">{% trans %}konwertuj{% endtrans %}</button>
                 </span>
             </span>
     </div>
 
     <div class="card form-group card-block">
 
-        <p>{% trans %}Wynik:{% endtrans %}</p>
+        <p>{% trans %}wynik{% endtrans %}</p>
 
         <textarea id="result" class="form-control" style="height: 20em;" readonly="true"></textarea>
 
         <p id="ident" style="font-size: 8pt" data-toggle="tooltip" data-placement="left"
-           title="{% trans %}Proszę wysłać te dane administratorowi w razie problemów!{% endtrans %}"></p>
+           title="{% trans %}ident_admin{% endtrans %}"></p>
 
 
         <div class="form-group text-center">
@@ -51,16 +51,16 @@
 
     <div class="card form-group card-block">
         <h3><a data-toggle="collapse" href="#serviceHelp">
-            {% trans %}Przykład korzystania z usługi z linii poleceń{% endtrans %}
+            {% trans %}commandline_tytuł{% endtrans %}
         </a></h3>
 
         <div class="collapse" id="serviceHelp">
 
-            <p>{% trans %}Usługe uruchamiamy następującym poleceniem:{% endtrans %}</p>
+            <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
 
             <p><code>curl -s -F "file=@word_list_txt" {{ server_url }}tools/phonetize/list </code></p>
 
-            <p>{% trans %}Co wygeneruje wynik przykładowo:{% endtrans %}</p>
+            <p>{% trans %}help_gen_result{% endtrans %}</p>
 
             <p>
             <pre><code>ala&#09;a l a
@@ -70,11 +70,11 @@ sęp&#09;s en p
 śledzić&#09;si l e dzi i tsi</code></pre>
             </p>
 
-            <p>{% trans %}Można też pobrać wynik w alfabecie SAMPA:{% endtrans %}</p>
+            <p>{% trans %}help_result_sampa{% endtrans %}</p>
 
             <p><code>curl -s -F "file=@word_list_txt" {{ server_url }}tools/phonetize/list?sampa </code></p>
 
-            <p>{% trans %}Co wygeneruje wynik przykładowo:{% endtrans %}</p>
+            <p>{% trans %}help_gen_result{% endtrans %}</p>
 
             <p>
             <pre><code>ala&#09;a l a
@@ -84,11 +84,11 @@ sęp&#09;s e~ p
 śledzić&#09;s' l e dz' i ts'</code></pre>
             </p>
 
-            <p>{% trans %}Można też pobrać wynik w alfabecie IPA:{% endtrans %}</p>
+            <p>{% trans %}help_result_ipa{% endtrans %}</p>
 
             <p><code>curl -s -F "file=@word_list_txt" {{ server_url }}tools/phonetize/list?ipa </code></p>
 
-            <p>{% trans %}Co wygeneruje wynik przykładowo:{% endtrans %}</p>
+            <p>{% trans %}help_gen_result{% endtrans %}</p>
 
             <p>
             <pre><code>ala&#09;a l a
@@ -128,11 +128,11 @@ sęp&#09;s ɛ̃ p
                 type: 'POST',
                 success: function (data) {
                     $('#result').val(data);
-                    $('#convert_btn').html('{% trans %}Konwertuj{% endtrans %}');
+                    $('#convert_btn').html('{% trans %}konwertuj{% endtrans %}');
                 },
                 error: function (data) {
-                    $('#result').val('{% trans %}Błąd konwersji...{% endtrans %}');
-                    $('#convert_btn').html('{% trans %}Konwertuj{% endtrans %}');
+                    $('#result').val('{% trans %}błąd_konwersji{% endtrans %}');
+                    $('#convert_btn').html('{% trans %}konwertuj{% endtrans %}');
                 }
             });
         }

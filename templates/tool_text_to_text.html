@@ -1,73 +1,63 @@
 {% extends "layout.html" %}
 {% block body %}
-    <h1>{% trans %}Normalizacja tekstu{% endtrans %}</h1>
+    <h1>{% trans %}textnorm_tytuł{% endtrans %}</h1>
 
-    <a href="#" onclick="window.history.back()">{% trans %}Powrót{% endtrans %}</a></p>
+    <a href="#" onclick="window.history.back()">{% trans %}powrót{% endtrans %}</a></p>
 
     <div class="card form-group card-block">
-        <h4 class="card-title">{% trans %}Opis narzędzia{% endtrans %}</h4>
-        <p class="card-text">{% trans %}Zamiany tekstu ortograficznego na postać nadającą się do transkrypcji
-            fonetycznej: konwersja liczebników na tekst, rozwijanie skrótów, usuwanie znaków specjalnych,
-            itd.{% endtrans %}</p>
-        <p class="card-text">{% trans %}UWAGA: w trakcie tworzenia! W tej chwili nie wspiera większość
-            funkcji!{% endtrans %}</p>
+        <h4 class="card-title">{% trans %}opis_narzędzia{% endtrans %}</h4>
+        <p class="card-text">{% trans %}opis_textnorm{% endtrans %}</p>
+        <p class="card-text">{% trans %}opis_textnorm_wip{% endtrans %}</p>
     </div>
 
     <div class="card form-group card-block">
-        <p>{% trans %}Wczytaj plik tekstowy:{% endtrans %}</p>
+        <p>{% trans %}wczytaj_tekstowy{% endtrans %}</p>
 
         <span class="input-group">
                     <input id="file" name="file" class="form-control" type="file">
                 <span class="input-group-btn">
-                    <button id="convert_btn" class="btn btn-primary">{% trans %}Konwertuj{% endtrans %}</button>
+                    <button id="convert_btn" class="btn btn-primary">{% trans %}konwertuj{% endtrans %}</button>
                 </span>
             </span>
     </div>
 
-    <div id="error-msg" class="alert alert-danger fade" role="alert">{% trans %}Wewnętrzny błąd serwera!
-        Skontaktuj się z administratorem!{% endtrans %}</div>
+    <div id="error-msg" class="alert alert-danger fade" role="alert">{% trans %}błąd_admin{% endtrans %}</div>
 
     <div class="card form-group card-block">
         <h3><a data-toggle="collapse" href="#serviceHelp">
-            {% trans %}Przykład korzystania z usługi z linii poleceń{% endtrans %}
+            {% trans %}commandline_tytuł{% endtrans %}
         </a></h3>
 
         <div class="collapse" id="serviceHelp">
-            <p>{% trans %}Usługe uruchamiamy następującym poleceniem:{% endtrans %}</p>
+            <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
 
             <p><code>curl -s -F "file=@test.txt" {{ server_url }}tools/text/normalize </code></p>
 
-            <p>{% trans %}Generuje identyfikatory tesktu wejściowego i wyjściowego w postaci JSON,
-                przykładowo:{% endtrans %}</p>
+            <p>{% trans %}help_ident_io{% endtrans %}</p>
 
             <p><code>{"input": "599565d139ec782642683890", "output": "599871a739ec781a48838f70"}</code></p>
 
-            <p>{% trans %}Wynik można pobrać używając polecenia <code>download</code>:{% endtrans %}</p>
+            <p>{% trans %}help_download{% endtrans %}</p>
 
             <p><code>curl {{ server_url }}tools/download/599871a739ec781a48838f70</code></p>
 
-            <p>{% trans %}Co wygeneruje wynik przykładowo:{% endtrans %}</p>
+            <p>{% trans %}help_gen_result{% endtrans %}</p>
 
             <p>
             <pre><code>ala ma kota</code></pre>
             </p>
 
-            <p>{% trans %}W przypadku większego obciążenia, serwer może odpowiedzieć kodem
-                <code>503 Service Unavaliable</code>. W takim wypadku wystarczy powtórzyć
-                zapytanie.{% endtrans %}
-            </p>
+            <p>{% trans %}help_final_download{% endtrans %}</p>
 
-            <p>{% trans %}Zasób można też wgrać ręcznie poleceniem <code>upload</code>:{% endtrans %}</p>
+            <p>{% trans %}help_upload{% endtrans %}</p>
 
             <p><code>curl -s -F "file=@test.txt" {{ server_url }}tools/upload/transcript</code>
 
-            <p>{% trans %}Zasób będący transkrypcją zawsze można przetworzyć poleceniem
-                <code>text/normalize/[id]</code>:{% endtrans %}</p>
+            <p>{% trans %}help_trans_normalize{% endtrans %}</p>
 
             <p><code>curl {{ server_url }}tools/text/normalize/599565d139ec782642683890</code></p>
 
-            <p>{% trans %}Co wygnereuje identyfikator, którego można pobrać poleceniem <code>download</code> tak
-                jak opisano wyżej.{% endtrans %}</p>
+            <p>{% trans %}help_result_download{% endtrans %}</p>
         </div>
     </div>
 

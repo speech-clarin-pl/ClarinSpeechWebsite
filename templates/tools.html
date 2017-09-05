@@ -1,36 +1,36 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <h1>{% trans %}Usługi mowy{% endtrans %}</h1>
+    <h1>{% trans %}tool_tytuł{% endtrans %}</h1>
 
-    <a href="#" onclick="window.history.back()">{% trans %}Powrót{% endtrans %}</a></p>
+    <a href="#" onclick="window.history.back()">{% trans %}powrót{% endtrans %}</a></p>
 
     <div class="tools">
         <div class="row form-group">
             <div class="col-3">
                 <a href="ui/phonetize/word" class="btn btn-lg btn-primary"
-                   title="{% trans %}Transkrypcja fonetyczna słów{% endtrans %}">
+                   title="{% trans %}g2p_tytuł{% endtrans %}">
                     <div class="main">G2P</div>
                     <div class="sub">word</div>
                 </a>
             </div>
             <div class="col-3">
                 <a href="ui/phonetize/list" class="btn btn-lg btn-success"
-                   title="{% trans %}Transkrypcja fonetyczna listy słów{% endtrans %}">
+                   title="{% trans %}g2p_wordlist_tytuł{% endtrans %}">
                     <div class="main">G2P</div>
                     <div class="sub">list</div>
                 </a>
             </div>
             <div class="col-3">
                 <a href="ui/text/normalize" class="btn btn-lg btn-info"
-                   title="{% trans %}Normalizacja tekstu{% endtrans %}">
+                   title="{% trans %}textnorm_tytuł{% endtrans %}">
                     <div class="main">NORM</div>
                     <div class="sub">text</div>
                 </a>
             </div>
             <div class="col-3">
                 <a href="ui/audio/normalize" class="btn btn-lg btn-warning"
-                   title="{% trans %}Normalizacja audio{% endtrans %}">
+                   title="{% trans %}audionorm_tytuł{% endtrans %}">
                     <div class="main">NORM</div>
                     <div class="sub">audio</div>
                 </a>
@@ -39,27 +39,27 @@
         <div class="row form-group">
             <div class="col-3">
                 <a href="ui/align/forced" class="btn btn-lg btn-info"
-                   title="{% trans %}Segmentacja krótkich nagrań{% endtrans %}">
+                   title="{% trans %}forcealign_tytuł{% endtrans %}">
                     <div class="main">ALIGN</div>
                     <div class="sub">forced</div>
                 </a>
             </div>
             <div class="col-3">
                 <a href="ui/align/segment" class="btn btn-lg btn-warning"
-                   title="{% trans %}Segmentacja długich nagrań{% endtrans %}">
+                   title="{% trans %}segalign_tytuł{% endtrans %}">
                     <div class="main">ALIGN</div>
                     <div class="sub">segment</div>
                 </a>
             </div>
             <div class="col-3">
                 <a href="ui/speech/recognize" class="btn btn-lg btn-success"
-                   title="{% trans %}Rozpoznawanie mowy{% endtrans %}">
+                   title="{% trans %}reco_tytuł{% endtrans %}">
                     <div class="main">RECO</div>
                 </a>
             </div>
             <div class="col-3">
                 <a href="#" class="btn btn-lg btn-info disabled"
-                   title="{% trans %}Detekcja mowy{% endtrans %}">
+                   title="{% trans %}vad_tytuł{% endtrans %}">
                     <div class="main">VAD</div>
                     <div class="sub">(in development)</div>
                 </a>
@@ -68,14 +68,14 @@
         <div class="row form-group">
             <div class="col-3">
                 <a href="ui/speech/diarize" class="btn btn-lg btn-info disabled"
-                   title="{% trans %}Diaryzacja mówców{% endtrans %}">
+                   title="{% trans %}dia_tytuł{% endtrans %}">
                     <div class="main">DIA</div>
                     <div class="sub">(in development)</div>
                 </a>
             </div>
             <div class="col-3">
                 <a href="ui/speech/kws" class="btn btn-lg btn-info disabled"
-                   title="{% trans %}Detekcja słów kluczowych{% endtrans %}">
+                   title="{% trans %}kws_tytuł{% endtrans %}">
                     <div class="main">KWS</div>
                     <div class="sub">(in development)</div>
                 </a>

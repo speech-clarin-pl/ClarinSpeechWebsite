@@ -1,36 +1,35 @@
 {% extends "layout.html" %}
 {% block body %}
-    <h1>{% trans %}Pełne rozpoznawanie mowy{% endtrans %}</h1>
+    <h1>{% trans %}reco_tytuł{% endtrans %}</h1>
 
-    <a href="#" onclick="window.history.back()">{% trans %}Powrót{% endtrans %}</a></p>
+    <a href="#" onclick="window.history.back()">{% trans %}powrót{% endtrans %}</a></p>
 
     <div class="card form-group card-block">
-        <h4 class="card-title">{% trans %}Opis narzędzia{% endtrans %}</h4>
-        <p class="card-text">{% trans %}Zamiana nagrania mowy na zapis ortograficzny.{% endtrans %}</p>
+        <h4 class="card-title">{% trans %}opis_narzędzia{% endtrans %}</h4>
+        <p class="card-text">{% trans %}opis_reco{% endtrans %}</p>
     </div>
 
     <div class="card form-group card-block">
         <div class="form-group">
-            <label for="audio">{% trans %}Wczytaj nagranie:{% endtrans %}</label>
+            <label for="audio">{% trans %}wczytaj_audio{% endtrans %}</label>
             <input id="audio" name="audio" class="form-control-file" type="file">
         </div>
         <div class="form-group">
             <button id="convert_btn" class="btn btn-primary form-control">
-                {% trans %}Rozpocznij{% endtrans %}
+                {% trans %}rozpocznij{% endtrans %}
             </button>
         </div>
     </div>
 
-    <div id="error-msg" class="alert alert-danger fade" role="alert">{% trans %}Wewnętrzny błąd serwera!
-        Skontaktuj się z administratorem!{% endtrans %}</div>
+    <div id="error-msg" class="alert alert-danger fade" role="alert">{% trans %}błąd_admin{% endtrans %}</div>
 
     <div class="card form-group card-block">
         <h3><a data-toggle="collapse" href="#serviceHelp">
-            {% trans %}Przykład korzystania z usługi z linii poleceń{% endtrans %}
+            {% trans %}commandline_tytuł{% endtrans %}
         </a></h3>
 
         <div class="collapse" id="serviceHelp">
-            <p>{% trans %}Usługe uruchamiamy następującym poleceniem:{% endtrans %}</p>
+            <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
 
         </div>
     </div>

@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 {% block body %}
-    <h1>{% trans %}Plik audio{% endtrans %}</h1>
+    <h1>{% trans %}audio_tytuł{% endtrans %}</h1>
 
-    <a href="#" onclick="window.history.back()">{% trans %}Powrót{% endtrans %}</a></p>
+    <a href="#" onclick="window.history.back()">{% trans %}powrót{% endtrans %}</a></p>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
 
     <div class="card form-group card-block">
-        <p>{% trans %}Zoom:{% endtrans %}</p>
+        <p>{% trans %}zoom{% endtrans %}</p>
         <div>
             <input id="slider" type="range" min="1" max="200" value="1" style="width: 100%">
         </div>
@@ -15,16 +15,16 @@
         <div>
             <button class="btn btn-primary" onclick="wavesurfer.playPause()">
                 <span class="fa fa-play"></span>
-                Odtwórz/Zatrzymaj
+                {% trans %}play_pause{% endtrans %}
             </button>
             <a id="link" class="btn btn-info" target="_blank">
                 <span class="fa fa-download"></span>
-                Pobierz
+                {% trans %}pobierz{% endtrans %}
             </a>
         </div>
         <div id="progress-msg-audio" class="alert alert-info fade show" role="alert">
             <span class="fa fa-refresh fa-spin"></span>
-            {% trans %}Pracuję...{% endtrans %}
+            {% trans %}pracuję{% endtrans %}
         </div>
     </div>
 
@@ -36,12 +36,12 @@
             <div class="row form-group">
                 <div class="col-2">
                     <button id="edit-btn" class="btn btn-info" type="button" style="width:100%;">
-                        {% trans %}Edytuj{% endtrans %}
+                        {% trans %}edytuj{% endtrans %}
                     </button>
                 </div>
                 <div class="col-2">
                     <button id="save-btn" class="btn btn-primary invisible" type="submit" style="width:100%;">
-                        {% trans %}Zapisz{% endtrans %}
+                        {% trans %}zapisz{% endtrans %}
                     </button>
                 </div>
             </div>
@@ -49,7 +49,7 @@
 
         <div id="progress-msg-trans" class="alert alert-info fade show" role="alert">
             <span class="fa fa-refresh fa-spin"></span>
-            {% trans %}Pracuję...{% endtrans %}
+            {% trans %}pracuję{% endtrans %}
         </div>
     </div>
 
@@ -57,11 +57,11 @@
     </div>
 
     <div class="card form-group card-block">
-        <p>{% trans %}Identyfikator pliku audio:{% endtrans %}</p>
+        <p>{% trans %}ident_audio{% endtrans %}</p>
 
         <p><a href="/tools/ui/view/{{ audio_id }}">{{ audio_id }}</a></p>
 
-        <p>{% trans %}Identyfikator transkrypcji:{% endtrans %}</p>
+        <p>{% trans %}ident_trans{% endtrans %}</p>
 
         <p><a href="/tools/ui/view/{{ trans_id }}">{{ trans_id }}</a></p>
     </div>
@@ -104,22 +104,19 @@
                             $('#progress-msg-audio').alert('close');
                             $('#error-msg').addClass('show');
                             $('#error-msg').addClass('alert-warning');
-                            $('#error-msg').html('{% trans %}Nie udało się jeszcze przetworzyć zasobu! \
-                            Wciśnij F5 żeby spróbować ponownie za chwilę...{% endtrans %}');
+                            $('#error-msg').html('{% trans %}f5_refresh{% endtrans %}');
                         }
                     } else {
                         $('#progress-msg-audio').alert('close');
                         $('#error-msg').addClass('show');
                         $('#error-msg').addClass('alert-danger');
-                        $('#error-msg').html('{% trans %}Błąd przetwarzania zasobu! \
-                            Skontaktuj się z administratorem!{% endtrans %}');
+                        $('#error-msg').html('{% trans %}błąd_admin{% endtrans %}');
                     }
                 }).fail(function (data) {
                 $('#progress-msg-audio').alert('close');
                 $('#error-msg').addClass('show');
                 $('#error-msg').addClass('alert-danger');
-                $('#error-msg').html('{% trans %}Błąd przetwarzania zasobu! \
-                            Skontaktuj się z administratorem!{% endtrans %}');
+                $('#error-msg').html('{% trans %}błąd_admin{% endtrans %}');
 
             });
         }
@@ -144,15 +141,13 @@
                         $('#progress-msg-trans').alert('close');
                         $('#error-msg').addClass('show');
                         $('#error-msg').addClass('alert-warning');
-                        $('#error-msg').html('{% trans %}Nie udało się jeszcze przetworzyć zasobu! \
-                            Wciśnij F5 żeby spróbować ponownie za chwilę...{% endtrans %}');
+                        $('#error-msg').html('{% trans %}f5_refresh{% endtrans %}');
                     }
                 } else {
                     $('#progress-msg-trans').alert('close');
                     $('#error-msg').addClass('show');
                     $('#error-msg').addClass('alert-danger');
-                    $('#error-msg').html('{% trans %}Błąd przetwarzania zasobu! \
-                            Skontaktuj się z administratorem!{% endtrans %}');
+                    $('#error-msg').html('{% trans %}błąd_admin{% endtrans %}');
                 }
             });
         }
@@ -164,18 +159,18 @@
             if (editting) {
                 $('#result').attr('readonly', true);
                 $('#save-btn').addClass('invisible');
-                $('#edit-btn').html('{% trans %}Edytuj{% endtrans %}')
+                $('#edit-btn').html('{% trans %}edytuj{% endtrans %}')
                 editting = false;
             } else {
                 $('#result').removeAttr('readonly');
                 $('#save-btn').removeClass('invisible');
-                $('#edit-btn').html('{% trans %}Tylko odczyt{% endtrans %}')
+                $('#edit-btn').html('{% trans %}readonly{% endtrans %}')
                 editting = true;
             }
         });
 
         $('#edit-form').submit(function () {
-            return confirm('{% trans %}Czy na pewno chcesz zmodyfikować ten zasób pewien?{% endtrans %}');
+            return confirm('{% trans %}czy_modyfikuj{% endtrans %}');
         });
 
     </script>

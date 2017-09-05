@@ -1,28 +1,28 @@
 {% extends "layout.html" %}
 {% block body %}
-    <h1>{% trans %}Transkrpycja pojedynczego wyrazu{% endtrans %}</h1>
+    <h1>{% trans %}g2p_tytuł{% endtrans %}</h1>
 
-    <a href="#" onclick="window.history.back()">{% trans %}Powrót{% endtrans %}</a></p>
+    <a href="#" onclick="window.history.back()">{% trans %}powrót{% endtrans %}</a></p>
 
     <div class="card form-group card-block">
-        <h4 class="card-title">{% trans %}Opis narzędzia{% endtrans %}</h4>
-        <p class="card-text">{% trans %}Konwersja wyrazu z zapisu ortograficznego na fonetyczny.{% endtrans %}</p>
+        <h4 class="card-title">{% trans %}opis_narzędzia{% endtrans %}</h4>
+        <p class="card-text">{% trans %}opis_g2p{% endtrans %}</p>
     </div>
 
     <div class="card form-group card-block">
-        <p>{% trans %}Wpisz wyraz jaki chcesz przetranskrybować:{% endtrans %}</p>
+        <p>{% trans %}wpisz_wyraz_g2p{% endtrans %}</p>
 
         <span class="input-group">
                 <input id="word" class="form-control" type="text" on>
                 <span class="input-group-btn">
-                    <button id="convert_btn" class="btn btn-primary">{% trans %}Konwertuj{% endtrans %}</button>
+                    <button id="convert_btn" class="btn btn-primary">{% trans %}konwertuj{% endtrans %}</button>
                 </span>
             </span>
     </div>
 
     <div class="card form-group card-block">
 
-        <p>{% trans %}Wynik:{% endtrans %}</p>
+        <p>{% trans %}wynik{% endtrans %}</p>
 
         <textarea id="result" class="form-control" style="height: 10em;" readonly="true"></textarea>
     </div>
@@ -41,28 +41,27 @@
 
     <div class="card form-group card-block">
         <h3><a data-toggle="collapse" href="#serviceHelp">
-            {% trans %}Przykład korzystania z usługi z linii poleceń{% endtrans %}
+            {% trans %}commandline_tytuł{% endtrans %}
         </a></h3>
 
         <div class="collapse" id="serviceHelp">
-            <p>{% trans %}Usługe uruchamiamy następującym poleceniem:{% endtrans %}</p>
+            <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
 
             <p><code>curl {{ server_url }}tools/phonetize/word/wstążka</code></p>
 
-            <p>{% trans %}Generuje taki output w formacie JSON:{% endtrans %}</p>
+            <p>{% trans %}help_gen_result_JSON{% endtrans %}</p>
 
             <p><code>["f s t o~ Z k a", "f s t o n Z k a"]</code></p>
 
-            <p>{% trans %}Można też pobrać wynik używając alfabetu IPA:{% endtrans %}</p>
+            <p>{% trans %}help_result_ipa{% endtrans %}</p>
 
             <p><code>curl {{ server_url }}tools/phonetize/word/wstążka?ipa</code></p>
 
-            <p>{% trans %}Co wygeneruje wynik w kodzie UTF-8:{% endtrans %}</p>
+            <p>{% trans %}help_gen_result_utf8{% endtrans %}</p>
 
             <p><code>["f s t \u0254\u0303 \u0290 k a", "f s t \u0254 n \u0290 k a"]</code></p>
 
-            <p>{% trans %}W przypadku większego obciążenia, serwer może odpowiedzieć kodem
-                <code>503 Service Unavaliable</code>. W takim wypadku wystarczy powtórzyć zapytanie.{% endtrans %}
+            <p>{% trans %}help_503_odśwież{% endtrans %}
             </p>
         </div>
     </div>
@@ -84,14 +83,14 @@
             if ($('#ipa').is(':checked')) script = 'ipa';
 
             $('#convert_btn').html('<span class="fa fa-refresh fa-spin"></span>\
-                {% trans %}Pracuję...{% endtrans %}');
+                {% trans %}pracuję{% endtrans %}');
 
             var txt = $('#word').val();
 
             $.get('/tools/phonetize/word/' + encodeURI(txt) + '?' + script)
                 .done(function (data) {
                     $('#result').val(JSON.parse(data).join('\n'));
-                    $('#convert_btn').html('{% trans %}Konwertuj{% endtrans %}');
+                    $('#convert_btn').html('{% trans %}konwertuj{% endtrans %}');
                 }).fail(function (data) {
                 if (data['status'] == 503) {
                     if (fail_count > 0) {
@@ -99,8 +98,8 @@
                         time_delay += 100;
                         fail_count--;
                     } else {
-                        $('#result').val('{% trans %}Błąd konwersji...{% endtrans %}');
-                        $('#convert_btn').html('{% trans %}Konwertuj{% endtrans %}');
+                        $('#result').val('{% trans %}błąd_konwersji{% endtrans %}');
+                        $('#convert_btn').html('{% trans %}konwertuj{% endtrans %}');
                     }
                 }
             });

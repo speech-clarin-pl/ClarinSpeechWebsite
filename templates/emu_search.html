@@ -1,44 +1,44 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <h1>{% trans %}Wyszukiwanie projektu{% endtrans %}</h1>
+    <h1>{% trans %}emu_search_tytuł{% endtrans %}</h1>
 
-    <a href="#" onclick="window.history.back()">Powrót</a>
+    <a href="#" onclick="window.history.back()">powrót</a>
 
     <div class="card form-group card-block">
         <h3><a data-toggle="collapse" href="#filter" aria-expanded="false" aria-controls="filter">
-            {% trans %}Filtry{% endtrans %}
+            {% trans %}filtry{% endtrans %}
         </a></h3>
         <div class="collapse" id="filter">
             <form method="post">
                 <div class="form-group">
-                    <label for="owner">{% trans %}Właściciel{% endtrans %}</label>
+                    <label for="owner">{% trans %}właściciel{% endtrans %}</label>
                     <input class="form-control" id="owner" name="owner" value="{{ filter['owner'] }}">
                 </div>
                 <div class="form-group">
-                    <label for="description">{% trans %}Opis{% endtrans %}</label>
+                    <label for="description">{% trans %}opis{% endtrans %}</label>
                     <input type="text" class="form-control" id="description" name="description"
                            value="{{ filter['description'] }}">
                 </div>
                 <div class="form-group">
-                    <label for="afterdate">{% trans %}Po dacie{% endtrans %}</label>
+                    <label for="afterdate">{% trans %}po_dacie{% endtrans %}</label>
                     <input type="date" class="form-control" id="afterdate" name="afterdate"
                            value="{{ filter['afterdatestr'] }}">
                 </div>
                 <div class="form-group">
-                    <label for="beforedate">{% trans %}Przed datą{% endtrans %}</label>
+                    <label for="beforedate">{% trans %}przed_datą{% endtrans %}</label>
                     <input type="date" class="form-control" id="beforedate" name="beforedate"
                            value="{{ filter['beforedatestr'] }}">
                 </div>
                 <div class="row">
                     <div class="col-2">
                         <button type="submit" class="btn btn-primary" style="width: 100%">
-                            {% trans %}Filtruj{% endtrans %}
+                            {% trans %}filtruj{% endtrans %}
                         </button>
                     </div>
                     <div class="col-2">
                         <a href="search?reset" class="btn btn-secondary" style="width: 100%">
-                            {% trans %}Resetuj{% endtrans %}
+                            {% trans %}resetuj{% endtrans %}
                         </a>
                     </div>
                 </div>
@@ -50,10 +50,10 @@
         <table class="table">
             <thead class="thead-inverse">
             <tr>
-                <th>{% trans %}Identyfikator{% endtrans %}</th>
-                <th>{% trans %}Właściciel{% endtrans %}</th>
-                <th>{% trans %}Opis{% endtrans %}</th>
-                <th>{% trans %}Data stworzenia{% endtrans %}</th>
+                <th>{% trans %}identyfikator{% endtrans %}</th>
+                <th>{% trans %}właściciel{% endtrans %}</th>
+                <th>{% trans %}opis{% endtrans %}</th>
+                <th>{% trans %}data_stworzenia{% endtrans %}</th>
             </tr>
             </thead>
             <tbody>

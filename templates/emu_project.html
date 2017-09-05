@@ -1,25 +1,25 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <a href="#" onclick="window.history.back()">{% trans %}Powrót{% endtrans %}</a>
+    <a href="#" onclick="window.history.back()">{% trans %}powrót{% endtrans %}</a>
 
-    <h1>{% trans %}Projekt EMU{% endtrans %}</h1>
+    <h1>{% trans %}emu_projekt_tytuł{% endtrans %}</h1>
 
     <div class="card form-control card-block">
         <div class="form-group row">
-            <p class="col-2">{% trans %}Stworzony przez{% endtrans %}</p>
+            <p class="col-2">{% trans %}stworzony_przez{% endtrans %}</p>
             <p class="col-6"><b>{{ proj.owner }}</b></p>
             <p class="col-4">{{ create_date }}</p>
         </div>
         <div class="form-group row">
-            <p class="col-2">{% trans %}Opis{% endtrans %}</p>
+            <p class="col-2">{% trans %}opis{% endtrans %}</p>
             <p class="col-10"><b>{{ proj.description }}</b></p>
         </div>
         <div class="form-group row">
             <div class="col-2">
                 <button id="btn_modify" type="button" class="btn btn-info" data-toggle="collapse" href="#project"
                         aria-expanded="false" aria-controls="project" style="width: 100%">
-                    {% trans %}Modyfikuj{% endtrans %}
+                    {% trans %}modyfikuj{% endtrans %}
                 </button>
             </div>
         </div>
@@ -29,14 +29,14 @@
                 <form action="modify/{{ proj._id }}" method="POST" onsubmit="return verify_submit()">
 
                     <div class="form-group row">
-                        <label for="owner" class="col-2 col-form-label">{% trans %}Właściciel{% endtrans %}</label>
+                        <label for="owner" class="col-2 col-form-label">{% trans %}właściciel{% endtrans %}</label>
                         <div class="col-10">
                             <input id="owner" name="owner" value="{{ proj.owner }}" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="desc" class="col-2 col-form-label">{% trans %}Opis{% endtrans %}</label>
+                        <label for="desc" class="col-2 col-form-label">{% trans %}opis{% endtrans %}</label>
                         <div class="col-10">
                             <textarea id="desc" name="desc" class="form-control"
                                       rows="3">{{ proj.description }}</textarea>
@@ -45,21 +45,21 @@
 
                     <div id="pass_row" class="form-group">
                         <div class="row">
-                            <label for="pass" class="col-2 col-form-label ">{% trans %}Hasło{% endtrans %}</label>
+                            <label for="pass" class="col-2 col-form-label ">{% trans %}hasło{% endtrans %}</label>
                             <div class="col-5">
                                 <input type="password" id="pass" name="pass" value="{{ pass_check }}"
                                        class="form-control form-control-danger"
-                                       placeholder="{% trans %}Hasło{% endtrans %}">
+                                       placeholder="{% trans %}hasło{% endtrans %}">
                                 <input type="hidden" id="pass_check" name="pass_check" value="{{ pass_check }}">
                             </div>
                             <div class="col-5">
                                 <input type="password" id="pass_rep" class="form-control form-control-danger"
-                                       placeholder="{% trans %}Powtórz hasło{% endtrans %}">
+                                       placeholder="{% trans %}powtórz_hasło{% endtrans %}">
                             </div>
                         </div>
                         <div class="row">
                             <div id="pass_fb" class="col-sm-3 offset-sm-2 form-control-feedback invisible">
-                                {% trans %}Hasła nie są takie same!{% endtrans %}
+                                {% trans %}hasła_się_różnią{% endtrans %}
                             </div>
                         </div>
                     </div>
@@ -68,13 +68,13 @@
                         <div class="col-2">
                             <a class="btn btn-danger ask-delete" style="width:100%" href="remove/{{ proj._id }}">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
-                                {% trans %}Usuń{% endtrans %}
+                                {% trans %}usuń{% endtrans %}
                             </a>
                         </div>
                         <div class="col-3">
                             <button id="btn_save" type="submit" class="btn btn-primary" style="width:100%">
                                 <i class="fa fa-floppy-o" aria-hidden="true"></i>
-                                {% trans %}Zapisz{% endtrans %}
+                                {% trans %}zapisz{% endtrans %}
                             </button>
                         </div>
                     </div>
@@ -84,14 +84,14 @@
                     $('#pass_rep').change(verify_password);
 
                     function verify_submit() {
-                        if (!confirm('{% trans %}Czy na pewno chcesz zapisać zmiany?{% endtrans %}')) {
+                        if (!confirm('{% trans %}czy_zapisać_zmiany{% endtrans %}')) {
                             $('#pass').val($('#pass_check').val());
                             $('#pass-rep').val($('#pass_check').val());
                             return false;
                         }
                         if ($('#pass').val() != $('#pass_check').val()) {
                             if (!verify_password()) {
-                                alert('{% trans %}Hasła się nie zgadzają!{% endtrans %}');
+                                alert('{% trans %}hasła_się_różnią{% endtrans %}');
                                 return false;
                             }
                         }
@@ -120,7 +120,7 @@
 
         <form action="add_audio/{{ proj._id }}" class="dropzone form-group" id="addAudio">
             <div class="dz-message needsclick">
-                {% trans %}Przeciągnij tutaj albo kliknij żeby wgrać plik(i) audio.{% endtrans %}
+                {% trans %}pliki_click_drag_opis{% endtrans %}
             </div>
         </form>
 
@@ -132,10 +132,10 @@
         <table class="table">
             <thead class="thead-inverse">
             <tr>
-                <th class="col-xs-4">{% trans %}Nazwa paczki i sesji{% endtrans %}</th>
-                <th class="col-xs-2">{% trans %}Plik audio{% endtrans %}</th>
-                <th class="col-xs-2">{% trans %}Transkrypcja{% endtrans %}</th>
-                <th class="col-xs-2">{% trans %}Segmentacja{% endtrans %}</th>
+                <th class="col-xs-4">{% trans %}nazwa_paczki_sesji{% endtrans %}</th>
+                <th class="col-xs-2">{% trans %}plik_audio{% endtrans %}</th>
+                <th class="col-xs-2">{% trans %}transkrypcja{% endtrans %}</th>
+                <th class="col-xs-2">{% trans %}segmentacja{% endtrans %}</th>
                 <th class="col-xs-1">&nbsp;</th>
             </tr>
             </thead>
@@ -174,12 +174,12 @@
                                     {% if disable.update({'emu':True}) %}{% endif %}
                                     {% if 'error' in bundle.audio %}
                                         <a class="btn btn-secondary btn-lg"
-                                           title="{% trans %}Wystąpił błąd!{% endtrans %}">
+                                           title="{% trans %}błąd{% endtrans %}">
                                             <i class="fa fa-times-circle fa-2x" style="color: red"></i>
                                         </a>
                                     {% else %}
                                         <a class="btn btn-secondary btn-lg"
-                                           title="{% trans %}Przetwarzam..."{% endtrans %}>
+                                           title="{% trans %}przetwarzam{% endtrans %}">
                                             <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
                                         </a>
                                     {% endif %}
@@ -187,7 +187,7 @@
                                 <div>
                                     <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?audio"
                                        class="btn btn-danger btn-sm ask-delete"
-                                       title="{% trans %}Usuń{% endtrans %}">
+                                       title="{% trans %}usuń{% endtrans %}">
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </a>
                                 </div>
@@ -233,12 +233,12 @@
                                     {% if disable.update({'align':True}) %}{% endif %}
                                     {% if 'error' in bundle.trans %}
                                         <a class="btn btn-secondary btn-lg"
-                                           title="{% trans %}Wystąpił błąd!{% endtrans %}">
+                                           title="{% trans %}błąd{% endtrans %}">
                                             <i class="fa fa-times-circle fa-2x" style="color: red"></i>
                                         </a>
                                     {% else %}
                                         <a class="btn btn-secondary btn-lg"
-                                           title="{% trans %}Przetwarzam...{% endtrans %}">
+                                           title="{% trans %}przetwarzam{% endtrans %}">
                                             <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
                                         </a>
                                     {% endif %}
@@ -246,7 +246,7 @@
                                 <div>
                                     <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?trans"
                                        class="btn btn-danger btn-sm ask-delete"
-                                       title="{% trans %}Usuń"{% endtrans %}>
+                                       title="{% trans %}usuń{% endtrans %}">
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </a>
                                 </div>
@@ -267,7 +267,7 @@
                                         {% if 'audio' in bundle and bundle.audio.file %}
                                             <a href="reco/{{ proj._id }}/{{ name|urlencode }}"
                                                class="btn btn-warning btn-sm ask-any"
-                                               title="{% trans %}Wygeneruj automatycznie"{% endtrans %}>
+                                               title="{% trans %}wygeneruj_automatycznie{% endtrans %}">
                                                 <i class="fa fa-cogs" aria-hidden="true"></i>
                                             </a>
                                         {% endif %}
@@ -293,12 +293,12 @@
                                     {% if disable.update({'emu':True}) %}{% endif %}
                                     {% if 'error' in bundle.seg %}
                                         <a class="btn btn-secondary btn-lg"
-                                           title="{% trans %}Wystąpił błąd!{% endtrans %}">
+                                           title="{% trans %}błąd{% endtrans %}">
                                             <i class="fa fa-times-circle fa-2x" style="color: red"></i>
                                         </a>
                                     {% else %}
                                         <a class="btn btn-secondary btn-lg"
-                                           title="{% trans %}Przetwarzam...{% endtrans %}">
+                                           title="{% trans %}przetwarzam{% endtrans %}">
                                             <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
                                         </a>
                                     {% endif %}
@@ -306,7 +306,7 @@
                                 <div>
                                     <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?seg"
                                        class="btn btn-danger btn-sm ask-delete"
-                                       title="{% trans %}Usuń"{% endtrans %}>
+                                       title="{% trans %}usuń{% endtrans %}">
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </a>
                                 </div>
@@ -321,7 +321,7 @@
                                     {% if 'audio' in bundle and bundle.audio.file and 'trans' in bundle and bundle.trans.file %}
                                         <a href="align/{{ proj._id }}/{{ name|urlencode }}"
                                            class="btn btn-warning btn-sm ask-any"
-                                           title="{% trans %}Wygeneruj automatycznie{% endtrans %}">
+                                           title="{% trans %}wygeneruj_automatycznie{% endtrans %}">
                                             <i class="fa fa-cogs" aria-hidden="true"></i>
                                         </a>
                                     {% endif %}
@@ -333,7 +333,7 @@
                     <td>
                         <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}"
                            class="btn btn-danger ask-delete"
-                           title="{% trans %}Usuń całą paczkę{% endtrans %}">
+                           title="{% trans %}usuń_paczkę{% endtrans %}">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -347,18 +347,18 @@
 
     <div class="card form-control card-block emu-toolbar">
 
-        <h3>{% trans %}Narzędzia dla całego projektu{% endtrans %}</h3>
+        <h3>{% trans %}narzędzia_całego_projektu_tytuł{% endtrans %}</h3>
 
-        <p>{% trans %}Niektóre akcje są dostępne tylko w obecności wszystkich plików danego rodzaju.{% endtrans %}</p>
+        <p>{% trans %}narzędzia_całego_projektu_opis1{% endtrans %}</p>
 
-        <p>{% trans %}Pliki są generowane automatycznie tylko dla brakujących pozycji.{% endtrans %}</p>
+        <p>{% trans %}narzędzia_całego_projektu_opis2{% endtrans %}</p>
 
         <div class="row">
             {% if disable.asr %}
                 <a class="btn btn-warning btn-lg col-2 disabled">
             {% else %}
                 <a href="reco/{{ proj._id }}" class="btn btn-warning btn-lg col-2 ask-any"
-                   title="{% trans %}Wykonaj rozpoznawanie plików audio dla całego projektu{% endtrans %}">
+                   title="{% trans %}wykonaj_asr{% endtrans %}">
             {% endif %}
             <i class="fa fa-file-audio-o fa-2x"></i>
             <i class="fa fa-arrow-right fa-2x"></i>
@@ -369,7 +369,7 @@
                 <a class="btn btn-warning btn-lg col-2 disabled">
             {% else %}
                 <a href="align/{{ proj._id }}" class="btn btn-warning btn-lg col-2 ask-any"
-                   title="{% trans %}Wykonaj segmentacji nagrań dla całego projektu{% endtrans %}">
+                   title="{% trans %}wykonaj_align{% endtrans %}">
             {% endif %}
             <i class="fa fa-file-text-o fa-2x"></i>
             <i class="fa fa-arrow-right fa-2x"></i>
@@ -380,7 +380,7 @@
                 <a class="btn btn-info btn-lg col-2 disabled">
             {% else %}
                 <a href="webapp/{{ proj._id }}" class="btn btn-info btn-lg col-2" target="_blank"
-                   title="{% trans %}Otwórz projekt w aplikacji EMU-WebApp{% endtrans %}">
+                   title="{% trans %}otwórz_webapp{% endtrans %}">
             {% endif %}
             <img src={{ url_for('static', filename='img/emuIcon.png') }}>
             </a>
@@ -389,7 +389,7 @@
                 <a class="btn btn-info btn-lg col-2 disabled">
             {% else %}
                 <a href="download/{{ proj._id }}" class="btn btn-info btn-lg col-2"
-                   title="{% trans %}Ściągnij cały projekt{% endtrans %}">
+                   title="{% trans %}ściągnij_projekt{% endtrans %}">
             {% endif %}
             <i class="fa fa-download fa-2x"></i>
             </a>
@@ -414,14 +414,14 @@
 
         $(".ask-delete").each(function () {
             $(this).click(function () {
-                if (!confirm('{% trans %}Czy na pewno chcesz usunąć zasób?{% endtrans %}'))
+                if (!confirm('{% trans %}czy_usunąć_zasób{% endtrans %}'))
                     return false;
             });
         });
 
         $(".ask-any").each(function () {
             $(this).click(function () {
-                if (!confirm('{% trans %}Czy na pewno chcesz wykonać akcję?{% endtrans %}'))
+                if (!confirm('{% trans %}czy_wykonać_akcję{% endtrans %}'))
                     return false;
             });
         });
@@ -439,7 +439,7 @@
 
                         if (e.target.name == 'name') {
                             if ($.inArray(new_value, bundle_names) >= 0) {
-                                alert('{% trans %}Taka nazwa już istnieje!{% endtrans %}');
+                                alert('{% trans %}nazwa_już_istnieje{% endtrans %}');
                                 return false;
                             }
                         }

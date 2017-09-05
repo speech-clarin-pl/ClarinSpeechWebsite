@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block body %}
-    <h1>{% trans %}Segmentacja{% endtrans %}</h1>
+    <h1>{% trans %}view_seg_tytuł{% endtrans %}</h1>
 
-    <a href="#" onclick="window.history.back()">{% trans %}Powrót{% endtrans %}</a></p>
+    <a href="#" onclick="window.history.back()">{% trans %}powrót{% endtrans %}</a></p>
 
     <div class="card form-group card-block">
         <div class="row">
@@ -18,7 +18,7 @@
 
         <div id="progress-msg" class="alert alert-info fade show" role="alert">
             <span class="fa fa-refresh fa-spin"></span>
-            {% trans %}Pracuję...{% endtrans %}
+            {% trans %}pracuję{% endtrans %}
         </div>
     </div>
 
@@ -26,16 +26,16 @@
     </div>
 
     <div class="card form-group card-block">
-        <p>{% trans %}Identyfikator zasobu:{% endtrans %}</p>
+        <p>{% trans %}ident_res{% endtrans %}</p>
 
         <p><a href="/tools/ui/view/{{ res_id }}">{{ res_id }}</a></p>
 
-        <p>{% trans %}Wyliczony z:{% endtrans %}</p>
+        <p>{% trans %}ident_from{% endtrans %}</p>
         {% if from_audio %}
             <p><a href="/tools/ui/view/{{ from_audio }}" target="_blank">{{ from_audio }}</a></p>
             <p><a href="/tools/ui/view/{{ from_trans }}" target="_blank">{{ from_trans }}</a></p>
         {% else %}
-            <p>{% trans %}Nieznany! Naciśnij F5 żeby odświeżyć!{% endtrans %}</p>
+            <p>{% trans %}nieznany_f5{% endtrans %}</p>
         {% endif %}
     </div>
 
@@ -70,15 +70,13 @@
                                 $('#progress-msg').alert('close');
                                 $('#error-msg').addClass('show');
                                 $('#error-msg').addClass('alert-warning');
-                                $('#error-msg').html('{% trans %}Nie udało się jeszcze przetworzyć zasobu! \
-                            Wciśnij F5 żeby spróbować ponownie za chwilę...{% endtrans %}');
+                                $('#error-msg').html('{% trans %}f5_refresh{% endtrans %}');
                             }
                         } else {
                             $('#progress-msg').alert('close');
                             $('#error-msg').addClass('show');
                             $('#error-msg').addClass('alert-danger');
-                            $('#error-msg').html('{% trans %}Błąd przetwarzania zasobu! \
-                            Skontaktuj się z administratorem!{% endtrans %}');
+                            $('#error-msg').html('{% trans %}błąd_admin{% endtrans %}');
                         }
                     }
                 ).fail(function (data) {
@@ -86,8 +84,7 @@
                 $('#progress-msg').alert('close');
                 $('#error-msg').addClass('show');
                 $('#error-msg').addClass('alert-danger');
-                $('#error-msg').html('{% trans %}Błąd przetwarzania zasobu! \
-                            Skontaktuj się z administratorem!{% endtrans %}');
+                $('#error-msg').html('{% trans %}błąd_admin{% endtrans %}');
 
             });
         }
