@@ -17,6 +17,8 @@
         {% else %}
             <p class="card-text">{% trans %}opis_segment{% endtrans %}</p>
         {% endif %}
+
+        <p class="card-text">{% trans %}opis_pliki_audio{% endtrans %}</p>
     </div>
 
     <div class="card form-group card-block">
@@ -45,8 +47,67 @@
         <div class="collapse" id="serviceHelp">
             <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
 
-            <p><code>curl -s -F "audio=@audio.wav;transcript=@trans.txt" {{ server_url }}tools/align/forced</code>
+            {% if forced %}
+                <p>
+                    <code>curl -s -F "audio=@audio.wav" -F "transcript=@trans.txt" {{ server_url }}tools/speech/forcealign</code>
+                </p>
+            {% else %}
+                <p>
+                    <code>curl -s -F "audio=@audio.wav" -F "transcript=@trans.txt" {{ server_url }}tools/speech/segmentalign</code>
+                </p>
+            {% endif %}
+
+            <p>{% trans %}help_ident_io{% endtrans %}</p>
+
+            <p>
+                <code>
+                    {"output": "59aeffa039ec7803291c5e1f", "audio": "59ad218239ec782dcfa73599", "transcript":
+                    "59ad217639ec782dcfa73597"}
+                </code>
             </p>
+
+            <p>{% trans %}help_download{% endtrans %}</p>
+
+            <p><code>curl {{ server_url }}/tools/download/59aeffa039ec7803291c5e1f -o output.ctm</code></p>
+
+            <p>{% trans %}help_download_textgrid{% endtrans %}</p>
+
+            <p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o output.TextGrid</code></p>
+
+            <p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o
+                output.TextGrid?script=sampa</code></p>
+
+            <p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o output.TextGrid?script=ipa</code>
+            </p>
+
+            <p>{% trans %}help_download_annot{% endtrans %}</p>
+
+            <p><code>curl {{ server_url }}/tools/annot/59aeffa039ec7803291c5e1f -o output_annot.json</code></p>
+
+            <p>{% trans %}help_download_status_codes{% endtrans %}</p>
+
+            <p><code>curl {{ server_url }}/tools/status/59aeffa039ec7803291c5e1f</code></p>
+
+            <p>{% trans %}help_status_status_codes{% endtrans %}</p>
+
+            <p>{% trans %}help_upload{% endtrans %}</p>
+
+            <p><code>curl -s -F "file=@audio.wav" {{ server_url }}tools/upload</code></p>
+
+            <p>{% trans %}help_upload_result{% endtrans %}</p>
+
+            {% if forced %}
+                <p>
+                    <code>curl {{ server_url }}tools/speech/forcealign/59ad218239ec782dcfa73599/59ad217639ec782dcfa73597</code>
+                </p>
+            {% else %}
+                <p>
+                    <code>curl {{ server_url }}tools/speech/segmentalign/59ad218239ec782dcfa73599/59ad217639ec782dcfa73597</code>
+                </p>
+            {% endif %}
+
+            <p>{% trans %}help_final_download{% endtrans %}</p>
+
 
         </div>
     </div>

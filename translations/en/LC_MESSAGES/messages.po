@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-05 19:45+0200\n"
+"POT-Creation-Date: 2017-09-05 22:15+0200\n"
 "PO-Revision-Date: 2017-09-05 11:46+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -40,12 +40,12 @@ msgstr ""
 
 #: templates/emu_deleted.html:6 templates/emu_new.html:6
 #: templates/emu_password.html:6 templates/emu_project.html:4
-#: templates/korpusy.html:5 templates/multiview_any.html:5
-#: templates/multiview_audio_trans.html:5 templates/tool_align.html:9
-#: templates/tool_audio_to_audio.html:6 templates/tool_g2p_list.html:6
-#: templates/tool_g2p_word.html:5 templates/tool_reco.html:5
-#: templates/tool_text_to_text.html:5 templates/tools.html:6
-#: templates/view_any.html:5 templates/view_audio.html:5
+#: templates/emu_search.html:6 templates/korpusy.html:5
+#: templates/multiview_any.html:5 templates/multiview_audio_trans.html:5
+#: templates/tool_align.html:9 templates/tool_audio_to_audio.html:6
+#: templates/tool_g2p_list.html:6 templates/tool_g2p_word.html:5
+#: templates/tool_reco.html:5 templates/tool_text_to_text.html:5
+#: templates/tools.html:6 templates/view_any.html:5 templates/view_audio.html:5
 #: templates/view_segmentation.html:5 templates/view_transcription.html:5
 msgid "powrót"
 msgstr ""
@@ -69,17 +69,30 @@ msgstr ""
 msgid "opis_opis"
 msgstr ""
 
-#: templates/emu_new.html:25 templates/emu_new.html:27
+#: templates/emu_new.html:25 templates/emu_new.html:30
 #: templates/emu_project.html:48 templates/emu_project.html:52
 msgid "hasło"
 msgstr ""
 
-#: templates/emu_new.html:29
+#: templates/emu_new.html:35 templates/emu_project.html:57
+msgid "powtórz_hasło"
+msgstr ""
+
+#: templates/emu_new.html:39
 msgid "hasło_opis"
 msgstr ""
 
-#: templates/emu_new.html:32
+#: templates/emu_new.html:42 templates/emu_project.html:62
+#: templates/emu_project.html:94
+msgid "hasła_się_różnią"
+msgstr ""
+
+#: templates/emu_new.html:45
 msgid "stwórz"
+msgstr ""
+
+#: templates/emu_new.html:46
+msgid "anuluj"
 msgstr ""
 
 #: templates/emu_password.html:4
@@ -110,16 +123,8 @@ msgstr ""
 msgid "modyfikuj"
 msgstr ""
 
-#: templates/emu_project.html:57
-msgid "powtórz_hasło"
-msgstr ""
-
-#: templates/emu_project.html:62 templates/emu_project.html:94
-msgid "hasła_się_różnią"
-msgstr ""
-
-#: templates/emu_project.html:71 templates/emu_project.html:190
-#: templates/emu_project.html:249 templates/emu_project.html:309
+#: templates/emu_project.html:71 templates/emu_project.html:197
+#: templates/emu_project.html:260 templates/emu_project.html:324
 msgid "usuń"
 msgstr ""
 
@@ -151,61 +156,91 @@ msgstr ""
 msgid "segmentacja"
 msgstr ""
 
-#: templates/emu_project.html:177 templates/emu_project.html:236
-#: templates/emu_project.html:296
+#: templates/emu_project.html:183 templates/emu_project.html:246
+#: templates/emu_project.html:310
 msgid "błąd"
 msgstr ""
 
-#: templates/emu_project.html:182 templates/emu_project.html:241
-#: templates/emu_project.html:301
+#: templates/emu_project.html:188 templates/emu_project.html:251
+#: templates/emu_project.html:315
 msgid "przetwarzam"
 msgstr ""
 
-#: templates/emu_project.html:270 templates/emu_project.html:324
+#: templates/emu_project.html:283 templates/emu_project.html:341
 msgid "wygeneruj_automatycznie"
 msgstr ""
 
-#: templates/emu_project.html:336
+#: templates/emu_project.html:353
 msgid "usuń_paczkę"
 msgstr ""
 
-#: templates/emu_project.html:350
+#: templates/emu_project.html:367
 msgid "narzędzia_całego_projektu_tytuł"
 msgstr ""
 
-#: templates/emu_project.html:352
+#: templates/emu_project.html:369
 msgid "narzędzia_całego_projektu_opis1"
 msgstr ""
 
-#: templates/emu_project.html:354
+#: templates/emu_project.html:371
 msgid "narzędzia_całego_projektu_opis2"
 msgstr ""
 
-#: templates/emu_project.html:361
+#: templates/emu_project.html:379
 msgid "wykonaj_asr"
 msgstr ""
 
-#: templates/emu_project.html:372
+#: templates/emu_project.html:391
 msgid "wykonaj_align"
 msgstr ""
 
-#: templates/emu_project.html:383
+#: templates/emu_project.html:403
 msgid "otwórz_webapp"
 msgstr ""
 
-#: templates/emu_project.html:392
+#: templates/emu_project.html:413
 msgid "ściągnij_projekt"
 msgstr ""
 
-#: templates/emu_project.html:417
+#: templates/emu_project.html:423 templates/korpusy.html:44
+#: templates/multiview_any.html:19 templates/multiview_audio_trans.html:71
+#: templates/tool_align.html:117 templates/tool_audio_to_audio.html:67
+#: templates/tool_g2p_list.html:105 templates/tool_g2p_word.html:71
+#: templates/tool_reco.html:66 templates/tool_text_to_text.html:66
+#: templates/view_any.html:26 templates/view_audio.html:50
+#: templates/view_segmentation.html:27 templates/view_transcription.html:39
+msgid "cytowanie"
+msgstr ""
+
+#: templates/emu_project.html:425 templates/korpusy.html:46
+#: templates/multiview_any.html:21 templates/multiview_audio_trans.html:73
+#: templates/tool_align.html:119 templates/tool_audio_to_audio.html:69
+#: templates/tool_g2p_list.html:107 templates/tool_g2p_word.html:73
+#: templates/tool_reco.html:68 templates/tool_text_to_text.html:68
+#: templates/view_any.html:28 templates/view_audio.html:52
+#: templates/view_segmentation.html:29 templates/view_transcription.html:41
+msgid "cytowanie_opis"
+msgstr ""
+
+#: templates/emu_project.html:434 templates/korpusy.html:54
+#: templates/multiview_any.html:29 templates/multiview_audio_trans.html:81
+#: templates/tool_align.html:127 templates/tool_audio_to_audio.html:77
+#: templates/tool_g2p_list.html:115 templates/tool_g2p_word.html:81
+#: templates/tool_reco.html:76 templates/tool_text_to_text.html:76
+#: templates/view_any.html:36 templates/view_audio.html:60
+#: templates/view_segmentation.html:37 templates/view_transcription.html:49
+msgid "link_do_pracy"
+msgstr ""
+
+#: templates/emu_project.html:456
 msgid "czy_usunąć_zasób"
 msgstr ""
 
-#: templates/emu_project.html:424
+#: templates/emu_project.html:463
 msgid "czy_wykonać_akcję"
 msgstr ""
 
-#: templates/emu_project.html:442
+#: templates/emu_project.html:481
 msgid "nazwa_już_istnieje"
 msgstr ""
 
@@ -285,24 +320,16 @@ msgstr ""
 msgid "link_do_usługi"
 msgstr ""
 
-#: templates/korpusy.html:28
+#: templates/korpusy.html:25
+msgid "korpus_licencja"
+msgstr ""
+
+#: templates/korpusy.html:33
 msgid "kaldi_baseline"
 msgstr ""
 
-#: templates/korpusy.html:30
+#: templates/korpusy.html:35
 msgid "kaldi_baseline_opis"
-msgstr ""
-
-#: templates/korpusy.html:39
-msgid "cytowanie"
-msgstr ""
-
-#: templates/korpusy.html:41
-msgid "cytowanie_opis"
-msgstr ""
-
-#: templates/korpusy.html:49
-msgid "link_do_pracy"
 msgstr ""
 
 #: templates/layout.html:54
@@ -351,14 +378,14 @@ msgid "pobierz"
 msgstr ""
 
 #: templates/multiview_audio_trans.html:27
-#: templates/multiview_audio_trans.html:52 templates/tool_g2p_word.html:86
+#: templates/multiview_audio_trans.html:52 templates/tool_g2p_word.html:101
 #: templates/view_any.html:12 templates/view_audio.html:28
 #: templates/view_segmentation.html:21 templates/view_transcription.html:11
 msgid "pracuję"
 msgstr ""
 
 #: templates/multiview_audio_trans.html:39
-#: templates/multiview_audio_trans.html:162
+#: templates/multiview_audio_trans.html:177
 msgid "edytuj"
 msgstr ""
 
@@ -370,29 +397,29 @@ msgstr ""
 msgid "ident_trans"
 msgstr ""
 
-#: templates/multiview_audio_trans.html:107
-#: templates/multiview_audio_trans.html:144 templates/view_any.html:47
-#: templates/view_audio.html:86 templates/view_segmentation.html:73
-#: templates/view_transcription.html:59
+#: templates/multiview_audio_trans.html:122
+#: templates/multiview_audio_trans.html:159 templates/view_any.html:62
+#: templates/view_audio.html:101 templates/view_segmentation.html:88
+#: templates/view_transcription.html:74
 msgid "f5_refresh"
 msgstr ""
 
-#: templates/multiview_audio_trans.html:113
-#: templates/multiview_audio_trans.html:119
-#: templates/multiview_audio_trans.html:150 templates/tool_align.html:38
-#: templates/tool_audio_to_audio.html:25 templates/tool_reco.html:24
-#: templates/tool_text_to_text.html:24 templates/view_any.html:53
-#: templates/view_any.html:61 templates/view_audio.html:92
-#: templates/view_audio.html:98 templates/view_segmentation.html:79
-#: templates/view_segmentation.html:87 templates/view_transcription.html:65
+#: templates/multiview_audio_trans.html:128
+#: templates/multiview_audio_trans.html:134
+#: templates/multiview_audio_trans.html:165 templates/tool_align.html:40
+#: templates/tool_audio_to_audio.html:25 templates/tool_reco.html:25
+#: templates/tool_text_to_text.html:24 templates/view_any.html:68
+#: templates/view_any.html:76 templates/view_audio.html:107
+#: templates/view_audio.html:113 templates/view_segmentation.html:94
+#: templates/view_segmentation.html:102 templates/view_transcription.html:80
 msgid "błąd_admin"
 msgstr ""
 
-#: templates/multiview_audio_trans.html:167
+#: templates/multiview_audio_trans.html:182
 msgid "readonly"
 msgstr ""
 
-#: templates/multiview_audio_trans.html:173
+#: templates/multiview_audio_trans.html:188
 msgid "czy_modyfikuj"
 msgstr ""
 
@@ -422,28 +449,75 @@ msgstr ""
 msgid "opis_segment"
 msgstr ""
 
-#: templates/tool_align.html:24
+#: templates/tool_align.html:21 templates/tool_reco.html:10
+msgid "opis_pliki_audio"
+msgstr ""
+
+#: templates/tool_align.html:26
 msgid "wczytaj_nagranie"
 msgstr ""
 
-#: templates/tool_align.html:28
+#: templates/tool_align.html:30
 msgid "wczytaj_transkrypcję"
 msgstr ""
 
-#: templates/tool_align.html:33 templates/tool_reco.html:19
+#: templates/tool_align.html:35 templates/tool_reco.html:20
 msgid "rozpocznij"
 msgstr ""
 
-#: templates/tool_align.html:42 templates/tool_audio_to_audio.html:29
+#: templates/tool_align.html:44 templates/tool_audio_to_audio.html:29
 #: templates/tool_g2p_list.html:54 templates/tool_g2p_word.html:44
-#: templates/tool_reco.html:28 templates/tool_text_to_text.html:28
+#: templates/tool_reco.html:29 templates/tool_text_to_text.html:28
 msgid "commandline_tytuł"
 msgstr ""
 
-#: templates/tool_align.html:46 templates/tool_audio_to_audio.html:33
+#: templates/tool_align.html:48 templates/tool_audio_to_audio.html:33
 #: templates/tool_g2p_list.html:59 templates/tool_g2p_word.html:48
-#: templates/tool_reco.html:32 templates/tool_text_to_text.html:32
+#: templates/tool_reco.html:33 templates/tool_text_to_text.html:32
 msgid "usługę_uruchamiamy_poleceniem"
+msgstr ""
+
+#: templates/tool_align.html:60 templates/tool_audio_to_audio.html:37
+#: templates/tool_reco.html:37 templates/tool_text_to_text.html:36
+msgid "help_ident_io"
+msgstr ""
+
+#: templates/tool_align.html:69 templates/tool_audio_to_audio.html:41
+#: templates/tool_reco.html:41 templates/tool_text_to_text.html:40
+msgid "help_download"
+msgstr ""
+
+#: templates/tool_align.html:73
+msgid "help_download_textgrid"
+msgstr ""
+
+#: templates/tool_align.html:83
+msgid "help_download_annot"
+msgstr ""
+
+#: templates/tool_align.html:87 templates/tool_audio_to_audio.html:45
+#: templates/tool_reco.html:45
+msgid "help_download_status_codes"
+msgstr ""
+
+#: templates/tool_align.html:91 templates/tool_audio_to_audio.html:50
+#: templates/tool_reco.html:50
+msgid "help_status_status_codes"
+msgstr ""
+
+#: templates/tool_align.html:93 templates/tool_audio_to_audio.html:52
+#: templates/tool_reco.html:52 templates/tool_text_to_text.html:52
+msgid "help_upload"
+msgstr ""
+
+#: templates/tool_align.html:97 templates/tool_audio_to_audio.html:56
+#: templates/tool_reco.html:56
+msgid "help_upload_result"
+msgstr ""
+
+#: templates/tool_align.html:109 templates/tool_audio_to_audio.html:60
+#: templates/tool_reco.html:60 templates/tool_text_to_text.html:50
+msgid "help_final_download"
 msgstr ""
 
 #: templates/tool_audio_to_audio.html:4 templates/tools.html:33
@@ -454,43 +528,15 @@ msgstr ""
 msgid "opis_audionorm"
 msgstr ""
 
-#: templates/tool_audio_to_audio.html:15 templates/tool_reco.html:14
+#: templates/tool_audio_to_audio.html:15 templates/tool_reco.html:15
 msgid "wczytaj_audio"
 msgstr ""
 
 #: templates/tool_audio_to_audio.html:20 templates/tool_g2p_list.html:18
-#: templates/tool_g2p_list.html:131 templates/tool_g2p_list.html:135
-#: templates/tool_g2p_word.html:18 templates/tool_g2p_word.html:93
-#: templates/tool_g2p_word.html:102 templates/tool_text_to_text.html:19
+#: templates/tool_g2p_list.html:146 templates/tool_g2p_list.html:150
+#: templates/tool_g2p_word.html:18 templates/tool_g2p_word.html:108
+#: templates/tool_g2p_word.html:117 templates/tool_text_to_text.html:19
 msgid "konwertuj"
-msgstr ""
-
-#: templates/tool_audio_to_audio.html:37 templates/tool_text_to_text.html:36
-msgid "help_ident_io"
-msgstr ""
-
-#: templates/tool_audio_to_audio.html:41 templates/tool_text_to_text.html:40
-msgid "help_download"
-msgstr ""
-
-#: templates/tool_audio_to_audio.html:45
-msgid "help_download_status_codes"
-msgstr ""
-
-#: templates/tool_audio_to_audio.html:50
-msgid "help_status_status_codes"
-msgstr ""
-
-#: templates/tool_audio_to_audio.html:52 templates/tool_text_to_text.html:52
-msgid "help_upload"
-msgstr ""
-
-#: templates/tool_audio_to_audio.html:56
-msgid "help_upload_result"
-msgstr ""
-
-#: templates/tool_audio_to_audio.html:60 templates/tool_text_to_text.html:50
-msgid "help_final_download"
 msgstr ""
 
 #: templates/tool_g2p_list.html:4 templates/tools.html:19
@@ -526,7 +572,7 @@ msgstr ""
 msgid "help_result_ipa"
 msgstr ""
 
-#: templates/tool_g2p_list.html:134 templates/tool_g2p_word.html:101
+#: templates/tool_g2p_list.html:149 templates/tool_g2p_word.html:116
 msgid "błąd_konwersji"
 msgstr ""
 
@@ -610,17 +656,17 @@ msgstr ""
 msgid "view_audio_tytuł"
 msgstr ""
 
-#: templates/view_audio.html:36 templates/view_segmentation.html:29
+#: templates/view_audio.html:36 templates/view_segmentation.html:44
 #: templates/view_transcription.html:19
 msgid "ident_res"
 msgstr ""
 
-#: templates/view_audio.html:40 templates/view_segmentation.html:33
+#: templates/view_audio.html:40 templates/view_segmentation.html:48
 #: templates/view_transcription.html:23
 msgid "ident_from"
 msgstr ""
 
-#: templates/view_audio.html:44 templates/view_segmentation.html:38
+#: templates/view_audio.html:44 templates/view_segmentation.html:53
 #: templates/view_transcription.html:27
 msgid "nieznany_f5"
 msgstr ""

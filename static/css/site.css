@@ -28,6 +28,7 @@ div.gornypanel img {
     text-align: center;
     background-color: cornflowerblue;
     color: white;
+    height: 15em;
 }
 
 #main_buttons .card-img-top {
@@ -81,4 +82,8 @@ pre {
 
 .tools .sub {
     font-size: 12pt;
+}
+
+.row .btn {
+    width: 100%;
 }

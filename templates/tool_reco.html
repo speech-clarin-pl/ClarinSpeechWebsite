@@ -7,6 +7,7 @@
     <div class="card form-group card-block">
         <h4 class="card-title">{% trans %}opis_narzędzia{% endtrans %}</h4>
         <p class="card-text">{% trans %}opis_reco{% endtrans %}</p>
+        <p class="card-text">{% trans %}opis_pliki_audio{% endtrans %}</p>
     </div>
 
     <div class="card form-group card-block">
@@ -31,6 +32,32 @@
         <div class="collapse" id="serviceHelp">
             <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
 
+            <p><code>curl -s -F "file=@audio.wav" {{ server_url }}tools/speech/reco</code></p>
+
+            <p>{% trans %}help_ident_io{% endtrans %}</p>
+
+            <p><code>{"output": "59af054739ec780de3340e1a", "audio": "59ad218239ec782dcfa73599"}</code></p>
+
+            <p>{% trans %}help_download{% endtrans %}</p>
+
+            <p><code>curl {{ server_url }}/tools/download/59af054739ec780de3340e1a -o output.txt</code></p>
+
+            <p>{% trans %}help_download_status_codes{% endtrans %}
+            </p>
+
+            <p><code>curl {{ server_url }}/tools/status/59af054739ec780de3340e1a</code></p>
+
+            <p>{% trans %}help_status_status_codes{% endtrans %}</p>
+
+            <p>{% trans %}help_upload{% endtrans %}</p>
+
+            <p><code>curl -s -F "file=@audio.wav" {{ server_url }}tools/upload</code></p>
+
+            <p>{% trans %}help_upload_result{% endtrans %}</p>
+
+            <p><code>curl {{ server_url }}/tools/speech/reco/59af054739ec780de3340e1a</code></p>
+
+            <p>{% trans %}help_final_download{% endtrans %}</p>
         </div>
     </div>
 

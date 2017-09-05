@@ -140,7 +140,11 @@
             </tr>
             </thead>
             <tbody>
-            {% set disable = {'asr': False, 'align' : False, 'emu': False} %}
+            {% if bundles %}
+                {% set disable = {'asr': False, 'align' : False, 'emu': False} %}
+            {% else %}
+                {% set disable = {'asr': True, 'align' : True, 'emu': True} %}
+            {% endif %}
             {% for name,bundle in bundles %}
                 <tr>
                     <td>
@@ -164,27 +168,30 @@
                     <td>
                         {% if 'audio' in bundle %}
                             <div class="row">
-                                {% if bundle.audio.file %}
-                                    <a href="/tools/ui/view/{{ bundle.audio._id }}" class="btn btn-secondary btn-lg">
-                                        <i class="fa fa-file-audio-o fa-2x" aria-hidden="true"></i>
-                                    </a>
-                                {% else %}
-                                    {% if disable.update({'asr':True}) %}{% endif %}
-                                    {% if disable.update({'align':True}) %}{% endif %}
-                                    {% if disable.update({'emu':True}) %}{% endif %}
-                                    {% if 'error' in bundle.audio %}
-                                        <a class="btn btn-secondary btn-lg"
-                                           title="{% trans %}błąd{% endtrans %}">
-                                            <i class="fa fa-times-circle fa-2x" style="color: red"></i>
+                                <div class="col-7">
+                                    {% if bundle.audio.file %}
+                                        <a href="/tools/ui/view/{{ bundle.audio._id }}"
+                                           class="btn btn-secondary btn-lg">
+                                            <i class="fa fa-file-audio-o fa-2x" aria-hidden="true"></i>
                                         </a>
                                     {% else %}
-                                        <a class="btn btn-secondary btn-lg"
-                                           title="{% trans %}przetwarzam{% endtrans %}">
-                                            <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
-                                        </a>
+                                        {% if disable.update({'asr':True}) %}{% endif %}
+                                        {% if disable.update({'align':True}) %}{% endif %}
+                                        {% if disable.update({'emu':True}) %}{% endif %}
+                                        {% if 'error' in bundle.audio %}
+                                            <a class="btn btn-secondary btn-lg"
+                                               title="{% trans %}błąd{% endtrans %}">
+                                                <i class="fa fa-times-circle fa-2x" style="color: red"></i>
+                                            </a>
+                                        {% else %}
+                                            <a class="btn btn-secondary btn-lg"
+                                               title="{% trans %}przetwarzam{% endtrans %}">
+                                                <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
+                                            </a>
+                                        {% endif %}
                                     {% endif %}
-                                {% endif %}
-                                <div>
+                                </div>
+                                <div class="col-3">
                                     <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?audio"
                                        class="btn btn-danger btn-sm ask-delete"
                                        title="{% trans %}usuń{% endtrans %}">
@@ -197,10 +204,12 @@
                             {% if disable.update({'align':True}) %}{% endif %}
                             {% if disable.update({'emu':True}) %}{% endif %}
                             <div class="row">
-                                <a class="btn btn-secondary btn-lg disabled">
-                                    <i class="fa fa-file-audio-o fa-2x" aria-hidden="true"></i>
-                                </a>
-                                <div>
+                                <div class="col-7">
+                                    <a class="btn btn-secondary btn-lg disabled">
+                                        <i class="fa fa-file-audio-o fa-2x" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="col-3">
                                     <label for="audio{{ name }}" type="file" class="btn btn-info btn-sm">
                                         <i class="fa fa-upload" aria-hidden="true"></i>
                                     </label>
@@ -217,33 +226,35 @@
                     <td>
                         {% if 'trans' in bundle %}
                             <div class="row">
-                                {% if bundle.trans.file %}
-                                    {% if 'audio' in bundle and bundle.audio.file %}
-                                        <a href="/tools/ui/multiview/{{ bundle.trans._id }}/{{ bundle.audio._id }}"
-                                           class="btn btn-secondary btn-lg">
-                                            <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
-                                        </a>
+                                <div class="col-7">
+                                    {% if bundle.trans.file %}
+                                        {% if 'audio' in bundle and bundle.audio.file %}
+                                            <a href="/tools/ui/multiview/{{ bundle.trans._id }}/{{ bundle.audio._id }}"
+                                               class="btn btn-secondary btn-lg">
+                                                <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                                            </a>
+                                        {% else %}
+                                            <a href="/tools/ui/view/{{ bundle.trans._id }}"
+                                               class="btn btn-secondary btn-lg">
+                                                <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                                            </a>
+                                        {% endif %}
                                     {% else %}
-                                        <a href="/tools/ui/view/{{ bundle.trans._id }}"
-                                           class="btn btn-secondary btn-lg">
-                                            <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
-                                        </a>
+                                        {% if disable.update({'align':True}) %}{% endif %}
+                                        {% if 'error' in bundle.trans %}
+                                            <a class="btn btn-secondary btn-lg"
+                                               title="{% trans %}błąd{% endtrans %}">
+                                                <i class="fa fa-times-circle fa-2x" style="color: red"></i>
+                                            </a>
+                                        {% else %}
+                                            <a class="btn btn-secondary btn-lg"
+                                               title="{% trans %}przetwarzam{% endtrans %}">
+                                                <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
+                                            </a>
+                                        {% endif %}
                                     {% endif %}
-                                {% else %}
-                                    {% if disable.update({'align':True}) %}{% endif %}
-                                    {% if 'error' in bundle.trans %}
-                                        <a class="btn btn-secondary btn-lg"
-                                           title="{% trans %}błąd{% endtrans %}">
-                                            <i class="fa fa-times-circle fa-2x" style="color: red"></i>
-                                        </a>
-                                    {% else %}
-                                        <a class="btn btn-secondary btn-lg"
-                                           title="{% trans %}przetwarzam{% endtrans %}">
-                                            <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
-                                        </a>
-                                    {% endif %}
-                                {% endif %}
-                                <div>
+                                </div>
+                                <div class="col-3">
                                     <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?trans"
                                        class="btn btn-danger btn-sm ask-delete"
                                        title="{% trans %}usuń{% endtrans %}">
@@ -254,10 +265,12 @@
                         {% else %}
                             {% if disable.update({'align':True}) %}{% endif %}
                             <div class="row">
-                                <a class="btn btn-secondary btn-lg disabled">
-                                    <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
-                                </a>
-                                <div>
+                                <div class="col-7">
+                                    <a class="btn btn-secondary btn-lg disabled">
+                                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="col-3">
                                     <div>
                                         <label for="trans{{ name }}" type="file" class="btn btn-info btn-sm">
                                             <i class="fa fa-upload" aria-hidden="true"></i>
@@ -285,25 +298,27 @@
                     <td>
                         {% if 'seg' in bundle %}
                             <div class="row">
-                                {% if bundle.seg.file %}
-                                    <a href="/tools/ui/view/{{ bundle.seg._id }}" class="btn btn-secondary btn-lg">
-                                        <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
-                                    </a>
-                                {% else %}
-                                    {% if disable.update({'emu':True}) %}{% endif %}
-                                    {% if 'error' in bundle.seg %}
-                                        <a class="btn btn-secondary btn-lg"
-                                           title="{% trans %}błąd{% endtrans %}">
-                                            <i class="fa fa-times-circle fa-2x" style="color: red"></i>
+                                <div class="col-7">
+                                    {% if bundle.seg.file %}
+                                        <a href="/tools/ui/view/{{ bundle.seg._id }}" class="btn btn-secondary btn-lg">
+                                            <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
                                         </a>
                                     {% else %}
-                                        <a class="btn btn-secondary btn-lg"
-                                           title="{% trans %}przetwarzam{% endtrans %}">
-                                            <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
-                                        </a>
+                                        {% if disable.update({'emu':True}) %}{% endif %}
+                                        {% if 'error' in bundle.seg %}
+                                            <a class="btn btn-secondary btn-lg"
+                                               title="{% trans %}błąd{% endtrans %}">
+                                                <i class="fa fa-times-circle fa-2x" style="color: red"></i>
+                                            </a>
+                                        {% else %}
+                                            <a class="btn btn-secondary btn-lg"
+                                               title="{% trans %}przetwarzam{% endtrans %}">
+                                                <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
+                                            </a>
+                                        {% endif %}
                                     {% endif %}
-                                {% endif %}
-                                <div>
+                                </div>
+                                <div class="col-3">
                                     <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?seg"
                                        class="btn btn-danger btn-sm ask-delete"
                                        title="{% trans %}usuń{% endtrans %}">
@@ -314,10 +329,12 @@
                         {% else %}
                             {% if disable.update({'emu':True}) %}{% endif %}
                             <div class="row">
-                                <a class="btn btn-secondary btn-lg disabled">
-                                    <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
-                                </a>
-                                <div>
+                                <div class="col-7">
+                                    <a class="btn btn-secondary btn-lg disabled">
+                                        <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="col-3">
                                     {% if 'audio' in bundle and bundle.audio.file and 'trans' in bundle and bundle.trans.file %}
                                         <a href="align/{{ proj._id }}/{{ name|urlencode }}"
                                            class="btn btn-warning btn-sm ask-any"
@@ -354,45 +371,50 @@
         <p>{% trans %}narzędzia_całego_projektu_opis2{% endtrans %}</p>
 
         <div class="row">
-            {% if disable.asr %}
-                <a class="btn btn-warning btn-lg col-2 disabled">
-            {% else %}
-                <a href="reco/{{ proj._id }}" class="btn btn-warning btn-lg col-2 ask-any"
-                   title="{% trans %}wykonaj_asr{% endtrans %}">
-            {% endif %}
-            <i class="fa fa-file-audio-o fa-2x"></i>
-            <i class="fa fa-arrow-right fa-2x"></i>
-            <i class="fa fa-file-text-o fa-2x"></i>
-            </a>
-            <div class="col-1">&nbsp;</div>
-            {% if disable.align %}
-                <a class="btn btn-warning btn-lg col-2 disabled">
-            {% else %}
-                <a href="align/{{ proj._id }}" class="btn btn-warning btn-lg col-2 ask-any"
-                   title="{% trans %}wykonaj_align{% endtrans %}">
-            {% endif %}
-            <i class="fa fa-file-text-o fa-2x"></i>
-            <i class="fa fa-arrow-right fa-2x"></i>
-            <i class="fa fa-file-code-o fa-2x"></i>
-            </a>
-            <div class="col-1">&nbsp;</div>
-            {% if disable.emu %}
-                <a class="btn btn-info btn-lg col-2 disabled">
-            {% else %}
-                <a href="webapp/{{ proj._id }}" class="btn btn-info btn-lg col-2" target="_blank"
-                   title="{% trans %}otwórz_webapp{% endtrans %}">
-            {% endif %}
-            <img src={{ url_for('static', filename='img/emuIcon.png') }}>
-            </a>
-            <div class="col-1">&nbsp;</div>
-            {% if disable.emu %}
-                <a class="btn btn-info btn-lg col-2 disabled">
-            {% else %}
-                <a href="download/{{ proj._id }}" class="btn btn-info btn-lg col-2"
-                   title="{% trans %}ściągnij_projekt{% endtrans %}">
-            {% endif %}
-            <i class="fa fa-download fa-2x"></i>
-            </a>
+            <div class="col-3">
+                {% if disable.asr %}
+                    <a class="btn btn-warning btn-lg disabled" style="height: 8em">
+                {% else %}
+                    <a href="reco/{{ proj._id }}" class="btn btn-warning btn-lg ask-any" style="height: 8em"
+                       title="{% trans %}wykonaj_asr{% endtrans %}">
+                {% endif %}
+                <i class="fa fa-file-audio-o fa-2x"></i>
+                <i class="fa fa-arrow-right fa-2x"></i>
+                <i class="fa fa-file-text-o fa-2x"></i>
+                </a>
+            </div>
+            <div class="col-3">
+                {% if disable.align %}
+                    <a class="btn btn-warning btn-lg disabled" style="height: 8em">
+                {% else %}
+                    <a href="align/{{ proj._id }}" class="btn btn-warning btn-lg ask-any" style="height: 8em"
+                       title="{% trans %}wykonaj_align{% endtrans %}">
+                {% endif %}
+                <i class="fa fa-file-text-o fa-2x"></i>
+                <i class="fa fa-arrow-right fa-2x"></i>
+                <i class="fa fa-file-code-o fa-2x"></i>
+                </a>
+            </div>
+            <div class="col-3">
+                {% if disable.emu %}
+                    <a class="btn btn-info btn-lg disabled" style="height: 8em">
+                {% else %}
+                    <a href="webapp/{{ proj._id }}" class="btn btn-info btn-lg" target="_blank" style="height: 8em"
+                       title="{% trans %}otwórz_webapp{% endtrans %}">
+                {% endif %}
+                <img src={{ url_for('static', filename='img/emuIcon.png') }}>
+                </a>
+            </div>
+            <div class="col-3">
+                {% if disable.emu %}
+                    <a class="btn btn-info btn-lg disabled" style="height: 8em">
+                {% else %}
+                    <a href="download/{{ proj._id }}" class="btn btn-info btn-lg" style="height: 8em"
+                       title="{% trans %}ściągnij_projekt{% endtrans %}">
+                {% endif %}
+                <i class="fa fa-download fa-2x"></i>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -405,10 +427,12 @@
         <p style="padding: 15px; background-color: #eee">
             <b>Danijel Koržinek, Krzysztof Marasek, Łukasz Brocki and Krzysztof Wołk</b>: <i>Polish Read Speech
             Corpus for Speech Tools and Services</i>, Selected papers from the CLARIN Annual Conference 2016,
-            Aix-en-Provence, 26–28 October 2016, CLARIN Common Language Resourcesand Technology Infrastructure, number
+            Aix-en-Provence, 26–28 October 2016, CLARIN Common Language Resourcesand Technology Infrastructure,
+            number
             136, pages 54–62. LinköpingUniversity Electronic Press, Linköpings universitet, 2017.
         </p>
-        <p><a href="http://www.ep.liu.se/ecp/136/004/ecp17136004.pdf">{% trans %}link_do_pracy{% endtrans %}</a></p>
+        <p><a href="http://www.ep.liu.se/ecp/136/004/ecp17136004.pdf">{% trans %}link_do_pracy{% endtrans %}</a>
+        </p>
     </div>
 
     <script type="text/javascript">
