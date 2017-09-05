@@ -42,7 +42,15 @@ def download(id):
             resp.headers.extend({'Retry-After': 1})
             return resp
         else:
-            return send_file(os.path.join(config.work_dir, file['file']))
+            resp = make_response(send_file(os.path.join(config.work_dir, file['file'])))
+            resp.headers['Access-Control-Allow-Origin'] = 'http://ips-lmu.github.io'
+            return resp
+
+
+@tools_page.route('delete/<id>')
+def delete(id):
+    tools.utils.invalidate_file(id)
+    return 'Invalidated {}'.format(id)
 
 
 @tools_page.route('status/<id>')
@@ -51,10 +59,10 @@ def status(id):
     if not file:
         return abort(404)
     else:
-        if file['file']:
-            return 'ok'
-        elif 'error' in file:
+        if 'error' in file:
             return 'error: ' + file['error']
+        elif file['file']:
+            return 'ok'
         else:
             return 'wait'
 
@@ -85,7 +93,8 @@ def ui_view(id):
             if 'from' in file:
                 from_audio = file['from']['audio']
                 from_trans = file['from']['transcript']
-            return render_template('view_segmentation.html', res_id=id, from_audio=from_audio, from_trans=from_trans)
+            return render_template('view_segmentation.html', res_id=id, from_audio=from_audio, from_trans=from_trans,
+                                   server_url=request.url_root)
         else:
             return render_template('view_any.html', res_id=id)
 
@@ -309,7 +318,10 @@ def transcript_to_textgrid(id):
 
     ret = tools.segmentation.segmentation_to_textgrid(file['file'], script=script)
 
-    return Response(ret, mimetype='text/plain', headers={'Content-disposition': 'attachment; filename=output.TextGrid'})
+    headers = {}
+    headers['Access-Control-Allow-Origin'] = 'http://ips-lmu.github.io'
+    headers['Content-disposition'] = 'attachment; filename=output.TextGrid'
+    return Response(ret, mimetype='text/plain', headers=headers)
 
 
 @tools_page.route('annot/<id>', methods=['GET'])
@@ -327,8 +339,11 @@ def transcript_to_emu_annot(id):
 
     ret = tools.segmentation.segmentation_to_emu_annot(file['file'], 'output', script=script)
 
-    return Response(ret, mimetype='application/json',
-                    headers={'Content-disposition': 'attachment; filename=output.annot'})
+    headers = {}
+    headers['Access-Control-Allow-Origin'] = 'http://ips-lmu.github.io'
+    headers['Content-disposition'] = 'attachment; filename=output.annot'
+
+    return Response(ret, mimetype='application/json', headers=headers)
 
 
 @tools_page.route('speech/reco', methods=['POST'])

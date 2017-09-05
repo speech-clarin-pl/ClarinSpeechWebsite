@@ -69,3 +69,8 @@ def update_file(id, file):
     hash = file_hash(file)
     db.clarin.resources.update_one({'_id': ObjectId(id)},
                                    {'$set': {'hash': hash, 'modified': datetime.datetime.utcnow()}})
+
+
+def invalidate_file(id):
+    db.clarin.resources.update_one({'_id': ObjectId(id)},
+                                   {'$set': {'error': 'manual delete'}})

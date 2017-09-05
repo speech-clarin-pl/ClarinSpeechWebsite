@@ -2,7 +2,7 @@
 {% block body %}
     <h1>{% trans %}Transkrypcja{% endtrans %}</h1>
 
-    <p><a href="/tools">{% trans %}Powrót do listy narzędzi{% endtrans %}</a></p>
+    <a href="#" onclick="window.history.back()">{% trans %}Powrót{% endtrans %}</a></p>
 
     <div class="card form-group card-block">
         <textarea id="result" class="form-control" style="height: 20em;" readonly="true"></textarea>

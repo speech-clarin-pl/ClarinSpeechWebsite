@@ -2,7 +2,7 @@
 {% block body %}
     <h1>{% trans %}Segmentacja{% endtrans %}</h1>
 
-    <p><a href="/tools">{% trans %}Powrót do listy narzędzi{% endtrans %}</a></p>
+    <a href="#" onclick="window.history.back()">{% trans %}Powrót{% endtrans %}</a></p>
 
     <div class="card form-group card-block">
         <div class="row">
@@ -13,6 +13,7 @@
             <a id="result_textgrid_ipa" target="_blank" class="btn btn-warning" style="margin-left: 10px">TextGrid
                 (IPA)</a>
             <a id="result_emu" target="_blank" class="btn btn-info" style="margin-left: 10px">annot (EMU)</a>
+            <a id="result_webapp" target="_blank" class="btn btn-primary" style="margin-left: 10px">EMU-webApp</a>
         </div>
 
         <div id="progress-msg" class="alert alert-info fade show" role="alert">
@@ -55,6 +56,10 @@
                             $('#result_textgrid_sampa').attr('href', '/tools/textgrid/' + seg_id + '?script=sampa');
                             $('#result_textgrid_ipa').attr('href', '/tools/textgrid/' + seg_id + '?script=ipa');
                             $('#result_emu').attr('href', '/tools/annot/' + seg_id);
+                            $('#result_webapp').attr('href', 'http://ips-lmu.github.io/EMU-webApp/' +
+                                '?audioGetUrl={{ ( server_url + 'tools/download/' + from_audio ) | urlencode }}' +
+                                '&labelGetUrl={{ ( server_url + 'tools/annot/'+ res_id ) | urlencode }}' +
+                                '&labelType=annotJSON');
                             $("#progress-msg").alert('close');
                         } else if (data == 'wait') {
                             if (fail_count > 0) {
