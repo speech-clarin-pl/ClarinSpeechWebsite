@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-05 22:15+0200\n"
+"POT-Creation-Date: 2017-09-05 22:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -647,17 +647,13 @@ msgstr ""
 msgid "view_any_tytuł"
 msgstr ""
 
-#: templates/view_any.html:20
-msgid "res_ident"
+#: templates/view_any.html:20 templates/view_audio.html:36
+#: templates/view_segmentation.html:44 templates/view_transcription.html:19
+msgid "ident_res"
 msgstr ""
 
 #: templates/view_audio.html:3
 msgid "view_audio_tytuł"
-msgstr ""
-
-#: templates/view_audio.html:36 templates/view_segmentation.html:44
-#: templates/view_transcription.html:19
-msgid "ident_res"
 msgstr ""
 
 #: templates/view_audio.html:40 templates/view_segmentation.html:48
