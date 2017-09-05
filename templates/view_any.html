@@ -5,12 +5,65 @@
     <a href="#" onclick="window.history.back()">{% trans %}powrót{% endtrans %}</a></p>
 
     <div class="card form-group card-block">
-        <a href="/tools/download/{{ res_id }}" target="_blank" class="btn btn-info">{% trans %}pobierz{% endtrans %}</a>
+        <a id="result" target="_blank" class="btn btn-info">{% trans %}pobierz{% endtrans %}</a>
+
+        <div id="progress-msg" class="alert alert-info fade show" role="alert">
+            <span class="fa fa-refresh fa-spin"></span>
+            {% trans %}pracuję{% endtrans %}
+        </div>
+    </div>
+
+    <div id="error-msg" class="alert fade" role="alert">
     </div>
 
     <div class="card form-group card-block">
         <p>{% trans %}res_ident{% endtrans %}</p>
         <p><a href="/tools/ui/view/{{ res_id }}">{{ res_id }}</a></p>
     </div>
+
+    <script type="text/javascript">
+
+        $.ajaxSetup({cache: false});
+
+        var fail_count = 10;
+        var time_delay = 100;
+
+        function display() {
+            $.get('/tools/status/' + encodeURI('{{ res_id }}'))
+                .done(function (data) {
+                        if (data == 'ok') {
+                            var res_id = encodeURI('{{ res_id }}');
+                            $('#result').attr('href', '/tools/download/' + res_id);
+                            $("#progress-msg").alert('close');
+                        } else if (data == 'wait') {
+                            if (fail_count > 0) {
+                                setTimeout(display, time_delay);
+                                time_delay += 100;
+                                fail_count--;
+                            } else {
+                                $('#progress-msg').alert('close');
+                                $('#error-msg').addClass('show');
+                                $('#error-msg').addClass('alert-warning');
+                                $('#error-msg').html('{% trans %}f5_refresh{% endtrans %}');
+                            }
+                        } else {
+                            $('#progress-msg').alert('close');
+                            $('#error-msg').addClass('show');
+                            $('#error-msg').addClass('alert-danger');
+                            $('#error-msg').html('{% trans %}błąd_admin{% endtrans %}');
+                        }
+                    }
+                ).fail(function (data) {
+
+                $('#progress-msg').alert('close');
+                $('#error-msg').addClass('show');
+                $('#error-msg').addClass('alert-danger');
+                $('#error-msg').html('{% trans %}błąd_admin{% endtrans %}');
+
+            });
+        }
+
+        display();
+    </script>
 
 {% endblock %}

@@ -1,15 +1,15 @@
+import datetime
+import hashlib
 import locale
+import os
+from tempfile import mkstemp
 
+from bson.objectid import ObjectId
 from dateutil.tz import tz
 
 from config import config, db
-from tempfile import mkstemp
-import hashlib
-import datetime
-import os
-from bson.objectid import ObjectId
 
-allowed_types = ['wordlist', 'lexicon', 'audio', 'transcript', 'segmentation']
+allowed_types = ['wordlist', 'lexicon', 'audio', 'transcript', 'segmentation', 'archive']
 
 
 def file_hash(filename):

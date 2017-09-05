@@ -1,14 +1,12 @@
+import datetime
 import hashlib
-import json
 import math
 import re
+import time
 import urllib
 from os.path import splitext
 
 import bcrypt as bcrypt
-import time
-
-import datetime
 from bson import ObjectId
 from dateutil.parser import parse
 from flask import Blueprint, render_template, abort, request, redirect, session
@@ -467,3 +465,14 @@ def webapp(id):
     server = pat.match(request.url_root).group(1)
     url = 'ws://{}:{}/{}'.format(server, config.emu.webapp_port, id)
     return redirect('http://ips-lmu.github.io/EMU-webApp/?autoConnect=true&serverUrl=' + urllib.quote_plus(url))
+
+
+@emu_page.route('project/download/<id>')
+def download(id):
+    proj, resp = check_project(id)
+    if not proj:
+        return resp
+
+    res_id = tools.tasks.start_emu_package(proj, id)
+
+    return redirect('/tools/ui/view/' + urllib.quote(str(res_id)))

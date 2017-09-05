@@ -17,20 +17,24 @@ def queue(body):
     connection.close()
 
 
+def get_res_hash(id):
+    return db.clarin.resources.find_one({'_id': ObjectId(id)}, {'hash': 1})['hash']
+
+
 # TODO: this assumes we always generate one destination resource!
-def run_task(task, input_res, output_type, options=None):
+def run_task(task, input_res, output_type, options=None, hash=None):
     if output_type not in allowed_types:
         raise RuntimeError('Type {} not allowed!'.format(output_type))
 
-    from_hash = {}
-    from_hash['task'] = task
-    if options:
-        from_hash['options'] = options
-    for key, val in input_res.iteritems():
-        from_hash[key] = db.clarin.resources.find_one({'_id': ObjectId(val)}, {'hash': 1})['hash']
+    if not hash:
+        from_hash = {}
+        from_hash['task'] = task
+        if options:
+            from_hash['options'] = options
+        for key, val in input_res.iteritems():
+            from_hash[key] = get_res_hash(val)
 
-    # TODO: this should be computed from file hashes, not just the ids
-    hash = hashlib.sha1(str(from_hash)).hexdigest()
+        hash = hashlib.sha1(json.dumps(from_hash)).hexdigest()
 
     file = db.clarin.resources.find_one({'from_hash': hash, 'error': {'$exists': False}})
     if file:
@@ -75,3 +79,20 @@ def start_speech_segmentalign(audio_id, transcript_id):
 
 def start_speech_recognize(audio_id):
     return run_task('recognize', {'input': str(audio_id)}, 'transcript')
+
+
+def start_emu_package(proj, proj_id):
+    hash_list = []
+    for name, bundle in proj['bundles'].iteritems():
+        hash_item = {}
+        hash_item['name'] = name
+        hash_item['session'] = bundle['session']
+        if 'audio' in bundle:
+            hash_item['audio'] = get_res_hash(bundle['audio'])
+        if 'trans' in bundle:
+            hash_item['trans'] = get_res_hash(bundle['trans'])
+        if 'seg' in bundle:
+            hash_item['seg'] = get_res_hash(bundle['seg'])
+        hash_list.append(hash_item)
+    hash = hashlib.sha1(json.dumps(hash_list)).hexdigest()
+    return run_task('emupackage', {'project': str(proj_id)}, 'archive', hash=hash)
