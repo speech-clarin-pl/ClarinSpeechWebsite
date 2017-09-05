@@ -12,6 +12,7 @@ class Config:
         self.emu = lambda: None
         self.emu.projects_per_page = 10
         self.emu.webapp_port = 17890
+        self.corpora_dir = '/dane/korpusy'
 
 
 config = Config()

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-05 11:45+0200\n"
+"POT-Creation-Date: 2017-09-05 19:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,11 +39,12 @@ msgstr ""
 
 #: templates/emu_deleted.html:6 templates/emu_new.html:6
 #: templates/emu_password.html:6 templates/emu_project.html:4
-#: templates/multiview_any.html:5 templates/multiview_audio_trans.html:5
-#: templates/tool_align.html:9 templates/tool_audio_to_audio.html:6
-#: templates/tool_g2p_list.html:6 templates/tool_g2p_word.html:5
-#: templates/tool_reco.html:5 templates/tool_text_to_text.html:5
-#: templates/tools.html:6 templates/view_any.html:5 templates/view_audio.html:5
+#: templates/korpusy.html:5 templates/multiview_any.html:5
+#: templates/multiview_audio_trans.html:5 templates/tool_align.html:9
+#: templates/tool_audio_to_audio.html:6 templates/tool_g2p_list.html:6
+#: templates/tool_g2p_word.html:5 templates/tool_reco.html:5
+#: templates/tool_text_to_text.html:5 templates/tools.html:6
+#: templates/view_any.html:5 templates/view_audio.html:5
 #: templates/view_segmentation.html:5 templates/view_transcription.html:5
 msgid "powrót"
 msgstr ""
@@ -67,8 +68,8 @@ msgstr ""
 msgid "opis_opis"
 msgstr ""
 
-#: templates/emu_new.html:25 templates/emu_project.html:48
-#: templates/emu_project.html:52
+#: templates/emu_new.html:25 templates/emu_new.html:27
+#: templates/emu_project.html:48 templates/emu_project.html:52
 msgid "hasło"
 msgstr ""
 
@@ -255,6 +256,54 @@ msgstr ""
 msgid "narzędzie_emu"
 msgstr ""
 
+#: templates/korpusy.html:4
+msgid "korpusy_tytuł"
+msgstr ""
+
+#: templates/korpusy.html:10
+msgid "korpus_studio_tytuł"
+msgstr ""
+
+#: templates/korpusy.html:12
+msgid "korpus_opis"
+msgstr ""
+
+#: templates/korpusy.html:13
+msgid "korpus_link"
+msgstr ""
+
+#: templates/korpusy.html:15
+msgid "korpus_webapp_tytuł"
+msgstr ""
+
+#: templates/korpusy.html:17
+msgid "korpus_webapp_opis"
+msgstr ""
+
+#: templates/korpusy.html:21
+msgid "link_do_usługi"
+msgstr ""
+
+#: templates/korpusy.html:28
+msgid "kaldi_baseline"
+msgstr ""
+
+#: templates/korpusy.html:30
+msgid "kaldi_baseline_opis"
+msgstr ""
+
+#: templates/korpusy.html:39
+msgid "cytowanie"
+msgstr ""
+
+#: templates/korpusy.html:41
+msgid "cytowanie_opis"
+msgstr ""
+
+#: templates/korpusy.html:49
+msgid "link_do_pracy"
+msgstr ""
+
 #: templates/layout.html:54
 msgid "strona_główna"
 msgstr ""
@@ -302,8 +351,8 @@ msgstr ""
 
 #: templates/multiview_audio_trans.html:27
 #: templates/multiview_audio_trans.html:52 templates/tool_g2p_word.html:86
-#: templates/view_audio.html:28 templates/view_segmentation.html:21
-#: templates/view_transcription.html:11
+#: templates/view_any.html:12 templates/view_audio.html:28
+#: templates/view_segmentation.html:21 templates/view_transcription.html:11
 msgid "pracuję"
 msgstr ""
 
@@ -321,8 +370,9 @@ msgid "ident_trans"
 msgstr ""
 
 #: templates/multiview_audio_trans.html:107
-#: templates/multiview_audio_trans.html:144 templates/view_audio.html:86
-#: templates/view_segmentation.html:73 templates/view_transcription.html:59
+#: templates/multiview_audio_trans.html:144 templates/view_any.html:47
+#: templates/view_audio.html:86 templates/view_segmentation.html:73
+#: templates/view_transcription.html:59
 msgid "f5_refresh"
 msgstr ""
 
@@ -330,7 +380,8 @@ msgstr ""
 #: templates/multiview_audio_trans.html:119
 #: templates/multiview_audio_trans.html:150 templates/tool_align.html:38
 #: templates/tool_audio_to_audio.html:25 templates/tool_reco.html:24
-#: templates/tool_text_to_text.html:24 templates/view_audio.html:92
+#: templates/tool_text_to_text.html:24 templates/view_any.html:53
+#: templates/view_any.html:61 templates/view_audio.html:92
 #: templates/view_audio.html:98 templates/view_segmentation.html:79
 #: templates/view_segmentation.html:87 templates/view_transcription.html:65
 msgid "błąd_admin"
@@ -378,12 +429,8 @@ msgstr ""
 msgid "wczytaj_transkrypcję"
 msgstr ""
 
-#: templates/tool_align.html:33 templates/tool_audio_to_audio.html:20
-#: templates/tool_g2p_list.html:18 templates/tool_g2p_list.html:131
-#: templates/tool_g2p_list.html:135 templates/tool_g2p_word.html:18
-#: templates/tool_g2p_word.html:93 templates/tool_g2p_word.html:102
-#: templates/tool_text_to_text.html:19
-msgid "konwertuj"
+#: templates/tool_align.html:33 templates/tool_reco.html:19
+msgid "rozpocznij"
 msgstr ""
 
 #: templates/tool_align.html:42 templates/tool_audio_to_audio.html:29
@@ -408,6 +455,13 @@ msgstr ""
 
 #: templates/tool_audio_to_audio.html:15 templates/tool_reco.html:14
 msgid "wczytaj_audio"
+msgstr ""
+
+#: templates/tool_audio_to_audio.html:20 templates/tool_g2p_list.html:18
+#: templates/tool_g2p_list.html:131 templates/tool_g2p_list.html:135
+#: templates/tool_g2p_word.html:18 templates/tool_g2p_word.html:93
+#: templates/tool_g2p_word.html:102 templates/tool_text_to_text.html:19
+msgid "konwertuj"
 msgstr ""
 
 #: templates/tool_audio_to_audio.html:37 templates/tool_text_to_text.html:36
@@ -507,10 +561,6 @@ msgstr ""
 msgid "opis_reco"
 msgstr ""
 
-#: templates/tool_reco.html:19
-msgid "rozpocznij"
-msgstr ""
-
 #: templates/tool_text_to_text.html:3 templates/tools.html:26
 msgid "textnorm_tytuł"
 msgstr ""
@@ -551,7 +601,7 @@ msgstr ""
 msgid "view_any_tytuł"
 msgstr ""
 
-#: templates/view_any.html:12
+#: templates/view_any.html:20
 msgid "res_ident"
 msgstr ""
 

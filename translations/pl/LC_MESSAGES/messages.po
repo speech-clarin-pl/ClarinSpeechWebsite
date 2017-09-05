@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-05 11:45+0200\n"
+"POT-Creation-Date: 2017-09-05 19:45+0200\n"
 "PO-Revision-Date: 2017-09-05 11:46+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -41,11 +41,12 @@ msgstr "Projekt został usunięty!"
 
 #: templates/emu_deleted.html:6 templates/emu_new.html:6
 #: templates/emu_password.html:6 templates/emu_project.html:4
-#: templates/multiview_any.html:5 templates/multiview_audio_trans.html:5
-#: templates/tool_align.html:9 templates/tool_audio_to_audio.html:6
-#: templates/tool_g2p_list.html:6 templates/tool_g2p_word.html:5
-#: templates/tool_reco.html:5 templates/tool_text_to_text.html:5
-#: templates/tools.html:6 templates/view_any.html:5 templates/view_audio.html:5
+#: templates/korpusy.html:5 templates/multiview_any.html:5
+#: templates/multiview_audio_trans.html:5 templates/tool_align.html:9
+#: templates/tool_audio_to_audio.html:6 templates/tool_g2p_list.html:6
+#: templates/tool_g2p_word.html:5 templates/tool_reco.html:5
+#: templates/tool_text_to_text.html:5 templates/tools.html:6
+#: templates/view_any.html:5 templates/view_audio.html:5
 #: templates/view_segmentation.html:5 templates/view_transcription.html:5
 msgid "powrót"
 msgstr "Powrót"
@@ -69,16 +70,17 @@ msgstr "Opis"
 msgid "opis_opis"
 msgstr "Opisz krótko zawartość korpusu."
 
-#: templates/emu_new.html:25 templates/emu_project.html:48
-#: templates/emu_project.html:52
+#: templates/emu_new.html:25 templates/emu_new.html:27
+#: templates/emu_project.html:48 templates/emu_project.html:52
 msgid "hasło"
 msgstr ""
 
 #: templates/emu_new.html:29
 msgid "hasło_opis"
-msgstr "Po wpisaniu hasła zablokowany zostanie dostęp do projektu"
- "osobom niepowołanym. Jeśli nie chcesz skorzystać z tej opcji, "
- "zostaw to miejsce puste."
+msgstr ""
+"Po wpisaniu hasła zablokowany zostanie dostęp do projektuosobom "
+"niepowołanym. Jeśli nie chcesz skorzystać z tej opcji, zostaw to miejsce "
+"puste."
 
 #: templates/emu_new.html:32
 msgid "stwórz"
@@ -177,7 +179,8 @@ msgstr "Narzędzia dla całego projektu"
 
 #: templates/emu_project.html:352
 msgid "narzędzia_całego_projektu_opis1"
-msgstr "Niektóre opcje są dostępne tylko po wgraniu wszystkich plików danego "
+msgstr ""
+"Niektóre opcje są dostępne tylko po wgraniu wszystkich plików danego "
 "rodzaju."
 
 #: templates/emu_project.html:354
@@ -260,6 +263,64 @@ msgstr "Usługi mowy"
 msgid "narzędzie_emu"
 msgstr "Narzędzie do tworzenia korpusu EMU-SDMS"
 
+#: templates/korpusy.html:4
+msgid "korpusy_tytuł"
+msgstr "Zasoby mowy projektu CLARIN-PL"
+
+#: templates/korpusy.html:10
+msgid "korpus_studio_tytuł"
+msgstr "Korpus nagrań studyjnych"
+
+#: templates/korpusy.html:12
+msgid "korpus_opis"
+msgstr ""
+"Korpus można ściągnąć w formacie EMU-SDMS z linku poniżej. Tak ściągnięty"
+" korpus można użyć do analizy przy pomocy narzędzia R oraz biblioteki "
+"emuR. Więcej informacji pod <a href=\"https://ips-"
+"lmu.github.io/EMU.html\">tym</a> linkiem."
+
+#: templates/korpusy.html:13
+msgid "korpus_link"
+msgstr "Link do korpusu"
+
+#: templates/korpusy.html:15
+msgid "korpus_webapp_tytuł"
+msgstr "Przeglądarka EMU-WebApp"
+
+#: templates/korpusy.html:17
+msgid "korpus_webapp_opis"
+msgstr "Korpus można też objerzeć bez ściągania korzystając z linku poniżej:"
+
+#: templates/korpusy.html:21
+msgid "link_do_usługi"
+msgstr "Link do usługi"
+
+#: templates/korpusy.html:28
+msgid "kaldi_baseline"
+msgstr "Kaldi baseline"
+
+#: templates/korpusy.html:30
+msgid "kaldi_baseline_opis"
+msgstr ""
+"Pod linkiem poniżej można znaleźć informacje na temat wersji korpusu "
+"przygotowanejdo wytrenowania systemu rozpoznawania mowy opartego o system"
+" LVSCR Kaldi. Tam się znajdują wsyzstkie opisy i skrypty pozwalające na "
+"samodzielne wytrenowanie systemu."
+
+#: templates/korpusy.html:39
+msgid "cytowanie"
+msgstr "Cytowanie"
+
+#: templates/korpusy.html:41
+msgid "cytowanie_opis"
+msgstr ""
+"Osoby korzystające z zasobów lub narzędzi proszone są o cytowanie "
+"następującej publikacji:"
+
+#: templates/korpusy.html:49
+msgid "link_do_pracy"
+msgstr "Link do pracy"
+
 #: templates/layout.html:54
 msgid "strona_główna"
 msgstr "Strona główna"
@@ -307,8 +368,8 @@ msgstr "Pobierz"
 
 #: templates/multiview_audio_trans.html:27
 #: templates/multiview_audio_trans.html:52 templates/tool_g2p_word.html:86
-#: templates/view_audio.html:28 templates/view_segmentation.html:21
-#: templates/view_transcription.html:11
+#: templates/view_any.html:12 templates/view_audio.html:28
+#: templates/view_segmentation.html:21 templates/view_transcription.html:11
 msgid "pracuję"
 msgstr "Pracuję..."
 
@@ -326,16 +387,20 @@ msgid "ident_trans"
 msgstr "Identyfikator transkrypcji"
 
 #: templates/multiview_audio_trans.html:107
-#: templates/multiview_audio_trans.html:144 templates/view_audio.html:86
-#: templates/view_segmentation.html:73 templates/view_transcription.html:59
+#: templates/multiview_audio_trans.html:144 templates/view_any.html:47
+#: templates/view_audio.html:86 templates/view_segmentation.html:73
+#: templates/view_transcription.html:59
 msgid "f5_refresh"
-msgstr "Nie udało się jeszcze przetworzyć zasobu! Wciśnij F5, aby spróbować ponownie za chwilę..."
+msgstr ""
+"Nie udało się jeszcze przetworzyć zasobu! Wciśnij F5, aby spróbować "
+"ponownie za chwilę..."
 
 #: templates/multiview_audio_trans.html:113
 #: templates/multiview_audio_trans.html:119
 #: templates/multiview_audio_trans.html:150 templates/tool_align.html:38
 #: templates/tool_audio_to_audio.html:25 templates/tool_reco.html:24
-#: templates/tool_text_to_text.html:24 templates/view_audio.html:92
+#: templates/tool_text_to_text.html:24 templates/view_any.html:53
+#: templates/view_any.html:61 templates/view_audio.html:92
 #: templates/view_audio.html:98 templates/view_segmentation.html:79
 #: templates/view_segmentation.html:87 templates/view_transcription.html:65
 msgid "błąd_admin"
@@ -365,17 +430,22 @@ msgstr "Opis narzędzia"
 
 #: templates/tool_align.html:13
 msgid "opis_align"
-msgstr "Dopasowanie czasowe tekstu do nagrania. Podział nagrania na segmenty (wyrazy i fonemy)."
+msgstr ""
+"Dopasowanie czasowe tekstu do nagrania. Podział nagrania na segmenty "
+"(wyrazy i fonemy)."
 
 #: templates/tool_align.html:16
 msgid "opis_forced"
-msgstr "Narzędzie to jest dostosowane do przetwarzania stosunkowo krótkich nagrań (poniżej minuty). "
-"Dłuższe nagrania mogą spowodować powstanie błędu."
+msgstr ""
+"Narzędzie to jest dostosowane do przetwarzania stosunkowo krótkich nagrań"
+" (poniżej minuty). Dłuższe nagrania mogą spowodować powstanie błędu."
 
 #: templates/tool_align.html:18
 msgid "opis_segment"
-msgstr "Narzędzie to jest dostosowane do przetwarzania długich nagrań. "
-"Może spodowować powstanie błędu na bardzo krótkich nagraniach (kilka sekund długości)."
+msgstr ""
+"Narzędzie to jest dostosowane do przetwarzania długich nagrań. Może "
+"spodowować powstanie błędu na bardzo krótkich nagraniach (kilka sekund "
+"długości)."
 
 #: templates/tool_align.html:24
 msgid "wczytaj_nagranie"
@@ -385,13 +455,9 @@ msgstr "Wczytaj nagranie"
 msgid "wczytaj_transkrypcję"
 msgstr "Wczytaj transkrypcję"
 
-#: templates/tool_align.html:33 templates/tool_audio_to_audio.html:20
-#: templates/tool_g2p_list.html:18 templates/tool_g2p_list.html:131
-#: templates/tool_g2p_list.html:135 templates/tool_g2p_word.html:18
-#: templates/tool_g2p_word.html:93 templates/tool_g2p_word.html:102
-#: templates/tool_text_to_text.html:19
-msgid "konwertuj"
-msgstr "Konwertuj"
+#: templates/tool_align.html:33 templates/tool_reco.html:19
+msgid "rozpocznij"
+msgstr "Rozpocznij"
 
 #: templates/tool_align.html:42 templates/tool_audio_to_audio.html:29
 #: templates/tool_g2p_list.html:54 templates/tool_g2p_word.html:44
@@ -411,12 +477,21 @@ msgstr "Normalizacja audio"
 
 #: templates/tool_audio_to_audio.html:10
 msgid "opis_audionorm"
-msgstr "Konwersja pliku multimedialnego (audio lub wideo) na plik audio typu WAV, "
-"częstotliwości próbkowania 16 kHz, jednym kanale (mono) oraz rozdzielczości 16 bitów."
+msgstr ""
+"Konwersja pliku multimedialnego (audio lub wideo) na plik audio typu WAV,"
+" częstotliwości próbkowania 16 kHz, jednym kanale (mono) oraz "
+"rozdzielczości 16 bitów."
 
 #: templates/tool_audio_to_audio.html:15 templates/tool_reco.html:14
 msgid "wczytaj_audio"
 msgstr "Wczytaj plik audio:"
+
+#: templates/tool_audio_to_audio.html:20 templates/tool_g2p_list.html:18
+#: templates/tool_g2p_list.html:131 templates/tool_g2p_list.html:135
+#: templates/tool_g2p_word.html:18 templates/tool_g2p_word.html:93
+#: templates/tool_g2p_word.html:102 templates/tool_text_to_text.html:19
+msgid "konwertuj"
+msgstr "Konwertuj"
 
 #: templates/tool_audio_to_audio.html:37 templates/tool_text_to_text.html:36
 msgid "help_ident_io"
@@ -424,17 +499,23 @@ msgstr "Co wygeneruje identyfikatory plików wejścia i wyjścia w formacie JSON
 
 #: templates/tool_audio_to_audio.html:41 templates/tool_text_to_text.html:40
 msgid "help_download"
-msgstr "Plik można pobrać według identyfikatora poleceniem <code>download</code>, np:"
+msgstr ""
+"Plik można pobrać według identyfikatora poleceniem <code>download</code>,"
+" np:"
 
 #: templates/tool_audio_to_audio.html:45
 msgid "help_download_status_codes"
-msgstr "Jeśli plik jest jeszcze przetwarzany, otrzymamy kod statusu 503. W przypadku błędu,"
-"otrzymamy kod 500. Status można sprawdzić również poleceniem <code>status</code>, np:"
+msgstr ""
+"Jeśli plik jest jeszcze przetwarzany, otrzymamy kod statusu 503. W "
+"przypadku błędu,otrzymamy kod 500. Status można sprawdzić również "
+"poleceniem <code>status</code>, np:"
 
 #: templates/tool_audio_to_audio.html:50
 msgid "help_status_status_codes"
-msgstr "Polecenie to może zwrócić wartości <code>ok</code> kiedy plik jest gotowy do ściągnięcia,"
-"<code>wait</code> jeśli jest wciąż przetwarzany, oraz <code>error</code> (z opisem) jeśli wystąpił błąd."
+msgstr ""
+"Polecenie to może zwrócić wartości <code>ok</code> kiedy plik jest gotowy"
+" do ściągnięcia,<code>wait</code> jeśli jest wciąż przetwarzany, oraz "
+"<code>error</code> (z opisem) jeśli wystąpił błąd."
 
 #: templates/tool_audio_to_audio.html:52 templates/tool_text_to_text.html:52
 msgid "help_upload"
@@ -442,13 +523,16 @@ msgstr "Plik wejściowy można też nagrać poleceniem <code>upload</code>, np:"
 
 #: templates/tool_audio_to_audio.html:56
 msgid "help_upload_result"
-msgstr "Co wygeneruje identyfikator pliku wejściowego, który można przekazać do "
+msgstr ""
+"Co wygeneruje identyfikator pliku wejściowego, który można przekazać do "
 "pierwszego polecenia, jak wyżej:"
 
 #: templates/tool_audio_to_audio.html:60 templates/tool_text_to_text.html:50
 msgid "help_final_download"
-msgstr "Co wygeneruje identyfikator pliku wyjściowego, który można przekazać do "
-"poleceń <code>download</code> oraz <code>status</code>, tak jak pokazano wyżej."
+msgstr ""
+"Co wygeneruje identyfikator pliku wyjściowego, który można przekazać do "
+"poleceń <code>download</code> oraz <code>status</code>, tak jak pokazano "
+"wyżej."
 
 #: templates/tool_g2p_list.html:4 templates/tools.html:19
 msgid "g2p_wordlist_tytuł"
@@ -509,8 +593,10 @@ msgstr "Co wygeneruje wynik w kodzie UTF-8:"
 
 #: templates/tool_g2p_word.html:64
 msgid "help_503_odśwież"
-msgstr "W przypadku większego obciążenia, serwer może odpowiedzieć kodem <code>503 Service Unavaliable</code>."
- "W takim wypadku wystarczy powtórzyć zapytanie."
+msgstr ""
+"W przypadku większego obciążenia, serwer może odpowiedzieć kodem "
+"<code>503 Service Unavaliable</code>.W takim wypadku wystarczy powtórzyć "
+"zapytanie."
 
 #: templates/tool_reco.html:3 templates/tools.html:56
 msgid "reco_tytuł"
@@ -520,30 +606,34 @@ msgstr "Pełne rozpoznawanie mowy"
 msgid "opis_reco"
 msgstr "Zamiana nagrania mowy na zapis ortograficzny."
 
-#: templates/tool_reco.html:19
-msgid "rozpocznij"
-msgstr "Rozpocznij"
-
 #: templates/tool_text_to_text.html:3 templates/tools.html:26
 msgid "textnorm_tytuł"
 msgstr "Normalizacja tekstu"
 
 #: templates/tool_text_to_text.html:9
 msgid "opis_textnorm"
-msgstr "Zamiany tekstu ortograficznego na postać nadającą się do transkrypcji fonetycznej: "
-"konwersja liczebników na tekst, rozwijanie skrótów, usuwanie znaków specjalnych, itd."
+msgstr ""
+"Zamiany tekstu ortograficznego na postać nadającą się do transkrypcji "
+"fonetycznej: konwersja liczebników na tekst, rozwijanie skrótów, usuwanie"
+" znaków specjalnych, itd."
 
 #: templates/tool_text_to_text.html:10
 msgid "opis_textnorm_wip"
-msgstr "UWAGA: w trakcie tworzenia! W tej chwili narzędzie nie wspiera większości wymienionych funkcji!"
+msgstr ""
+"UWAGA: w trakcie tworzenia! W tej chwili narzędzie nie wspiera większości"
+" wymienionych funkcji!"
 
 #: templates/tool_text_to_text.html:56
 msgid "help_trans_normalize"
-msgstr "Zasób będący transkrypcją zawsze można przetworzyć poleceniem <code>text/normalize/[id]</code>:"
+msgstr ""
+"Zasób będący transkrypcją zawsze można przetworzyć poleceniem "
+"<code>text/normalize/[id]</code>:"
 
 #: templates/tool_text_to_text.html:60
 msgid "help_result_download"
-msgstr "Co wygnereuje identyfikator, który można pobrać poleceniem <code>download</code> tak, jak opisano wyżej."
+msgstr ""
+"Co wygnereuje identyfikator, który można pobrać poleceniem "
+"<code>download</code> tak, jak opisano wyżej."
 
 #: templates/tools.html:4
 msgid "tool_tytuł"
@@ -565,7 +655,7 @@ msgstr "Detekcja słów kluczowych"
 msgid "view_any_tytuł"
 msgstr "Pobierz plik"
 
-#: templates/view_any.html:12
+#: templates/view_any.html:20
 msgid "res_ident"
 msgstr "Identyfikator zasobu:"
 

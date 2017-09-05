@@ -1,45 +1,44 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <h1>Zasoby mowy projektu CLARIN-PL</h1>
+    <h1>{% trans %}korpusy_tytuł{% endtrans %}</h1>
     <a href="/">{% trans %}powrót{% endtrans %}</a></p>
 
 
     <div class="card form-control card-block">
 
-        <h3 class="card-title">Korpus Clarin-PL Studio</h3>
+        <h3 class="card-title">{% trans %}korpus_studio_tytuł{% endtrans %}</h3>
 
-        <p style="font-weight:bold">Przeglądarka EMU-WebApp</p>
+        <p>{% trans %}korpus_opis{% endtrans %}</p>
+        <p><a href="/korpusy/clarin_emu.zip">{% trans %}korpus_link{% endtrans %}</a></p>
+
+        <h4>{% trans %}korpus_webapp_tytuł{% endtrans %}</h4>
+
+        <p>{% trans %}korpus_webapp_opis{% endtrans %}</p>
+
         <p>
             <a href="http://ips-lmu.github.io/EMU-webApp/?autoConnect=true&serverUrl=ws%3A%2F%2Fmowa.clarin-pl.eu%3A17891%2Fclarin">
-                Link do usługi
+                {% trans %}link_do_usługi{% endtrans %}
             </a>
         </p>
     </div>
 
-    <div class="card form-control card-block">
+    <div class="card form-control card-block" style="margin-top: 15px">
 
-        <h3 class="card-title">Kaldi baseline</h3>
+        <h3 class="card-title">{% trans %}kaldi_baseline{% endtrans %}</h3>
 
-        <p>Tutaj umieszczono informacje na temat wersji korpusu przygotowanej do wytrenowania systemu rozpoznawania
-            mowy opartego o system LVSCR Kaldi. Ze względu na łatwość dostępu i aktualizacji, cały system
-            umieszczono w archiwum na stornie Github:</p>
+        <p>{% trans %}kaldi_baseline_opis{% endtrans %}</p>
 
         <p><a href="https://github.com/danijel3/ClarinStudioKaldi">
             https://github.com/danijel3/ClarinStudioKaldi
         </a></p>
-
-        <p>Tam się znajdują wsyzstkie opisy i skrypty pozwalające na samodzielne wytrenowanie systemu. Skrypty te
-            również pobierają informacje (korpus, większe modele) z tej strony.</p>
     </div>
 
-    <div class="card form-control card-block">
+    <div class="card form-control card-block" style="margin-top: 15px">
 
-        <h3 class="card-title">Cytowanie</h3>
+        <h3 class="card-title">{% trans %}cytowanie{% endtrans %}</h3>
 
-        <p>
-            Osoby korzystające z zasobów lub narzędzi proszone są o cytowanie następującej pracy:
-        </p>
+        <p>{% trans %}cytowanie_opis{% endtrans %}</p>
 
         <p style="padding: 15px; background-color: #eee">
             <b>Danijel Koržinek, Krzysztof Marasek, Łukasz Brocki and Krzysztof Wołk</b>: <i>Polish Read Speech
@@ -47,6 +46,6 @@
             Aix-en-Provence, 26–28 October 2016, CLARIN Common Language Resourcesand Technology Infrastructure, number
             136, pages 54–62. LinköpingUniversity Electronic Press, Linköpings universitet, 2017.
         </p>
-        <p><a href="http://www.ep.liu.se/ecp/136/004/ecp17136004.pdf">[Link]</a></p>
+        <p><a href="http://www.ep.liu.se/ecp/136/004/ecp17136004.pdf">{% trans %}link_do_pracy{% endtrans %}</a></p>
     </div>
 {% endblock %}
