@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <h1>Zasoby mowy projektu CLARIN-PL</h1>
+    <a href="/">{% trans %}powrót{% endtrans %}</a></p>
+
+
+    <div class="card form-control card-block">
+
+        <h3 class="card-title">Korpus Clarin-PL Studio</h3>
+
+        <p style="font-weight:bold">Przeglądarka EMU-WebApp</p>
+        <p>
+            <a href="http://ips-lmu.github.io/EMU-webApp/?autoConnect=true&serverUrl=ws%3A%2F%2Fmowa.clarin-pl.eu%3A17891%2Fclarin">
+                Link do usługi
+            </a>
+        </p>
+    </div>
+
+    <div class="card form-control card-block">
+
+        <h3 class="card-title">Kaldi baseline</h3>
+
+        <p>Tutaj umieszczono informacje na temat wersji korpusu przygotowanej do wytrenowania systemu rozpoznawania
+            mowy opartego o system LVSCR Kaldi. Ze względu na łatwość dostępu i aktualizacji, cały system
+            umieszczono w archiwum na stornie Github:</p>
+
+        <p><a href="https://github.com/danijel3/ClarinStudioKaldi">
+            https://github.com/danijel3/ClarinStudioKaldi
+        </a></p>
+
+        <p>Tam się znajdują wsyzstkie opisy i skrypty pozwalające na samodzielne wytrenowanie systemu. Skrypty te
+            również pobierają informacje (korpus, większe modele) z tej strony.</p>
+    </div>
+
+    <div class="card form-control card-block">
+
+        <h3 class="card-title">Cytowanie</h3>
+
+        <p>
+            Osoby korzystające z zasobów lub narzędzi proszone są o cytowanie następującej pracy:
+        </p>
+
+        <p style="padding: 15px; background-color: #eee">
+            <b>Danijel Koržinek, Krzysztof Marasek, Łukasz Brocki and Krzysztof Wołk</b>: <i>Polish Read Speech
+            Corpus for Speech Tools and Services</i>, Selected papers from the CLARIN Annual Conference 2016,
+            Aix-en-Provence, 26–28 October 2016, CLARIN Common Language Resourcesand Technology Infrastructure, number
+            136, pages 54–62. LinköpingUniversity Electronic Press, Linköpings universitet, 2017.
+        </p>
+        <p><a href="http://www.ep.liu.se/ecp/136/004/ecp17136004.pdf">[Link]</a></p>
+    </div>
+{% endblock %}

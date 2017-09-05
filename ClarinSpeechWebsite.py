@@ -30,6 +30,11 @@ def lang(code):
     return redirect(request.referrer)
 
 
+@app.route('/korpusy')
+def korpusy():
+    return render_template('korpusy.html')
+
+
 @babel.localeselector
 def get_locale():
     if 'lang' in session:
