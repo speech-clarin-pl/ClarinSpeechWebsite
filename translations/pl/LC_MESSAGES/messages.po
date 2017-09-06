@@ -313,8 +313,8 @@ msgid "korpus_opis"
 msgstr ""
 "Korpus można ściągnąć w formacie EMU-SDMS z linku poniżej. Tak "
 "ściągniętego korpusu można użyć do analizy przy pomocy narzędzia R oraz "
-"biblioteki emuR. Więcej informacji pod <a href=\"https://ips-"
-"lmu.github.io/EMU.html\">tym</a> linkiem."
+"biblioteki emuR. Więcej informacji pod "
+"<a href=\"https://ips-lmu.github.io/EMU.html\">tym</a> linkiem."
 
 #: templates/korpusy.html:13
 msgid "korpus_link"
@@ -344,8 +344,8 @@ msgstr "Kaldi baseline"
 msgid "kaldi_baseline_opis"
 msgstr ""
 "Pod linkiem poniżej można znaleźć informacje na temat wersji korpusu "
-"przygotowane do wytrenowania systemu rozpoznawania mowy opartego o system"
-" LVSCR Kaldi. Tam znajdują się wszystkie opisy i skrypty pozwalające na "
+"przygotowane do wytrenowania systemu rozpoznawania mowy opartego o system "
+"LVSCR Kaldi. Tam znajdują się wszystkie opisy i skrypty pozwalające na "
 "samodzielne wytrenowanie systemu."
 
 #: templates/layout.html:54
@@ -477,7 +477,7 @@ msgstr ""
 #: templates/tool_align.html:21 templates/tool_reco.html:10
 msgid "opis_pliki_audio"
 msgstr ""
-"UWAGA: Pliki audio przekazywane do tej usługi muszą być w odpowiedniem "
+"UWAGA: Pliki audio przekazywane do tej usługi muszą być w odpowiednim "
 "formacie (WAV, 16kHz, mono, 16-bit). Jeśli plik nie jest w odpowiednim "
 "formacie, można skorzystać z usługi normalizacji audio do odpowiedniego "
 "przekonwertowania pliku."
@@ -515,14 +515,14 @@ msgstr "Co wygeneruje identyfikatory plików wejścia i wyjścia w formacie JSON
 #: templates/tool_reco.html:41 templates/tool_text_to_text.html:40
 msgid "help_download"
 msgstr ""
-"Plik można pobrać według identyfikatora poleceniem <code>download</code>,"
-" np:"
+"Plik można pobrać według identyfikatora poleceniem <code>download</code>, "
+"np:"
 
 #: templates/tool_align.html:73
 msgid "help_download_textgrid"
 msgstr ""
-"Pliki można też ściągnąć w formacie TextGrid, podając opcjonalnie alfabet"
-" fonetyczny używany w wartstwie fonetycznej, np:"
+"Pliki można też ściągnąć w formacie TextGrid, podając opcjonalnie alfabet "
+"fonetyczny używany w wartstwie fonetycznej, np:"
 
 #: templates/tool_align.html:83
 msgid "help_download_annot"
@@ -573,8 +573,8 @@ msgstr "Normalizacja audio"
 #: templates/tool_audio_to_audio.html:10
 msgid "opis_audionorm"
 msgstr ""
-"Konwersja pliku multimedialnego (audio lub wideo) na plik audio typu WAV,"
-" częstotliwości próbkowania 16 kHz, jednym kanale (mono) oraz "
+"Konwersja pliku multimedialnego (audio lub wideo) na plik audio typu WAV, "
+"częstotliwości próbkowania 16 kHz, jednym kanale (mono) oraz "
 "rozdzielczości 16 bitów."
 
 #: templates/tool_audio_to_audio.html:15 templates/tool_reco.html:15
@@ -668,14 +668,14 @@ msgstr "Normalizacja tekstu"
 msgid "opis_textnorm"
 msgstr ""
 "Zamiany tekstu ortograficznego na postać nadającą się do transkrypcji "
-"fonetycznej: konwersja liczebników na tekst, rozwijanie skrótów, usuwanie"
-" znaków specjalnych, itd."
+"fonetycznej: konwersja liczebników na tekst, rozwijanie skrótów, usuwanie "
+"znaków specjalnych, itd."
 
 #: templates/tool_text_to_text.html:10
 msgid "opis_textnorm_wip"
 msgstr ""
-"UWAGA: w trakcie tworzenia! W tej chwili narzędzie nie wspiera większości"
-" wymienionych funkcji!"
+"UWAGA: w trakcie tworzenia! W tej chwili narzędzie nie wspiera większości "
+"wymienionych funkcji!"
 
 #: templates/tool_text_to_text.html:56
 msgid "help_trans_normalize"
