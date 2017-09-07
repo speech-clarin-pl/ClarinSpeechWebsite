@@ -344,7 +344,7 @@ msgstr "Kaldi baseline"
 msgid "kaldi_baseline_opis"
 msgstr ""
 "Pod linkiem poniżej można znaleźć informacje na temat wersji korpusu "
-"przygotowane do wytrenowania systemu rozpoznawania mowy opartego o system "
+"przygotowanej do wytrenowania systemu rozpoznawania mowy opartego o system "
 "LVSCR Kaldi. Tam znajdują się wszystkie opisy i skrypty pozwalające na "
 "samodzielne wytrenowanie systemu."
 
@@ -574,7 +574,7 @@ msgstr "Normalizacja audio"
 msgid "opis_audionorm"
 msgstr ""
 "Konwersja pliku multimedialnego (audio lub wideo) na plik audio typu WAV, "
-"częstotliwości próbkowania 16 kHz, jednym kanale (mono) oraz "
+"o częstotliwości próbkowania 16 kHz, jednym kanale (mono) oraz "
 "rozdzielczości 16 bitów."
 
 #: templates/tool_audio_to_audio.html:15 templates/tool_reco.html:15
@@ -649,7 +649,7 @@ msgstr "Co wygeneruje wynik w kodzie UTF-8:"
 msgid "help_503_odśwież"
 msgstr ""
 "W przypadku większego obciążenia, serwer może odpowiedzieć kodem "
-"<code>503 Service Unavaliable</code>.W takim wypadku wystarczy powtórzyć "
+"<code>503 Service Unavaliable</code>. W takim wypadku wystarczy powtórzyć "
 "zapytanie."
 
 #: templates/tool_reco.html:3 templates/tools.html:56

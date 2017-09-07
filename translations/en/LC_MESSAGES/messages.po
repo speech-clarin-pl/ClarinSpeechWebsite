@@ -346,7 +346,7 @@ msgid "kaldi_baseline_opis"
 msgstr ""
 "Under the link below you may find information about the version of the "
 "corpus prepared for training of the speech recognition system based on "
-"Kaldi LVSCR.It contains all the descriptions and scripts allowing you to "
+"Kaldi LVSCR. It contains all the descriptions and scripts allowing you to "
 "train the system personally. "
 
 #: templates/layout.html:54
@@ -476,8 +476,8 @@ msgstr ""
 msgid "opis_pliki_audio"
 msgstr ""
 "WARNING: The files uploaded to this service must be formatted "
-"accordingly(WAV, 16kHz, mono, 16bit). If the files aren't in the correct "
-"format, youcan use the audio normalization service."
+"accordingly (WAV, 16kHz, mono, 16bit). If the files aren't in the correct "
+"format, you can use the audio normalization service."
 
 #: templates/tool_align.html:26
 msgid "wczytaj_nagranie"
@@ -599,7 +599,7 @@ msgstr "Upload text file"
 
 #: templates/tool_g2p_list.html:25 templates/tool_g2p_word.html:25
 msgid "wynik"
-msgstr "Otput"
+msgstr "Output"
 
 #: templates/tool_g2p_list.html:30
 msgid "ident_admin"
@@ -628,7 +628,7 @@ msgstr "Phonetization of a single word"
 
 #: templates/tool_g2p_word.html:9
 msgid "opis_g2p"
-msgstr "Converting the word from ortographic into phonetic scirpt."
+msgstr "Converting a word from ortographic into phonetic scirpt."
 
 #: templates/tool_g2p_word.html:13
 msgid "wpisz_wyraz_g2p"
@@ -665,7 +665,7 @@ msgstr "Text normalization"
 msgid "opis_textnorm"
 msgstr ""
 "Converting ortographic transcription into a form which can be "
-"phoneticized: converting numerals into words, expanding abbrevations, "
+"phoneticized: converting numerals into words, expanding abbreviations, "
 "removing special characters, etc."
 
 #: templates/tool_text_to_text.html:10
