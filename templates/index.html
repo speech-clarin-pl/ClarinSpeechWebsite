@@ -3,7 +3,7 @@
 
     <h1>{% trans %}główny_tytuł{% endtrans %}</h1>
 
-    <div class="gap-md">&nbsp;</div>
+    <div class="gap-sm">&nbsp;</div>
 
     <div class="row" id="main_buttons">
         <div class="col-md-4">
@@ -45,7 +45,15 @@
             </a>
         </div>
     </div>
-    <!--<li><a href="#"></a></li>
-    <li><a href="#"></a>-->
 
+    <div class="gap-sm">&nbsp;</div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <a class="btn btn-success" href="/kontakt">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                {% trans %}kontakt{% endtrans %}
+            </a>
+        </div>
+    </div>
 {% endblock %}

@@ -35,6 +35,11 @@ def korpusy():
     return render_template('korpusy.html')
 
 
+@app.route('/kontakt')
+def kontakt():
+    return render_template('kontakt.html')
+
+
 @babel.localeselector
 def get_locale():
     if 'lang' in session:
