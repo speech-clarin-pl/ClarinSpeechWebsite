@@ -129,6 +129,18 @@
                  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
         </div>
 
+        {% if refresh_req %}
+            <div class="alert alert-info fade show" role="alert">
+                <span class="fa fa-refresh fa-spin"></span>
+                {% trans %}w trakcie przetwarzania, odświeżam za {% endtrans %}
+                <span id="refresh-sec">5</span> s...
+                {% trans %}kliknij <a id="refresh-link" href="#">tutaj</a> żeby odświeżyć natychmiast{% endtrans %}
+                <button id="refresh-stop" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="fa fa-ban" aria-hidden="true"></i>
+                </button>
+            </div>
+        {% endif %}
+
         <table class="table">
             <thead class="thead-inverse">
             <tr>
@@ -140,11 +152,6 @@
             </tr>
             </thead>
             <tbody>
-            {% if bundles %}
-                {% set disable = {'asr': False, 'align' : False, 'emu': False} %}
-            {% else %}
-                {% set disable = {'asr': True, 'align' : True, 'emu': True} %}
-            {% endif %}
             {% for name,bundle in bundles %}
                 <tr>
                     <td>
@@ -175,9 +182,6 @@
                                             <i class="fa fa-file-audio-o fa-2x" aria-hidden="true"></i>
                                         </a>
                                     {% else %}
-                                        {% if disable.update({'asr':True}) %}{% endif %}
-                                        {% if disable.update({'align':True}) %}{% endif %}
-                                        {% if disable.update({'emu':True}) %}{% endif %}
                                         {% if 'error' in bundle.audio %}
                                             <a class="btn btn-secondary btn-lg"
                                                title="{% trans %}błąd{% endtrans %}">
@@ -200,9 +204,6 @@
                                 </div>
                             </div>
                         {% else %}
-                            {% if disable.update({'asr':True}) %}{% endif %}
-                            {% if disable.update({'align':True}) %}{% endif %}
-                            {% if disable.update({'emu':True}) %}{% endif %}
                             <div class="row">
                                 <div class="col-7">
                                     <a class="btn btn-secondary btn-lg disabled">
@@ -240,7 +241,6 @@
                                             </a>
                                         {% endif %}
                                     {% else %}
-                                        {% if disable.update({'align':True}) %}{% endif %}
                                         {% if 'error' in bundle.trans %}
                                             <a class="btn btn-secondary btn-lg"
                                                title="{% trans %}błąd{% endtrans %}">
@@ -263,7 +263,6 @@
                                 </div>
                             </div>
                         {% else %}
-                            {% if disable.update({'align':True}) %}{% endif %}
                             <div class="row">
                                 <div class="col-7">
                                     <a class="btn btn-secondary btn-lg disabled">
@@ -304,7 +303,6 @@
                                             <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
                                         </a>
                                     {% else %}
-                                        {% if disable.update({'emu':True}) %}{% endif %}
                                         {% if 'error' in bundle.seg %}
                                             <a class="btn btn-secondary btn-lg"
                                                title="{% trans %}błąd{% endtrans %}">
@@ -327,7 +325,6 @@
                                 </div>
                             </div>
                         {% else %}
-                            {% if disable.update({'emu':True}) %}{% endif %}
                             <div class="row">
                                 <div class="col-7">
                                     <a class="btn btn-secondary btn-lg disabled">
@@ -487,8 +484,28 @@
                     }
                 }
             });
-        })
+        });
 
+        {% if refresh_req %}
+            function refresh_page() {
+                location.reload();
+            }
+            $('#refresh-link').click(refresh_page);
+            var sec_remaining = 5;
+            function refresh_tick() {
+                if (sec_remaining > 1) {
+                    sec_remaining--;
+                    $('#refresh-sec').html(sec_remaining);
+                    setTimeout(refresh_tick, 1000);
+                } else if (sec_remaining >= 0) {
+                    refresh_page();
+                }
+            }
+            setTimeout(refresh_tick, 1000);
+            $('#refresh-stop').click(function () {
+                sec_remaining = -1;
+            });
+        {% endif %}
     </script>
 
 {% endblock %}

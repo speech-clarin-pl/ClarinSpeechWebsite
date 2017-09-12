@@ -70,24 +70,46 @@ def project(id):
     else:
         pass_check = ''
 
+    disable = {'asr': False, 'align': False, 'emu': False}
+    refresh_req = False
+
     bundles = []
     bundle_names = []
     for name, b in proj['bundles'].iteritems():
         bundle = {}
         if 'audio' in b:
             bundle['audio'] = tools.utils.get_file(b['audio'])
+            if 'error' not in bundle['audio'] and not bundle['audio']['file']:
+                refresh_req = True
         if 'trans' in b:
             bundle['trans'] = tools.utils.get_file(b['trans'])
+            if 'error' not in bundle['trans'] and not bundle['trans']['file']:
+                refresh_req = True
         if 'seg' in b:
             bundle['seg'] = tools.utils.get_file(b['seg'])
+            if 'error' not in bundle['seg'] and not bundle['seg']['file']:
+                refresh_req = True
+
+        if 'audio' not in bundle or not bundle['audio']['file']:
+            disable['asr'] = True
+            disable['align'] = True
+            disable['emu'] = True
+        if 'trans' not in bundle or not bundle['trans']['file']:
+            disable['align'] = True
+        if 'seg' not in bundle or not bundle['seg']['file']:
+            disable['emu'] = True
+
         bundle['session'] = b['session']
         bundles.append((name, bundle))
         bundle_names.append(name)
+
     bundles = sorted(bundles, key=lambda x: x[0])
+    if not bundles:
+        disable = {'asr': True, 'align': True, 'emu': True}
 
     return render_template('emu_project.html', proj=proj, bundles=bundles, bundle_names=bundle_names,
                            create_date=utc_to_localtime(proj['created'], session),
-                           pass_check=pass_check)
+                           pass_check=pass_check, disable=disable, refresh_req=refresh_req)
 
 
 @emu_page.route('project/modify/<id>', methods=['POST'])

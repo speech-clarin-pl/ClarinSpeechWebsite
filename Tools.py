@@ -7,9 +7,9 @@ from flask import Blueprint, render_template, make_response, request, abort, sen
     redirect
 
 import tools.phonetize
-import tools.utils
-import tools.tasks
 import tools.segmentation
+import tools.tasks
+import tools.utils
 from config import config
 
 tools_page = Blueprint('tools_page', __name__, template_folder='templates')
@@ -42,8 +42,10 @@ def download(id):
             resp.headers.extend({'Retry-After': 1})
             return resp
         else:
-            resp = make_response(send_file(os.path.join(config.work_dir, file['file'])))
+            filepath = os.path.join(config.work_dir, file['file'])
+            resp = make_response(send_file(filepath))
             resp.headers['Access-Control-Allow-Origin'] = 'http://ips-lmu.github.io'
+            resp.headers['Content-disposition'] = 'attachment; filename={}'.format(os.path.basename(filepath))
             return resp
 
 
