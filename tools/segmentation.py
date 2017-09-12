@@ -2,9 +2,10 @@ import codecs
 import json
 import re
 from collections import OrderedDict
-from tools.phonetize import pl_sampa_map, pl_ipa_map
 
 import tgt
+
+from tools.phonetize import pl_sampa_map, pl_ipa_map
 
 EPSILON = 0.01
 besi = re.compile('^.*_[BESI]$')
@@ -110,7 +111,7 @@ class Segmentation:
         with codecs.open(file, encoding='utf-8', mode='r') as f:
             for l in f:
                 tok = l.strip().split(' ')
-                assert len(tok) == 5, 'Wrong tok count in file {}: {}'.format(file, l)
+                assert len(tok) == 5, u'Wrong tok count in file {}: {}'.format(file, l)
                 if tok[0][0] == '@':
                     ph = tok[4]
 

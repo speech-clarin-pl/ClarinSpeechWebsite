@@ -24,7 +24,7 @@ def get_res_hash(id):
 # TODO: this assumes we always generate one destination resource!
 def run_task(task, input_res, output_type, options=None, hash=None):
     if output_type not in allowed_types:
-        raise RuntimeError('Type {} not allowed!'.format(output_type))
+        raise RuntimeError(u'Type {} not allowed!'.format(output_type))
 
     if not hash:
         from_hash = {}

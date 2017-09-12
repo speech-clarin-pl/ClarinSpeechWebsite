@@ -253,7 +253,7 @@ def add_audio(id):
         name = request.form['name']
         if name not in proj['bundles']:
             return abort(404)
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {'bundles.{}.audio'.format(name): audio_id}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}.audio'.format(name): audio_id}})
     else:
         suggested = file.filename
         suggested = splitext(suggested)[0]
@@ -266,7 +266,7 @@ def add_audio(id):
 
         bundle = {'audio': audio_id, 'session': 'default'}
 
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {'bundles.{}'.format(name): bundle}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}'.format(name): bundle}})
 
     return redirect('/emu/project/' + urllib.quote(str(id)))
 
@@ -286,12 +286,12 @@ def rename_bundle(id, name):
     bundle = proj['bundles'][name]
 
     if name != new_name:
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {'bundles.{}'.format(new_name): bundle}})
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {'bundles.{}'.format(name): 1}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}'.format(new_name): bundle}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {u'bundles.{}'.format(name): 1}})
 
     if new_session != bundle['session']:
         db.clarin.emu.update_one({'_id': ObjectId(id)},
-                                 {'$set': {'bundles.{}.session'.format(new_name): new_session}})
+                                 {'$set': {u'bundles.{}.session'.format(new_name): new_session}})
 
     return redirect('/emu/project/' + urllib.quote(str(id)))
 
@@ -314,7 +314,7 @@ def add_trans(id):
 
     time.sleep(0.1)
 
-    db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {'bundles.{}.trans'.format(name): trans_id}})
+    db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}.trans'.format(name): trans_id}})
 
     return redirect('/emu/project/' + urllib.quote(str(id)))
 
@@ -329,13 +329,13 @@ def remove_bndl(id, name):
         return abort(404)
 
     if 'audio' in request.args:
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {'bundles.{}.audio'.format(name): 1}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {u'bundles.{}.audio'.format(name): 1}})
     elif 'trans' in request.args:
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {'bundles.{}.trans'.format(name): 1}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {u'bundles.{}.trans'.format(name): 1}})
     elif 'seg' in request.args:
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {'bundles.{}.seg'.format(name): 1}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {u'bundles.{}.seg'.format(name): 1}})
     else:
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {'bundles.{}'.format(name): 1}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {u'bundles.{}'.format(name): 1}})
 
     return redirect('/emu/project/' + urllib.quote(str(id)))
 
@@ -364,7 +364,7 @@ def reco(id, name):
 
     time.sleep(0.1)
 
-    db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {'bundles.{}.trans'.format(name): trans_id}})
+    db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}.trans'.format(name): trans_id}})
 
     return redirect('/emu/project/' + urllib.quote(str(id)))
 
@@ -402,7 +402,7 @@ def align(id, name):
 
     time.sleep(0.1)
 
-    db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {'bundles.{}.seg'.format(name): seg_id}})
+    db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}.seg'.format(name): seg_id}})
 
     return redirect('/emu/project/' + urllib.quote(str(id)))
 
@@ -431,7 +431,7 @@ def reco_all(id):
 
         time.sleep(0.1)
 
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {'bundles.{}.trans'.format(name): trans_id}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}.trans'.format(name): trans_id}})
 
     return redirect('/emu/project/' + urllib.quote(str(id)))
 
@@ -474,7 +474,7 @@ def align_all(id):
 
         time.sleep(0.1)
 
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {'bundles.{}.seg'.format(name): seg_id}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}.seg'.format(name): seg_id}})
 
     return redirect('/emu/project/' + urllib.quote(str(id)))
 

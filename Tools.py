@@ -29,6 +29,7 @@ def upload(type):
 
 
 # TODO - security?!
+# TODO - warning that filenames can pose a problems if they aren't ASCII or alphanumeric
 @tools_page.route('download/<id>')
 def download(id):
     file = tools.utils.get_file(id)
@@ -52,7 +53,7 @@ def download(id):
 @tools_page.route('delete/<id>')
 def delete(id):
     tools.utils.invalidate_file(id)
-    return 'Invalidated {}'.format(id)
+    return u'Invalidated {}'.format(id)
 
 
 @tools_page.route('status/<id>')
