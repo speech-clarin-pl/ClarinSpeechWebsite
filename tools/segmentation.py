@@ -15,8 +15,8 @@ class Segment:
     def __init__(self, start, len, text, idgen):
         assert start >= 0 and len >= 0, 'start or len smaller than 0 for ' + text
 
-        self.start = start
-        self.len = len
+        self.start = round(start, 2)
+        self.len = round(len, 2)
         self.end = round(self.start + self.len, 2)
         self.text = text
         self.id = idgen.next()
@@ -32,6 +32,21 @@ class Level:
 
     def add(self, start, len, text):
         self.segments.append(Segment(start, len, text, self.idgen))
+
+    def sort(self):
+        self.segments = sorted(self.segments, key=lambda seg: seg.start)
+
+    def fillGaps(self):
+        self.sort()
+        gaps = []
+        for prev, next in zip(self.segments, self.segments[1:]):
+            if next.start > prev.end:
+                gaps.append(Segment(prev.end, next.start - prev.end, '', self.idgen))
+            if next.start < prev.end:
+                prev.end = next.start
+                prev.len = prev.end - prev.start
+        self.segments.extend(gaps)
+        self.sort()
 
     def getAnnotation(self, name, labelname, samplerate=16000, get_segments=True, ph_labels=None):
 
@@ -128,6 +143,9 @@ class Segmentation:
                     self.phonemes.add(round(float(tok[2]), 2), round(float(tok[3]), 2), ph)
                 else:
                     self.words.add(round(float(tok[2]), 2), round(float(tok[3]), 2), tok[4])
+
+        self.words.fillGaps()
+        self.phonemes.fillGaps()
 
     def getTextGrid(self):
         tg = tgt.TextGrid()

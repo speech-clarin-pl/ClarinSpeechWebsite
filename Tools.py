@@ -344,7 +344,7 @@ def transcript_to_emu_annot(id):
 
     headers = {}
     headers['Access-Control-Allow-Origin'] = 'http://ips-lmu.github.io'
-    headers['Content-disposition'] = 'attachment; filename=output.annot'
+    headers['Content-disposition'] = 'attachment; filename=output_annot.josn'
 
     return Response(ret, mimetype='application/json', headers=headers)
 
