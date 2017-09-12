@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-05 22:52+0200\n"
+"POT-Creation-Date: 2017-09-12 14:06+0200\n"
 "PO-Revision-Date: 2017-09-05 11:46+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -40,12 +40,13 @@ msgstr "The project has been removed!"
 
 #: templates/emu_deleted.html:6 templates/emu_new.html:6
 #: templates/emu_password.html:6 templates/emu_project.html:4
-#: templates/emu_search.html:6 templates/korpusy.html:5
-#: templates/multiview_any.html:5 templates/multiview_audio_trans.html:5
-#: templates/tool_align.html:9 templates/tool_audio_to_audio.html:6
-#: templates/tool_g2p_list.html:6 templates/tool_g2p_word.html:5
-#: templates/tool_reco.html:5 templates/tool_text_to_text.html:5
-#: templates/tools.html:6 templates/view_any.html:5 templates/view_audio.html:5
+#: templates/emu_search.html:6 templates/kontakt.html:5
+#: templates/korpusy.html:5 templates/multiview_any.html:5
+#: templates/multiview_audio_trans.html:5 templates/tool_align.html:9
+#: templates/tool_audio_to_audio.html:6 templates/tool_g2p_list.html:6
+#: templates/tool_g2p_word.html:5 templates/tool_reco.html:5
+#: templates/tool_text_to_text.html:5 templates/tools.html:6
+#: templates/view_any.html:5 templates/view_audio.html:5
 #: templates/view_segmentation.html:5 templates/view_transcription.html:5
 msgid "powrót"
 msgstr "Back"
@@ -58,7 +59,7 @@ msgstr "Owner"
 #: templates/emu_new.html:14
 msgid "właściciel_opis"
 msgstr ""
-"The owner's name isn't obligatory but it will make the project easier to "
+"The owner's name is not obligatory but it will make the project easier to "
 "find in the future."
 
 #: templates/emu_new.html:18 templates/emu_project.html:15
@@ -84,13 +85,13 @@ msgstr "Repeat the password"
 msgid "hasło_opis"
 msgstr ""
 "After setting the password, unauthorised persons will not have the access"
-" to the project. If you don't want to do that, please leave this field "
+" to the project. If you do not want to do that, please leave this field "
 "empty."
 
 #: templates/emu_new.html:42 templates/emu_project.html:62
 #: templates/emu_project.html:94
 msgid "hasła_się_różnią"
-msgstr "Passwords aren't the same!"
+msgstr "Passwords are not the same!"
 
 #: templates/emu_new.html:45
 msgid "stwórz"
@@ -128,8 +129,8 @@ msgstr "Created by"
 msgid "modyfikuj"
 msgstr "Modify"
 
-#: templates/emu_project.html:71 templates/emu_project.html:197
-#: templates/emu_project.html:260 templates/emu_project.html:324
+#: templates/emu_project.html:71 templates/emu_project.html:201
+#: templates/emu_project.html:260 templates/emu_project.html:322
 msgid "usuń"
 msgstr "Delete"
 
@@ -146,110 +147,123 @@ msgid "pliki_click_drag_opis"
 msgstr "Drag here or click to upload the audio file(s)."
 
 #: templates/emu_project.html:135
+msgid "w trakcie przetwarzania, odświeżam za "
+msgstr "The project is being processed! Page will refresh automatically in "
+
+#: templates/emu_project.html:137
+msgid ""
+"kliknij <a id=\"refresh-link\" href=\"#\">tutaj</a> żeby odświeżyć "
+"natychmiast"
+msgstr "Click <a id=\"refresh-link\" href=\"#\">here</a> to refresh immediately!"
+
+#: templates/emu_project.html:147
 msgid "nazwa_paczki_sesji"
 msgstr "Bundle and session name"
 
-#: templates/emu_project.html:136
+#: templates/emu_project.html:148
 msgid "plik_audio"
 msgstr "Audio file"
 
-#: templates/emu_project.html:137
+#: templates/emu_project.html:149
 msgid "transkrypcja"
 msgstr "Transcript"
 
-#: templates/emu_project.html:138
+#: templates/emu_project.html:150
 msgid "segmentacja"
 msgstr "Segmentation"
 
-#: templates/emu_project.html:183 templates/emu_project.html:246
-#: templates/emu_project.html:310
+#: templates/emu_project.html:187 templates/emu_project.html:246
+#: templates/emu_project.html:308
 msgid "błąd"
 msgstr "An error has occurred!"
 
-#: templates/emu_project.html:188 templates/emu_project.html:251
-#: templates/emu_project.html:315
+#: templates/emu_project.html:192 templates/emu_project.html:251
+#: templates/emu_project.html:313
 msgid "przetwarzam"
 msgstr "Processing..."
 
-#: templates/emu_project.html:283 templates/emu_project.html:341
+#: templates/emu_project.html:282 templates/emu_project.html:338
 msgid "wygeneruj_automatycznie"
 msgstr "Generate automatically"
 
-#: templates/emu_project.html:353
+#: templates/emu_project.html:350
 msgid "usuń_paczkę"
 msgstr "Delete the entire bundle"
 
-#: templates/emu_project.html:367
+#: templates/emu_project.html:364
 msgid "narzędzia_całego_projektu_tytuł"
 msgstr "Tool for the entire project"
 
-#: templates/emu_project.html:369
+#: templates/emu_project.html:366
 msgid "narzędzia_całego_projektu_opis1"
 msgstr ""
 "Some options are available only after uploading all the files of a given "
 "type."
 
-#: templates/emu_project.html:371
+#: templates/emu_project.html:368
 msgid "narzędzia_całego_projektu_opis2"
 msgstr "Only missing files are generated automatically."
 
-#: templates/emu_project.html:379
+#: templates/emu_project.html:376
 msgid "wykonaj_asr"
 msgstr "Execute speech recognition for all audio files in the project"
 
-#: templates/emu_project.html:391
+#: templates/emu_project.html:388
 msgid "wykonaj_align"
 msgstr "Execute speech alignment for the whole project"
 
-#: templates/emu_project.html:403
+#: templates/emu_project.html:400
 msgid "otwórz_webapp"
 msgstr "Open the project in EMU-WebApp"
 
-#: templates/emu_project.html:413
+#: templates/emu_project.html:410
 msgid "ściągnij_projekt"
 msgstr "Download the whole project"
 
-#: templates/emu_project.html:423 templates/korpusy.html:44
-#: templates/multiview_any.html:19 templates/multiview_audio_trans.html:71
-#: templates/tool_align.html:117 templates/tool_audio_to_audio.html:67
-#: templates/tool_g2p_list.html:105 templates/tool_g2p_word.html:71
-#: templates/tool_reco.html:66 templates/tool_text_to_text.html:66
-#: templates/view_any.html:26 templates/view_audio.html:50
-#: templates/view_segmentation.html:27 templates/view_transcription.html:39
+#: templates/emu_project.html:420 templates/kontakt.html:17
+#: templates/korpusy.html:44 templates/multiview_any.html:19
+#: templates/multiview_audio_trans.html:71 templates/tool_align.html:117
+#: templates/tool_audio_to_audio.html:67 templates/tool_g2p_list.html:105
+#: templates/tool_g2p_word.html:71 templates/tool_reco.html:66
+#: templates/tool_text_to_text.html:66 templates/view_any.html:26
+#: templates/view_audio.html:50 templates/view_segmentation.html:27
+#: templates/view_transcription.html:39
 msgid "cytowanie"
 msgstr "Citation"
 
-#: templates/emu_project.html:425 templates/korpusy.html:46
-#: templates/multiview_any.html:21 templates/multiview_audio_trans.html:73
-#: templates/tool_align.html:119 templates/tool_audio_to_audio.html:69
-#: templates/tool_g2p_list.html:107 templates/tool_g2p_word.html:73
-#: templates/tool_reco.html:68 templates/tool_text_to_text.html:68
-#: templates/view_any.html:28 templates/view_audio.html:52
-#: templates/view_segmentation.html:29 templates/view_transcription.html:41
+#: templates/emu_project.html:422 templates/kontakt.html:19
+#: templates/korpusy.html:46 templates/multiview_any.html:21
+#: templates/multiview_audio_trans.html:73 templates/tool_align.html:119
+#: templates/tool_audio_to_audio.html:69 templates/tool_g2p_list.html:107
+#: templates/tool_g2p_word.html:73 templates/tool_reco.html:68
+#: templates/tool_text_to_text.html:68 templates/view_any.html:28
+#: templates/view_audio.html:52 templates/view_segmentation.html:29
+#: templates/view_transcription.html:41
 msgid "cytowanie_opis"
 msgstr ""
 "Persons using the resources or tools are kindly asked to cite the "
 "following publication:"
 
-#: templates/emu_project.html:434 templates/korpusy.html:54
-#: templates/multiview_any.html:29 templates/multiview_audio_trans.html:81
-#: templates/tool_align.html:127 templates/tool_audio_to_audio.html:77
-#: templates/tool_g2p_list.html:115 templates/tool_g2p_word.html:81
-#: templates/tool_reco.html:76 templates/tool_text_to_text.html:76
-#: templates/view_any.html:36 templates/view_audio.html:60
-#: templates/view_segmentation.html:37 templates/view_transcription.html:49
+#: templates/emu_project.html:431 templates/kontakt.html:27
+#: templates/korpusy.html:54 templates/multiview_any.html:29
+#: templates/multiview_audio_trans.html:81 templates/tool_align.html:127
+#: templates/tool_audio_to_audio.html:77 templates/tool_g2p_list.html:115
+#: templates/tool_g2p_word.html:81 templates/tool_reco.html:76
+#: templates/tool_text_to_text.html:76 templates/view_any.html:36
+#: templates/view_audio.html:60 templates/view_segmentation.html:37
+#: templates/view_transcription.html:49
 msgid "link_do_pracy"
 msgstr "Link to the publication"
 
-#: templates/emu_project.html:456
+#: templates/emu_project.html:453
 msgid "czy_usunąć_zasób"
 msgstr "Are you sure you want to delete the resource?"
 
-#: templates/emu_project.html:463
+#: templates/emu_project.html:460
 msgid "czy_wykonać_akcję"
 msgstr "Are you sure you want to execute this action?"
 
-#: templates/emu_project.html:481
+#: templates/emu_project.html:478
 msgid "nazwa_już_istnieje"
 msgstr "Such a name is already used!"
 
@@ -301,6 +315,10 @@ msgstr "Speech services"
 msgid "narzędzie_emu"
 msgstr "A tool to create EMU-SDMS corpus"
 
+#: templates/index.html:55 templates/kontakt.html:4 templates/layout.html:57
+msgid "kontakt"
+msgstr "Contact"
+
 #: templates/korpusy.html:4
 msgid "korpusy_tytuł"
 msgstr "CLARIN-PL speech resources"
@@ -346,8 +364,8 @@ msgid "kaldi_baseline_opis"
 msgstr ""
 "Under the link below you may find information about the version of the "
 "corpus prepared for training of the speech recognition system based on "
-"Kaldi LVSCR. It contains all the descriptions and scripts allowing you to "
-"train the system personally. "
+"Kaldi LVSCR. It contains all the descriptions and scripts allowing you to"
+" train the system personally. "
 
 #: templates/layout.html:54
 msgid "strona_główna"
@@ -360,10 +378,6 @@ msgstr "Project website"
 #: templates/layout.html:56
 msgid "repozytorium"
 msgstr "Repository"
-
-#: templates/layout.html:57
-msgid "kontakt"
-msgstr "Contact"
 
 #: templates/multiview_any.html:3
 msgid "zasoby"
@@ -475,9 +489,9 @@ msgstr ""
 #: templates/tool_align.html:21 templates/tool_reco.html:10
 msgid "opis_pliki_audio"
 msgstr ""
-"WARNING: The files uploaded to this service must be formatted "
-"accordingly (WAV, 16kHz, mono, 16bit). If the files aren't in the correct "
-"format, you can use the audio normalization service."
+"WARNING: The files uploaded to this service must be formatted accordingly"
+" (WAV, 16kHz, mono, 16bit). If the files are not in the correct format, "
+"you can use the audio normalization service."
 
 #: templates/tool_align.html:26
 msgid "wczytaj_nagranie"
@@ -671,7 +685,7 @@ msgstr ""
 #: templates/tool_text_to_text.html:10
 msgid "opis_textnorm_wip"
 msgstr ""
-"WARNING: work in progress! At the moment, the tool doesn't support most "
+"WARNING: work in progress! At the moment, the tool does not support most "
 "of the mentioned features!"
 
 #: templates/tool_text_to_text.html:56
