@@ -1,6 +1,8 @@
 import datetime
 import os
 
+from bson import ObjectId
+
 from config import db, config
 
 time = datetime.datetime.utcnow() - datetime.timedelta(days=1)
@@ -17,13 +19,13 @@ print 'Discarding anything that can be used in EMU projects...'
 
 projs = db.clarin.emu.find({})
 for proj in projs:
-    for bndl in proj['bundles']:
+    for name,bndl in proj['bundles'].iteritems():
         if 'audio' in bndl:
-            ids.discard(bndl['audio'])
+            ids.discard(ObjectId(bndl['audio']))
         if 'trans' in bndl:
-            ids.discard(bndl['trans'])
+            ids.discard(ObjectId(bndl['trans']))
         if 'seg' in bndl:
-            ids.discard(bndl['seg'])
+            ids.discard(ObjectId(bndl['seg']))
 
 print 'Deleting {} resources...'.format(len(ids))
 
@@ -36,7 +38,8 @@ rsrcs = db.clarin.resources.find({})
 
 db_files = set()
 for res in rsrcs:
-    db_files.add(os.path.realpath(os.path.join(config.work_dir, res['file'])))
+    if 'file' in res and res['file']:
+        db_files.add(os.path.realpath(os.path.join(config.work_dir, res['file'])))
 
 print 'Removing files not in database...'
 
