@@ -319,7 +319,7 @@ def transcript_to_textgrid(id):
     if 'script' in request.args:
         script = request.args['script']
 
-    ret = tools.segmentation.segmentation_to_textgrid(file['file'], script=script)
+    ret = tools.segmentation.segmentation_to_textgrid(os.path.join(config.work_dir, file['file']), script=script)
 
     headers = {}
     headers['Access-Control-Allow-Origin'] = 'http://ips-lmu.github.io'
@@ -340,7 +340,8 @@ def transcript_to_emu_annot(id):
     if 'script' in request.args:
         script = request.args['script']
 
-    ret = tools.segmentation.segmentation_to_emu_annot(file['file'], 'output', script=script)
+    ret = tools.segmentation.segmentation_to_emu_annot(os.path.join(config.work_dir, file['file']), 'output',
+                                                       script=script)
 
     headers = {}
     headers['Access-Control-Allow-Origin'] = 'http://ips-lmu.github.io'

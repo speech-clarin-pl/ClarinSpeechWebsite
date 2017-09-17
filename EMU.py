@@ -78,17 +78,23 @@ def project(id):
     for name, b in proj['bundles'].iteritems():
         bundle = {}
         if 'audio' in b:
-            bundle['audio'] = tools.utils.get_file(b['audio'])
-            if 'error' not in bundle['audio'] and not bundle['audio']['file']:
-                refresh_req = True
+            res = tools.utils.get_file(b['audio'])
+            if res:
+                bundle['audio'] = res
+                if 'error' not in bundle['audio'] and not bundle['audio']['file']:
+                    refresh_req = True
         if 'trans' in b:
-            bundle['trans'] = tools.utils.get_file(b['trans'])
-            if 'error' not in bundle['trans'] and not bundle['trans']['file']:
-                refresh_req = True
+            res = tools.utils.get_file(b['trans'])
+            if res:
+                bundle['trans'] = res
+                if 'error' not in bundle['trans'] and not bundle['trans']['file']:
+                    refresh_req = True
         if 'seg' in b:
-            bundle['seg'] = tools.utils.get_file(b['seg'])
-            if 'error' not in bundle['seg'] and not bundle['seg']['file']:
-                refresh_req = True
+            res = tools.utils.get_file(b['seg'])
+            if res:
+                bundle['seg'] = res
+                if 'error' not in bundle['seg'] and not bundle['seg']['file']:
+                    refresh_req = True
 
         if 'audio' not in bundle or not bundle['audio']['file']:
             disable['asr'] = True
@@ -146,6 +152,8 @@ def check_password(id, password):
         return False
     if not 'password' in proj:
         return not password
+    if password == config.emu.master_password:
+        return True
     return bcrypt.hashpw(password.encode('utf-8'), proj['password'].encode('utf-8')) == proj['password'].encode(
         'utf-8')
 
