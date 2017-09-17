@@ -8,6 +8,7 @@ time = datetime.datetime.utcnow() - datetime.timedelta(days=1)
 print 'Getting all resources older than {:%Y-%m-%d %H:%M}...'.format(time)
 
 rsrcs = db.clarin.resources.find({'modified': {'$lt': time}})
+
 ids = set()
 for res in rsrcs:
     ids.add(res['_id'])
@@ -26,7 +27,8 @@ for proj in projs:
 
 print 'Deleting {} resources...'.format(len(ids))
 
-db.clarin.resources.remove({'_id': {'$in': list(ids)}})
+for id in ids:
+    db.clarin.resources.remove({'_id': id})
 
 print 'Making a list of files in databse...'
 
@@ -34,13 +36,13 @@ rsrcs = db.clarin.resources.find({})
 
 db_files = set()
 for res in rsrcs:
-    db_files.add(res['file'])
+    db_files.add(os.path.realpath(os.path.join(config.work_dir, res['file'])))
 
 print 'Removing files not in database...'
 
 for root, dirs, files in os.walk(config.work_dir):
     for file in files:
-        if os.path.relpath(os.path.join(root, file), config.work_dir) not in db_files:
+        if os.path.realpath(os.path.join(root, file)) not in db_files:
             try:
                 # print 'Removing {}/{}'.format(root, file)
                 os.remove(os.path.join(root, file))
