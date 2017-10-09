@@ -14,7 +14,7 @@ allowed_types = ['wordlist', 'lexicon', 'audio', 'transcript', 'segmentation', '
 
 def file_hash(filename):
     h = hashlib.sha1()
-    with open(filename, 'rb', buffering=0) as f:
+    with open(os.path.join(config.work_dir, filename), 'rb', buffering=0) as f:
         for b in iter(lambda: f.read(128 * 1024), b''):
             h.update(b)
     return h.hexdigest()

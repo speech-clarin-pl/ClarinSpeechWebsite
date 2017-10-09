@@ -225,7 +225,7 @@ def text_modify(id):
 
     file = res['file']
 
-    with codecs.open(file, mode='w', encoding='utf-8') as f:
+    with codecs.open(os.path.join(config.work_dir, file), mode='w', encoding='utf-8') as f:
         f.write(text)
 
     tools.utils.update_file(id, file)
