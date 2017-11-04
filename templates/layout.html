@@ -51,16 +51,16 @@
 <div class="container">
     <div>&nbsp;</div>
     <div class="gornypanel">
-        <a href="http://mowa.clarin-pl.eu/">{% trans %}strona_główna{% endtrans %}</a>
-        <a href="http://clarin-pl.eu/">{% trans %}strona_główna_projektu{% endtrans %}</a>
-        <a href="http://clarin-pl.eu/dspace/">{% trans %}repozytorium{% endtrans %}</a>
-        <a href="http://clarin-pl.eu/en/contact/">{% trans %}kontakt{% endtrans %}</a>
+        <a href="//mowa.clarin-pl.eu/">{% trans %}strona_główna{% endtrans %}</a>
+        <a href="//clarin-pl.eu/">{% trans %}strona_główna_projektu{% endtrans %}</a>
+        <a href="//clarin-pl.eu/dspace/">{% trans %}repozytorium{% endtrans %}</a>
+        <a href="//clarin-pl.eu/en/contact/">{% trans %}kontakt{% endtrans %}</a>
         <a href="/lang/pl"><img src={{ url_for('static', filename='img/pl.svg') }}></a>
         <a href="/lang/en"><img src={{ url_for('static', filename='img/gb.svg') }}></a>
     </div>
     <div class="hgroup full-container">
-        <a href="http://clarin-pl.eu/pl/strona-glowna/" title="Clarin PL" rel="home" class="logo"><img
-                src="http://clarin-pl.eu/wp-content/uploads/2015/03/logo.png" class="logo-height-constrain" width="990"
+        <a href="//clarin-pl.eu/pl/strona-glowna/" title="Clarin PL" rel="home" class="logo"><img
+                src="//clarin-pl.eu/wp-content/uploads/2015/03/logo.png" class="logo-height-constrain" width="990"
                 height="160" alt="Clarin PL Logo"/></a>
     </div>
     {% block body %} {% endblock %}
@@ -77,7 +77,7 @@
         a.async = 1;
         a.src = g;
         m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-61350840-2', 'auto');
     ga('send', 'pageview');
