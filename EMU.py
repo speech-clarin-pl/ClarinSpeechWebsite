@@ -4,7 +4,7 @@ import math
 import re
 import time
 import urllib
-from os.path import splitext
+from os.path import splitext, join
 
 import bcrypt as bcrypt
 from bson import ObjectId
@@ -13,7 +13,7 @@ from flask import Blueprint, render_template, abort, request, redirect, session
 
 import tools
 from config import db, config
-from tools.utils import utc_to_localtime
+from tools.utils import utc_to_localtime, audio_file_size
 
 emu_page = Blueprint('emu_page', __name__, template_folder='templates')
 
@@ -394,6 +394,12 @@ def align(id, name):
     audio_id = bundle['audio']
     res = tools.utils.get_file(audio_id)
 
+    audio_file = join(config.work_dir, res.file)
+    len = audio_file_size(audio_file)
+    forced = True
+    if len > 60:
+        forced = False
+
     if 'file' not in res:
         return abort(404)
 
@@ -406,7 +412,10 @@ def align(id, name):
     if 'file' not in res:
         return abort(404)
 
-    seg_id = tools.tasks.start_speech_forcealign(audio_id, trans_id)
+    if forced:
+        seg_id = tools.tasks.start_speech_forcealign(audio_id, trans_id)
+    else:
+        seg_id = tools.tasks.start_speech_segmentalign(audio_id, trans_id)
 
     time.sleep(0.1)
 
@@ -429,17 +438,7 @@ def reco_all(id):
         if 'audio' not in bundle:
             continue
 
-        audio_id = bundle['audio']
-        res = tools.utils.get_file(audio_id)
-
-        if 'file' not in res:
-            continue
-
-        trans_id = tools.tasks.start_speech_recognize(audio_id)
-
-        time.sleep(0.1)
-
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}.trans'.format(name): trans_id}})
+        reco(id, name)
 
     return redirect('/emu/project/' + urllib.quote(str(id)))
 
@@ -458,31 +457,13 @@ def align_all(id):
         if name not in proj['bundles']:
             continue
 
-        bundle = proj['bundles'][name]
-
         if 'audio' not in bundle:
-            continue
-
-        audio_id = bundle['audio']
-        res = tools.utils.get_file(audio_id)
-
-        if 'file' not in res:
             continue
 
         if 'trans' not in bundle:
             continue
 
-        trans_id = bundle['trans']
-        res = tools.utils.get_file(trans_id)
-
-        if 'file' not in res:
-            continue
-
-        seg_id = tools.tasks.start_speech_forcealign(audio_id, trans_id)
-
-        time.sleep(0.1)
-
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}.seg'.format(name): seg_id}})
+        align(id, name)
 
     return redirect('/emu/project/' + urllib.quote(str(id)))
 

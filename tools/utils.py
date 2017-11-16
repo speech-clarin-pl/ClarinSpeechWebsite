@@ -2,6 +2,7 @@ import datetime
 import hashlib
 import locale
 import os
+import wave
 from tempfile import mkstemp
 
 from bson.objectid import ObjectId
@@ -74,3 +75,12 @@ def update_file(id, file):
 def invalidate_file(id):
     db.clarin.resources.update_one({'_id': ObjectId(id)},
                                    {'$set': {'error': 'manual delete'}})
+
+
+def audio_file_size(file):
+    try:
+        f = wave.open(file)
+        _, _, r, n, _, _ = f.getparams()
+        return n / float(r)
+    except:
+        return 0
