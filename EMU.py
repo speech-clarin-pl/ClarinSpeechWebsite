@@ -394,7 +394,7 @@ def align(id, name):
     audio_id = bundle['audio']
     res = tools.utils.get_file(audio_id)
 
-    audio_file = join(config.work_dir, res.file)
+    audio_file = join(config.work_dir, res['file'])
     len = audio_file_size(audio_file)
     forced = True
     if len > 60:
