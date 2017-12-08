@@ -329,6 +329,11 @@ def transcript_to_textgrid(id):
     if 'script' in request.args:
         script = request.args['script']
 
+    if not file['file']:
+        resp = make_response('503 Service Unavailable', 503)
+        resp.headers.extend({'Retry-After': 1})
+        return resp
+
     ret = tools.segmentation.segmentation_to_textgrid(os.path.join(config.work_dir, file['file']), script=script)
 
     headers = {}
@@ -349,6 +354,11 @@ def transcript_to_emu_annot(id):
     script = None
     if 'script' in request.args:
         script = request.args['script']
+
+    if not file['file']:
+        resp = make_response('503 Service Unavailable', 503)
+        resp.headers.extend({'Retry-After': 1})
+        return resp
 
     ret = tools.segmentation.segmentation_to_emu_annot(os.path.join(config.work_dir, file['file']), 'output',
                                                        script=script)
