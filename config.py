@@ -17,7 +17,8 @@ class Config:
 
     def load(self, config_path):
         try:
-            config_file = json.load(config_path)
+            with open(config_path) as f:
+                config_file = json.load(f)
         except:
             return
 
