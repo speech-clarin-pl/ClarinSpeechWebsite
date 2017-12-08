@@ -1,10 +1,12 @@
 import os
+from logging.handlers import RotatingFileHandler
 
-from flask import Flask, render_template, session, abort, redirect, request
+from flask import Flask, render_template, session, abort, redirect, request, logging
 from flask_babel import Babel
 
 from EMU import emu_page
 from Tools import tools_page
+from config import config
 
 app = Flask(__name__)
 app.register_blueprint(tools_page, url_prefix='/tools/')
@@ -21,7 +23,7 @@ def log_request_info():
         file.seek(0, os.SEEK_END)
         file_length = file.tell()
         file.seek(0)
-        app.logger.debug('Request includes file >>{}<< of size {} bytes'.format(name, file_length))
+        app.logger.debug('-includes file >>{}<< of size {} bytes'.format(name, file_length))
 
 
 @app.route('/')
@@ -60,4 +62,8 @@ def get_locale():
 
 
 if __name__ == '__main__':
+    handler = RotatingFileHandler(os.path.join(config.proj_root, 'debug.log'), maxBytes=10000, backupCount=1)
+    handler.setLevel(logging.DEBUG)
+    app.logger.addHandler(handler)
+    app.logger.setLevel(logging.DEBUG)
     app.run()
