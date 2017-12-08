@@ -14,6 +14,23 @@ app.register_blueprint(tools_page, url_prefix='/tools/')
 app.register_blueprint(emu_page, url_prefix='/emu/')
 babel = Babel(app)
 
+filename = os.path.join(config.proj_root, 'secret_key')
+try:
+    app.config['SECRET_KEY'] = open(filename, 'rb').read()
+except IOError:
+    print 'Error: No secret key. Create it with:'
+    if not os.path.isdir(os.path.dirname(filename)):
+        print 'mkdir -p', os.path.dirname(filename)
+    print 'head -c 24 /dev/urandom >', filename
+    sys.exit(-1)
+
+formatter = logging.Formatter('[%(asctime)s] %(levelname)s - %(message)s')
+handler = RotatingFileHandler(os.path.join(config.proj_root, 'debug.log'), maxBytes=10000, backupCount=1)
+handler.setLevel(logging.DEBUG)
+handler.setFormatter(formatter)
+app.logger.addHandler(handler)
+app.logger.setLevel(logging.DEBUG)
+
 
 @app.before_request
 def log_request_info():
@@ -61,19 +78,4 @@ def get_locale():
 
 
 if __name__ == '__main__':
-
-    filename = os.path.join(config.proj_root, 'secret_key')
-    try:
-        app.config['SECRET_KEY'] = open(filename, 'rb').read()
-    except IOError:
-        print 'Error: No secret key. Create it with:'
-        if not os.path.isdir(os.path.dirname(filename)):
-            print 'mkdir -p', os.path.dirname(filename)
-        print 'head -c 24 /dev/urandom >', filename
-        sys.exit(-1)
-
-    handler = RotatingFileHandler(os.path.join(config.proj_root, 'debug.log'), maxBytes=10000, backupCount=1)
-    handler.setLevel(logging.DEBUG)
-    app.logger.addHandler(handler)
-    app.logger.setLevel(logging.DEBUG)
-    app.run()
+    app.run(debug=True)
