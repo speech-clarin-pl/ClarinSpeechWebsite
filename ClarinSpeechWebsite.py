@@ -1,4 +1,5 @@
 import os
+import sys
 from logging.handlers import RotatingFileHandler
 
 from flask import Flask, render_template, session, abort, redirect, request, logging
@@ -12,8 +13,6 @@ app = Flask(__name__)
 app.register_blueprint(tools_page, url_prefix='/tools/')
 app.register_blueprint(emu_page, url_prefix='/emu/')
 babel = Babel(app)
-
-app.secret_key = '\x92c\xb0\x00x \x19y\xdanY\xba\x8d|\xac\x1a\xc4\x16Q\xc6\xa6\xb1\x87\x89'
 
 
 @app.before_request
@@ -62,6 +61,17 @@ def get_locale():
 
 
 if __name__ == '__main__':
+
+    filename = os.path.join(config.proj_root, 'secret_key')
+    try:
+        app.config['SECRET_KEY'] = open(filename, 'rb').read()
+    except IOError:
+        print 'Error: No secret key. Create it with:'
+        if not os.path.isdir(os.path.dirname(filename)):
+            print 'mkdir -p', os.path.dirname(filename)
+        print 'head -c 24 /dev/urandom >', filename
+        sys.exit(-1)
+
     handler = RotatingFileHandler(os.path.join(config.proj_root, 'debug.log'), maxBytes=10000, backupCount=1)
     handler.setLevel(logging.DEBUG)
     app.logger.addHandler(handler)
