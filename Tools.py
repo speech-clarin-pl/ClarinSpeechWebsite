@@ -1,6 +1,7 @@
 import codecs
 import json
 import os
+import pprint
 import time
 
 from flask import Blueprint, render_template, make_response, request, abort, send_file, Response, stream_with_context, \
@@ -68,6 +69,15 @@ def status(id):
             return 'ok'
         else:
             return 'wait'
+
+
+pp = pprint.PrettyPrinter(indent=4)
+
+
+@tools_page.route('status/debug/<id>')
+def status_debug(id):
+    file = tools.utils.get_file(id)
+    return pp.pformat(file)
 
 
 @tools_page.route('ui/view/<id>')
@@ -216,7 +226,7 @@ def normalize_id(id):
 
 @tools_page.route('text/modify/<id>', methods=['POST'])
 def text_modify(id):
-    redirect_url = request.form['redirect_url'];
+    redirect_url = request.form['redirect_url']
     text = request.form['text']
 
     res = tools.utils.get_file(id)

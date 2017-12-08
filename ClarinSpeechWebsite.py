@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, session, abort, redirect, request
 from flask_babel import Babel
 
@@ -10,6 +12,16 @@ app.register_blueprint(emu_page, url_prefix='/emu/')
 babel = Babel(app)
 
 app.secret_key = '\x92c\xb0\x00x \x19y\xdanY\xba\x8d|\xac\x1a\xc4\x16Q\xc6\xa6\xb1\x87\x89'
+
+
+@app.before_request
+def log_request_info():
+    app.logger.debug('Request {}'.format(request.url))
+    for name, file in request.files.iteritems():
+        file.seek(0, os.SEEK_END)
+        file_length = file.tell()
+        file.seek(0)
+        app.logger.debug('Request includes file >>{}<< of size {} bytes'.format(name, file_length))
 
 
 @app.route('/')
