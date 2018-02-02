@@ -80,7 +80,7 @@ def invalidate_file(id):
 
 def audio_file_size(file):
     try:
-        f = wave.open(file)
+        f = wave.open(str(file))
         _, _, r, n, _, _ = f.getparams()
         return n / float(r)
     except IOError:
