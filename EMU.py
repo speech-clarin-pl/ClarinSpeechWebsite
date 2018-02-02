@@ -3,8 +3,10 @@ import hashlib
 import math
 import re
 import time
-import urllib
-from os.path import splitext, join
+import urllib.error
+import urllib.parse
+import urllib.request
+from pathlib import Path
 
 import bcrypt as bcrypt
 from bson import ObjectId
@@ -38,7 +40,7 @@ def create():
     res = db.clarin.emu.insert_one(proj)
     id = res.inserted_id
 
-    return redirect('/emu/project/' + urllib.quote(str(id)))
+    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
 def check_project(id):
@@ -51,7 +53,7 @@ def check_project(id):
 
     if 'password' in proj:
         if 'pass_proj_id' not in session or session['pass_proj_id'] != id:
-            return None, redirect('/emu/project/password/' + urllib.quote(str(id)))
+            return None, redirect('/emu/project/password/' + urllib.parse.quote(str(id)))
     else:
         if 'pass_proj_id' in session:
             session.pop('pass_proj_id')
@@ -66,7 +68,7 @@ def project(id):
 
     if 'password' in proj:
         pass_check = proj['password']
-        pass_check = hashlib.sha1(pass_check).hexdigest()
+        pass_check = hashlib.sha1(pass_check.encode('utf-8')).hexdigest()
     else:
         pass_check = ''
 
@@ -75,7 +77,7 @@ def project(id):
 
     bundles = []
     bundle_names = []
-    for name, b in proj['bundles'].iteritems():
+    for name, b in proj['bundles'].items():
         bundle = {}
         if 'audio' in b:
             res = tools.utils.get_file(b['audio'])
@@ -132,7 +134,7 @@ def project_modify(id):
             db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {'password': 1}})
     db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': upd})
 
-    return redirect('/emu/project/' + urllib.quote(str(id)))
+    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
 @emu_page.route('project/remove/<id>')
@@ -143,14 +145,14 @@ def project_remove(id):
 
     db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {'deleted': True}})
 
-    return redirect('/emu/project/' + urllib.quote(str(id)))
+    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
 def check_password(id, password):
     proj = db.clarin.emu.find_one({'_id': ObjectId(id)})
     if not proj:
         return False
-    if not 'password' in proj:
+    if 'password' not in proj:
         return not password
     if password == config.emu.master_password:
         return True
@@ -165,9 +167,9 @@ def project_password(id):
     else:
         if check_password(id, request.form['pass']):
             session['pass_proj_id'] = id
-            return redirect('/emu/project/' + urllib.quote(str(id)))
+            return redirect('/emu/project/' + urllib.parse.quote(str(id)))
         else:
-            return redirect('/emu/project/password/' + urllib.quote(str(id)) + '?error')
+            return redirect('/emu/project/password/' + urllib.parse.quote(str(id)) + '?error')
 
 
 @emu_page.route('search', defaults={'page': 0}, methods=['GET', 'POST'])
@@ -237,7 +239,7 @@ def find_unique_name(proj, suggestion):
     if suggestion not in proj['bundles']:
         return suggestion
     for i in range(1, 100):
-        name = '{}({})'.format(suggestion, i)
+        name = f'{suggestion}({i})'
         if name not in proj['bundles']:
             return name
     return None
@@ -261,10 +263,9 @@ def add_audio(id):
         name = request.form['name']
         if name not in proj['bundles']:
             return abort(404)
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}.audio'.format(name): audio_id}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{name}.audio': audio_id}})
     else:
-        suggested = file.filename
-        suggested = splitext(suggested)[0]
+        suggested = Path(file.filename).stem
         suggested = suggested.replace('.', '_')
         suggested = suggested.replace('$', '_')
         name = find_unique_name(proj, suggested)
@@ -274,9 +275,9 @@ def add_audio(id):
 
         bundle = {'audio': audio_id, 'session': 'default'}
 
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}'.format(name): bundle}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{name}': bundle}})
 
-    return redirect('/emu/project/' + urllib.quote(str(id)))
+    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
 @emu_page.route('project/rename/<id>/<name>', methods=['POST'])
@@ -294,14 +295,14 @@ def rename_bundle(id, name):
     bundle = proj['bundles'][name]
 
     if name != new_name:
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}'.format(new_name): bundle}})
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {u'bundles.{}'.format(name): 1}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{new_name}': bundle}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}': 1}})
 
     if new_session != bundle['session']:
         db.clarin.emu.update_one({'_id': ObjectId(id)},
-                                 {'$set': {u'bundles.{}.session'.format(new_name): new_session}})
+                                 {'$set': {f'bundles.{new_name}.session': new_session}})
 
-    return redirect('/emu/project/' + urllib.quote(str(id)))
+    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
 @emu_page.route('project/add_trans/<id>', methods=['POST'])
@@ -322,9 +323,9 @@ def add_trans(id):
 
     time.sleep(0.1)
 
-    db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}.trans'.format(name): trans_id}})
+    db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{name}.trans': trans_id}})
 
-    return redirect('/emu/project/' + urllib.quote(str(id)))
+    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
 @emu_page.route('project/remove_bndl/<id>/<name>')
@@ -337,15 +338,15 @@ def remove_bndl(id, name):
         return abort(404)
 
     if 'audio' in request.args:
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {u'bundles.{}.audio'.format(name): 1}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}.audio': 1}})
     elif 'trans' in request.args:
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {u'bundles.{}.trans'.format(name): 1}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}.trans': 1}})
     elif 'seg' in request.args:
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {u'bundles.{}.seg'.format(name): 1}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}.seg': 1}})
     else:
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {u'bundles.{}'.format(name): 1}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}': 1}})
 
-    return redirect('/emu/project/' + urllib.quote(str(id)))
+    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
 @emu_page.route('project/reco/<id>/<name>')
@@ -372,9 +373,9 @@ def reco(id, name):
 
     time.sleep(0.1)
 
-    db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}.trans'.format(name): trans_id}})
+    db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{name}.trans': trans_id}})
 
-    return redirect('/emu/project/' + urllib.quote(str(id)))
+    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
 @emu_page.route('project/align/<id>/<name>')
@@ -394,7 +395,7 @@ def align(id, name):
     audio_id = bundle['audio']
     res = tools.utils.get_file(audio_id)
 
-    audio_file = join(config.work_dir, res['file'])
+    audio_file = config.work_dir / res['file']
     len = audio_file_size(audio_file)
     forced = True
     if len > 60:
@@ -419,9 +420,9 @@ def align(id, name):
 
     time.sleep(0.1)
 
-    db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {u'bundles.{}.seg'.format(name): seg_id}})
+    db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{name}.seg': seg_id}})
 
-    return redirect('/emu/project/' + urllib.quote(str(id)))
+    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
 @emu_page.route('project/reco/<id>')
@@ -430,7 +431,7 @@ def reco_all(id):
     if not proj:
         return resp
 
-    for name, bundle in proj['bundles'].iteritems():
+    for name, bundle in proj['bundles'].items():
 
         if 'trans' in bundle:
             continue
@@ -440,7 +441,7 @@ def reco_all(id):
 
         reco(id, name)
 
-    return redirect('/emu/project/' + urllib.quote(str(id)))
+    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
 @emu_page.route('project/align/<id>')
@@ -449,7 +450,7 @@ def align_all(id):
     if not proj:
         return resp
 
-    for name, bundle in proj['bundles'].iteritems():
+    for name, bundle in proj['bundles'].items():
 
         if 'seg' in bundle:
             continue
@@ -465,7 +466,7 @@ def align_all(id):
 
         align(id, name)
 
-    return redirect('/emu/project/' + urllib.quote(str(id)))
+    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
 pat = re.compile('^[a-zA-Z]*://([^:/]*)[:/]')
@@ -474,8 +475,8 @@ pat = re.compile('^[a-zA-Z]*://([^:/]*)[:/]')
 @emu_page.route('project/webapp/<id>')
 def webapp(id):
     server = pat.match(request.url_root).group(1)
-    url = 'ws://{}:{}/{}'.format(server, config.emu.webapp_port, id)
-    return redirect('http://ips-lmu.github.io/EMU-webApp/?autoConnect=true&serverUrl=' + urllib.quote_plus(url))
+    url = f'ws://{server}:{config.emu.webapp_port}/{id}'
+    return redirect('http://ips-lmu.github.io/EMU-webApp/?autoConnect=true&serverUrl=' + urllib.parse.quote_plus(url))
 
 
 @emu_page.route('project/download/<id>')
@@ -486,4 +487,4 @@ def download(id):
 
     res_id = tools.tasks.start_emu_package(proj, id)
 
-    return redirect('/tools/ui/view/' + urllib.quote(str(res_id)))
+    return redirect('/tools/ui/view/' + urllib.parse.quote(str(res_id)))

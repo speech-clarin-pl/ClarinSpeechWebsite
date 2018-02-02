@@ -24,28 +24,26 @@ def get_res_hash(id):
 # TODO: this assumes we always generate one destination resource!
 def run_task(task, input_res, output_type, options=None, hash=None):
     if output_type not in allowed_types:
-        raise RuntimeError(u'Type {} not allowed!'.format(output_type))
+        raise RuntimeError(f'Type {output_type} not allowed!')
 
     if not hash:
-        from_hash = {}
-        from_hash['task'] = task
+        from_hash = {'task': task}
         if options:
             from_hash['options'] = options
-        for key, val in input_res.iteritems():
+        for key, val in input_res.items():
             from_hash[key] = get_res_hash(val)
 
-        hash = hashlib.sha1(json.dumps(from_hash)).hexdigest()
+        hash = hashlib.sha1(json.dumps(from_hash).encode('utf-8')).hexdigest()
 
     file = db.clarin.resources.find_one({'from_hash': hash, 'error': {'$exists': False}})
     if file:
         return str(file['_id'])
     else:
 
-        args = {}
-        args['task'] = task;
+        args = {'task': task}
         if options:
             args['options'] = options
-        for key, val in input_res.iteritems():
+        for key, val in input_res.items():
             args[key] = val
 
         time = datetime.datetime.utcnow()
@@ -54,7 +52,7 @@ def run_task(task, input_res, output_type, options=None, hash=None):
         id = res.inserted_id
 
         args['output'] = str(id)
-        args['work_dir'] = config.work_dir
+        args['work_dir'] = str(config.work_dir)
 
         queue(json.dumps(args))
 
@@ -83,10 +81,8 @@ def start_speech_recognize(audio_id):
 
 def start_emu_package(proj, proj_id):
     hash_list = []
-    for name, bundle in proj['bundles'].iteritems():
-        hash_item = {}
-        hash_item['name'] = name
-        hash_item['session'] = bundle['session']
+    for name, bundle in proj['bundles'].items():
+        hash_item = {'name': name, 'session': bundle['session']}
         if 'audio' in bundle:
             hash_item['audio'] = get_res_hash(bundle['audio'])
         if 'trans' in bundle:
@@ -94,5 +90,5 @@ def start_emu_package(proj, proj_id):
         if 'seg' in bundle:
             hash_item['seg'] = get_res_hash(bundle['seg'])
         hash_list.append(hash_item)
-    hash = hashlib.sha1(json.dumps(hash_list)).hexdigest()
+    hash = hashlib.sha1(json.dumps(hash_list).encode('utf-8')).hexdigest()
     return run_task('emupackage', {'project': str(proj_id)}, 'archive', hash=hash)

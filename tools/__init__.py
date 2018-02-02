@@ -1,4 +1,4 @@
-import tasks
-import phonetize
-import segmentation
-import utils
+from . import phonetize
+from . import segmentation
+from . import tasks
+from . import utils

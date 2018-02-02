@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    print 'Loading file...'
+    print('Loading file...')
     sp = re.compile('\s+')
     dict = {}
     with codecs.open(args.dict, encoding='utf-8') as f:
@@ -28,12 +28,12 @@ if __name__ == '__main__':
                 dict[word] = []
             dict[word].append(trans)
 
-    print 'Cleaning the old database...'
+    print('Cleaning the old database...')
     db.clarin.phonetizer.remove({})
 
     count = len(dict)
-    print 'Updating the database...'
-    for word, trans in tqdm(dict.iteritems(), total=count):
+    print('Updating the database...')
+    for word, trans in tqdm(iter(dict.items()), total=count):
         db.clarin.phonetizer.insert_one({'text': word, 'output': trans})
 
-    print 'Done!'
+    print('Done!')

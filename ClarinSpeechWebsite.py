@@ -14,18 +14,18 @@ app.register_blueprint(tools_page, url_prefix='/tools/')
 app.register_blueprint(emu_page, url_prefix='/emu/')
 babel = Babel(app)
 
-filename = os.path.join(config.proj_root, 'secret_key')
+filename = config.proj_root / 'secret_key'
 try:
     app.config['SECRET_KEY'] = open(filename, 'rb').read()
 except IOError:
-    print 'Error: No secret key. Create it with:'
-    if not os.path.isdir(os.path.dirname(filename)):
-        print 'mkdir -p', os.path.dirname(filename)
-    print 'head -c 24 /dev/urandom >', filename
+    print('Error: No secret key. Create it with:')
+    if not filename.is_dir():
+        print(f'mkdir -p {filename.parent}')
+    print(f'head -c 24 /dev/urandom > {filename}')
     sys.exit(-1)
 
 formatter = logging.Formatter('[%(asctime)s] %(levelname)s - %(message)s')
-handler = RotatingFileHandler(os.path.join(config.proj_root, 'debug.log'), maxBytes=10000, backupCount=1)
+handler = RotatingFileHandler(config.proj_root / 'debug.log', maxBytes=10000, backupCount=1)
 handler.setLevel(logging.DEBUG)
 handler.setFormatter(formatter)
 app.logger.addHandler(handler)
@@ -34,12 +34,12 @@ app.logger.setLevel(logging.DEBUG)
 
 @app.before_request
 def log_request_info():
-    app.logger.debug('Request {}'.format(request.url))
-    for name, file in request.files.iteritems():
+    app.logger.debug(f'Request {request.url}')
+    for name, file in request.files.items():
         file.seek(0, os.SEEK_END)
         file_length = file.tell()
         file.seek(0)
-        app.logger.debug('-includes file >>{}<< of size {} bytes'.format(name, file_length))
+        app.logger.debug(f'-includes file >>{name}<< of size {file_length} bytes')
 
 
 @app.route('/')

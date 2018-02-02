@@ -1,6 +1,5 @@
 import codecs
 import json
-import os
 import pprint
 import time
 
@@ -44,17 +43,17 @@ def download(id):
             resp.headers.extend({'Retry-After': 1})
             return resp
         else:
-            filepath = os.path.join(config.work_dir, file['file'])
-            resp = make_response(send_file(filepath))
+            filepath = config.work_dir / file['file']
+            resp = make_response(send_file(str(filepath)))
             resp.headers['Access-Control-Allow-Origin'] = 'http://ips-lmu.github.io'
-            resp.headers['Content-disposition'] = 'attachment; filename={}'.format(os.path.basename(filepath))
+            resp.headers['Content-disposition'] = f'attachment; filename={filepath.name}'
             return resp
 
 
 @tools_page.route('delete/<id>')
 def delete(id):
     tools.utils.invalidate_file(id)
-    return u'Invalidated {}'.format(id)
+    return f'Invalidated {id}'
 
 
 @tools_page.route('status/<id>')
@@ -195,7 +194,7 @@ def phonetize_wordlist_file():
             word = line.strip().decode('utf-8')
             ret = tools.phonetize.phonetize_word(word, script)
             for trans in ret:
-                yield u'{} {}\n'.format(word, trans)
+                yield f'{word} {trans}\n'
 
     return Response(stream_with_context(generate()), mimetype='text/plain')
 
@@ -235,7 +234,7 @@ def text_modify(id):
 
     file = res['file']
 
-    with codecs.open(os.path.join(config.work_dir, file), mode='w', encoding='utf-8') as f:
+    with codecs.open(config.work_dir / file, mode='w', encoding='utf-8') as f:
         f.write(text)
 
     tools.utils.update_file(id, file)
@@ -334,11 +333,10 @@ def transcript_to_textgrid(id):
         resp.headers.extend({'Retry-After': 1})
         return resp
 
-    ret = tools.segmentation.segmentation_to_textgrid(os.path.join(config.work_dir, file['file']), script=script)
+    ret = tools.segmentation.segmentation_to_textgrid(config.work_dir / file['file'], script=script)
 
-    headers = {}
-    headers['Access-Control-Allow-Origin'] = 'http://ips-lmu.github.io'
-    headers['Content-disposition'] = 'attachment; filename=output.TextGrid'
+    headers = {'Access-Control-Allow-Origin': 'http://ips-lmu.github.io',
+               'Content-disposition': 'attachment; filename=output.TextGrid'}
     return Response(ret, mimetype='text/plain', headers=headers)
 
 
@@ -360,12 +358,10 @@ def transcript_to_emu_annot(id):
         resp.headers.extend({'Retry-After': 1})
         return resp
 
-    ret = tools.segmentation.segmentation_to_emu_annot(os.path.join(config.work_dir, file['file']), 'output',
-                                                       script=script)
+    ret = tools.segmentation.segmentation_to_emu_annot(config.work_dir / file['file'], 'output', script=script)
 
-    headers = {}
-    headers['Access-Control-Allow-Origin'] = 'http://ips-lmu.github.io'
-    headers['Content-disposition'] = 'attachment; filename=output_annot.josn'
+    headers = {'Access-Control-Allow-Origin': 'http://ips-lmu.github.io',
+               'Content-disposition': 'attachment; filename=output_annot.josn'}
 
     return Response(ret, mimetype='application/json', headers=headers)
 

@@ -5,9 +5,11 @@ from bson import ObjectId
 
 from config import db, config
 
+# TODO replace os with pathlib
+
 time = datetime.datetime.utcnow() - datetime.timedelta(days=1)
 
-print 'Getting all resources older than {:%Y-%m-%d %H:%M}...'.format(time)
+print('Getting all resources older than {:%Y-%m-%d %H:%M}...'.format(time))
 
 rsrcs = db.clarin.resources.find({'modified': {'$lt': time}})
 
@@ -15,11 +17,11 @@ ids = set()
 for res in rsrcs:
     ids.add(res['_id'])
 
-print 'Discarding anything that can be used in EMU projects...'
+print('Discarding anything that can be used in EMU projects...')
 
 projs = db.clarin.emu.find({})
 for proj in projs:
-    for name,bndl in proj['bundles'].iteritems():
+    for name, bndl in proj['bundles'].items():
         if 'audio' in bndl:
             ids.discard(ObjectId(bndl['audio']))
         if 'trans' in bndl:
@@ -27,12 +29,12 @@ for proj in projs:
         if 'seg' in bndl:
             ids.discard(ObjectId(bndl['seg']))
 
-print 'Deleting {} resources...'.format(len(ids))
+print(f'Deleting {len(ids)} resources...')
 
 for id in ids:
     db.clarin.resources.remove({'_id': id})
 
-print 'Making a list of files in databse...'
+print('Making a list of files in databse...')
 
 rsrcs = db.clarin.resources.find({})
 
@@ -41,7 +43,7 @@ for res in rsrcs:
     if 'file' in res and res['file']:
         db_files.add(os.path.realpath(os.path.join(config.work_dir, res['file'])))
 
-print 'Removing files not in database...'
+print('Removing files not in database...')
 
 for root, dirs, files in os.walk(config.work_dir):
     for file in files:
@@ -68,4 +70,4 @@ for root, dirs, files in os.walk(config.work_dir, topdown=False):
         except OSError:
             continue
 
-print 'Done!'
+print('Done!')

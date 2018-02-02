@@ -182,7 +182,7 @@
           if (/(^| )dz-message($| )/.test(child.className)) {
             messageElement = child;
             child.className = "dz-message";
-            continue;
+
           }
         }
         if (!messageElement) {
@@ -1615,7 +1615,7 @@
           regex = ref[j];
           if (regex.test(navigator.userAgent)) {
             capableBrowser = false;
-            continue;
+
           }
         }
       }
@@ -1949,11 +1949,11 @@
       enc4 = '';
       i = 0;
       buf = [];
-      base64test = /[^A-Za-z0-9\+\/\=]/g;
+        base64test = /[^A-Za-z0-9+\/=]/g;
       if (base64test.exec(input)) {
         console.warning('There were invalid base64 characters in the input text.\n' + 'Valid base64 characters are A-Z, a-z, 0-9, \'+\', \'/\',and \'=\'\n' + 'Expect errors in decoding.');
       }
-      input = input.replace(/[^A-Za-z0-9\+\/\=]/g, '');
+        input = input.replace(/[^A-Za-z0-9+\/=]/g, '');
       while (true) {
         enc1 = this.KEY_STR.indexOf(input.charAt(i++));
         enc2 = this.KEY_STR.indexOf(input.charAt(i++));

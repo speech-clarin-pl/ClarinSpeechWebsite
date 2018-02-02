@@ -19,7 +19,7 @@ class Segment:
         self.len = round(len, 2)
         self.end = round(self.start + self.len, 2)
         self.text = text
-        self.id = idgen.next()
+        self.id = next(idgen)
 
     def wraps(self, other):
         return other.start - self.start > -EPSILON and other.end - self.end < EPSILON
@@ -36,7 +36,7 @@ class Level:
     def sort(self):
         self.segments = sorted(self.segments, key=lambda seg: seg.start)
 
-    def fillGaps(self):
+    def fill_gaps(self):
         self.sort()
         gaps = []
         for prev, next in zip(self.segments, self.segments[1:]):
@@ -48,7 +48,7 @@ class Level:
         self.segments.extend(gaps)
         self.sort()
 
-    def getAnnotation(self, name, labelname, samplerate=16000, get_segments=True, ph_labels=None):
+    def get_annotation(self, name, labelname, samplerate=16000.0, get_segments=True, ph_labels=None):
 
         level = OrderedDict()
 
@@ -93,7 +93,7 @@ class Level:
 
         return level
 
-    def getLinks(self, other_ctm):
+    def get_links(self, other_ctm):
         links = []
 
         for seg in self.segments:
@@ -111,7 +111,7 @@ class IDgen:
     def __init__(self):
         self.id_cnt = 0
 
-    def next(self):
+    def __next__(self):
         self.id_cnt += 1
         return self.id_cnt
 
@@ -126,7 +126,7 @@ class Segmentation:
         with codecs.open(file, encoding='utf-8', mode='r') as f:
             for l in f:
                 tok = l.strip().split(' ')
-                assert len(tok) == 5, u'Wrong tok count in file {}: {}'.format(file, l)
+                assert len(tok) == 5, f'Wrong tok count in file {file}: {l}'
                 if tok[0][0] == '@':
                     ph = tok[4]
 
@@ -144,10 +144,10 @@ class Segmentation:
                 else:
                     self.words.add(round(float(tok[2]), 2), round(float(tok[3]), 2), tok[4])
 
-        self.words.fillGaps()
-        self.phonemes.fillGaps()
+        self.words.fill_gaps()
+        self.phonemes.fill_gaps()
 
-    def getTextGrid(self):
+    def get_textgrid(self):
         tg = tgt.TextGrid()
         t = tgt.IntervalTier(name='Word')
         for w in self.words.segments:
@@ -160,7 +160,7 @@ class Segmentation:
 
         return tgt.io.export_to_long_textgrid(tg)
 
-    def getUttLevel(self, name):
+    def get_utt_level(self, name):
         level = Level(self.idgen)
         min = max = 0
         for seg in self.words.segments:
@@ -175,7 +175,7 @@ class Segmentation:
 def segmentation_to_textgrid(file, rm_besi=True, script=None):
     seg = Segmentation()
     seg.read(file, rm_besi=rm_besi, script=script)
-    return seg.getTextGrid()
+    return seg.get_textgrid()
 
 
 def segmentation_to_emu_annot(file, name, samplerate=16000.0, rm_besi=True, script=None):
@@ -191,19 +191,19 @@ def segmentation_to_emu_annot(file, name, samplerate=16000.0, rm_besi=True, scri
     levels = []
     annot['levels'] = levels
 
-    utterance = seg.getUttLevel(name)
+    utterance = seg.get_utt_level(name)
     words = seg.words
     phonemes = seg.phonemes
 
-    levels.append(utterance.getAnnotation('Utterance', 'Utterance', get_segments=False))
+    levels.append(utterance.get_annotation('Utterance', 'Utterance', get_segments=False))
 
-    levels.append(words.getAnnotation('Word', 'Word', samplerate))
+    levels.append(words.get_annotation('Word', 'Word', samplerate))
 
-    levels.append(phonemes.getAnnotation('Phoneme', 'Phoneme', samplerate,
-                                         ph_labels=[('SAMPA', pl_sampa_map), ('IPA', pl_ipa_map)]))
+    levels.append(phonemes.get_annotation('Phoneme', 'Phoneme', samplerate,
+                                          ph_labels=[('SAMPA', pl_sampa_map), ('IPA', pl_ipa_map)]))
 
-    uttlinks = utterance.getLinks(words)
-    wordlinks = words.getLinks(phonemes)
+    uttlinks = utterance.get_links(words)
+    wordlinks = words.get_links(phonemes)
 
     annot['links'] = uttlinks + wordlinks
 
