@@ -5,6 +5,8 @@ import time
 
 from flask import Blueprint, render_template, make_response, request, abort, send_file, Response, stream_with_context, \
     redirect
+from flask_babel import lazy_gettext
+from flask_breadcrumbs import register_breadcrumb
 
 import tools.phonetize
 import tools.segmentation
@@ -16,6 +18,7 @@ tools_page = Blueprint('tools_page', __name__, template_folder='templates')
 
 
 @tools_page.route('/')
+@register_breadcrumb(tools_page, '.', lazy_gettext(u'tool_tytuł'))
 def index():
     return render_template('tools.html')
 
@@ -80,6 +83,7 @@ def status_debug(id):
 
 
 @tools_page.route('ui/view/<id>')
+@register_breadcrumb(tools_page, '.view', lazy_gettext(u'view_any_tytuł'))
 def ui_view(id):
     file = tools.utils.get_file(id)
     if not file:
@@ -112,6 +116,7 @@ def ui_view(id):
 
 
 @tools_page.route('ui/multiview/<ida>/<idb>')
+@register_breadcrumb(tools_page, '.view', lazy_gettext(u'view_any_tytuł'))
 def ui_view_multi(ida, idb):
     file_a = tools.utils.get_file(ida)
     file_b = tools.utils.get_file(idb)
@@ -126,36 +131,43 @@ def ui_view_multi(ida, idb):
 
 
 @tools_page.route('ui/phonetize/word')
+@register_breadcrumb(tools_page, '.tool_g2p_word', lazy_gettext(u'g2p_tytuł'))
 def ui_phonetize_word():
     return render_template('tool_g2p_word.html', server_url=request.url_root)
 
 
 @tools_page.route('ui/phonetize/list')
+@register_breadcrumb(tools_page, '.tool_g2p_list', lazy_gettext(u'g2p_wordlist_tytuł'))
 def ui_phonetize_wordlist():
     return render_template('tool_g2p_list.html', server_url=request.url_root)
 
 
 @tools_page.route('ui/text/normalize')
+@register_breadcrumb(tools_page, '.tool_text_to_text', lazy_gettext(u'textnorm_tytuł'))
 def ui_normalize():
     return render_template('tool_text_to_text.html', server_url=request.url_root)
 
 
 @tools_page.route('ui/audio/normalize')
+@register_breadcrumb(tools_page, '.tool_audio_to_audio', lazy_gettext(u'audionorm_tytuł'))
 def ui_audio_normalize():
     return render_template('tool_audio_to_audio.html', server_url=request.url_root)
 
 
 @tools_page.route('ui/align/forced')
+@register_breadcrumb(tools_page, '.tool_align_forced', lazy_gettext(u'forcealign_tytuł'))
 def ui_align_forced():
     return render_template('tool_align.html', server_url=request.url_root, forced=True)
 
 
 @tools_page.route('ui/align/segment')
+@register_breadcrumb(tools_page, '.tool_align_segment', lazy_gettext(u'segalign_tytuł'))
 def ui_align_segment():
     return render_template('tool_align.html', server_url=request.url_root, forced=False)
 
 
 @tools_page.route('ui/speech/recognize')
+@register_breadcrumb(tools_page, '.tool_reco', lazy_gettext(u'reco_tytuł'))
 def ui_speech_recognize():
     return render_template('tool_reco.html', server_url=request.url_root)
 

@@ -12,6 +12,8 @@ import bcrypt as bcrypt
 from bson import ObjectId
 from dateutil.parser import parse
 from flask import Blueprint, render_template, abort, request, redirect, session
+from flask_babel import lazy_gettext
+from flask_breadcrumbs import register_breadcrumb
 
 import tools
 from config import db, config
@@ -21,11 +23,13 @@ emu_page = Blueprint('emu_page', __name__, template_folder='templates')
 
 
 @emu_page.route('/')
+@register_breadcrumb(emu_page, '.', lazy_gettext(u'EMU'))
 def index():
     return render_template('emu.html')
 
 
 @emu_page.route('new')
+@register_breadcrumb(emu_page, '.new', lazy_gettext(u'nowy_projekt'))
 def new():
     return render_template('emu_new.html')
 
@@ -43,6 +47,7 @@ def create():
     return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
+@register_breadcrumb(emu_page, '.delete', lazy_gettext(u'projekt_usunięty'))
 def check_project(id):
     proj = db.clarin.emu.find_one({'_id': ObjectId(id)})
     if not proj:
@@ -61,6 +66,7 @@ def check_project(id):
 
 
 @emu_page.route('project/<id>')
+@register_breadcrumb(emu_page, '.project', lazy_gettext(u'emu_projekt_tytuł'))
 def project(id):
     proj, resp = check_project(id)
     if not proj:
@@ -161,6 +167,7 @@ def check_password(id, password):
 
 
 @emu_page.route('project/password/<id>', methods=['GET', 'POST'])
+@register_breadcrumb(emu_page, '.password', lazy_gettext(u'hasło_tytuł'))
 def project_password(id):
     if request.method == 'GET':
         return render_template('emu_password.html', id=id, error=('error' in request.args))
@@ -174,6 +181,7 @@ def project_password(id):
 
 @emu_page.route('search', defaults={'page': 0}, methods=['GET', 'POST'])
 @emu_page.route('search/<int:page>', methods=['GET', 'POST'])
+@register_breadcrumb(emu_page, '.search', lazy_gettext(u'szukaj_projekt'))
 def search(page):
     if 'reset' in request.args:
         session.pop('emu_search_filter', None)

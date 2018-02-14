@@ -1,38 +1,33 @@
-div.gornypanel a.szary {
-    background-color: #333;
-}
-
-div.gornypanel a {
-    margin: 5px;
-    padding: 5px;
-    color: white;
-    text-decoration: none;
-}
-
-div.gornypanel {
+.topnav {
     background-color: black;
-    margin-left: -35px;
-    margin-right: -35px;
-    margin-top: -20px;
-    padding: 10px 90px;
-    text-align: right;
-    font-size: 14px;
-    z-index: 1;
+    color: white;
 }
 
-div.gornypanel img {
+.topnav a {
+    color: white;
+}
+
+nav img {
     height: 28px;
 }
 
-#main_buttons .card {
-    text-align: center;
-    background-color: cornflowerblue;
-    color: white;
-    height: 15em;
+.breadcrumbs {
+    background-color: #eee;
 }
 
-#main_buttons .card-img-top {
+#main_buttons .fa {
     font-size: 80px;
+}
+
+#main_buttons .icon {
+    height: 7em;
+    padding-top: 1em;
+}
+
+#main_buttons .btn {
+    white-space: normal;
+    height: 12em;
+    width: 100%;
 }
 
 pre {
@@ -70,10 +65,15 @@ pre {
     margin-top: 1em;
 }
 
+.emu-toolbar .btn {
+    width: 100%;
+}
+
 .tools .btn {
     width: 100%;
     font-size: 48pt;
     height: 3em;
+    margin-top: 0.5em;
 }
 
 .tools .main {
@@ -82,8 +82,4 @@ pre {
 
 .tools .sub {
     font-size: 12pt;
-}
-
-.row .btn {
-    width: 100%;
 }

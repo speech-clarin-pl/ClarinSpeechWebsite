@@ -3,34 +3,24 @@
 
     <h1>{% trans %}emu_tool_tytuł{% endtrans %}</h1>
 
-    <a href="/">{% trans %}powrót_główna{% endtrans %}</a>
-
     <div class="gap-md">&nbsp;</div>
 
     <div class="row" id="main_buttons">
-        <div class="col-md-5">
-            <a href="new">
-                <div class="card" style="background-color: darkseagreen">
-                    <div class="card-img-top">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                    </div>
-                    <div class="card-block">
-                        <h4 class="card-title">{% trans %}nowy_projekt{% endtrans %}</h4>
-                    </div>
+        <div class="col-lg-5">
+            <a class="btn btn-success btn-lg" href="new">
+                <div class="icon">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
                 </div>
+                <h4 class="card-title">{% trans %}nowy_projekt{% endtrans %}</h4>
             </a>
         </div>
-        <div class="col-md-2">&nbsp;</div>
-        <div class="col-md-5">
-            <a href="search">
-                <div class="card" style="background-color: dodgerblue">
-                    <div class="card-img-top">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                    </div>
-                    <div class="card-block">
-                        <h4 class="card-title">{% trans %}szukaj_projekt{% endtrans %}</h4>
-                    </div>
+        <div class="col-lg-2">&nbsp;</div>
+        <div class="col-lg-5">
+            <a class="btn btn-primary btn-lg" href="search">
+                <div class="icon">
+                    <i class="fa fa-search" aria-hidden="true"></i>
                 </div>
+                <h4 class="card-title">{% trans %}szukaj_projekt{% endtrans %}</h4>
             </a>
         </div>
     </div>

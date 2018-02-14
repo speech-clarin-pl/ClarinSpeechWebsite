@@ -49,20 +49,30 @@
 </head>
 <body>
 <div class="container">
-    <div>&nbsp;</div>
-    <div class="gornypanel">
-        <a href="//mowa.clarin-pl.eu/">{% trans %}strona_główna{% endtrans %}</a>
-        <a href="//clarin-pl.eu/">{% trans %}strona_główna_projektu{% endtrans %}</a>
-        <a href="//clarin-pl.eu/dspace/">{% trans %}repozytorium{% endtrans %}</a>
-        <a href="//clarin-pl.eu/en/contact/">{% trans %}kontakt{% endtrans %}</a>
-        <a href="/lang/pl"><img src={{ url_for('static', filename='img/pl.svg') }}></a>
-        <a href="/lang/en"><img src={{ url_for('static', filename='img/gb.svg') }}></a>
+
+    <nav class="nav topnav justify-content-end">
+        <a class="nav-link" href="//clarin-pl.eu/">{% trans %}CLARIN-PL{% endtrans %}</a></li>
+        <a class="nav-link" href="/kontakt">
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            {% trans %}kontakt{% endtrans %}
+        </a>
+        <a class="nav-link" href="/lang/pl"><img src="{{ url_for('static', filename='img/pl.svg') }}"></a>
+        <a class="nav-link" href="/lang/en"><img src="{{ url_for('static', filename='img/gb.svg') }}"></a>
+    </nav>
+
+    <div class="container">
+        <img src="{{ url_for('static',filename='img/logo1.png') }}" alt="Clarin PL Logo"/></img>
+        <img src="{{ url_for('static',filename='img/logo2.png') }}" alt="CTJ Logo"/></img>
     </div>
-    <div class="hgroup full-container">
-        <a href="//clarin-pl.eu/pl/strona-glowna/" title="Clarin PL" rel="home" class="logo"><img
-                src="//clarin-pl.eu/wp-content/uploads/2015/03/logo.png" class="logo-height-constrain" width="990"
-                height="160" alt="Clarin PL Logo"/></a>
-    </div>
+
+    <nav class="nav breadcrumbs">
+        {%- for breadcrumb in breadcrumbs -%}
+            <a class="nav-link" href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a>
+        {%- endfor -%}
+    </nav>
+
+    <div style="margin-top:2em">&nbsp;</div>
+
     {% block body %} {% endblock %}
 </div>
 

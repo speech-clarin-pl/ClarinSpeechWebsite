@@ -1,9 +1,9 @@
-import os
 import sys
 from logging.handlers import RotatingFileHandler
 
 from flask import Flask, render_template, session, abort, redirect, request, logging
-from flask_babel import Babel
+from flask_babel import Babel, lazy_gettext
+from flask_breadcrumbs import Breadcrumbs, register_breadcrumb
 
 from EMU import emu_page
 from Tools import tools_page
@@ -13,6 +13,7 @@ app = Flask(__name__)
 app.register_blueprint(tools_page, url_prefix='/tools/')
 app.register_blueprint(emu_page, url_prefix='/emu/')
 babel = Babel(app)
+Breadcrumbs(app=app)
 
 filename = config.proj_root / 'secret_key'
 try:
@@ -32,17 +33,18 @@ app.logger.addHandler(handler)
 app.logger.setLevel(logging.DEBUG)
 
 
-@app.before_request
-def log_request_info():
-    app.logger.debug(f'Request {request.url}')
-    for name, file in request.files.items():
-        file.seek(0, os.SEEK_END)
-        file_length = file.tell()
-        file.seek(0)
-        app.logger.debug(f'-includes file >>{name}<< of size {file_length} bytes')
+# @app.before_request
+# def log_request_info():
+#     app.logger.debug(f'Request {request.url}')
+#     for name, file in request.files.items():
+#         file.seek(0, os.SEEK_END)
+#         file_length = file.tell()
+#         file.seek(0)
+#         app.logger.debug(f'-includes file >>{name}<< of size {file_length} bytes')
 
 
 @app.route('/')
+@register_breadcrumb(app, '.', lazy_gettext(u'strona_główna'))
 def index():
     return render_template('index.html')
 
@@ -61,11 +63,13 @@ def lang(code):
 
 
 @app.route('/korpusy')
+@register_breadcrumb(app, '.corpora', lazy_gettext(u'korpusy'))
 def korpusy():
     return render_template('korpusy.html')
 
 
 @app.route('/kontakt')
+@register_breadcrumb(app, '.contact', lazy_gettext(u'kontakt'))
 def kontakt():
     return render_template('kontakt.html')
 
