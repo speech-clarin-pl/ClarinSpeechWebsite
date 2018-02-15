@@ -74,7 +74,7 @@ def project(id):
 
     if 'password' in proj:
         pass_check = proj['password']
-        pass_check = hashlib.sha1(pass_check.encode('utf-8')).hexdigest()
+        pass_check = hashlib.sha1(pass_check).hexdigest()
     else:
         pass_check = ''
 
@@ -162,8 +162,7 @@ def check_password(id, password):
         return not password
     if password == config.emu.master_password:
         return True
-    return bcrypt.hashpw(password.encode('utf-8'), proj['password'].encode('utf-8')) == proj['password'].encode(
-        'utf-8')
+    return bcrypt.hashpw(password.encode('utf-8'), proj['password']) == proj['password']
 
 
 @emu_page.route('project/password/<id>', methods=['GET', 'POST'])

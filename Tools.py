@@ -116,7 +116,7 @@ def ui_view(id):
 
 
 @tools_page.route('ui/multiview/<ida>/<idb>')
-@register_breadcrumb(tools_page, '.view', lazy_gettext(u'view_any_tytuł'))
+@register_breadcrumb(tools_page, '.multiview', lazy_gettext(u'view_any_tytuł'))
 def ui_view_multi(ida, idb):
     file_a = tools.utils.get_file(ida)
     file_b = tools.utils.get_file(idb)
