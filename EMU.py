@@ -16,6 +16,7 @@ from flask_babel import lazy_gettext as _
 from flask_breadcrumbs import register_breadcrumb
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, RadioField
+from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired, EqualTo
 from wtforms.widgets import TextArea
 
@@ -222,12 +223,21 @@ def logout(id):
     return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
+class EmuSearchFilter(FlaskForm):
+    owner = StringField(_(u'właściciel'))
+    description = StringField(_(u'opis'))
+    afterdate = DateField(_(u'po_dacie'))
+    beforedate = DateField(_(u'przed_datą'))
+
+
 @emu_page.route('search', defaults={'page': 0}, methods=['GET', 'POST'])
 @emu_page.route('search/<int:page>', methods=['GET', 'POST'])
 @register_breadcrumb(emu_page, '.search', _(u'szukaj_projekt'))
 def search(page):
+    form = EmuSearchFilter()
     if 'reset' in request.args:
         session.pop('emu_search_filter', None)
+        return redirect('/emu/search')
     elif request.method == 'POST':
         filt = {}
         if request.form['owner']:
@@ -282,8 +292,13 @@ def search(page):
         if pagination_start < 0:
             pagination_start = 0
 
-    return render_template('emu_search.html', projects=ret, page=page, page_num=page_num, filter=filter,
-                           pagination_start=pagination_start, pagination_end=pagination_end)
+    filter_expanded = ''
+    if len(filter) > 0:
+        filter_expanded = 'show'
+
+    return render_template('emu_search.html', projects=ret, page=page, page_num=page_num, form=form,
+                           filter_expanded=filter_expanded, filter=filter, pagination_start=pagination_start,
+                           pagination_end=pagination_end)
 
 
 def find_unique_name(proj, suggestion):

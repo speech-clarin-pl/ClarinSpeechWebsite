@@ -4,29 +4,27 @@
     <h1>{% trans %}emu_search_tytuł{% endtrans %}</h1>
 
     <div class="card form-group card-block">
-        <h3><a data-toggle="collapse" href="#filter" aria-expanded="false" aria-controls="filter">
+        <h3><a data-toggle="collapse" href="#filter" aria-expanded="true" aria-controls="filter">
             {% trans %}filtry{% endtrans %}
         </a></h3>
-        <div class="collapse" id="filter">
+        <div class="collapse {{ filter_expanded }}" id="filter">
             <form method="post">
+                {{ form.hidden_tag() }}
                 <div class="form-group">
-                    <label for="owner">{% trans %}właściciel{% endtrans %}</label>
-                    <input class="form-control" id="owner" name="owner" value="{{ filter['owner'] }}">
+                    {{ form.owner.label }}
+                    {{ form.owner(class="form-control",value=filter['owner']) }}
                 </div>
                 <div class="form-group">
-                    <label for="description">{% trans %}opis{% endtrans %}</label>
-                    <input type="text" class="form-control" id="description" name="description"
-                           value="{{ filter['description'] }}">
+                    {{ form.description.label }}
+                    {{ form.description(class="form-control",value=filter['description']) }}
                 </div>
                 <div class="form-group">
-                    <label for="afterdate">{% trans %}po_dacie{% endtrans %}</label>
-                    <input type="date" class="form-control" id="afterdate" name="afterdate"
-                           value="{{ filter['afterdatestr'] }}">
+                    {{ form.afterdate.label }}
+                    {{ form.afterdate(class="form-control",value=filter['afterdatestr']) }}
                 </div>
                 <div class="form-group">
-                    <label for="beforedate">{% trans %}przed_datą{% endtrans %}</label>
-                    <input type="date" class="form-control" id="beforedate" name="beforedate"
-                           value="{{ filter['beforedatestr'] }}">
+                    {{ form.beforedate.label }}
+                    {{ form.beforedate(class="form-control",value=filter['beforedatestr']) }}
                 </div>
                 <div class="row">
                     <div class="col-2">
