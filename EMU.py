@@ -12,8 +12,12 @@ import bcrypt as bcrypt
 from bson import ObjectId
 from dateutil.parser import parse
 from flask import Blueprint, render_template, abort, request, redirect, session
-from flask_babel import lazy_gettext
+from flask_babel import lazy_gettext as _
 from flask_breadcrumbs import register_breadcrumb
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, RadioField
+from wtforms.validators import DataRequired, EqualTo
+from wtforms.widgets import TextArea
 
 import tools
 from config import db, config
@@ -23,32 +27,46 @@ emu_page = Blueprint('emu_page', __name__, template_folder='templates')
 
 
 @emu_page.route('/')
-@register_breadcrumb(emu_page, '.', lazy_gettext(u'EMU'))
+@register_breadcrumb(emu_page, '.', _(u'EMU'))
 def index():
     return render_template('emu.html')
 
 
-@emu_page.route('new')
-@register_breadcrumb(emu_page, '.new', lazy_gettext(u'nowy_projekt'))
+class EmuNew(FlaskForm):
+    owner = StringField(_(u'właściciel'), validators=[DataRequired()], default='Anonymous')
+    description = StringField(_(u'opis'), widget=TextArea())
+    password = PasswordField(_(u'hasło'), validators=[
+        DataRequired(),
+        EqualTo('confirm', message=_(u'hasła_się_różnią'))
+    ])
+    confirm = PasswordField(_(u'powtórz_hasło'))
+    visibility = RadioField(_(u'widoczność'),
+                            choices=[('public', _(u'publiczny')), ('viewonly', _(u'tylko_do_odczytu')),
+                                     ('private', _(u'prywatny'))],
+                            validators=[DataRequired()], default='public')
+
+
+@emu_page.route('new', methods=['GET', 'POST'])
+@register_breadcrumb(emu_page, '.new', _(u'nowy_projekt'))
 def new():
-    return render_template('emu_new.html')
+    form = EmuNew(request.form)
+    if form.validate_on_submit():
+        proj = {'owner': request.form['owner'], 'description': request.form['description'],
+                'password': bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt()),
+                'visibility': request.form['visibility'],
+                'created': datetime.datetime.utcnow(),
+                'bundles': {}}
+
+        res = db.clarin.emu.insert_one(proj)
+        id = res.inserted_id
+
+        return redirect('/emu/project/' + urllib.parse.quote(str(id)))
+
+    return render_template('emu_new.html', form=form)
 
 
-@emu_page.route('create', methods=['POST'])
-def create():
-    proj = {'owner': request.form['owner'], 'description': request.form['desc'], 'created': datetime.datetime.utcnow(),
-            'bundles': {}}
-    if request.form['pass']:
-        proj['password'] = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
-
-    res = db.clarin.emu.insert_one(proj)
-    id = res.inserted_id
-
-    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
-
-
-@register_breadcrumb(emu_page, '.delete', lazy_gettext(u'projekt_usunięty'))
-def check_project(id):
+@register_breadcrumb(emu_page, '.delete', _(u'projekt_usunięty'))
+def check_project(id, modify=False, admin=False):
     proj = db.clarin.emu.find_one({'_id': ObjectId(id)})
     if not proj:
         return None, abort(404)
@@ -56,17 +74,25 @@ def check_project(id):
     if 'deleted' in proj:
         return None, render_template('emu_deleted.html')
 
-    if 'password' in proj:
-        if 'pass_proj_id' not in session or session['pass_proj_id'] != id:
-            return None, redirect('/emu/project/password/' + urllib.parse.quote(str(id)))
-    else:
-        if 'pass_proj_id' in session:
-            session.pop('pass_proj_id')
+    check_pw = False
+    if proj['visibility'] == 'private':
+        check_pw = True
+    elif proj['visibility'] == 'viewonly' and (modify or admin):
+        check_pw = True
+    elif admin:  # public
+        check_pw = True
+
+    if 'pass_proj_id' in session and session['pass_proj_id'] != id:
+        session.pop('pass_proj_id')
+
+    if check_pw and 'pass_proj_id' not in session:
+        return None, redirect('/emu/project/password/' + urllib.parse.quote(str(id)))
+
     return proj, None
 
 
 @emu_page.route('project/<id>')
-@register_breadcrumb(emu_page, '.project', lazy_gettext(u'emu_projekt_tytuł'))
+@register_breadcrumb(emu_page, '.project', _(u'emu_projekt_tytuł'))
 def project(id):
     proj, resp = check_project(id)
     if not proj:
@@ -121,14 +147,26 @@ def project(id):
     if not bundles:
         disable = {'asr': True, 'align': True, 'emu': True}
 
+    logged_in = False
+    if 'pass_proj_id' in session and session['pass_proj_id'] == id:
+        logged_in = True
+
+    can_admin = True
+    can_modify = True
+    if not logged_in:
+        can_admin = False
+        if proj['visibility'] == 'viewonly':
+            can_modify = False
+
     return render_template('emu_project.html', proj=proj, bundles=bundles, bundle_names=bundle_names,
                            create_date=utc_to_localtime(proj['created'], session),
-                           pass_check=pass_check, disable=disable, refresh_req=refresh_req)
+                           pass_check=pass_check, disable=disable, refresh_req=refresh_req,
+                           logged_in=logged_in, can_modify=can_modify, can_admin=can_admin)
 
 
 @emu_page.route('project/modify/<id>', methods=['POST'])
 def project_modify(id):
-    proj, resp = check_project(id)
+    proj, resp = check_project(id, admin=True)
     if not proj:
         return resp
 
@@ -145,7 +183,7 @@ def project_modify(id):
 
 @emu_page.route('project/remove/<id>')
 def project_remove(id):
-    proj, resp = check_project(id)
+    proj, resp = check_project(id, admin=True)
     if not proj:
         return resp
 
@@ -166,7 +204,7 @@ def check_password(id, password):
 
 
 @emu_page.route('project/password/<id>', methods=['GET', 'POST'])
-@register_breadcrumb(emu_page, '.password', lazy_gettext(u'hasło_tytuł'))
+@register_breadcrumb(emu_page, '.password', _(u'hasło_tytuł'))
 def project_password(id):
     if request.method == 'GET':
         return render_template('emu_password.html', id=id, error=('error' in request.args))
@@ -178,9 +216,15 @@ def project_password(id):
             return redirect('/emu/project/password/' + urllib.parse.quote(str(id)) + '?error')
 
 
+@emu_page.route('project/logout/<id>', methods=['GET'])
+def logout(id):
+    session.pop('pass_proj_id')
+    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
+
+
 @emu_page.route('search', defaults={'page': 0}, methods=['GET', 'POST'])
 @emu_page.route('search/<int:page>', methods=['GET', 'POST'])
-@register_breadcrumb(emu_page, '.search', lazy_gettext(u'szukaj_projekt'))
+@register_breadcrumb(emu_page, '.search', _(u'szukaj_projekt'))
 def search(page):
     if 'reset' in request.args:
         session.pop('emu_search_filter', None)
@@ -254,7 +298,7 @@ def find_unique_name(proj, suggestion):
 
 @emu_page.route('project/add_audio/<id>', methods=['POST'])
 def add_audio(id):
-    proj, resp = check_project(id)
+    proj, resp = check_project(id, modify=True)
     if not proj:
         return resp
 
@@ -289,7 +333,7 @@ def add_audio(id):
 
 @emu_page.route('project/rename/<id>/<name>', methods=['POST'])
 def rename_bundle(id, name):
-    proj, resp = check_project(id)
+    proj, resp = check_project(id, modify=True)
     if not proj:
         return resp
 
@@ -314,7 +358,7 @@ def rename_bundle(id, name):
 
 @emu_page.route('project/add_trans/<id>', methods=['POST'])
 def add_trans(id):
-    proj, resp = check_project(id)
+    proj, resp = check_project(id, modify=True)
     if not proj:
         return resp
 
@@ -337,7 +381,7 @@ def add_trans(id):
 
 @emu_page.route('project/remove_bndl/<id>/<name>')
 def remove_bndl(id, name):
-    proj, resp = check_project(id)
+    proj, resp = check_project(id, modify=True)
     if not proj:
         return resp
 
@@ -358,7 +402,7 @@ def remove_bndl(id, name):
 
 @emu_page.route('project/reco/<id>/<name>')
 def reco(id, name):
-    proj, resp = check_project(id)
+    proj, resp = check_project(id, modify=True)
     if not proj:
         return resp
 
@@ -387,7 +431,7 @@ def reco(id, name):
 
 @emu_page.route('project/align/<id>/<name>')
 def align(id, name):
-    proj, resp = check_project(id)
+    proj, resp = check_project(id, modify=True)
     if not proj:
         return resp
 
@@ -434,7 +478,7 @@ def align(id, name):
 
 @emu_page.route('project/reco/<id>')
 def reco_all(id):
-    proj, resp = check_project(id)
+    proj, resp = check_project(id, modify=True)
     if not proj:
         return resp
 
@@ -453,7 +497,7 @@ def reco_all(id):
 
 @emu_page.route('project/align/<id>')
 def align_all(id):
-    proj, resp = check_project(id)
+    proj, resp = check_project(id, modify=True)
     if not proj:
         return resp
 

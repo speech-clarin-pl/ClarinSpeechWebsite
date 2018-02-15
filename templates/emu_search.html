@@ -49,6 +49,7 @@
             <thead class="thead-inverse">
             <tr>
                 <th>{% trans %}identyfikator{% endtrans %}</th>
+                <th>&nbsp;</th>
                 <th>{% trans %}właściciel{% endtrans %}</th>
                 <th>{% trans %}opis{% endtrans %}</th>
                 <th>{% trans %}data_stworzenia{% endtrans %}</th>
@@ -59,6 +60,15 @@
                 <tr>
                     <td>
                         <a href="/emu/project/{{ proj._id }}">{{ proj._id }}</a>
+                    </td>
+                    <td>
+                        {% if proj.visibility == 'public' %}
+                            <i class="fa fa-globe"></i>
+                        {% elif proj.visibility == 'viewonly' %}
+                            <i class="fa fa-eye"></i>
+                        {% else %}
+                            <i class="fa fa-lock"></i>
+                        {% endif %}
                     </td>
                     <td>
                         {{ proj.owner }}

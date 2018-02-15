@@ -4,54 +4,79 @@
     <h1>{% trans %}nowy_projekt{% endtrans %}</h1>
 
     <div class="card form-group card-block">
-        <form action="create" method="post" onsubmit="return validate()">
+        <form method="post">
+            {{ form.hidden_tag() }}
             <div class="form-group">
-                <label for="owner">{% trans %}właściciel{% endtrans %}</label>
-                <input class="form-control" id="owner" name="owner" aria-describedby="owner-help" value="Anonymous">
-                <small id="owner-help" class="form-text text-muted">
+                {{ form.owner.label }}
+                <small class="form-text text-danger">
+                    {% for error in form.owner.errors %}
+                        {{ error }}<br>
+                    {% endfor %}
+                </small>
+                {{ form.owner(class_="form-control") }}
+                <small class="form-text text-muted">
                     {% trans %}właściciel_opis{% endtrans %}
                 </small>
             </div>
             <div class="form-group">
-                <label for="desc">{% trans %}opis{% endtrans %}</label>
-                <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
-                <small id="desc-help" class="form-text text-muted">
+                {{ form.description.label }}
+                {{ form.description(rows="3",class_="form-control") }}
+                <small class="form-text text-muted">
                     {% trans %}opis_opis{% endtrans %}
                 </small>
             </div>
-            <div class="form-group" id="password_line">
-                <label for="pass" class="col-form-label">{% trans %}hasło{% endtrans %}</label>
+            <div class="form-group">
+                {{ form.visibility.label }}
+                <div class="btn-group form-control" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        <input checked name="{{ form.visibility.name }}" type="radio" value="public">
+                        <i class="fa fa-globe"></i>
+                        {% trans %}publiczny{% endtrans %}
+                    </label>
+                    <label class="btn btn-primary">
+                        <input name="{{ form.visibility.name }}" type="radio" value="viewonly">
+                        <i class="fa fa-eye"></i>
+                        {% trans %}tylko_do_odczytu{% endtrans %}
+                    </label>
+                    <label class="btn btn-primary">
+                        <input name="{{ form.visibility.name }}" type="radio" value="private">
+                        <i class="fa fa-lock"></i>
+                        {% trans %}prywatny{% endtrans %}
+                    </label>
+                </div>
+                <small class="form-text text-muted">
+                    {% trans %}widoczność_opis{% endtrans %}
+                </small>
+            </div>
+            <div class="form-group">
+                {{ form.password.label }}
+                <small class="form-text text-danger">
+                    {% for error in form.password.errors %}
+                        {{ error }}<br>
+                    {% endfor %}
+                </small>
                 <div class="row">
                     <div class="col-6">
-                        <input type="password" class="form-control form-control-danger" id="pass" name="pass"
-                               aria-describedby="pass-help"
-                               placeholder="{% trans %}hasło{% endtrans %}">
+                        {{ form.password(class_="form-control",placeholder=gettext("hasło")) }}
                     </div>
                     <div class="col-6">
-                        <input type="password" class="form-control form-control-danger" id="pass_repeat"
-                               aria-describedby="pass-help"
-                               placeholder="{% trans %}powtórz_hasło{% endtrans %}">
+                        {{ form.confirm(class_="form-control",placeholder=gettext("powtórz_hasło")) }}
                     </div>
                 </div>
-                <small id="pass-help" class="form-text text-muted">
+                <small class="form-text text-muted">
                     {% trans %}hasło_opis{% endtrans %}
                 </small>
-                <div id="pass_fb" class="form-control-feedback invisible">
-                    {% trans %}hasła_się_różnią{% endtrans %}
-                </div>
             </div>
             <button type="submit" class="btn btn-primary">{% trans %}stwórz{% endtrans %}</button>
             <a href="/emu" class="btn btn-info">{% trans %}anuluj{% endtrans %}</a>
         </form>
     </div>
 
-    <script type="text/javascript">
-        function validate() {
-            if ($('#pass').val() != $('#pass_repeat').val()) {
-                $('#password_line').addClass('has-danger');
-                $('#pass_fb').removeClass('invisible');
-                return false;
-            }
-        }
+    <script>
+        $('select').selectpicker({
+            iconBase: 'fa',
+            tickIcon: 'fa-check'
+        });
     </script>
+
 {% endblock %}
