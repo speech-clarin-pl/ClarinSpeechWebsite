@@ -346,27 +346,35 @@ def add_audio(id):
     return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
+# TODO: check for repeating names
 @emu_page.route('project/rename/<id>/<name>', methods=['POST'])
 def rename_bundle(id, name):
     proj, resp = check_project(id, modify=True)
     if not proj:
         return resp
 
-    new_session = request.form['session']
-    new_name = request.form['name']
-
     if name not in proj['bundles']:
         return abort(404)
 
-    bundle = proj['bundles'][name]
+    new_session = None
+    new_name = None
 
-    if name != new_name:
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{new_name}': bundle}})
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}': 1}})
+    if 'session' in request.form:
+        new_session = request.form['session']
+    if 'name' in request.form:
+        new_name = request.form['name']
 
-    if new_session != bundle['session']:
-        db.clarin.emu.update_one({'_id': ObjectId(id)},
-                                 {'$set': {f'bundles.{new_name}.session': new_session}})
+    if new_session or new_name:
+
+        bundle = proj['bundles'][name]
+
+        if new_name and name != new_name:
+            db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{new_name}': bundle}})
+            db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}': 1}})
+
+        if new_session and new_session != bundle['session']:
+            db.clarin.emu.update_one({'_id': ObjectId(id)},
+                                     {'$set': {f'bundles.{new_name}.session': new_session}})
 
     return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 

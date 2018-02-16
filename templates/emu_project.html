@@ -170,215 +170,127 @@
             </div>
         {% endif %}
 
-        <table class="table">
+        <div class="form-group row">
+            <a href="download/{{ proj._id }}" class="btn btn-success form-control col-3">
+                {% trans %}ściągnij_projekt{% endtrans %}
+            </a>
+            <div class="col-1">&nbsp;</div>
+            <a href="webapp/{{ proj._id }}" class="btn btn-warning form-control col-3">
+                {% trans %}otwórz_webapp{% endtrans %}
+            </a>
+            <div class="col-1">&nbsp;</div>
+            {% if can_modify %}
+                <div class="dropdown col-3">
+                    <button class="btn btn-info form-control" type="button" id="project_menu"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {% trans %}wykonaj_dla_projektu{% endtrans %}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="project_menu">
+                        <a class="dropdown-item  ask-any" href="reco/{{ proj._id }}">
+                            {% trans %}wygeneruj_wszystkie_transkrypcje{% endtrans %}
+                        </a>
+                        <a class="dropdown-item  ask-any" href="align/{{ proj._id }}">
+                            {% trans %}wygeneruj_wszystkie_segmentacje{% endtrans %}
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">{% trans %}usuń_wszystkie_audio{% endtrans %}</a>
+                        <a class="dropdown-item" href="#">{% trans %}usuń_wszystkie_transkrypcje{% endtrans %}</a>
+                        <a class="dropdown-item" href="#">{% trans %}usuń_wszystkie_segmentacje{% endtrans %}</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <table class="table table-striped">
             <thead class="thead-inverse">
             <tr>
-                <th class="col-xs-4">{% trans %}nazwa_paczki_sesji{% endtrans %}</th>
-                <th class="col-xs-2">{% trans %}plik_audio{% endtrans %}</th>
-                <th class="col-xs-2">{% trans %}transkrypcja{% endtrans %}</th>
-                <th class="col-xs-2">{% trans %}segmentacja{% endtrans %}</th>
-                <th class="col-xs-1">&nbsp;</th>
+                <th style="width: 15%">{% trans %}sesja{% endtrans %}</th>
+                <th style="width: 25%">{% trans %}paczka{% endtrans %}</th>
+                <th style="width: 55%">{% trans %}pliki{% endtrans %}</th>
+                <th style="width: 5%">&nbsp;</th>
             </tr>
             </thead>
             <tbody>
             {% for name,bundle in bundles %}
                 <tr>
                     <td>
-                        <form action="rename/{{ proj._id }}/{{ name }}" method="post" class="bundle-names">
-                            <div class="row">
-                                <label class="col-form-label col-2">
-                                    <small>SESS</small>
-                                </label>
-                                <input name="session" value="{{ bundle.session }}" oldvalue="{{ bundle.session }}"
-                                       class="form-control col-9">
-                            </div>
-                            <div class="row">
-                                <label class="col-form-label col-2">
-                                    <small>NAME</small>
-                                </label>
-                                <input name="name" value="{{ name }}" oldvalue="{{ name }}" class="form-control col-9">
-                            </div>
-                        </form>
+                        {{ bundle.session }}
                     </td>
-                    <!--AUDIO-->
                     <td>
-                        {% if 'audio' in bundle %}
-                            <div class="row">
-                                <div class="col-7">
-                                    {% if bundle.audio.file %}
-                                        <a href="/tools/ui/view/{{ bundle.audio._id }}"
-                                           class="btn btn-secondary btn-lg">
-                                            <i class="fa fa-file-audio-o fa-2x" aria-hidden="true"></i>
-                                        </a>
-                                    {% else %}
-                                        {% if 'error' in bundle.audio %}
-                                            <a class="btn btn-secondary btn-lg"
-                                               title="{% trans %}błąd{% endtrans %}">
-                                                <i class="fa fa-times-circle fa-2x" style="color: red"></i>
-                                            </a>
-                                        {% else %}
-                                            <a class="btn btn-secondary btn-lg"
-                                               title="{% trans %}przetwarzam{% endtrans %}">
-                                                <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
-                                            </a>
-                                        {% endif %}
-                                    {% endif %}
-                                </div>
-                                <div class="col-3">
-                                    <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?audio"
-                                       class="btn btn-danger btn-sm ask-delete"
-                                       title="{% trans %}usuń{% endtrans %}">
-                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        {% else %}
-                            <div class="row">
-                                <div class="col-7">
-                                    <a class="btn btn-secondary btn-lg disabled">
-                                        <i class="fa fa-file-audio-o fa-2x" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <div class="col-3">
-                                    <label for="audio{{ name }}" type="file" class="btn btn-info btn-sm">
-                                        <i class="fa fa-upload" aria-hidden="true"></i>
-                                    </label>
-                                </div>
-                            </div>
-                            <form action="add_audio/{{ proj._id }}" method="post" enctype="multipart/form-data"
-                                  style="display: none">
-                                <input type="hidden" name="name" value="{{ name }}">
-                                <input id="audio{{ name }}" name="file" type="file" onchange="form.submit()">
-                            </form>
-                        {% endif %}
+                        {{ name }}
                     </td>
-                    <!--TRANSCRIPTION-->
                     <td>
-                        {% if 'trans' in bundle %}
-                            <div class="row">
-                                <div class="col-7">
-                                    {% if bundle.trans.file %}
-                                        {% if 'audio' in bundle and bundle.audio.file %}
-                                            <a href="/tools/ui/multiview/{{ bundle.trans._id }}/{{ bundle.audio._id }}"
-                                               class="btn btn-secondary btn-lg">
-                                                <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
-                                            </a>
-                                        {% else %}
-                                            <a href="/tools/ui/view/{{ bundle.trans._id }}"
-                                               class="btn btn-secondary btn-lg">
-                                                <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
-                                            </a>
-                                        {% endif %}
-                                    {% else %}
-                                        {% if 'error' in bundle.trans %}
-                                            <a class="btn btn-secondary btn-lg"
-                                               title="{% trans %}błąd{% endtrans %}">
-                                                <i class="fa fa-times-circle fa-2x" style="color: red"></i>
-                                            </a>
-                                        {% else %}
-                                            <a class="btn btn-secondary btn-lg"
-                                               title="{% trans %}przetwarzam{% endtrans %}">
-                                                <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
-                                            </a>
-                                        {% endif %}
-                                    {% endif %}
-                                </div>
-                                <div class="col-3">
-                                    <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?trans"
-                                       class="btn btn-danger btn-sm ask-delete"
-                                       title="{% trans %}usuń{% endtrans %}">
-                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        {% for type in ['audio','trans','seg'] %}
+                            {% if type == 'audio' %}
+                                {% set icon='fa-file-audio-o' %}
+                            {% elif type == 'trans' %}
+                                {% set icon='fa-file-text-o' %}
+                            {% else %}
+                                {% set icon='fa-file-code-o' %}
+                            {% endif %}
+                            {% if type in bundle %}
+                                {% if bundle[type].file %}
+                                    <a href="/tools/ui/view/{{ bundle[type]._id }}" class="btn btn-secondary">
+                                        <i class="fa {{ icon }}" aria-hidden="true"></i>
+                                        <i class="fa fa-check-circle text-success"></i>
                                     </a>
-                                </div>
-                            </div>
-                        {% else %}
-                            <div class="row">
-                                <div class="col-7">
-                                    <a class="btn btn-secondary btn-lg disabled">
-                                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <div class="col-3">
-                                    <div>
-                                        <label for="trans{{ name }}" type="file" class="btn btn-info btn-sm">
-                                            <i class="fa fa-upload" aria-hidden="true"></i>
-                                        </label>
-                                    </div>
-                                    <div>
-                                        {% if 'audio' in bundle and bundle.audio.file %}
-                                            <a href="reco/{{ proj._id }}/{{ name|urlencode }}"
-                                               class="btn btn-warning btn-sm ask-any"
-                                               title="{% trans %}wygeneruj_automatycznie{% endtrans %}">
-                                                <i class="fa fa-cogs" aria-hidden="true"></i>
-                                            </a>
+                                {% else %}
+                                    <a href="#" class="btn btn-secondary">
+                                        <i class="fa {{ icon }}" aria-hidden="true"></i>
+                                        {% if 'error' in bundle[type] %}
+                                            <i class="fa fa-times-circle text-danger"></i>
+                                        {% else %}
+                                            <i class="fa fa-refresh fa-spin fa-fw text-warning"></i>
                                         {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                            <form action="add_trans/{{ proj._id }}" method="post" enctype="multipart/form-data"
-                                  style="display: none">
-                                <input type="hidden" name="name" value="{{ name }}">
-                                <input id="trans{{ name }}" name="file" type="file" onchange="form.submit()">
-                            </form>
-                        {% endif %}
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
                     </td>
-                    <!--SEGMENTATION-->
                     <td>
-                        {% if 'seg' in bundle %}
-                            <div class="row">
-                                <div class="col-7">
-                                    {% if bundle.seg.file %}
-                                        <a href="/tools/ui/view/{{ bundle.seg._id }}" class="btn btn-secondary btn-lg">
-                                            <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
-                                        </a>
-                                    {% else %}
-                                        {% if 'error' in bundle.seg %}
-                                            <a class="btn btn-secondary btn-lg"
-                                               title="{% trans %}błąd{% endtrans %}">
-                                                <i class="fa fa-times-circle fa-2x" style="color: red"></i>
-                                            </a>
-                                        {% else %}
-                                            <a class="btn btn-secondary btn-lg"
-                                               title="{% trans %}przetwarzam{% endtrans %}">
-                                                <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
-                                            </a>
-                                        {% endif %}
-                                    {% endif %}
-                                </div>
-                                <div class="col-3">
-                                    <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?seg"
-                                       class="btn btn-danger btn-sm ask-delete"
-                                       title="{% trans %}usuń{% endtrans %}">
-                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        {% if can_modify %}
+                            <div class="dropdown">
+                                <button class="btn btn-info" type="button" id="menu_{{ name|urlencode }}"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="menu_{{ name|urlencode }}">
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#renameDialog"
+                                       data-name="{{ name }}">
+                                        {% trans %}zmień_nazwę{% endtrans %}
                                     </a>
-                                </div>
-                            </div>
-                        {% else %}
-                            <div class="row">
-                                <div class="col-7">
-                                    <a class="btn btn-secondary btn-lg disabled">
-                                        <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
+                                    <a class="dropdown-item" href="#">{% trans %}zmień_sesję{% endtrans %}</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">{% trans %}wgraj_audio{% endtrans %}</a>
+                                    <a class="dropdown-item" href="#">{% trans %}wgraj_transkrypcję{% endtrans %}</a>
+                                    <a class="dropdown-item" href="#">{% trans %}wgraj_segmentację{% endtrans %}</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item ask-any" href="reco/{{ proj._id }}/{{ name|urlencode }}">
+                                        {% trans %}wygeneruj_transkrypcję{% endtrans %}
                                     </a>
-                                </div>
-                                <div class="col-3">
-                                    {% if 'audio' in bundle and bundle.audio.file and 'trans' in bundle and bundle.trans.file %}
-                                        <a href="align/{{ proj._id }}/{{ name|urlencode }}"
-                                           class="btn btn-warning btn-sm ask-any"
-                                           title="{% trans %}wygeneruj_automatycznie{% endtrans %}">
-                                            <i class="fa fa-cogs" aria-hidden="true"></i>
-                                        </a>
-                                    {% endif %}
+                                    <a class="dropdown-item ask-any" href="align/{{ proj._id }}/{{ name|urlencode }}">
+                                        {% trans %}wygeneruj_segmentację{% endtrans %}
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item ask-delete"
+                                       href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?audio">
+                                        {% trans %}usuń_audio{% endtrans %}
+                                    </a>
+                                    <a class="dropdown-item ask-delete"
+                                       href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?trans">
+                                        {% trans %}usuń_transkrypcję{% endtrans %}
+                                    </a>
+                                    <a class="dropdown-item ask-delete"
+                                       href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?seg">
+                                        {% trans %}usuń_segmentację{% endtrans %}
+                                    </a>
+                                    <a class="dropdown-item ask-delete"
+                                       href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}">
+                                        {% trans %}usuń_paczkę{% endtrans %}
+                                    </a>
                                 </div>
                             </div>
                         {% endif %}
-                    </td>
-                    <!--TOOLS-->
-                    <td>
-                        <a href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}"
-                           class="btn btn-danger ask-delete"
-                           title="{% trans %}usuń_paczkę{% endtrans %}">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
                     </td>
                 </tr>
             {% endfor %}
@@ -386,138 +298,95 @@
         </table>
     </div>
 
-    <!--TOOLS for whole bundle-->
+    <div class="gap-lg">&nbsp;</div>
 
-    <div class="card form-control card-block emu-toolbar">
+    {% if can_modify %}
 
-        <h3>{% trans %}narzędzia_całego_projektu_tytuł{% endtrans %}</h3>
-
-        <p>{% trans %}narzędzia_całego_projektu_opis1{% endtrans %}</p>
-
-        <p>{% trans %}narzędzia_całego_projektu_opis2{% endtrans %}</p>
-
-        <div class="row">
-            <div class="col-lg-3">
-                {% if disable.asr %}
-                    <a class="btn btn-warning btn-lg disabled" style="height: 8em">
-                {% else %}
-                    <a href="reco/{{ proj._id }}" class="btn btn-warning btn-lg ask-any" style="height: 8em"
-                       title="{% trans %}wykonaj_asr{% endtrans %}">
-                {% endif %}
-                <i class="fa fa-file-audio-o fa-2x"></i>
-                <i class="fa fa-arrow-right fa-2x"></i>
-                <i class="fa fa-file-text-o fa-2x"></i>
-                </a>
-            </div>
-            <div class="col-lg-3">
-                {% if disable.align %}
-                    <a class="btn btn-warning btn-lg disabled" style="height: 8em">
-                {% else %}
-                    <a href="align/{{ proj._id }}" class="btn btn-warning btn-lg ask-any" style="height: 8em"
-                       title="{% trans %}wykonaj_align{% endtrans %}">
-                {% endif %}
-                <i class="fa fa-file-text-o fa-2x"></i>
-                <i class="fa fa-arrow-right fa-2x"></i>
-                <i class="fa fa-file-code-o fa-2x"></i>
-                </a>
-            </div>
-            <div class="col-lg-3">
-                {% if disable.emu %}
-                    <a class="btn btn-info btn-lg disabled" style="height: 8em">
-                {% else %}
-                    <a href="webapp/{{ proj._id }}" class="btn btn-info btn-lg" target="_blank" style="height: 8em"
-                       title="{% trans %}otwórz_webapp{% endtrans %}">
-                {% endif %}
-                <img src={{ url_for('static', filename='img/emuIcon.png') }}>
-                </a>
-            </div>
-            <div class="col-lg-3">
-                {% if disable.emu %}
-                    <a class="btn btn-info btn-lg disabled" style="height: 8em">
-                {% else %}
-                    <a href="download/{{ proj._id }}" class="btn btn-info btn-lg" style="height: 8em"
-                       title="{% trans %}ściągnij_projekt{% endtrans %}">
-                {% endif %}
-                <i class="fa fa-download fa-2x"></i>
-                </a>
+        <div class="modal fade" id="renameDialog">
+            <div class="modal-dialog" role="document">
+                <form method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">{% trans %}zmień_nazwę_paczki{% endtrans %}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{% trans %}zmień_nazwę_paczki{% endtrans %} <span id="bundle">paczka</span>
+                                {% trans %}na_paczkę{% endtrans %}</p>
+                            <input class="form-control" type="text" name="name">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">{% trans %}zatwierdź{% endtrans %}</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans %}
+                                anuluj{% endtrans %}</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
+        <script>
+            $('#renameDialog').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var name = button.data('name');
+                var modal = $(this);
+                modal.find('#bundle').html(name);
+                modal.find('form').attr('action', 'rename/{{ proj._id }}/' + name);
+            })
+        </script>
 
-    <script type="text/javascript">
-        Dropzone.options.addAudio = {
-            maxFilesize: 100,
-            init: function () {
-                this.on('queuecomplete', function () {
-                    location.reload(true);
+
+        <script type="text/javascript">
+            Dropzone.options.addAudio = {
+                maxFilesize: 100,
+                init: function () {
+                    this.on('queuecomplete', function () {
+                        location.reload(true);
+                    });
+                    this.on('totaluploadprogress', function (uploadProgress, totalBytes, totalBytesSent) {
+                        bar = $('#uploadProgress');
+                        bar.html(uploadProgress + '%');
+                        bar.css('width', uploadProgress + '%');
+                        bar.attr('aria-valuenow', uploadProgress);
+                    });
+                }
+            };
+
+            $(".ask-delete").each(function () {
+                $(this).click(function () {
+                    if (!confirm('{% trans %}czy_usunąć_zasób{% endtrans %}'))
+                        return false;
                 });
-                this.on('totaluploadprogress', function (uploadProgress, totalBytes, totalBytesSent) {
-                    bar = $('#uploadProgress');
-                    bar.html(uploadProgress + '%');
-                    bar.css('width', uploadProgress + '%');
-                    bar.attr('aria-valuenow', uploadProgress);
+            });
+            $(".ask-any").each(function () {
+                $(this).click(function () {
+                    if (!confirm('{% trans %}czy_wykonać_akcję{% endtrans %}'))
+                        return false;
                 });
-            }
-        };
-
-        $(".ask-delete").each(function () {
-            $(this).click(function () {
-                if (!confirm('{% trans %}czy_usunąć_zasób{% endtrans %}'))
-                    return false;
             });
-        });
 
-        $(".ask-any").each(function () {
-            $(this).click(function () {
-                if (!confirm('{% trans %}czy_wykonać_akcję{% endtrans %}'))
-                    return false;
-            });
-        });
-
-        var bundle_names = {{ bundle_names|tojson }};
-
-        $(".bundle-names").each(function () {
-            $(this).keypress(function (e) {
-                if (e.which == 13) {
-
-                    new_value = e.target.value;
-                    old_value = e.target.attributes['oldvalue'].value;
-
-                    if (old_value != new_value) {
-
-                        if (e.target.name == 'name') {
-                            if ($.inArray(new_value, bundle_names) >= 0) {
-                                alert('{% trans %}nazwa_już_istnieje{% endtrans %}');
-                                return false;
-                            }
-                        }
-
-                        $(this).closest('form').submit();
+            {% if refresh_req %}
+                function refresh_page() {
+                    location.reload();
+                }
+                $('#refresh-link').click(refresh_page);
+                var sec_remaining = 5;
+                function refresh_tick() {
+                    if (sec_remaining > 1) {
+                        sec_remaining--;
+                        $('#refresh-sec').html(sec_remaining);
+                        setTimeout(refresh_tick, 1000);
+                    } else if (sec_remaining >= 0) {
+                        refresh_page();
                     }
                 }
-            });
-        });
-
-        {% if refresh_req %}
-            function refresh_page() {
-                location.reload();
-            }
-            $('#refresh-link').click(refresh_page);
-            var sec_remaining = 5;
-            function refresh_tick() {
-                if (sec_remaining > 1) {
-                    sec_remaining--;
-                    $('#refresh-sec').html(sec_remaining);
-                    setTimeout(refresh_tick, 1000);
-                } else if (sec_remaining >= 0) {
-                    refresh_page();
-                }
-            }
-            setTimeout(refresh_tick, 1000);
-            $('#refresh-stop').click(function () {
-                sec_remaining = -1;
-            });
-        {% endif %}
-    </script>
+                setTimeout(refresh_tick, 1000);
+                $('#refresh-stop').click(function () {
+                    sec_remaining = -1;
+                });
+            {% endif %}
+        </script>
+    {% endif %}
 
 {% endblock %}
