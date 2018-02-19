@@ -21,6 +21,7 @@ from wtforms.validators import DataRequired, EqualTo
 from wtforms.widgets import TextArea
 
 import tools
+from Tools import ui_view, ui_view_multi
 from config import db, config
 from tools.utils import utc_to_localtime, audio_file_size
 
@@ -598,4 +599,16 @@ def download(id):
 
     res_id = tools.tasks.start_emu_package(proj, id)
 
-    return redirect('/tools/ui/view/' + urllib.parse.quote(str(res_id)))
+    return redirect(f'/emu/project/{id}/view/{res_id}')
+
+
+@emu_page.route('project/<id>/view/<res_id>')
+@register_breadcrumb(emu_page, '.project.view', _(u'view_any_tytuł'))
+def project_view(id, res_id):
+    return ui_view(res_id)
+
+
+@emu_page.route('project/<id>/multiview/<res_a>/<res_b>')
+@register_breadcrumb(emu_page, '.project.multiview', _(u'view_any_tytuł'))
+def project_multiview(id, res_a, res_b):
+    return ui_view_multi(res_a, res_b)

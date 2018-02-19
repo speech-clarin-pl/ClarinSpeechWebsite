@@ -144,7 +144,8 @@
                             {% endif %}
                             {% if type in bundle %}
                                 {% if bundle[type].file %}
-                                    <a href="/tools/ui/view/{{ bundle[type]._id }}" class="btn btn-secondary">
+                                    <a href="/emu/project/{{ proj._id }}/view/{{ bundle[type]._id }}"
+                                       class="btn btn-secondary">
                                         <i class="fa {{ icon }}" aria-hidden="true"></i>
                                         <i class="fa fa-check-circle text-success"></i>
                                     </a>
@@ -161,7 +162,7 @@
                             {% endif %}
                             {% if type == 'audio+trans' %}
                                 {% if 'audio' in bundle and 'trans' in bundle and bundle['audio'].file and bundle['trans'].file %}
-                                    <a href="/tools/ui/multiview/{{ bundle['audio']._id }}/{{ bundle['trans']._id }}"
+                                    <a href="/emu/project/{{ proj._id }}/multiview/{{ bundle['audio']._id }}/{{ bundle['trans']._id }}"
                                        class="btn btn-light btn-sm">&#8644;</a>
                                 {% endif %}
                             {% endif %}
