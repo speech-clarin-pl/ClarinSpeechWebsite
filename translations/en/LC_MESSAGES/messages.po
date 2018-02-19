@@ -148,9 +148,7 @@ msgstr "A tool to create EMU-SDMS corpora"
 
 #: templates/emu_modify.html:18 templates/emu_new.html:18
 msgid "właściciel_opis"
-msgstr ""
-"The owner's name is not obligatory but it will make the project easier to"
-" find in the future."
+msgstr "This will make the project easier to locate."
 
 #: templates/emu_modify.html:25 templates/emu_new.html:25
 msgid "opis_opis"
@@ -219,11 +217,11 @@ msgstr "Created by"
 
 #: templates/emu_project.html:34
 msgid "wyloguj_się"
-msgstr ""
+msgstr "Log out"
 
 #: templates/emu_project.html:39
 msgid "zaloguj_się"
-msgstr ""
+msgstr "Log in"
 
 #: templates/emu_project.html:46
 msgid "modyfikuj"

@@ -95,10 +95,6 @@ def check_project(id, modify=False, admin=False):
     return proj, None
 
 
-# TODO disable asr/align/emu
-# TODO pass check remove
-# TODO admin/modify project
-
 @emu_page.route('project/<id>')
 @register_breadcrumb(emu_page, '.project', _(u'emu_projekt_tytuł'))
 def project(id):

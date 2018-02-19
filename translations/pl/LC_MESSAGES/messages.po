@@ -311,7 +311,7 @@ msgstr "Wgraj segmentację z pliku"
 
 #: templates/emu_project.html:202
 msgid "wygeneruj_transkrypcję"
-msgstr "Wygemeruj transkrypcję"
+msgstr "Wygeneruj transkrypcję"
 
 #: templates/emu_project.html:206
 msgid "wygeneruj_segmentację"
