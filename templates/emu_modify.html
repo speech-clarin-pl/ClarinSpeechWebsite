@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <h1>{% trans %}nowy_projekt{% endtrans %}</h1>
+    <h1>{% trans %}zmień_projekt{% endtrans %}</h1>
 
     <div class="card form-group card-block">
         <form method="post">
@@ -28,18 +28,18 @@
             <div class="form-group">
                 {{ form.visibility.label }}
                 <div class="btn-group form-control" data-toggle="buttons">
-                    <label class="btn btn-primary active">
-                        <input checked name="{{ form.visibility.name }}" type="radio" value="public">
+                    <label class="btn btn-primary {{ vis2['public'] }}">
+                        <input {{ vis['public'] }} name="{{ form.visibility.name }}" type="radio" value="public">
                         <i class="fa fa-globe"></i>
                         {% trans %}publiczny{% endtrans %}
                     </label>
-                    <label class="btn btn-primary">
-                        <input name="{{ form.visibility.name }}" type="radio" value="viewonly">
+                    <label class="btn btn-primary {{ vis2['viewonly'] }}">
+                        <input {{ vis['viewonly'] }} name="{{ form.visibility.name }}" type="radio" value="viewonly">
                         <i class="fa fa-eye"></i>
                         {% trans %}tylko_do_odczytu{% endtrans %}
                     </label>
-                    <label class="btn btn-primary">
-                        <input name="{{ form.visibility.name }}" type="radio" value="private">
+                    <label class="btn btn-primary {{ vis2['private'] }}">
+                        <input {{ vis['private'] }}name="{{ form.visibility.name }}" type="radio" value="private">
                         <i class="fa fa-lock"></i>
                         {% trans %}prywatny{% endtrans %}
                     </label>
@@ -57,18 +57,24 @@
                 </small>
                 <div class="row">
                     <div class="col-6">
-                        {{ form.password(class_="form-control",placeholder=gettext("hasło")) }}
+                        {{ form.password(class_="form-control",placeholder=gettext("hasło_bez_zmian")) }}
                     </div>
                     <div class="col-6">
                         {{ form.confirm(class_="form-control",placeholder=gettext("powtórz_hasło")) }}
                     </div>
                 </div>
                 <small class="form-text text-muted">
-                    {% trans %}hasło_opis{% endtrans %}
+                    {% trans %}hasło_opis_modyfikacja{% endtrans %}
                 </small>
             </div>
-            <button type="submit" class="btn btn-primary">{% trans %}stwórz{% endtrans %}</button>
-            <a href="/emu" class="btn btn-info">{% trans %}anuluj{% endtrans %}</a>
+            <button type="submit" class="btn btn-primary">{% trans %}zmień{% endtrans %}</button>
+            <a href="/emu/project/{{ proj._id }}" class="btn btn-info">{% trans %}anuluj{% endtrans %}</a>
+            <a class="btn btn-danger" href="/emu/project/remove/{{ proj._id }}"
+               onclick="return confirm('{% trans %}czy_usunąć_projekt{% endtrans %}')">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                {% trans %}usuń{% endtrans %}
+            </a>
+
         </form>
     </div>
 {% endblock %}

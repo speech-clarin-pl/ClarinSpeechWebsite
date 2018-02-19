@@ -1,0 +1,11 @@
+Flask_Breadcrumbs==0.4.0
+pika==0.11.0
+tqdm==4.19.4
+tgt==1.4.3
+pymongo==3.5.1
+Flask_Babel==0.11.2
+WTForms==2.1
+Flask==0.12.2
+Flask_WTF==0.14.2
+python_bcrypt==0.3.2
+python_dateutil==2.6.1

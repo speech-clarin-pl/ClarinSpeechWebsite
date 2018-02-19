@@ -33,11 +33,10 @@ def index():
     return render_template('emu.html')
 
 
-class EmuNew(FlaskForm):
+class EmuProject(FlaskForm):
     owner = StringField(_(u'właściciel'), validators=[DataRequired()], default='Anonymous')
     description = StringField(_(u'opis'), widget=TextArea())
     password = PasswordField(_(u'hasło'), validators=[
-        DataRequired(),
         EqualTo('confirm', message=_(u'hasła_się_różnią'))
     ])
     confirm = PasswordField(_(u'powtórz_hasło'))
@@ -46,11 +45,15 @@ class EmuNew(FlaskForm):
                                      ('private', _(u'prywatny'))],
                             validators=[DataRequired()], default='public')
 
+    def password_required(self):
+        self.password.validators.append(DataRequired())
+
 
 @emu_page.route('new', methods=['GET', 'POST'])
 @register_breadcrumb(emu_page, '.new', _(u'nowy_projekt'))
 def new():
-    form = EmuNew(request.form)
+    form = EmuProject(request.form)
+    form.password_required()
     if form.validate_on_submit():
         proj = {'owner': request.form['owner'], 'description': request.form['description'],
                 'password': bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt()),
@@ -91,6 +94,10 @@ def check_project(id, modify=False, admin=False):
 
     return proj, None
 
+
+# TODO disable asr/align/emu
+# TODO pass check remove
+# TODO admin/modify project
 
 @emu_page.route('project/<id>')
 @register_breadcrumb(emu_page, '.project', _(u'emu_projekt_tytuł'))
@@ -144,7 +151,7 @@ def project(id):
         bundles.append((name, bundle))
         bundle_names.append(name)
 
-    bundles = sorted(bundles, key=lambda x: x[0])
+    bundles = sorted(bundles, key=lambda x: (x[1]['session'], x[0]))
     if not bundles:
         disable = {'asr': True, 'align': True, 'emu': True}
 
@@ -165,21 +172,35 @@ def project(id):
                            logged_in=logged_in, can_modify=can_modify, can_admin=can_admin)
 
 
-@emu_page.route('project/modify/<id>', methods=['POST'])
+@emu_page.route('project/modify/<id>', methods=['GET', 'POST'])
+@register_breadcrumb(emu_page, '.project.modify', _(u'zmień_projekt'))
 def project_modify(id):
     proj, resp = check_project(id, admin=True)
     if not proj:
         return resp
 
-    upd = {'owner': request.form['owner'], 'description': request.form['desc']}
-    if request.form['pass'] != request.form['pass_check']:
-        if request.form['pass']:
-            upd['password'] = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
-        else:
-            db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {'password': 1}})
-    db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': upd})
+    form = EmuProject(request.form)
+    if form.validate_on_submit():
+        upd = {'owner': request.form['owner'], 'description': request.form['description'],
+               'visibility': request.form['visibility']}
 
-    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
+        if request.form['password']:
+            upd['password'] = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': upd})
+
+        return redirect('/emu/project/' + urllib.parse.quote(str(id)))
+
+    form.owner.data = proj['owner']
+    form.description.data = proj['description']
+    form.visibility.data = proj['visibility']
+
+    vis = {'public': '', 'viewonly': '', 'private': ''}
+    vis[proj['visibility']] = 'checked'
+    vis2 = {'public': '', 'viewonly': '', 'private': ''}
+    vis2[proj['visibility']] = 'active'
+
+    return render_template('emu_modify.html', form=form, proj=proj, vis=vis, vis2=vis2)
 
 
 @emu_page.route('project/remove/<id>')
@@ -371,10 +392,11 @@ def rename_bundle(id, name):
         if new_name and name != new_name:
             db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{new_name}': bundle}})
             db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}': 1}})
+            name = new_name
 
         if new_session and new_session != bundle['session']:
             db.clarin.emu.update_one({'_id': ObjectId(id)},
-                                     {'$set': {f'bundles.{new_name}.session': new_session}})
+                                     {'$set': {f'bundles.{name}.session': new_session}})
 
     return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
@@ -419,6 +441,25 @@ def remove_bndl(id, name):
         db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}.seg': 1}})
     else:
         db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}': 1}})
+
+    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
+
+
+@emu_page.route('project/remove_bndl/<id>')
+def remove_bndl_all(id):
+    proj, resp = check_project(id, modify=True)
+    if not proj:
+        return resp
+
+    for name in proj['bundles']:
+        if 'audio' in request.args:
+            db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}.audio': 1}})
+        elif 'trans' in request.args:
+            db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}.trans': 1}})
+        elif 'seg' in request.args:
+            db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}.seg': 1}})
+        else:
+            db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}': 1}})
 
     return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 

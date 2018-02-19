@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-12 14:06+0200\n"
+"POT-Creation-Date: 2018-02-19 13:58+0100\n"
 "PO-Revision-Date: 2017-09-05 11:46+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -17,284 +17,383 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.4.0\n"
+"Generated-By: Babel 2.5.1\n"
+
+#: ClarinSpeechWebsite.py:47
+msgid "strona_główna"
+msgstr "Strona główna"
+
+#: ClarinSpeechWebsite.py:66 templates/index.html:15
+msgid "korpusy"
+msgstr "Korpusy i inne zasoby"
+
+#: ClarinSpeechWebsite.py:72 templates/kontakt.html:4 templates/layout.html:58
+msgid "kontakt"
+msgstr "Kontakt"
+
+#: EMU.py:31
+msgid "EMU"
+msgstr "EMU"
+
+#: EMU.py:37 EMU.py:248 templates/emu_search.html:51
+msgid "właściciel"
+msgstr "Właściciel"
+
+#: EMU.py:38 EMU.py:249 templates/emu_project.html:27
+#: templates/emu_search.html:52
+msgid "opis"
+msgstr "Opis"
+
+#: EMU.py:39 templates/emu_new.html:60
+msgid "hasło"
+msgstr "Hasło"
+
+#: EMU.py:40
+msgid "hasła_się_różnią"
+msgstr "Hasła nie są takie same!"
+
+#: EMU.py:42 templates/emu_modify.html:63 templates/emu_new.html:63
+msgid "powtórz_hasło"
+msgstr "Powtórz hasło"
+
+#: EMU.py:43 templates/emu_project.html:12
+msgid "widoczność"
+msgstr "Widoczność"
+
+#: EMU.py:44 templates/emu_modify.html:34 templates/emu_new.html:34
+#: templates/emu_project.html:16
+msgid "publiczny"
+msgstr "Publiczny"
+
+#: EMU.py:44 templates/emu_modify.html:39 templates/emu_new.html:39
+#: templates/emu_project.html:19
+msgid "tylko_do_odczytu"
+msgstr "Tylko do odczytu"
+
+#: EMU.py:45 templates/emu_modify.html:44 templates/emu_new.html:44
+#: templates/emu_project.html:22
+msgid "prywatny"
+msgstr "Prywatny"
+
+#: EMU.py:53 templates/emu.html:14 templates/emu_new.html:4
+msgid "nowy_projekt"
+msgstr "Nowy projekt"
+
+#: EMU.py:72 templates/emu_deleted.html:4
+msgid "projekt_usunięty"
+msgstr "Projekt został usunięty!"
+
+#: EMU.py:103 templates/emu_project.html:3
+msgid "emu_projekt_tytuł"
+msgstr "Projekt EMU"
+
+#: EMU.py:176 templates/emu_modify.html:4
+msgid "zmień_projekt"
+msgstr "Zmień projekt"
+
+#: EMU.py:229 templates/emu_password.html:4
+msgid "hasło_tytuł"
+msgstr "Projekt zabezpieczono hasłem"
+
+#: EMU.py:250
+msgid "po_dacie"
+msgstr "Po dacie"
+
+#: EMU.py:251
+msgid "przed_datą"
+msgstr "Przed datą"
+
+#: EMU.py:256 templates/emu.html:23
+msgid "szukaj_projekt"
+msgstr "Wyszukaj projekt"
+
+#: Tools.py:21 templates/tools.html:4
+msgid "tool_tytuł"
+msgstr "Usługi mowy"
+
+#: Tools.py:86 Tools.py:119 templates/view_any.html:3
+msgid "view_any_tytuł"
+msgstr "Pobierz plik"
+
+#: Tools.py:134 templates/tool_g2p_word.html:3 templates/tools.html:10
+msgid "g2p_tytuł"
+msgstr "Transkrpycja pojedynczego wyrazu"
+
+#: Tools.py:140 templates/tool_g2p_list.html:4 templates/tools.html:17
+msgid "g2p_wordlist_tytuł"
+msgstr "Transkrypcja listy wyrazów"
+
+#: Tools.py:146 templates/tool_text_to_text.html:3 templates/tools.html:24
+msgid "textnorm_tytuł"
+msgstr "Normalizacja tekstu"
+
+#: Tools.py:152 templates/tool_audio_to_audio.html:4 templates/tools.html:31
+msgid "audionorm_tytuł"
+msgstr "Normalizacja audio"
+
+#: Tools.py:158 templates/tool_align.html:4 templates/tools.html:38
+msgid "forcealign_tytuł"
+msgstr "Segmentacja krótkich nagrań"
+
+#: Tools.py:164 templates/tool_align.html:6 templates/tools.html:45
+msgid "segalign_tytuł"
+msgstr "Segmentacja długich nagrań"
+
+#: Tools.py:170 templates/tool_reco.html:3 templates/tools.html:52
+msgid "reco_tytuł"
+msgstr "Pełne rozpoznawanie mowy"
 
 #: templates/emu.html:4
 msgid "emu_tool_tytuł"
 msgstr "Narzędzie do tworzenia korpusu EMU-SDMS"
 
-#: templates/emu.html:6
-msgid "powrót_główna"
-msgstr "Powrót na stronę główną"
-
-#: templates/emu.html:18 templates/emu_new.html:4
-msgid "nowy_projekt"
-msgstr "Nowy projekt"
-
-#: templates/emu.html:31
-msgid "szukaj_projekt"
-msgstr "Wyszukaj projekt"
-
-#: templates/emu_deleted.html:4
-msgid "projekt_usunięty"
-msgstr "Projekt został usunięty!"
-
-#: templates/emu_deleted.html:6 templates/emu_new.html:6
-#: templates/emu_password.html:6 templates/emu_project.html:4
-#: templates/emu_search.html:6 templates/kontakt.html:5
-#: templates/korpusy.html:5 templates/multiview_any.html:5
-#: templates/multiview_audio_trans.html:5 templates/tool_align.html:9
-#: templates/tool_audio_to_audio.html:6 templates/tool_g2p_list.html:6
-#: templates/tool_g2p_word.html:5 templates/tool_reco.html:5
-#: templates/tool_text_to_text.html:5 templates/tools.html:6
-#: templates/view_any.html:5 templates/view_audio.html:5
-#: templates/view_segmentation.html:5 templates/view_transcription.html:5
-msgid "powrót"
-msgstr "Powrót"
-
-#: templates/emu_new.html:11 templates/emu_project.html:32
-#: templates/emu_search.html:15 templates/emu_search.html:54
-msgid "właściciel"
-msgstr "Właściciel"
-
-#: templates/emu_new.html:14
+#: templates/emu_modify.html:18 templates/emu_new.html:18
 msgid "właściciel_opis"
-msgstr "Nazwa ta nie jest obowiązkowa, ale ułatwi wyszukiwanie w przyszłości."
+msgstr "Nazwa ta służy do ułatwienia wyszukiwania."
 
-#: templates/emu_new.html:18 templates/emu_project.html:15
-#: templates/emu_project.html:39 templates/emu_search.html:19
-#: templates/emu_search.html:55
-msgid "opis"
-msgstr "Opis"
-
-#: templates/emu_new.html:21
+#: templates/emu_modify.html:25 templates/emu_new.html:25
 msgid "opis_opis"
 msgstr "Opisz krótko zawartość korpusu."
 
-#: templates/emu_new.html:25 templates/emu_new.html:30
-#: templates/emu_project.html:48 templates/emu_project.html:52
-msgid "hasło"
-msgstr "Hasło"
-
-#: templates/emu_new.html:35 templates/emu_project.html:57
-msgid "powtórz_hasło"
-msgstr "Powtórz hasło"
-
-#: templates/emu_new.html:39
-msgid "hasło_opis"
+#: templates/emu_modify.html:48 templates/emu_new.html:48
+msgid "widoczność_opis"
 msgstr ""
-"Po wpisaniu hasła zablokowany zostanie dostęp do projektu osobom "
-"niepowołanym. Jeśli nie chcesz skorzystać z tej opcji, zostaw to miejsce "
-"puste."
+"Korpus publiczny jest widoczny i może być zmieniany przez dowolną osobę. "
+"Tylko widoczny jest widoczny dla dowolnej osoby, ale może być zmieniany "
+"dopiero po wprowadzeniu hasła. Prywatny jest dostępny tylko po wpisaniu "
+"hasła."
 
-#: templates/emu_new.html:42 templates/emu_project.html:62
-#: templates/emu_project.html:94
-msgid "hasła_się_różnią"
-msgstr "Hasła nie są takie same!"
+#: templates/emu_modify.html:60
+msgid "hasło_bez_zmian"
+msgstr "Hasło bez zmian"
 
-#: templates/emu_new.html:45
-msgid "stwórz"
-msgstr "Stwórz"
+#: templates/emu_modify.html:67
+msgid "hasło_opis_modyfikacja"
+msgstr "Jeśli nie chcesz zmieniać hasła, zostaw powyższe pola puste."
 
-#: templates/emu_new.html:46
+#: templates/emu_modify.html:70
+msgid "zmień"
+msgstr "Zmień"
+
+#: templates/emu_modify.html:71 templates/emu_new.html:71
+#: templates/emu_project.html:258 templates/emu_project.html:294
+#: templates/emu_project.html:333
 msgid "anuluj"
 msgstr "Anuluj"
 
-#: templates/emu_password.html:4
-msgid "hasło_tytuł"
-msgstr "Projekt zabezpieczono hasłem"
+#: templates/emu_modify.html:73
+msgid "czy_usunąć_projekt"
+msgstr "Czy na pewno chcesz usunąć ten projekt?"
 
-#: templates/emu_password.html:10
-msgid "wprowadź_hasło"
-msgstr "Wprowadź hasło"
-
-#: templates/emu_password.html:16
-msgid "potwierdź"
-msgstr "Potwierdź"
-
-#: templates/emu_password.html:22
-msgid "błędne_hasło"
-msgstr "Błędne hasło."
-
-#: templates/emu_project.html:6
-msgid "emu_projekt_tytuł"
-msgstr "Projekt EMU"
-
-#: templates/emu_project.html:10
-msgid "stworzony_przez"
-msgstr "Stworzony przez"
-
-#: templates/emu_project.html:22
-msgid "modyfikuj"
-msgstr "Modyfikuj"
-
-#: templates/emu_project.html:71 templates/emu_project.html:201
-#: templates/emu_project.html:260 templates/emu_project.html:322
+#: templates/emu_modify.html:75
 msgid "usuń"
 msgstr "Usuń"
 
-#: templates/emu_project.html:77 templates/multiview_audio_trans.html:44
-msgid "zapisz"
-msgstr "Zapisz"
+#: templates/emu_new.html:67
+msgid "hasło_opis"
+msgstr ""
+"Hasło uniemożliwia zmiany projektu niepowołanym osobom. Użyj opcji "
+"widoczności, żeby ustalić jak ograniczyć dostęp do zasobów projektu. Do "
+"zmiany nazwy, opisu, widoczności lub hasła zawsze jest konieczne "
+"zalogowanie do projektu bieżącym hasłem!"
 
-#: templates/emu_project.html:87
-msgid "czy_zapisać_zmiany"
-msgstr "Czy na pewno chcesz zapisać zmiany?"
+#: templates/emu_new.html:70
+msgid "stwórz"
+msgstr "Stwórz"
 
-#: templates/emu_project.html:123
+#: templates/emu_password.html:8
+msgid "wprowadź_hasło"
+msgstr "Wprowadź hasło"
+
+#: templates/emu_password.html:14
+msgid "potwierdź"
+msgstr "Potwierdź"
+
+#: templates/emu_password.html:20
+msgid "błędne_hasło"
+msgstr "Błędne hasło."
+
+#: templates/emu_project.html:7
+msgid "stworzony_przez"
+msgstr "Stworzony przez"
+
+#: templates/emu_project.html:34
+msgid "wyloguj_się"
+msgstr "Wyloguj się"
+
+#: templates/emu_project.html:39
+msgid "zaloguj_się"
+msgstr "Zaloguj się"
+
+#: templates/emu_project.html:46
+msgid "modyfikuj"
+msgstr "Modyfikuj"
+
+#: templates/emu_project.html:59
 msgid "pliki_click_drag_opis"
 msgstr "Przeciągnij tutaj albo kliknij, żeby wgrać plik(i) audio."
 
-#: templates/emu_project.html:135
+#: templates/emu_project.html:72
 msgid "w trakcie przetwarzania, odświeżam za "
 msgstr "W trakcie przetwarzania! Strona zostanie odświeżona za "
 
-#: templates/emu_project.html:137
+#: templates/emu_project.html:74
 msgid ""
 "kliknij <a id=\"refresh-link\" href=\"#\">tutaj</a> żeby odświeżyć "
 "natychmiast"
-msgstr "Kliknij <a id=\"refresh-link\" href=\"#\">tutaj</a> żeby odświeżyć natychmiast!"
-
-#: templates/emu_project.html:147
-msgid "nazwa_paczki_sesji"
-msgstr "Nazwa paczki i sesji"
-
-#: templates/emu_project.html:148
-msgid "plik_audio"
-msgstr "Plik audio"
-
-#: templates/emu_project.html:149
-msgid "transkrypcja"
-msgstr "Transkrypcja"
-
-#: templates/emu_project.html:150
-msgid "segmentacja"
-msgstr "Segmentacja"
-
-#: templates/emu_project.html:187 templates/emu_project.html:246
-#: templates/emu_project.html:308
-msgid "błąd"
-msgstr "Wystąpił błąd!"
-
-#: templates/emu_project.html:192 templates/emu_project.html:251
-#: templates/emu_project.html:313
-msgid "przetwarzam"
-msgstr "Przetwarzam..."
-
-#: templates/emu_project.html:282 templates/emu_project.html:338
-msgid "wygeneruj_automatycznie"
-msgstr "Wygeneruj automatycznie"
-
-#: templates/emu_project.html:350
-msgid "usuń_paczkę"
-msgstr "Usuń całą paczkę"
-
-#: templates/emu_project.html:364
-msgid "narzędzia_całego_projektu_tytuł"
-msgstr "Narzędzia dla całego projektu"
-
-#: templates/emu_project.html:366
-msgid "narzędzia_całego_projektu_opis1"
 msgstr ""
-"Niektóre opcje są dostępne tylko po wgraniu wszystkich plików danego "
-"rodzaju."
+"Kliknij <a id=\"refresh-link\" href=\"#\">tutaj</a> żeby odświeżyć "
+"natychmiast!"
 
-#: templates/emu_project.html:368
-msgid "narzędzia_całego_projektu_opis2"
-msgstr "Pliki są generowane automatycznie tylko dla brakujących pozycji."
-
-#: templates/emu_project.html:376
-msgid "wykonaj_asr"
-msgstr "Wykonaj rozpoznawanie plików audio dla całego projektu"
-
-#: templates/emu_project.html:388
-msgid "wykonaj_align"
-msgstr "Wykonaj segmentację nagrań dla całego projektu"
-
-#: templates/emu_project.html:400
-msgid "otwórz_webapp"
-msgstr "Otwórz projekt w aplikacji EMU-WebApp"
-
-#: templates/emu_project.html:410
+#: templates/emu_project.html:83
 msgid "ściągnij_projekt"
 msgstr "Ściągnij cały projekt"
 
-#: templates/emu_project.html:420 templates/kontakt.html:17
-#: templates/korpusy.html:44 templates/multiview_any.html:19
-#: templates/multiview_audio_trans.html:71 templates/tool_align.html:117
-#: templates/tool_audio_to_audio.html:67 templates/tool_g2p_list.html:105
-#: templates/tool_g2p_word.html:71 templates/tool_reco.html:66
-#: templates/tool_text_to_text.html:66 templates/view_any.html:26
-#: templates/view_audio.html:50 templates/view_segmentation.html:27
-#: templates/view_transcription.html:39
-msgid "cytowanie"
-msgstr "Cytowanie"
+#: templates/emu_project.html:87
+msgid "otwórz_webapp"
+msgstr "Otwórz w EMU-WebApp"
 
-#: templates/emu_project.html:422 templates/kontakt.html:19
-#: templates/korpusy.html:46 templates/multiview_any.html:21
-#: templates/multiview_audio_trans.html:73 templates/tool_align.html:119
-#: templates/tool_audio_to_audio.html:69 templates/tool_g2p_list.html:107
-#: templates/tool_g2p_word.html:73 templates/tool_reco.html:68
-#: templates/tool_text_to_text.html:68 templates/view_any.html:28
-#: templates/view_audio.html:52 templates/view_segmentation.html:29
-#: templates/view_transcription.html:41
-msgid "cytowanie_opis"
-msgstr ""
-"Osoby korzystające z zasobów lub narzędzi proszone są o cytowanie "
-"następującej publikacji:"
+#: templates/emu_project.html:94
+msgid "wykonaj_dla_projektu"
+msgstr "Wykonaj dla całości"
 
-#: templates/emu_project.html:431 templates/kontakt.html:27
-#: templates/korpusy.html:54 templates/multiview_any.html:29
-#: templates/multiview_audio_trans.html:81 templates/tool_align.html:127
-#: templates/tool_audio_to_audio.html:77 templates/tool_g2p_list.html:115
-#: templates/tool_g2p_word.html:81 templates/tool_reco.html:76
-#: templates/tool_text_to_text.html:76 templates/view_any.html:36
-#: templates/view_audio.html:60 templates/view_segmentation.html:37
-#: templates/view_transcription.html:49
-msgid "link_do_pracy"
-msgstr "Link do pracy"
+#: templates/emu_project.html:98
+msgid "wygeneruj_wszystkie_transkrypcje"
+msgstr "Wygeneruj wszystkie transkrypcje"
 
-#: templates/emu_project.html:453
+#: templates/emu_project.html:101
+msgid "wygeneruj_wszystkie_segmentacje"
+msgstr "Wygeneruj wsyzstkie segmentacje"
+
+#: templates/emu_project.html:105
+msgid "usuń_wszystkie_audio"
+msgstr "Usuń wszystkie pliki audio"
+
+#: templates/emu_project.html:108
+msgid "usuń_wszystkie_transkrypcje"
+msgstr "Usuń wszystkie transkrypcje"
+
+#: templates/emu_project.html:111
+msgid "usuń_wszystkie_segmentacje"
+msgstr "Usuń wszystkie segmentacje"
+
+#: templates/emu_project.html:121
+msgid "sesja"
+msgstr "Sesja"
+
+#: templates/emu_project.html:122
+msgid "paczka"
+msgstr "Paczka"
+
+#: templates/emu_project.html:123
+msgid "pliki"
+msgstr "Pliki"
+
+#: templates/emu_project.html:180
+msgid "zmień_nazwę"
+msgstr "Zmień nazwę"
+
+#: templates/emu_project.html:184
+msgid "zmień_sesję"
+msgstr "Zmień sesję"
+
+#: templates/emu_project.html:189
+msgid "wgraj_audio"
+msgstr "Wgraj audio z pliku"
+
+#: templates/emu_project.html:193
+msgid "wgraj_transkrypcję"
+msgstr "Wgraj transkrypcję z pliku"
+
+#: templates/emu_project.html:197
+msgid "wgraj_segmentację"
+msgstr "Wgraj segmentację z pliku"
+
+#: templates/emu_project.html:202
+msgid "wygeneruj_transkrypcję"
+msgstr "Wygemeruj transkrypcję"
+
+#: templates/emu_project.html:206
+msgid "wygeneruj_segmentację"
+msgstr "Wygeneruj segmentację"
+
+#: templates/emu_project.html:211
+msgid "usuń_audio"
+msgstr "Usuń plik audio"
+
+#: templates/emu_project.html:215
+msgid "usuń_transkrypcję"
+msgstr "Usuń transkrypcję"
+
+#: templates/emu_project.html:219
+msgid "usuń_segmentację"
+msgstr "Usuń segmentację"
+
+#: templates/emu_project.html:223
+msgid "usuń_paczkę"
+msgstr "Usuń całą paczkę"
+
+#: templates/emu_project.html:244 templates/emu_project.html:250
+msgid "zmień_nazwę_paczki"
+msgstr "Zmień nazwę paczki"
+
+#: templates/emu_project.html:251
+msgid "na_paczkę"
+msgstr "na paczkę"
+
+#: templates/emu_project.html:256 templates/emu_project.html:291
+msgid "zatwierdź"
+msgstr "Zatwierdź"
+
+#: templates/emu_project.html:279 templates/emu_project.html:285
+msgid "zmień_nazwę_sesji"
+msgstr "Zmień nazwę sesji"
+
+#: templates/emu_project.html:285
+msgid "dla_paczki"
+msgstr "Dla paczki"
+
+#: templates/emu_project.html:317 templates/emu_project.html:323
+msgid "dodaj_plik"
+msgstr "Dodaj plik"
+
+#: templates/emu_project.html:324
+msgid "do_paczki"
+msgstr "do paczki"
+
+#: templates/emu_project.html:330
+msgid "dodaj"
+msgstr "Dodaj"
+
+#: templates/emu_project.html:371
 msgid "czy_usunąć_zasób"
 msgstr "Czy na pewno chcesz usunąć zasób?"
 
-#: templates/emu_project.html:460
+#: templates/emu_project.html:377
 msgid "czy_wykonać_akcję"
 msgstr "Czy na pewno chcesz wykonać akcję?"
-
-#: templates/emu_project.html:478
-msgid "nazwa_już_istnieje"
-msgstr "Taka nazwa już istnieje!"
 
 #: templates/emu_search.html:4
 msgid "emu_search_tytuł"
 msgstr "Wyszukiwanie projektu"
 
-#: templates/emu_search.html:10
+#: templates/emu_search.html:8
 msgid "filtry"
 msgstr "Filtry"
 
-#: templates/emu_search.html:24
-msgid "po_dacie"
-msgstr "Po dacie"
-
-#: templates/emu_search.html:29
-msgid "przed_datą"
-msgstr "Przed datą"
-
-#: templates/emu_search.html:36
+#: templates/emu_search.html:32
 msgid "filtruj"
 msgstr "Filtruj"
 
-#: templates/emu_search.html:41
+#: templates/emu_search.html:37
 msgid "resetuj"
 msgstr "Resetuj"
 
-#: templates/emu_search.html:53
+#: templates/emu_search.html:49
 msgid "identyfikator"
 msgstr "Identyfikator"
 
-#: templates/emu_search.html:56
+#: templates/emu_search.html:53
 msgid "data_stworzenia"
 msgstr "Data stworzenia"
 
@@ -302,21 +401,33 @@ msgstr "Data stworzenia"
 msgid "główny_tytuł"
 msgstr "Narzędzia i usługi do przetwarzania nagrań mowy"
 
-#: templates/index.html:16
-msgid "korpusy"
-msgstr "Korpusy i inne zasoby"
-
-#: templates/index.html:29
+#: templates/index.html:24
 msgid "usługi"
 msgstr "Usługi mowy"
 
-#: templates/index.html:42
+#: templates/index.html:33
 msgid "narzędzie_emu"
 msgstr "Narzędzie do tworzenia korpusu EMU-SDMS"
 
-#: templates/index.html:55 templates/kontakt.html:4 templates/layout.html:57
-msgid "kontakt"
-msgstr "Kontakt"
+#: templates/kontakt.html:10
+msgid "kontakt_opis"
+msgstr ""
+"W razie dowolnych pytań na temat działania serwisu mowa.clarin-pl.eu "
+"prosimy o kontakt do następujących osób:"
+
+#: templates/kontakt.html:20
+msgid "cytowanie"
+msgstr "Cytowanie"
+
+#: templates/kontakt.html:22
+msgid "cytowanie_opis"
+msgstr ""
+"Osoby korzystające z zasobów lub narzędzi proszone są o cytowanie "
+"następującej publikacji:"
+
+#: templates/kontakt.html:30
+msgid "link_do_pracy"
+msgstr "Link do pracy"
 
 #: templates/korpusy.html:4
 msgid "korpusy_tytuł"
@@ -366,27 +477,19 @@ msgstr ""
 "system LVSCR Kaldi. Tam znajdują się wszystkie opisy i skrypty "
 "pozwalające na samodzielne wytrenowanie systemu."
 
-#: templates/layout.html:54
-msgid "strona_główna"
-msgstr "Strona główna"
-
 #: templates/layout.html:55
-msgid "strona_główna_projektu"
-msgstr "Strona główna projektu"
-
-#: templates/layout.html:56
-msgid "repozytorium"
-msgstr "Repozytorium"
+msgid "CLARIN-PL"
+msgstr "Projekt CLARIN-PL"
 
 #: templates/multiview_any.html:3
 msgid "zasoby"
 msgstr "Zasoby"
 
-#: templates/multiview_any.html:8
+#: templates/multiview_any.html:6
 msgid "ident_pierwszy"
 msgstr "Identyfikator zasobu pierwszego"
 
-#: templates/multiview_any.html:12
+#: templates/multiview_any.html:10
 msgid "ident_drugi"
 msgstr "Identyfikator zasobu drugiego"
 
@@ -394,101 +497,97 @@ msgstr "Identyfikator zasobu drugiego"
 msgid "audio_tytuł"
 msgstr "Plik audio"
 
-#: templates/multiview_audio_trans.html:10 templates/view_audio.html:10
+#: templates/multiview_audio_trans.html:8 templates/view_audio.html:8
 msgid "zoom"
 msgstr "Zoom"
 
-#: templates/multiview_audio_trans.html:18 templates/view_audio.html:19
+#: templates/multiview_audio_trans.html:16 templates/view_audio.html:17
 msgid "play_pause"
 msgstr "Odtwórz/Zatrzymaj"
 
-#: templates/multiview_audio_trans.html:22 templates/view_any.html:8
-#: templates/view_audio.html:23
+#: templates/multiview_audio_trans.html:20 templates/view_any.html:6
+#: templates/view_audio.html:21
 msgid "pobierz"
 msgstr "Pobierz"
 
-#: templates/multiview_audio_trans.html:27
-#: templates/multiview_audio_trans.html:52 templates/tool_g2p_word.html:101
-#: templates/view_any.html:12 templates/view_audio.html:28
-#: templates/view_segmentation.html:21 templates/view_transcription.html:11
+#: templates/multiview_audio_trans.html:25
+#: templates/multiview_audio_trans.html:50 templates/tool_g2p_word.html:84
+#: templates/view_any.html:10 templates/view_audio.html:26
+#: templates/view_segmentation.html:19 templates/view_transcription.html:9
 msgid "pracuję"
 msgstr "Pracuję..."
 
-#: templates/multiview_audio_trans.html:39
-#: templates/multiview_audio_trans.html:177
+#: templates/multiview_audio_trans.html:37
+#: templates/multiview_audio_trans.html:160
 msgid "edytuj"
 msgstr "Edytuj"
 
-#: templates/multiview_audio_trans.html:60
+#: templates/multiview_audio_trans.html:42
+msgid "zapisz"
+msgstr "Zapisz"
+
+#: templates/multiview_audio_trans.html:58
 msgid "ident_audio"
 msgstr "Identyfikator pliku audio"
 
-#: templates/multiview_audio_trans.html:64
+#: templates/multiview_audio_trans.html:62
 msgid "ident_trans"
 msgstr "Identyfikator transkrypcji"
 
-#: templates/multiview_audio_trans.html:122
-#: templates/multiview_audio_trans.html:159 templates/view_any.html:62
-#: templates/view_audio.html:101 templates/view_segmentation.html:88
-#: templates/view_transcription.html:74
+#: templates/multiview_audio_trans.html:105
+#: templates/multiview_audio_trans.html:142 templates/view_any.html:45
+#: templates/view_audio.html:84 templates/view_segmentation.html:71
+#: templates/view_transcription.html:57
 msgid "f5_refresh"
 msgstr ""
 "Nie udało się jeszcze przetworzyć zasobu! Wciśnij F5, aby spróbować "
 "ponownie za chwilę..."
 
-#: templates/multiview_audio_trans.html:128
-#: templates/multiview_audio_trans.html:134
-#: templates/multiview_audio_trans.html:165 templates/tool_align.html:40
-#: templates/tool_audio_to_audio.html:25 templates/tool_reco.html:25
-#: templates/tool_text_to_text.html:24 templates/view_any.html:68
-#: templates/view_any.html:76 templates/view_audio.html:107
-#: templates/view_audio.html:113 templates/view_segmentation.html:94
-#: templates/view_segmentation.html:102 templates/view_transcription.html:80
+#: templates/multiview_audio_trans.html:111
+#: templates/multiview_audio_trans.html:117
+#: templates/multiview_audio_trans.html:148 templates/tool_align.html:38
+#: templates/tool_audio_to_audio.html:23 templates/tool_reco.html:23
+#: templates/tool_text_to_text.html:22 templates/view_any.html:51
+#: templates/view_any.html:59 templates/view_audio.html:90
+#: templates/view_audio.html:96 templates/view_segmentation.html:77
+#: templates/view_segmentation.html:85 templates/view_transcription.html:63
 msgid "błąd_admin"
 msgstr "Błąd przetwarzania zasobu! Skontaktuj się z administratorem!"
 
-#: templates/multiview_audio_trans.html:182
+#: templates/multiview_audio_trans.html:165
 msgid "readonly"
 msgstr "Tylko do odczytu"
 
-#: templates/multiview_audio_trans.html:188
+#: templates/multiview_audio_trans.html:171
 msgid "czy_modyfikuj"
 msgstr "Czy na pewno chcesz zmodyfikować ten zasób?"
 
-#: templates/tool_align.html:4 templates/tools.html:42
-msgid "forcealign_tytuł"
-msgstr "Segmentacja krótkich nagrań"
-
-#: templates/tool_align.html:6 templates/tools.html:49
-msgid "segalign_tytuł"
-msgstr "Segmentacja długich nagrań"
-
-#: templates/tool_align.html:12 templates/tool_audio_to_audio.html:9
-#: templates/tool_g2p_list.html:9 templates/tool_g2p_word.html:8
-#: templates/tool_reco.html:8 templates/tool_text_to_text.html:8
+#: templates/tool_align.html:10 templates/tool_audio_to_audio.html:7
+#: templates/tool_g2p_list.html:7 templates/tool_g2p_word.html:6
+#: templates/tool_reco.html:6 templates/tool_text_to_text.html:6
 msgid "opis_narzędzia"
 msgstr "Opis narzędzia"
 
-#: templates/tool_align.html:13
+#: templates/tool_align.html:11
 msgid "opis_align"
 msgstr ""
 "Dopasowanie czasowe tekstu do nagrania. Podział nagrania na segmenty "
 "(wyrazy i fonemy)."
 
-#: templates/tool_align.html:16
+#: templates/tool_align.html:14
 msgid "opis_forced"
 msgstr ""
 "Narzędzie to jest dostosowane do przetwarzania stosunkowo krótkich nagrań"
 " (poniżej minuty). Dłuższe nagrania mogą spowodować powstanie błędu."
 
-#: templates/tool_align.html:18
+#: templates/tool_align.html:16
 msgid "opis_segment"
 msgstr ""
 "Narzędzie to jest dostosowane do przetwarzania długich nagrań. Może "
 "spodowować powstanie błędu na bardzo krótkich nagraniach (kilka sekund "
 "długości)."
 
-#: templates/tool_align.html:21 templates/tool_reco.html:10
+#: templates/tool_align.html:19 templates/tool_reco.html:8
 msgid "opis_pliki_audio"
 msgstr ""
 "UWAGA: Pliki audio przekazywane do tej usługi muszą być w odpowiednim "
@@ -496,235 +595,207 @@ msgstr ""
 "formacie, można skorzystać z usługi normalizacji audio do odpowiedniego "
 "przekonwertowania pliku."
 
-#: templates/tool_align.html:26
+#: templates/tool_align.html:24
 msgid "wczytaj_nagranie"
 msgstr "Wczytaj nagranie"
 
-#: templates/tool_align.html:30
+#: templates/tool_align.html:28
 msgid "wczytaj_transkrypcję"
 msgstr "Wczytaj transkrypcję"
 
-#: templates/tool_align.html:35 templates/tool_reco.html:20
+#: templates/tool_align.html:33 templates/tool_reco.html:18
 msgid "rozpocznij"
 msgstr "Rozpocznij"
 
-#: templates/tool_align.html:44 templates/tool_audio_to_audio.html:29
-#: templates/tool_g2p_list.html:54 templates/tool_g2p_word.html:44
-#: templates/tool_reco.html:29 templates/tool_text_to_text.html:28
+#: templates/tool_align.html:42 templates/tool_audio_to_audio.html:27
+#: templates/tool_g2p_list.html:52 templates/tool_g2p_word.html:42
+#: templates/tool_reco.html:27 templates/tool_text_to_text.html:26
 msgid "commandline_tytuł"
 msgstr "Przykład korzystania z usługi z linii poleceń"
 
-#: templates/tool_align.html:48 templates/tool_audio_to_audio.html:33
-#: templates/tool_g2p_list.html:59 templates/tool_g2p_word.html:48
-#: templates/tool_reco.html:33 templates/tool_text_to_text.html:32
+#: templates/tool_align.html:46 templates/tool_audio_to_audio.html:31
+#: templates/tool_g2p_list.html:57 templates/tool_g2p_word.html:46
+#: templates/tool_reco.html:31 templates/tool_text_to_text.html:30
 msgid "usługę_uruchamiamy_poleceniem"
 msgstr "Usługę uruchamiamy następującym poleceniem:"
 
-#: templates/tool_align.html:60 templates/tool_audio_to_audio.html:37
-#: templates/tool_reco.html:37 templates/tool_text_to_text.html:36
+#: templates/tool_align.html:58 templates/tool_audio_to_audio.html:35
+#: templates/tool_reco.html:35 templates/tool_text_to_text.html:34
 msgid "help_ident_io"
 msgstr "Co wygeneruje identyfikatory plików wejścia i wyjścia w formacie JSON, np:"
 
-#: templates/tool_align.html:69 templates/tool_audio_to_audio.html:41
-#: templates/tool_reco.html:41 templates/tool_text_to_text.html:40
+#: templates/tool_align.html:67 templates/tool_audio_to_audio.html:39
+#: templates/tool_reco.html:39 templates/tool_text_to_text.html:38
 msgid "help_download"
 msgstr ""
 "Plik można pobrać według identyfikatora poleceniem <code>download</code>,"
 " np:"
 
-#: templates/tool_align.html:73
+#: templates/tool_align.html:71
 msgid "help_download_textgrid"
 msgstr ""
 "Pliki można też ściągnąć w formacie TextGrid, podając opcjonalnie alfabet"
 " fonetyczny używany w wartstwie fonetycznej, np:"
 
-#: templates/tool_align.html:83
+#: templates/tool_align.html:81
 msgid "help_download_annot"
 msgstr ""
 "Pliki można również ściągnąć w formacie annot.json używanym przez system "
 "EMU-SDMS, np:"
 
-#: templates/tool_align.html:87 templates/tool_audio_to_audio.html:45
-#: templates/tool_reco.html:45
+#: templates/tool_align.html:85 templates/tool_audio_to_audio.html:43
+#: templates/tool_reco.html:43
 msgid "help_download_status_codes"
 msgstr ""
 "Jeśli plik jest jeszcze przetwarzany, otrzymamy kod statusu 503. W "
 "przypadku błędu, otrzymamy kod 500. Status można sprawdzić również "
 "poleceniem <code>status</code>, np:"
 
-#: templates/tool_align.html:91 templates/tool_audio_to_audio.html:50
-#: templates/tool_reco.html:50
+#: templates/tool_align.html:89 templates/tool_audio_to_audio.html:48
+#: templates/tool_reco.html:48
 msgid "help_status_status_codes"
 msgstr ""
 "Polecenie to może zwrócić wartości <code>ok</code>, kiedy plik jest "
 "gotowy do ściągnięcia, <code>wait</code>, jeśli jest wciąż przetwarzany, "
 "oraz <code>error</code> (z opisem), jeśli wystąpił błąd."
 
-#: templates/tool_align.html:93 templates/tool_audio_to_audio.html:52
-#: templates/tool_reco.html:52 templates/tool_text_to_text.html:52
+#: templates/tool_align.html:91 templates/tool_audio_to_audio.html:50
+#: templates/tool_reco.html:50 templates/tool_text_to_text.html:50
 msgid "help_upload"
 msgstr "Plik wejściowy można też nagrać poleceniem <code>upload</code>, np:"
 
-#: templates/tool_align.html:97 templates/tool_audio_to_audio.html:56
-#: templates/tool_reco.html:56
+#: templates/tool_align.html:95 templates/tool_audio_to_audio.html:54
+#: templates/tool_reco.html:54
 msgid "help_upload_result"
 msgstr ""
 "Co wygeneruje identyfikator pliku wejściowego, który można przekazać do "
 "pierwszego polecenia, jak wyżej:"
 
-#: templates/tool_align.html:109 templates/tool_audio_to_audio.html:60
-#: templates/tool_reco.html:60 templates/tool_text_to_text.html:50
+#: templates/tool_align.html:107 templates/tool_audio_to_audio.html:58
+#: templates/tool_reco.html:58 templates/tool_text_to_text.html:48
 msgid "help_final_download"
 msgstr ""
 "Co wygeneruje identyfikator pliku wyjściowego, który można przekazać do "
 "poleceń <code>download</code> oraz <code>status</code>, tak jak pokazano "
 "wyżej."
 
-#: templates/tool_audio_to_audio.html:4 templates/tools.html:33
-msgid "audionorm_tytuł"
-msgstr "Normalizacja audio"
-
-#: templates/tool_audio_to_audio.html:10
+#: templates/tool_audio_to_audio.html:8
 msgid "opis_audionorm"
 msgstr ""
 "Konwersja pliku multimedialnego (audio lub wideo) na plik audio typu WAV,"
 " o częstotliwości próbkowania 16 kHz, jednym kanale (mono) oraz "
 "rozdzielczości 16 bitów."
 
-#: templates/tool_audio_to_audio.html:15 templates/tool_reco.html:15
+#: templates/tool_audio_to_audio.html:13 templates/tool_reco.html:13
 msgid "wczytaj_audio"
 msgstr "Wczytaj plik audio:"
 
-#: templates/tool_audio_to_audio.html:20 templates/tool_g2p_list.html:18
-#: templates/tool_g2p_list.html:146 templates/tool_g2p_list.html:150
-#: templates/tool_g2p_word.html:18 templates/tool_g2p_word.html:108
-#: templates/tool_g2p_word.html:117 templates/tool_text_to_text.html:19
+#: templates/tool_audio_to_audio.html:18 templates/tool_g2p_list.html:16
+#: templates/tool_g2p_list.html:129 templates/tool_g2p_list.html:133
+#: templates/tool_g2p_word.html:16 templates/tool_g2p_word.html:91
+#: templates/tool_g2p_word.html:100 templates/tool_text_to_text.html:17
 msgid "konwertuj"
 msgstr "Konwertuj"
 
-#: templates/tool_g2p_list.html:4 templates/tools.html:19
-msgid "g2p_wordlist_tytuł"
-msgstr "Transkrypcja listy wyrazów"
-
-#: templates/tool_g2p_list.html:10
+#: templates/tool_g2p_list.html:8
 msgid "opis_g2p_wordlist"
 msgstr "Konwersja listy wyrazów z zapisu ortograficznego na fonetyczny."
 
-#: templates/tool_g2p_list.html:14 templates/tool_text_to_text.html:14
+#: templates/tool_g2p_list.html:12 templates/tool_text_to_text.html:12
 msgid "wczytaj_tekstowy"
 msgstr "Wczytaj plik tekstowy"
 
-#: templates/tool_g2p_list.html:25 templates/tool_g2p_word.html:25
+#: templates/tool_g2p_list.html:23 templates/tool_g2p_word.html:23
 msgid "wynik"
 msgstr "Wynik"
 
-#: templates/tool_g2p_list.html:30
+#: templates/tool_g2p_list.html:28
 msgid "ident_admin"
 msgstr "Proszę wysłać te dane administratorowi w razie problemów!"
 
-#: templates/tool_g2p_list.html:63 templates/tool_g2p_list.html:77
-#: templates/tool_g2p_list.html:91 templates/tool_text_to_text.html:44
+#: templates/tool_g2p_list.html:61 templates/tool_g2p_list.html:75
+#: templates/tool_g2p_list.html:89 templates/tool_text_to_text.html:42
 msgid "help_gen_result"
 msgstr "Co wygeneruje wynik przykładowo:"
 
-#: templates/tool_g2p_list.html:73
+#: templates/tool_g2p_list.html:71
 msgid "help_result_sampa"
 msgstr "Można też pobrać wynik w alfabecie SAMPA:"
 
-#: templates/tool_g2p_list.html:87 templates/tool_g2p_word.html:56
+#: templates/tool_g2p_list.html:85 templates/tool_g2p_word.html:54
 msgid "help_result_ipa"
 msgstr "Można też pobrać wynik w alfabecie IPA:"
 
-#: templates/tool_g2p_list.html:149 templates/tool_g2p_word.html:116
+#: templates/tool_g2p_list.html:132 templates/tool_g2p_word.html:99
 msgid "błąd_konwersji"
 msgstr "Błąd konwersji..."
 
-#: templates/tool_g2p_word.html:3 templates/tools.html:12
-msgid "g2p_tytuł"
-msgstr "Transkrpycja pojedynczego wyrazu"
-
-#: templates/tool_g2p_word.html:9
+#: templates/tool_g2p_word.html:7
 msgid "opis_g2p"
 msgstr "Konwersja wyrazu z zapisu ortograficznego na fonetyczny."
 
-#: templates/tool_g2p_word.html:13
+#: templates/tool_g2p_word.html:11
 msgid "wpisz_wyraz_g2p"
 msgstr "Wpisz wyraz, który chcesz przetranskrybować:"
 
-#: templates/tool_g2p_word.html:52
+#: templates/tool_g2p_word.html:50
 msgid "help_gen_result_JSON"
 msgstr "Generuje taki wynik w formacie JSON:"
 
-#: templates/tool_g2p_word.html:60
+#: templates/tool_g2p_word.html:58
 msgid "help_gen_result_utf8"
 msgstr "Co wygeneruje wynik w kodzie UTF-8:"
 
-#: templates/tool_g2p_word.html:64
+#: templates/tool_g2p_word.html:62
 msgid "help_503_odśwież"
 msgstr ""
 "W przypadku większego obciążenia, serwer może odpowiedzieć kodem "
 "<code>503 Service Unavaliable</code>. W takim wypadku wystarczy powtórzyć"
 " zapytanie."
 
-#: templates/tool_reco.html:3 templates/tools.html:56
-msgid "reco_tytuł"
-msgstr "Pełne rozpoznawanie mowy"
-
-#: templates/tool_reco.html:9
+#: templates/tool_reco.html:7
 msgid "opis_reco"
 msgstr "Zamiana nagrania mowy na zapis ortograficzny."
 
-#: templates/tool_text_to_text.html:3 templates/tools.html:26
-msgid "textnorm_tytuł"
-msgstr "Normalizacja tekstu"
-
-#: templates/tool_text_to_text.html:9
+#: templates/tool_text_to_text.html:7
 msgid "opis_textnorm"
 msgstr ""
 "Zamiany tekstu ortograficznego na postać nadającą się do transkrypcji "
 "fonetycznej: konwersja liczebników na tekst, rozwijanie skrótów, usuwanie"
 " znaków specjalnych, itd."
 
-#: templates/tool_text_to_text.html:10
+#: templates/tool_text_to_text.html:8
 msgid "opis_textnorm_wip"
 msgstr ""
 "UWAGA: w trakcie tworzenia! W tej chwili narzędzie nie wspiera większości"
 " wymienionych funkcji!"
 
-#: templates/tool_text_to_text.html:56
+#: templates/tool_text_to_text.html:54
 msgid "help_trans_normalize"
 msgstr ""
 "Zasób będący transkrypcją zawsze można przetworzyć poleceniem "
 "<code>text/normalize/[id]</code>:"
 
-#: templates/tool_text_to_text.html:60
+#: templates/tool_text_to_text.html:58
 msgid "help_result_download"
 msgstr ""
 "Co wygnereuje identyfikator, który można pobrać poleceniem "
 "<code>download</code> tak, jak opisano wyżej."
 
-#: templates/tools.html:4
-msgid "tool_tytuł"
-msgstr "Usługi mowy"
-
-#: templates/tools.html:62
+#: templates/tools.html:59
 msgid "vad_tytuł"
 msgstr "Detekcja mowy"
 
-#: templates/tools.html:71
+#: templates/tools.html:66
 msgid "dia_tytuł"
 msgstr "Diaryzacja mówców"
 
-#: templates/tools.html:78
+#: templates/tools.html:73
 msgid "kws_tytuł"
 msgstr "Detekcja słów kluczowych"
 
-#: templates/view_any.html:3
-msgid "view_any_tytuł"
-msgstr "Pobierz plik"
-
-#: templates/view_any.html:20 templates/view_audio.html:36
-#: templates/view_segmentation.html:44 templates/view_transcription.html:19
+#: templates/view_any.html:18 templates/view_audio.html:34
+#: templates/view_segmentation.html:27 templates/view_transcription.html:17
 msgid "ident_res"
 msgstr "Identyfikator zasobu:"
 
@@ -732,13 +803,13 @@ msgstr "Identyfikator zasobu:"
 msgid "view_audio_tytuł"
 msgstr "Plik audio"
 
-#: templates/view_audio.html:40 templates/view_segmentation.html:48
-#: templates/view_transcription.html:23
+#: templates/view_audio.html:38 templates/view_segmentation.html:31
+#: templates/view_transcription.html:21
 msgid "ident_from"
 msgstr "Wyliczony z:"
 
-#: templates/view_audio.html:44 templates/view_segmentation.html:53
-#: templates/view_transcription.html:27
+#: templates/view_audio.html:42 templates/view_segmentation.html:36
+#: templates/view_transcription.html:25
 msgid "nieznany_f5"
 msgstr "Nieznany! Naciśnij F5, żeby odświeżyć!"
 
@@ -750,7 +821,17 @@ msgstr "Segmentacja"
 msgid "view_trans_tytuł"
 msgstr "Transkrypcja"
 
-#: templates/view_transcription.html:32
+#: templates/view_transcription.html:30
 msgid "otwórz_z_audio"
 msgstr "Otwórz razem z audio"
+
+#~ msgid ""
+#~ "\n"
+#~ "                                zatwierdź"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "                                anuluj"
+#~ msgstr ""
 
