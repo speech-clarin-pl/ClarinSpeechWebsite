@@ -587,7 +587,7 @@ pat = re.compile('^[a-zA-Z]*://([^:/]*)[:/]')
 @emu_page.route('project/webapp/<id>')
 def webapp(id):
     server = pat.match(request.url_root).group(1)
-    url = f'ws://{server}:{config.emu.webapp_port}/{id}'
+    url = f'wss://{server}:{config.emu.webapp_port}/{id}'
     return redirect('http://ips-lmu.github.io/EMU-webApp/?autoConnect=true&serverUrl=' + urllib.parse.quote_plus(url))
 
 
