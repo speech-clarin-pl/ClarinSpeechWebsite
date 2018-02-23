@@ -15,6 +15,7 @@ class Config:
         self.emu.webapp_port = 17890
         self.emu.master_password = 'masterpassword'
         self.corpora_dir = Path('/dane/korpusy')
+        self.allow_res_delete = True
 
     def load(self, config_path):
         try:
@@ -40,6 +41,8 @@ class Config:
                 self.emu.master_password = config_file['emu']['master_password']
         if 'corpora_dir' in config_file:
             self.corpora_dir = Path(config_file['corpora_dir'])
+        if 'allow_res_delete' in config_file:
+            self.allow_res_delete = config_file['allow_res_delete']
 
 
 config = Config()

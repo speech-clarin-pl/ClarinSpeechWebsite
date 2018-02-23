@@ -17,6 +17,14 @@
     <div class="card form-group card-block">
         <p>{% trans %}ident_res{% endtrans %}</p>
         <p><a href="/tools/ui/view/{{ res_id }}">{{ res_id }}</a></p>
+
+        {% if allow_delete %}
+            <p><a href="/tools/delete/{{ res_id }}" class="btn btn-danger"
+                  onclick="return confirm('{% trans %}czy_usunąć_zasób{% endtrans %}')">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                {% trans %}usuń{% endtrans %}
+            </a></p>
+        {% endif %}
     </div>
 
     <script type="text/javascript">

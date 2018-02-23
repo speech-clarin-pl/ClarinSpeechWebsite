@@ -55,7 +55,8 @@ def download(id):
 
 @tools_page.route('delete/<id>')
 def delete(id):
-    tools.utils.invalidate_file(id)
+    if config.allow_res_delete:
+        tools.utils.invalidate_file(id)
     return redirect(f'/tools/ui/view/{id}')
 
 
@@ -97,12 +98,13 @@ def ui_view(id):
                 from_file = tools.utils.get_file(from_id)
                 if from_file['type'] == 'audio':
                     from_audio = True
-            return render_template('view_transcription.html', res_id=id, from_id=from_id, from_audio=from_audio)
+            return render_template('view_transcription.html', res_id=id, from_id=from_id, from_audio=from_audio,
+                                   allow_delete=config.allow_res_delete)
         if file['type'] == 'audio':
             from_id = None
             if 'from' in file:
                 from_id = file['from']['input']
-            return render_template('view_audio.html', res_id=id, from_id=from_id)
+            return render_template('view_audio.html', res_id=id, from_id=from_id, allow_delete=config.allow_res_delete)
         if file['type'] == 'segmentation':
             from_audio = None
             from_trans = None
@@ -110,9 +112,9 @@ def ui_view(id):
                 from_audio = file['from']['audio']
                 from_trans = file['from']['transcript']
             return render_template('view_segmentation.html', res_id=id, from_audio=from_audio, from_trans=from_trans,
-                                   server_url=request.url_root)
+                                   server_url=request.url_root, allow_delete=config.allow_res_delete)
         else:
-            return render_template('view_any.html', res_id=id)
+            return render_template('view_any.html', res_id=id, allow_delete=config.allow_res_delete)
 
 
 @tools_page.route('ui/multiview/<ida>/<idb>')
