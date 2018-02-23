@@ -73,9 +73,10 @@ def update_file(id, file):
                                    {'$set': {'hash': hash, 'modified': datetime.datetime.utcnow()}})
 
 
-def invalidate_file(id):
-    db.clarin.resources.update_one({'_id': ObjectId(id)},
-                                   {'$set': {'error': 'manual delete'}})
+def invalidate_file(fid):
+    file = get_file(fid)
+    if file:
+        db.clarin.resources.update_many({'hash': file['hash']}, {'$set': {'error': 'manual delete', 'hash': ''}})
 
 
 def audio_file_size(file):

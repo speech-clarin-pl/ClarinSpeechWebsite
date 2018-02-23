@@ -56,7 +56,7 @@ def download(id):
 @tools_page.route('delete/<id>')
 def delete(id):
     tools.utils.invalidate_file(id)
-    return f'Invalidated {id}'
+    return redirect(f'/tools/ui/view/{id}')
 
 
 @tools_page.route('status/<id>')
