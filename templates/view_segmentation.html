@@ -30,10 +30,22 @@
 
         <p>{% trans %}ident_from{% endtrans %}</p>
         {% if from_audio %}
-            <p><a href="/tools/ui/view/{{ from_audio }}" target="_blank">{{ from_audio }}</a></p>
-            <p><a href="/tools/ui/view/{{ from_trans }}" target="_blank">{{ from_trans }}</a></p>
-        {% else %}
-            <p>{% trans %}nieznany_f5{% endtrans %}</p>
+            <p>
+                <i class="fa fa-file-audio-o" aria-hidden="true"></i>
+                <a href="/tools/ui/view/{{ from_audio }}" target="_blank">{{ from_audio }}</a>
+            </p>
+        {% endif %}
+        {% if from_trans %}
+            <p>
+                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                <a href="/tools/ui/view/{{ from_trans }}" target="_blank">{{ from_trans }}</a>
+            </p>
+        {% endif %}
+        {% if from_seg %}
+            <p>
+                <i class="fa fa-file-code-o" aria-hidden="true"></i>
+                <a href="/tools/ui/view/{{ from_seg }}" target="_blank">{{ from_seg }}</a>
+            </p>
         {% endif %}
 
         {% if allow_delete %}
@@ -62,10 +74,15 @@
                             $('#result_textgrid_sampa').attr('href', '/tools/textgrid/' + seg_id + '?script=sampa');
                             $('#result_textgrid_ipa').attr('href', '/tools/textgrid/' + seg_id + '?script=ipa');
                             $('#result_emu').attr('href', '/tools/annot/' + seg_id);
-                            $('#result_webapp').attr('href', 'http://ips-lmu.github.io/EMU-webApp/' +
-                                '?audioGetUrl={{ ( server_url + 'tools/download/' + from_audio ) | urlencode }}' +
-                                '&labelGetUrl={{ ( server_url + 'tools/annot/'+ res_id ) | urlencode }}' +
-                                '&labelType=annotJSON');
+                            {% if from_audio %}
+                                $('#result_webapp').attr('href', 'http://ips-lmu.github.io/EMU-webApp/' +
+                                    '?audioGetUrl={{ ( server_url + 'tools/download/' + from_audio ) | urlencode }}' +
+                                    '&labelGetUrl={{ ( server_url + 'tools/annot/'+ res_id ) | urlencode }}' +
+                                    '&labelType=annotJSON');
+                            {% else %}
+                                $('#result_webapp').attr('href', '#');
+                                $('#result_webapp').addClass('disabled');
+                            {% endif %}
                             $("#progress-msg").alert('close');
                         } else if (data == 'wait') {
                             if (fail_count > 0) {

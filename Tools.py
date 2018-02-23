@@ -108,11 +108,16 @@ def ui_view(id):
         if file['type'] == 'segmentation':
             from_audio = None
             from_trans = None
+            from_seg = None
             if 'from' in file:
-                from_audio = file['from']['audio']
-                from_trans = file['from']['transcript']
+                if 'audio' in file['from']:
+                    from_audio = file['from']['audio']
+                if 'transcript' in file['from']:
+                    from_trans = file['from']['transcript']
+                if 'seg' in file['from']:
+                    from_seg = file['from']['seg']
             return render_template('view_segmentation.html', res_id=id, from_audio=from_audio, from_trans=from_trans,
-                                   server_url=request.url_root, allow_delete=config.allow_res_delete)
+                                   from_seg=from_seg, server_url=request.url_root, allow_delete=config.allow_res_delete)
         else:
             return render_template('view_any.html', res_id=id, allow_delete=config.allow_res_delete)
 
