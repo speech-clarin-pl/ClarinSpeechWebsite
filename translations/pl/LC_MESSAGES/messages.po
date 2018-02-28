@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-19 13:58+0100\n"
+"POT-Creation-Date: 2018-02-28 19:41+0100\n"
 "PO-Revision-Date: 2017-09-05 11:46+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.1\n"
+"Generated-By: Babel 2.5.3\n"
 
 #: ClarinSpeechWebsite.py:47
 msgid "strona_główna"
@@ -31,121 +31,125 @@ msgstr "Korpusy i inne zasoby"
 msgid "kontakt"
 msgstr "Kontakt"
 
-#: EMU.py:31
+#: EMU.py:32
 msgid "EMU"
 msgstr "EMU"
 
-#: EMU.py:37 EMU.py:248 templates/emu_search.html:51
+#: EMU.py:38 EMU.py:245 templates/emu_search.html:51
 msgid "właściciel"
 msgstr "Właściciel"
 
-#: EMU.py:38 EMU.py:249 templates/emu_project.html:27
+#: EMU.py:39 EMU.py:246 templates/emu_project.html:27
 #: templates/emu_search.html:52
 msgid "opis"
 msgstr "Opis"
 
-#: EMU.py:39 templates/emu_new.html:60
+#: EMU.py:40 templates/emu_new.html:60
 msgid "hasło"
 msgstr "Hasło"
 
-#: EMU.py:40
+#: EMU.py:41
 msgid "hasła_się_różnią"
 msgstr "Hasła nie są takie same!"
 
-#: EMU.py:42 templates/emu_modify.html:63 templates/emu_new.html:63
+#: EMU.py:43 templates/emu_modify.html:63 templates/emu_new.html:63
 msgid "powtórz_hasło"
 msgstr "Powtórz hasło"
 
-#: EMU.py:43 templates/emu_project.html:12
+#: EMU.py:44 templates/emu_project.html:12
 msgid "widoczność"
 msgstr "Widoczność"
 
-#: EMU.py:44 templates/emu_modify.html:34 templates/emu_new.html:34
+#: EMU.py:45 templates/emu_modify.html:34 templates/emu_new.html:34
 #: templates/emu_project.html:16
 msgid "publiczny"
 msgstr "Publiczny"
 
-#: EMU.py:44 templates/emu_modify.html:39 templates/emu_new.html:39
+#: EMU.py:45 templates/emu_modify.html:39 templates/emu_new.html:39
 #: templates/emu_project.html:19
 msgid "tylko_do_odczytu"
 msgstr "Tylko do odczytu"
 
-#: EMU.py:45 templates/emu_modify.html:44 templates/emu_new.html:44
+#: EMU.py:46 templates/emu_modify.html:44 templates/emu_new.html:44
 #: templates/emu_project.html:22
 msgid "prywatny"
 msgstr "Prywatny"
 
-#: EMU.py:53 templates/emu.html:14 templates/emu_new.html:4
+#: EMU.py:54 templates/emu.html:14 templates/emu_new.html:4
 msgid "nowy_projekt"
 msgstr "Nowy projekt"
 
-#: EMU.py:72 templates/emu_deleted.html:4
+#: EMU.py:73 templates/emu_deleted.html:4
 msgid "projekt_usunięty"
 msgstr "Projekt został usunięty!"
 
-#: EMU.py:103 templates/emu_project.html:3
+#: EMU.py:100 templates/emu_project.html:3
 msgid "emu_projekt_tytuł"
 msgstr "Projekt EMU"
 
-#: EMU.py:176 templates/emu_modify.html:4
+#: EMU.py:173 templates/emu_modify.html:4
 msgid "zmień_projekt"
 msgstr "Zmień projekt"
 
-#: EMU.py:229 templates/emu_password.html:4
+#: EMU.py:226 templates/emu_password.html:4
 msgid "hasło_tytuł"
 msgstr "Projekt zabezpieczono hasłem"
 
-#: EMU.py:250
+#: EMU.py:247
 msgid "po_dacie"
 msgstr "Po dacie"
 
-#: EMU.py:251
+#: EMU.py:248
 msgid "przed_datą"
 msgstr "Przed datą"
 
-#: EMU.py:256 templates/emu.html:23
+#: EMU.py:253 templates/emu.html:23
 msgid "szukaj_projekt"
 msgstr "Wyszukaj projekt"
+
+#: EMU.py:606 EMU.py:612 Tools.py:87 Tools.py:126 templates/view_any.html:3
+msgid "view_any_tytuł"
+msgstr "Pobierz plik"
 
 #: Tools.py:21 templates/tools.html:4
 msgid "tool_tytuł"
 msgstr "Usługi mowy"
 
-#: Tools.py:86 Tools.py:119 templates/view_any.html:3
-msgid "view_any_tytuł"
-msgstr "Pobierz plik"
-
-#: Tools.py:134 templates/tool_g2p_word.html:3 templates/tools.html:10
+#: Tools.py:141 templates/tool_g2p_word.html:3 templates/tools.html:10
 msgid "g2p_tytuł"
 msgstr "Transkrpycja pojedynczego wyrazu"
 
-#: Tools.py:140 templates/tool_g2p_list.html:4 templates/tools.html:17
+#: Tools.py:147 templates/tool_g2p_list.html:4 templates/tools.html:17
 msgid "g2p_wordlist_tytuł"
 msgstr "Transkrypcja listy wyrazów"
 
-#: Tools.py:146 templates/tool_text_to_text.html:3 templates/tools.html:24
+#: Tools.py:153 templates/tool_text_to_text.html:3 templates/tools.html:24
 msgid "textnorm_tytuł"
 msgstr "Normalizacja tekstu"
 
-#: Tools.py:152 templates/tool_audio_to_audio.html:4 templates/tools.html:31
+#: Tools.py:159 templates/tool_audio_to_audio.html:4 templates/tools.html:31
 msgid "audionorm_tytuł"
 msgstr "Normalizacja audio"
 
-#: Tools.py:158 templates/tool_align.html:4 templates/tools.html:38
+#: Tools.py:165 templates/tool_align.html:4 templates/tools.html:38
 msgid "forcealign_tytuł"
 msgstr "Segmentacja krótkich nagrań"
 
-#: Tools.py:164 templates/tool_align.html:6 templates/tools.html:45
+#: Tools.py:171 templates/tool_align.html:6 templates/tools.html:45
 msgid "segalign_tytuł"
 msgstr "Segmentacja długich nagrań"
 
-#: Tools.py:170 templates/tool_reco.html:3 templates/tools.html:52
+#: Tools.py:177 templates/tool_reco.html:3 templates/tools.html:52
 msgid "reco_tytuł"
 msgstr "Pełne rozpoznawanie mowy"
 
 #: templates/emu.html:4
 msgid "emu_tool_tytuł"
 msgstr "Narzędzie do tworzenia korpusu EMU-SDMS"
+
+#: templates/emu.html:32
+msgid "instrukcje"
+msgstr "Instrukcje"
 
 #: templates/emu_modify.html:18 templates/emu_new.html:18
 msgid "właściciel_opis"
@@ -176,8 +180,8 @@ msgid "zmień"
 msgstr "Zmień"
 
 #: templates/emu_modify.html:71 templates/emu_new.html:71
-#: templates/emu_project.html:258 templates/emu_project.html:294
-#: templates/emu_project.html:333
+#: templates/emu_project.html:259 templates/emu_project.html:295
+#: templates/emu_project.html:334
 msgid "anuluj"
 msgstr "Anuluj"
 
@@ -185,7 +189,9 @@ msgstr "Anuluj"
 msgid "czy_usunąć_projekt"
 msgstr "Czy na pewno chcesz usunąć ten projekt?"
 
-#: templates/emu_modify.html:75
+#: templates/emu_modify.html:75 templates/view_any.html:25
+#: templates/view_audio.html:49 templates/view_segmentation.html:55
+#: templates/view_transcription.html:38
 msgid "usuń"
 msgstr "Usuń"
 
@@ -289,87 +295,89 @@ msgstr "Paczka"
 msgid "pliki"
 msgstr "Pliki"
 
-#: templates/emu_project.html:180
+#: templates/emu_project.html:181
 msgid "zmień_nazwę"
 msgstr "Zmień nazwę"
 
-#: templates/emu_project.html:184
+#: templates/emu_project.html:185
 msgid "zmień_sesję"
 msgstr "Zmień sesję"
 
-#: templates/emu_project.html:189
+#: templates/emu_project.html:190
 msgid "wgraj_audio"
 msgstr "Wgraj audio z pliku"
 
-#: templates/emu_project.html:193
+#: templates/emu_project.html:194
 msgid "wgraj_transkrypcję"
 msgstr "Wgraj transkrypcję z pliku"
 
-#: templates/emu_project.html:197
+#: templates/emu_project.html:198
 msgid "wgraj_segmentację"
 msgstr "Wgraj segmentację z pliku"
 
-#: templates/emu_project.html:202
+#: templates/emu_project.html:203
 msgid "wygeneruj_transkrypcję"
 msgstr "Wygeneruj transkrypcję"
 
-#: templates/emu_project.html:206
+#: templates/emu_project.html:207
 msgid "wygeneruj_segmentację"
 msgstr "Wygeneruj segmentację"
 
-#: templates/emu_project.html:211
+#: templates/emu_project.html:212
 msgid "usuń_audio"
 msgstr "Usuń plik audio"
 
-#: templates/emu_project.html:215
+#: templates/emu_project.html:216
 msgid "usuń_transkrypcję"
 msgstr "Usuń transkrypcję"
 
-#: templates/emu_project.html:219
+#: templates/emu_project.html:220
 msgid "usuń_segmentację"
 msgstr "Usuń segmentację"
 
-#: templates/emu_project.html:223
+#: templates/emu_project.html:224
 msgid "usuń_paczkę"
 msgstr "Usuń całą paczkę"
 
-#: templates/emu_project.html:244 templates/emu_project.html:250
+#: templates/emu_project.html:245 templates/emu_project.html:251
 msgid "zmień_nazwę_paczki"
 msgstr "Zmień nazwę paczki"
 
-#: templates/emu_project.html:251
+#: templates/emu_project.html:252
 msgid "na_paczkę"
 msgstr "na paczkę"
 
-#: templates/emu_project.html:256 templates/emu_project.html:291
+#: templates/emu_project.html:257 templates/emu_project.html:292
 msgid "zatwierdź"
 msgstr "Zatwierdź"
 
-#: templates/emu_project.html:279 templates/emu_project.html:285
+#: templates/emu_project.html:280 templates/emu_project.html:286
 msgid "zmień_nazwę_sesji"
 msgstr "Zmień nazwę sesji"
 
-#: templates/emu_project.html:285
+#: templates/emu_project.html:286
 msgid "dla_paczki"
 msgstr "Dla paczki"
 
-#: templates/emu_project.html:317 templates/emu_project.html:323
+#: templates/emu_project.html:318 templates/emu_project.html:324
 msgid "dodaj_plik"
 msgstr "Dodaj plik"
 
-#: templates/emu_project.html:324
+#: templates/emu_project.html:325
 msgid "do_paczki"
 msgstr "do paczki"
 
-#: templates/emu_project.html:330
+#: templates/emu_project.html:331
 msgid "dodaj"
 msgstr "Dodaj"
 
-#: templates/emu_project.html:371
+#: templates/emu_project.html:372 templates/view_any.html:23
+#: templates/view_audio.html:47 templates/view_segmentation.html:53
+#: templates/view_transcription.html:36
 msgid "czy_usunąć_zasób"
 msgstr "Czy na pewno chcesz usunąć zasób?"
 
-#: templates/emu_project.html:377
+#: templates/emu_project.html:378
 msgid "czy_wykonać_akcję"
 msgstr "Czy na pewno chcesz wykonać akcję?"
 
@@ -535,9 +543,9 @@ msgid "ident_trans"
 msgstr "Identyfikator transkrypcji"
 
 #: templates/multiview_audio_trans.html:105
-#: templates/multiview_audio_trans.html:142 templates/view_any.html:45
-#: templates/view_audio.html:84 templates/view_segmentation.html:71
-#: templates/view_transcription.html:57
+#: templates/multiview_audio_trans.html:142 templates/view_any.html:53
+#: templates/view_audio.html:92 templates/view_segmentation.html:96
+#: templates/view_transcription.html:65
 msgid "f5_refresh"
 msgstr ""
 "Nie udało się jeszcze przetworzyć zasobu! Wciśnij F5, aby spróbować "
@@ -547,10 +555,10 @@ msgstr ""
 #: templates/multiview_audio_trans.html:117
 #: templates/multiview_audio_trans.html:148 templates/tool_align.html:38
 #: templates/tool_audio_to_audio.html:23 templates/tool_reco.html:23
-#: templates/tool_text_to_text.html:22 templates/view_any.html:51
-#: templates/view_any.html:59 templates/view_audio.html:90
-#: templates/view_audio.html:96 templates/view_segmentation.html:77
-#: templates/view_segmentation.html:85 templates/view_transcription.html:63
+#: templates/tool_text_to_text.html:22 templates/view_any.html:59
+#: templates/view_any.html:67 templates/view_audio.html:98
+#: templates/view_audio.html:104 templates/view_segmentation.html:102
+#: templates/view_segmentation.html:110 templates/view_transcription.html:71
 msgid "błąd_admin"
 msgstr "Błąd przetwarzania zasobu! Skontaktuj się z administratorem!"
 
@@ -808,8 +816,7 @@ msgstr "Plik audio"
 msgid "ident_from"
 msgstr "Wyliczony z:"
 
-#: templates/view_audio.html:42 templates/view_segmentation.html:36
-#: templates/view_transcription.html:25
+#: templates/view_audio.html:42 templates/view_transcription.html:25
 msgid "nieznany_f5"
 msgstr "Nieznany! Naciśnij F5, żeby odświeżyć!"
 

@@ -26,7 +26,7 @@ except IOError:
     sys.exit(-1)
 
 formatter = logging.Formatter('[%(asctime)s] %(levelname)s - %(message)s')
-handler = RotatingFileHandler(config.proj_root / 'debug.log', maxBytes=10000, backupCount=1)
+handler = RotatingFileHandler(config.proj_root / 'debug.log', maxBytes=10*1024*1024, backupCount=5)
 handler.setLevel(logging.DEBUG)
 handler.setFormatter(formatter)
 app.logger.addHandler(handler)
@@ -82,4 +82,4 @@ def get_locale():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
