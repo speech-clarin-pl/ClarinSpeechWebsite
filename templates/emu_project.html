@@ -62,7 +62,7 @@
             <div class="progress form-group">
                 <div id="uploadProgress" class="progress-bar progress-bar-striped progress-bar-animated"
                      role="progressbar"
-                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0"></div>
             </div>
         {% endif %}
 
@@ -231,6 +231,28 @@
             {% endfor %}
             </tbody>
         </table>
+
+        <nav>
+            <ul class="pagination">
+                {% for p in range(pagination_start,pagination_end) %}
+                    {% set text = (p + 1)|string %}
+                    {% if p == pagination_start and p>0 %}
+                        {% set text = '...' + text %}
+                    {% elif p==pagination_end-1 and p<(page_num-1) %}
+                        {% set text = text + '...' %}
+                    {% endif %}
+                    {% if p == page %}
+                        <li class="page-item active">
+                            <a class="page-link" href="/emu/project/{{ proj._id }}/{{ p }}">{{ p + 1 }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="/emu/project/{{ proj._id }}/{{ p }}">{{ text }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
     </div>
 
     <div class="gap-lg">&nbsp;</div>

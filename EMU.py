@@ -96,9 +96,10 @@ def check_project(id, modify=False, admin=False):
     return proj, None
 
 
-@emu_page.route('project/<id>')
+@emu_page.route('project/<id>', defaults={'page': -1})
+@emu_page.route('project/<id>/<int:page>')
 @register_breadcrumb(emu_page, '.project', _(u'emu_projekt_tytuł'))
-def project(id):
+def project(id, page):
     proj, resp = check_project(id)
     if not proj:
         return resp
@@ -112,8 +113,37 @@ def project(id):
     disable = {'asr': False, 'align': False, 'emu': False}
     refresh_req = False
 
+    if page < 0 and 'bundle_page' in session:
+        page = session['bundle_page']
+
+    bundle_page = list(proj['bundles'].items())
+    bundle_page = sorted(bundle_page, key=lambda x: (x[0]))
+
+    bundles_per_page = 10
+    bundle_num = len(bundle_page)
+    page_num = math.ceil(bundle_num / bundles_per_page)
+    if page < 0 or page >= page_num:
+        page = 0
+    bs = page * bundles_per_page
+    be = bs + bundles_per_page
+    if be > bundle_num:
+        be = bundle_num
+    bundle_page = bundle_page[bs:be]
+
+    session['bundle_page'] = page
+
+    pagination_start = page - 10
+    if pagination_start < 0:
+        pagination_start = 0
+    pagination_end = pagination_start + 22
+    if pagination_end > page_num:
+        pagination_end = page_num
+        pagination_start = pagination_end - 22
+        if pagination_start < 0:
+            pagination_start = 0
+
     bundles = []
-    for name, b in proj['bundles'].items():
+    for name, b in bundle_page:
         bundle = {}
         if 'audio' in b:
             res = tools.utils.get_file(b['audio'])
@@ -147,7 +177,6 @@ def project(id):
         bundle['name'] = b['name']
         bundles.append((name, bundle))
 
-    bundles = sorted(bundles, key=lambda x: (x[0]))
     if not bundles:
         disable = {'asr': True, 'align': True, 'emu': True}
 
@@ -165,7 +194,9 @@ def project(id):
     return render_template('emu_project.html', proj=proj, bundles=bundles,
                            create_date=utc_to_localtime(proj['created'], session),
                            pass_check=pass_check, disable=disable, refresh_req=refresh_req,
-                           logged_in=logged_in, can_modify=can_modify, can_admin=can_admin)
+                           logged_in=logged_in, can_modify=can_modify, can_admin=can_admin,
+                           page=page, page_num=page_num,
+                           pagination_start=pagination_start, pagination_end=pagination_end)
 
 
 @emu_page.route('project/modify/<id>', methods=['GET', 'POST'])
