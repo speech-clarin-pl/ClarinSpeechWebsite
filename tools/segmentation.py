@@ -172,9 +172,10 @@ class Segmentation:
             a.extend(self.words.segments)
             a = sorted(a, key=lambda seg: seg.start)
             for seg in a:
-                if not seg.word:
-                    f.write('@')
-                f.write(f'input 1 {seg.start} {seg.len} {seg.text}\n')
+                if seg.text:
+                    if not seg.word:
+                        f.write('@')
+                    f.write(f'input 1 {seg.start} {seg.len} {seg.text}\n')
 
     def write_trans(self, file):
         with codecs.open(file, encoding='utf-8', mode='w') as f:
@@ -274,9 +275,9 @@ def segmentation_to_emu_annot(file, name, samplerate=16000.0, rm_besi=True, scri
     return json.dumps(annot, indent=4)
 
 
-def split_segmentation(wav_file, seg_file, rm_besi=True, script=None, sil_len=0.5):
+def split_segmentation(wav_file, seg_file, sil_len=0.5):
     seg = Segmentation()
-    seg.read(seg_file, rm_besi=rm_besi, script=script)
+    seg.read(seg_file, rm_besi=False, script=None)
     splits = seg.split_by_silence(sil_len)
 
     ret = []
