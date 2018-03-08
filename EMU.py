@@ -23,6 +23,7 @@ from wtforms.widgets import TextArea
 import tools
 from Tools import ui_view, ui_view_multi
 from config import db, config
+from tools.segmentation import split_segmentation
 from tools.utils import utc_to_localtime, audio_file_size
 
 emu_page = Blueprint('emu_page', __name__, template_folder='templates')
@@ -566,6 +567,46 @@ def align(id, name):
     time.sleep(0.1)
 
     db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{name}.seg': seg_id}})
+
+    return redirect('/emu/project/' + urllib.parse.quote(str(id)))
+
+
+@emu_page.route('project/split/<id>/<name>')
+def split(id, name):
+    proj, resp = check_project(id, modify=True)
+    if not proj:
+        return resp
+
+    if name not in proj['bundles']:
+        return abort(404)
+
+    bundle = proj['bundles'][name]
+
+    if 'audio' not in bundle:
+        return abort(404)
+
+    if 'seg' not in bundle:
+        return abort(404)
+
+    audio_id = bundle['audio']
+    res = tools.utils.get_file(audio_id)
+    if 'file' not in res:
+        return abort(404)
+    audio_file = config.work_dir / res['file']
+
+    seg_id = bundle['seg']
+    res = tools.utils.get_file(seg_id)
+    if 'file' not in res:
+        return abort(404)
+    seg_file = config.work_dir / res['file']
+
+    splits = split_segmentation(audio_file, seg_file)
+
+    for n, split in enumerate(splits):
+        new_bundle = {'audio': split[0], 'trans': split[1], 'seg': split[2],
+                      'session': bundle['session'], 'name': f'{bundle["name"]}_split{n:03}'}
+        new_bundle_id = f'{new_bundle["session"]}_{new_bundle["name"]}'
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{new_bundle_id}': new_bundle}})
 
     return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 

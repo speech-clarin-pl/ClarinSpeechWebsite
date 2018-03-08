@@ -2,10 +2,15 @@ import codecs
 import json
 import re
 from collections import OrderedDict
+from os import close
+from pathlib import Path
+from tempfile import mkstemp
 
 import tgt
 
+from config import config
 from tools.phonetize import pl_sampa_map, pl_ipa_map
+from tools.utils import wav_extract, insert_file
 
 EPSILON = 0.01
 besi = re.compile('^.*_[BESI]$')
@@ -47,6 +52,12 @@ class Level:
                 prev.len = prev.end - prev.start
         self.segments.extend(gaps)
         self.sort()
+
+    def contains(self, segment):
+        self.sort()
+        start = self.segments[0].start
+        end = self.segments[-1].end
+        return segment.start - start > -EPSILON and segment.end - end < EPSILON
 
     def get_annotation(self, name, labelname, samplerate=16000.0, get_segments=True, ph_labels=None):
 
@@ -122,6 +133,10 @@ class Segmentation:
         self.words = Level(self.idgen)
         self.phonemes = Level(self.idgen)
 
+    def get_limits(self):
+        self.phonemes.sort()
+        return (self.phonemes.segments[0].start, self.phonemes.segments[-1].end)
+
     def read(self, file, rm_besi=True, script=None):
         with codecs.open(file, encoding='utf-8', mode='r') as f:
             for l in f:
@@ -147,6 +162,35 @@ class Segmentation:
         self.words.fill_gaps()
         self.phonemes.fill_gaps()
 
+    def write(self, file):
+        with codecs.open(file, encoding='utf-8', mode='w') as f:
+            for seg in self.phonemes.segments:
+                seg.word = False
+            for seg in self.words.segments:
+                seg.word = True
+            a = self.phonemes.segments
+            a.extend(self.words.segments)
+            a = sorted(a, key=lambda seg: seg.start)
+            for seg in a:
+                if not seg.word:
+                    f.write('@')
+                f.write(f'input 1 {seg.start} {seg.len} {seg.text}\n')
+
+    def write_trans(self, file):
+        with codecs.open(file, encoding='utf-8', mode='w') as f:
+            for seg in self.words.segments:
+                f.write(seg.text + ' ')
+            f.write('\n')
+
+    def subtract_start(self):
+        seg_start = self.phonemes.segments[0].start
+        for seg in self.phonemes.segments:
+            seg.start -= seg_start
+            seg.end -= seg_start
+        for seg in self.words.segments:
+            seg.start -= seg_start
+            seg.end -= seg_start
+
     def get_textgrid(self):
         tg = tgt.TextGrid()
         t = tgt.IntervalTier(name='Word')
@@ -170,6 +214,26 @@ class Segmentation:
                 max = seg.end
         level.add(min, max, name)
         return level
+
+    def split_by_silence(self, sil_len=0.5):
+        seg = Segmentation()
+        ret = [seg]
+        pl = len(self.phonemes.segments)
+        for id, ph in enumerate(self.phonemes.segments):
+            if ph.text == 'sil' and ph.len >= sil_len and id > 0 and id < (pl - 1):
+                seg.phonemes.add(ph.start, ph.len / 2, ph.text)
+                seg = Segmentation()
+                ret.append(seg)
+                seg.phonemes.add(ph.start + ph.len / 2, ph.len / 2, ph.text)
+            else:
+                seg.phonemes.add(ph.start, ph.len, ph.text)
+
+        for seg in ret:
+            for w in self.words.segments:
+                if seg.phonemes.contains(w):
+                    seg.words.segments.append(w)
+
+        return ret
 
 
 def segmentation_to_textgrid(file, rm_besi=True, script=None):
@@ -208,3 +272,39 @@ def segmentation_to_emu_annot(file, name, samplerate=16000.0, rm_besi=True, scri
     annot['links'] = uttlinks + wordlinks
 
     return json.dumps(annot, indent=4)
+
+
+def split_segmentation(wav_file, seg_file, rm_besi=True, script=None, sil_len=0.5):
+    seg = Segmentation()
+    seg.read(seg_file, rm_besi=rm_besi, script=script)
+    splits = seg.split_by_silence(sil_len)
+
+    ret = []
+    for split in splits:
+        fd, tmp = mkstemp(dir=config.work_dir)
+        close(fd)
+        tmp_wav = Path(config.work_dir) / tmp
+
+        lim = split.get_limits()
+        wav_extract(wav_file, tmp_wav, lim[0], lim[1])
+
+        fd, tmp = mkstemp(dir=config.work_dir)
+        close(fd)
+        tmp_trans = Path(config.work_dir) / tmp
+
+        split.write_trans(tmp_trans)
+
+        fd, tmp = mkstemp(dir=config.work_dir)
+        close(fd)
+        tmp_seg = Path(config.work_dir) / tmp
+
+        split.subtract_start()
+        split.write(tmp_seg)
+
+        wav_id = insert_file(tmp_wav, 'audio')
+        trans_id = insert_file(tmp_trans, 'transcript')
+        seg_id = insert_file(tmp_seg, 'segmentation')
+
+        ret.append((wav_id, trans_id, seg_id))
+
+    return ret

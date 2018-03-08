@@ -207,6 +207,11 @@
                                         {% trans %}wygeneruj_segmentację{% endtrans %}
                                     </a>
                                     <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item ask-any"
+                                       href="split/{{ proj._id }}/{{ bundle_id|urlencode }}">
+                                        {% trans %}podziel_paczkę{% endtrans %}
+                                    </a>
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item ask-delete"
                                        href="remove_bndl/{{ proj._id }}/{{ bundle_id|urlencode }}?audio">
                                         {% trans %}usuń_audio{% endtrans %}

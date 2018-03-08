@@ -6,6 +6,7 @@ from os import close
 from pathlib import Path
 from tempfile import mkstemp
 
+import wavio
 from bson.objectid import ObjectId
 from dateutil.tz import tz
 
@@ -22,6 +23,22 @@ def file_hash(file_path):
     return h.hexdigest()
 
 
+def insert_file(file, type):
+    hash = file_hash(file)
+
+    file_res = db.clarin.resources.find_one({'hash': hash})
+    if file_res:
+        id = file_res['_id']
+        file.unlink()
+    else:
+        time = datetime.datetime.utcnow()
+        res = db.clarin.resources.insert_one(
+            {'file': file.name, 'type': type, 'hash': hash, 'created': time, 'modified': time})
+        id = res.inserted_id
+
+    return str(id)
+
+
 def upload_file(file, type):
     if type not in allowed_types:
         return None
@@ -32,19 +49,7 @@ def upload_file(file, type):
     tmp = Path(config.work_dir) / tmp
     file.save(str(tmp))
 
-    hash = file_hash(tmp)
-
-    file = db.clarin.resources.find_one({'hash': hash})
-    if file:
-        id = file['_id']
-        tmp.unlink()
-    else:
-        time = datetime.datetime.utcnow()
-        res = db.clarin.resources.insert_one(
-            {'file': tmp.name, 'type': type, 'hash': hash, 'created': time, 'modified': time})
-        id = res.inserted_id
-
-    return str(id)
+    return insert_file(tmp, type)
 
 
 def get_file(id):
@@ -86,3 +91,10 @@ def audio_file_size(file):
         return n / float(r)
     except IOError:
         return 0
+
+
+def wav_extract(input, output, start, end):
+    y = wavio.read(str(input.absolute()))
+    samp_start = int(start * y.rate)
+    samp_end = int(end * y.rate)
+    wavio.write(str(output.absolute()), y.data[samp_start:samp_end], y.rate, sampwidth=y.sampwidth)
