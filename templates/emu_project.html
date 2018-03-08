@@ -79,11 +79,11 @@
         {% endif %}
 
         <div class="form-group row">
-            <a href="download/{{ proj._id }}" class="btn btn-success form-control col-3">
+            <a href="/emu/project/download/{{ proj._id }}" class="btn btn-success form-control col-3">
                 {% trans %}ściągnij_projekt{% endtrans %}
             </a>
             <div class="col-1">&nbsp;</div>
-            <a href="webapp/{{ proj._id }}" class="btn btn-warning form-control col-3">
+            <a href="/emu/project/webapp/{{ proj._id }}" class="btn btn-warning form-control col-3">
                 {% trans %}otwórz_webapp{% endtrans %}
             </a>
             <div class="col-1">&nbsp;</div>
@@ -94,20 +94,20 @@
                         {% trans %}wykonaj_dla_projektu{% endtrans %}
                     </button>
                     <div class="dropdown-menu" aria-labelledby="project_menu">
-                        <a class="dropdown-item  ask-any" href="reco/{{ proj._id }}">
+                        <a class="dropdown-item  ask-any" href="/emu/project/reco/{{ proj._id }}">
                             {% trans %}wygeneruj_wszystkie_transkrypcje{% endtrans %}
                         </a>
-                        <a class="dropdown-item  ask-any" href="align/{{ proj._id }}">
+                        <a class="dropdown-item  ask-any" href="/emu/project/align/{{ proj._id }}">
                             {% trans %}wygeneruj_wszystkie_segmentacje{% endtrans %}
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item ask-delete" href="remove_bndl/{{ proj._id }}?audio">
+                        <a class="dropdown-item ask-delete" href="/emu/project/remove_bndl/{{ proj._id }}?audio">
                             {% trans %}usuń_wszystkie_audio{% endtrans %}
                         </a>
-                        <a class="dropdown-item ask-delete" href="remove_bndl/{{ proj._id }}?trans">
+                        <a class="dropdown-item ask-delete" href="/emu/project/remove_bndl/{{ proj._id }}?trans">
                             {% trans %}usuń_wszystkie_transkrypcje{% endtrans %}
                         </a>
-                        <a class="dropdown-item ask-delete" href="remove_bndl/{{ proj._id }}?seg">
+                        <a class="dropdown-item ask-delete" href="/emu/project/remove_bndl/{{ proj._id }}?seg">
                             {% trans %}usuń_wszystkie_segmentacje{% endtrans %}
                         </a>
                     </div>
