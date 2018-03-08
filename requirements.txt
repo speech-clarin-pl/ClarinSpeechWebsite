@@ -9,3 +9,4 @@ Flask
 Flask_WTF
 bcrypt
 python_dateutil
+wavio
