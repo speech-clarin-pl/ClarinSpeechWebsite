@@ -125,13 +125,13 @@
             </tr>
             </thead>
             <tbody>
-            {% for name,bundle in bundles %}
+            {% for bundle_id,bundle in bundles %}
                 <tr>
                     <td>
                         {{ bundle.session }}
                     </td>
                     <td>
-                        {{ name }}
+                        {{ bundle.name }}
                     </td>
                     <td>
                         {% for type in ['audio','audio+trans','trans','seg'] %}
@@ -171,56 +171,56 @@
                     <td>
                         {% if can_modify %}
                             <div class="dropdown">
-                                <button class="btn btn-info" type="button" id="menu_{{ name|urlencode }}"
+                                <button class="btn btn-info" type="button" id="menu_{{ bundle_id|urlencode }}"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-bars"></i>
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="menu_{{ name|urlencode }}">
+                                <div class="dropdown-menu" aria-labelledby="menu_{{ bundle_id|urlencode }}">
                                     <a class="dropdown-item" data-toggle="modal" data-target="#renameDialog"
-                                       data-name="{{ name }}">
+                                       data-name="{{ bundle_id }}">
                                         {% trans %}zmień_nazwę{% endtrans %}
                                     </a>
                                     <a class="dropdown-item" data-toggle="modal" data-target="#sessionDialog"
-                                       data-name="{{ name }}">
+                                       data-name="{{ bundle_id }}">
                                         {% trans %}zmień_sesję{% endtrans %}
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" data-toggle="modal" data-target="#addFileDialog"
-                                       data-name="{{ name }}" data-type="audio">
+                                       data-name="{{ bundle_id }}" data-type="audio">
                                         {% trans %}wgraj_audio{% endtrans %}
                                     </a>
                                     <a class="dropdown-item" data-toggle="modal" data-target="#addFileDialog"
-                                       data-name="{{ name }}" data-type="trans">
+                                       data-name="{{ bundle_id }}" data-type="trans">
                                         {% trans %}wgraj_transkrypcję{% endtrans %}
                                     </a>
                                     <a class="dropdown-item" data-toggle="modal" data-target="#addFileDialog"
-                                       data-name="{{ name }}" data-type="seg">
+                                       data-name="{{ bundle_id }}" data-type="seg">
                                         {% trans %}wgraj_segmentację{% endtrans %}
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item ask-any"
-                                       href="reco/{{ proj._id }}/{{ name|urlencode }}">
+                                       href="reco/{{ proj._id }}/{{ bundle_id|urlencode }}">
                                         {% trans %}wygeneruj_transkrypcję{% endtrans %}
                                     </a>
                                     <a class="dropdown-item ask-any"
-                                       href="align/{{ proj._id }}/{{ name|urlencode }}">
+                                       href="align/{{ proj._id }}/{{ bundle_id|urlencode }}">
                                         {% trans %}wygeneruj_segmentację{% endtrans %}
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item ask-delete"
-                                       href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?audio">
+                                       href="remove_bndl/{{ proj._id }}/{{ bundle_id|urlencode }}?audio">
                                         {% trans %}usuń_audio{% endtrans %}
                                     </a>
                                     <a class="dropdown-item ask-delete"
-                                       href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?trans">
+                                       href="remove_bndl/{{ proj._id }}/{{ bundle_id|urlencode }}?trans">
                                         {% trans %}usuń_transkrypcję{% endtrans %}
                                     </a>
                                     <a class="dropdown-item ask-delete"
-                                       href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}?seg">
+                                       href="remove_bndl/{{ proj._id }}/{{ bundle_id|urlencode }}?seg">
                                         {% trans %}usuń_segmentację{% endtrans %}
                                     </a>
                                     <a class="dropdown-item ask-delete"
-                                       href="remove_bndl/{{ proj._id }}/{{ name|urlencode }}">
+                                       href="remove_bndl/{{ proj._id }}/{{ bundle_id|urlencode }}">
                                         {% trans %}usuń_paczkę{% endtrans %}
                                     </a>
                                 </div>

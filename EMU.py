@@ -113,7 +113,6 @@ def project(id):
     refresh_req = False
 
     bundles = []
-    bundle_names = []
     for name, b in proj['bundles'].items():
         bundle = {}
         if 'audio' in b:
@@ -145,10 +144,10 @@ def project(id):
             disable['emu'] = True
 
         bundle['session'] = b['session']
+        bundle['name'] = b['name']
         bundles.append((name, bundle))
-        bundle_names.append(name)
 
-    bundles = sorted(bundles, key=lambda x: (x[1]['session'], x[0]))
+    bundles = sorted(bundles, key=lambda x: (x[0]))
     if not bundles:
         disable = {'asr': True, 'align': True, 'emu': True}
 
@@ -163,7 +162,7 @@ def project(id):
         if proj['visibility'] == 'viewonly':
             can_modify = False
 
-    return render_template('emu_project.html', proj=proj, bundles=bundles, bundle_names=bundle_names,
+    return render_template('emu_project.html', proj=proj, bundles=bundles,
                            create_date=utc_to_localtime(proj['created'], session),
                            pass_check=pass_check, disable=disable, refresh_req=refresh_req,
                            logged_in=logged_in, can_modify=can_modify, can_admin=can_admin)
@@ -319,12 +318,12 @@ def search(page):
                            pagination_end=pagination_end)
 
 
-def find_unique_name(proj, suggestion):
-    if suggestion not in proj['bundles']:
+def find_unique_name(proj, session, suggestion):
+    if f'{session}_{suggestion}' not in proj['bundles']:
         return suggestion
     for i in range(1, 100):
         name = f'{suggestion}({i})'
-        if name not in proj['bundles']:
+        if f'{session}_{name}' not in proj['bundles']:
             return name
     return None
 
@@ -349,29 +348,28 @@ def add_audio(id):
             return abort(404)
         db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{name}.audio': audio_id}})
     else:
-        suggested = Path(file.filename).stem
-        suggested = suggested.replace('.', '_')
-        suggested = suggested.replace('$', '_')
-        name = find_unique_name(proj, suggested)
+        name = Path(file.filename).stem
+        name = ''.join(c for c in name if c.isalnum()).rstrip()
+        name = find_unique_name(proj, 'default', name)
 
         if not name:
             return abort(500)
 
-        bundle = {'audio': audio_id, 'session': 'default'}
+        bundle = {'audio': audio_id, 'session': 'default', 'name': name}
 
-        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{name}': bundle}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.default_{name}': bundle}})
 
     return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
 
 # TODO: check for repeating names
-@emu_page.route('project/rename/<id>/<name>', methods=['POST'])
-def rename_bundle(id, name):
+@emu_page.route('project/rename/<id>/<bundle_id>', methods=['POST'])
+def rename_bundle(id, bundle_id):
     proj, resp = check_project(id, modify=True)
     if not proj:
         return resp
 
-    if name not in proj['bundles']:
+    if bundle_id not in proj['bundles']:
         return abort(404)
 
     new_session = None
@@ -379,21 +377,25 @@ def rename_bundle(id, name):
 
     if 'session' in request.form:
         new_session = request.form['session']
+        new_session = ''.join(c for c in new_session if c.isalnum()).rstrip()
     if 'name' in request.form:
         new_name = request.form['name']
+        new_name = ''.join(c for c in new_name if c.isalnum()).rstrip()
 
-    if new_session or new_name:
+    bundle = proj['bundles'][bundle_id]
 
-        bundle = proj['bundles'][name]
+    if new_session and new_session != bundle['session']:
+        bundle['session'] = new_session
 
-        if new_name and name != new_name:
-            db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{new_name}': bundle}})
-            db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{name}': 1}})
-            name = new_name
+    if new_name and new_name != bundle['name']:
+        new_name = find_unique_name(proj, bundle['session'], new_name)
+        bundle['name'] = new_name
 
-        if new_session and new_session != bundle['session']:
-            db.clarin.emu.update_one({'_id': ObjectId(id)},
-                                     {'$set': {f'bundles.{name}.session': new_session}})
+    new_bundle_id = f'{bundle["session"]}_{bundle["name"]}'
+
+    if new_bundle_id != bundle_id:
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$set': {f'bundles.{new_bundle_id}': bundle}})
+        db.clarin.emu.update_one({'_id': ObjectId(id)}, {'$unset': {f'bundles.{bundle_id}': 1}})
 
     return redirect('/emu/project/' + urllib.parse.quote(str(id)))
 
