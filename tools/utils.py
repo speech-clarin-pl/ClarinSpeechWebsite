@@ -97,4 +97,4 @@ def wav_extract(input, output, start, end):
     y = wavio.read(str(input.absolute()))
     samp_start = int(start * y.rate)
     samp_end = int(end * y.rate)
-    wavio.write(str(output.absolute()), y.data[samp_start:samp_end], y.rate, sampwidth=y.sampwidth)
+    wavio.write(str(output.absolute()), y.data[samp_start:samp_end], y.rate, scale="none", sampwidth=y.sampwidth)
