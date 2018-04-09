@@ -1,37 +1,54 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <h1>{% trans %}główny_tytuł{% endtrans %}</h1>
+<h1>{% trans %}główny_tytuł{% endtrans %}</h1>
 
-    <div class="gap-sm">&nbsp;</div>
+<div class="gap-sm">&nbsp;</div>
 
-    <div class="row" id="main_buttons">
+<div class="row" id="main_buttons">
 
-        <div class="col-lg-4">
-            <a class="btn btn-success btn-lg" href="/korpusy">
-                <div class="icon">
-                    <i class="fa fa-book" aria-hidden="true"></i>
-                </div>
-                <h4 class="card-title">{% trans %}korpusy{% endtrans %}</h4>
-            </a>
-        </div>
+	<div class="col-lg-4">
+		<a class="btn btn-success btn-lg" href="/korpusy">
+			<div class="icon">
+				<i class="fa fa-book" aria-hidden="true"></i>
+			</div>
+			<h4 class="card-title">{% trans %}korpusy{% endtrans %}</h4>
+		</a>
+	</div>
 
-        <div class="col-lg-4">
-            <a class="btn btn-primary btn-lg" href="tools">
-                <div class="icon">
-                    <i class="fa fa-wrench" aria-hidden="true"></i>
-                </div>
-                <h4 class="card-title">{% trans %}usługi{% endtrans %}</h4>
-            </a>
-        </div>
+	<div class="col-lg-4">
+		<a class="btn btn-primary btn-lg" href="tools">
+			<div class="icon">
+				<i class="fa fa-wrench" aria-hidden="true"></i>
+			</div>
+			<h4 class="card-title">{% trans %}usługi{% endtrans %}</h4>
+		</a>
+	</div>
 
-        <div class="col-lg-4">
-            <a class="btn btn-danger btn-lg" href="emu">
-                <div class="icon">
-                    <img src={{ url_for('static', filename='img/emuIcon.png') }}>
-                </div>
-                <h4 class="card-title">{% trans %}narzędzie_emu{% endtrans %}</h4>
-            </a>
-        </div>
-    </div>
+	<div class="col-lg-4">
+		<a class="btn btn-danger btn-lg" href="emu">
+			<div class="icon">
+				<img src={{ url_for('static', filename='img/emuIcon.png') }}>
+			</div>
+			<h4 class="card-title">{% trans %}narzędzie_emu{% endtrans %}</h4>
+		</a>
+	</div>
+
+</div>
+
+<div class="gap-sm">&nbsp;</div> 
+
+<div class="row">
+	<div class="col-lg-4">
+		<a class="btn btn-info" href="https://danijel3.github.io/emuR_notebooks"> 
+			<h4 class="card-title">
+				<i class="fa fa-question-circle"></i> 
+				{% trans %}instrukcje{% endtrans %}
+			</h4>
+		</a> 
+	</div>
+</div>
+
+<div class="gap-md">&nbsp;</div> 
+
 {% endblock %}
