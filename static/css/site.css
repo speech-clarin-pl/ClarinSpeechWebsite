@@ -5,6 +5,7 @@
 
 .topnav a {
     color: white;
+    font-size:0.9em;
 }
 
 nav img {
@@ -16,18 +17,17 @@ nav img {
 }
 
 #main_buttons .fa {
-    font-size: 80px;
+    font-size: 4em;
+    line-height:2em;
 }
 
-#main_buttons .icon {
-    height: 7em;
-    padding-top: 1em;
-}
+
 
 #main_buttons .btn {
     white-space: normal;
     height: 12em;
     width: 100%;
+
 }
 
 pre {
@@ -36,15 +36,15 @@ pre {
 }
 
 .gap-sm {
-    margin-top: 5em;
+    margin-top: 2em;
 }
 
 .gap-md {
-    margin-top: 10em;
+    margin-top: 5em;
 }
 
 .gap-lg {
-    margin-top: 20em;
+    margin-top: 10em;
 }
 
 .dropzone {
@@ -65,13 +65,80 @@ pre {
     width: 100%;
     font-size: 48pt;
     height: 3em;
-    margin-top: 0.5em;
+    margin-top:5%;
+    position: relative;
 }
 
 .tools .main {
     padding-top: 0.5em;
+    font-size: 0.6em;
 }
 
 .tools .sub {
     font-size: 12pt;
+    white-space: normal;
 }
+
+#breadcrumb-custom {
+    position: relative;
+    top: -37px;
+    border-bottom: 1px solid #888;
+}
+
+h4.card-title{
+    height: 2em;
+    text-align: left;
+    line-height: 2em;
+}
+
+p.card-text{
+ margin-top:2em;
+}
+
+img.strus-icon{
+   width: 10em;
+}
+
+.blog-footer {
+    padding: 1rem 0;
+    color: #999;
+    text-align: center;
+    border-top: .05rem solid #e5e5e5;
+    margin-top:2em;
+}
+
+.clearTop{
+    margin-top:0px;
+}
+
+#breadcrumb-custom li:last-child{
+   position:relative;
+}
+
+#breadcrumb-custom li:last-child a{
+   background: white;
+    padding: 30px 30px 17px 30px;
+    border-radius: 8px 8px 0px 0px;
+    border-top: 1px solid #888;
+    border-right: 1px solid #888;
+    color: #333;
+    font-size:1.6em;
+    text-decoration:none;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: " / ";
+}
+
+.breadcrumb-item:last-child::before {
+    content: "  " !important;
+}
+
+.tool-settings {
+    margin: 20px 0px 20px 0px;
+}
+
+.tool-title {
+    display:none;
+}
+

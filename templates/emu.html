@@ -1,27 +1,31 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <h1>{% trans %}emu_tool_tytuł{% endtrans %}</h1>
+    <h1 class="tool-title">{% trans %}emu_tool_tytuł{% endtrans %}</h1>
 
-    <div class="gap-md">&nbsp;</div>
+    <!--<div class="gap-md">&nbsp;</div>-->
 
     <div class="row" id="main_buttons">
-        <div class="col-lg-5">
-            <a class="btn btn-success btn-lg" href="new">
+        <div class="col-lg-6">
+
+            <a class="btn btn-info btn-lg"  href="new">
                 <div class="icon">
-                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <i class="fa fa-plus main" aria-hidden="true"></i>
                 </div>
-                <h4 class="card-title">{% trans %}nowy_projekt{% endtrans %}</h4>
+                <h4 class="sub">{% trans %}nowy_projekt{% endtrans %}</h4>
             </a>
+
         </div>
-        <div class="col-lg-2">&nbsp;</div>
-        <div class="col-lg-5">
-            <a class="btn btn-primary btn-lg" href="search">
+
+        <div class="col-lg-6">
+
+            <a class="btn btn-info btn-lg" href="search">
                 <div class="icon">
-                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <i class="fa fa-search main" aria-hidden="true"></i>
                 </div>
-                <h4 class="card-title">{% trans %}szukaj_projekt{% endtrans %}</h4>
+                <h4 class="sub">{% trans %}szukaj_projekt{% endtrans %}</h4>
             </a>
+
         </div>
     </div>
 

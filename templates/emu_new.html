@@ -1,9 +1,10 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <h1>{% trans %}nowy_projekt{% endtrans %}</h1>
+    <h1 class="tool-title">{% trans %}nowy_projekt{% endtrans %}</h1>
 
     <div class="card form-group card-block">
+        <div class="card-body">
         <form method="post">
             {{ form.hidden_tag() }}
             <div class="form-group">
@@ -70,5 +71,6 @@
             <button type="submit" class="btn btn-primary">{% trans %}stwórz{% endtrans %}</button>
             <a href="/emu" class="btn btn-info">{% trans %}anuluj{% endtrans %}</a>
         </form>
+        </div>
     </div>
 {% endblock %}

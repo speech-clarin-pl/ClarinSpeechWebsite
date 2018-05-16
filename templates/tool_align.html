@@ -1,46 +1,73 @@
 {% extends "layout.html" %}
 {% block body %}
     {% if forced %}
-        <h1>{% trans %}forcealign_tytuł{% endtrans %}</h1>
+        <h1 class="tool-title">{% trans %}forcealign_tytuł{% endtrans %}</h1>
     {% else %}
-        <h1>{% trans %}segalign_tytuł{% endtrans %}</h1>
+        <h1 class="tool-title">{% trans %}segalign_tytuł{% endtrans %}</h1>
     {% endif %}
 
+<!-- belka ustawien narzedzia -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light tool-settings">
+      <a class="navbar-brand" href="#">Ustawienia</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Wybór języka
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Polski</a>
+              <a class="dropdown-item" href="#">Angielski</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
     <div class="card form-group card-block">
-        <h4 class="card-title">{% trans %}opis_narzędzia{% endtrans %}</h4>
-        <p class="card-text">{% trans %}opis_align{% endtrans %}</p>
+        <div class="card-body">
+            <h4 class="card-title">{% trans %}opis_narzędzia{% endtrans %}</h4>
+            <p >{% trans %}opis_align{% endtrans %}</p>
 
-        {% if forced %}
-            <p class="card-text">{% trans %}opis_forced{% endtrans %}</p>
-        {% else %}
-            <p class="card-text">{% trans %}opis_segment{% endtrans %}</p>
-        {% endif %}
+            {% if forced %}
+                <p >{% trans %}opis_forced{% endtrans %}</p>
+            {% else %}
+                <p >{% trans %}opis_segment{% endtrans %}</p>
+            {% endif %}
 
-        <p class="card-text">{% trans %}opis_pliki_audio{% endtrans %}</p>
+            <p >{% trans %}opis_pliki_audio{% endtrans %}</p>
+        </div>
     </div>
 
     <div class="card form-group card-block">
-        <div class="form-group">
-            <label for="audio">{% trans %}wczytaj_nagranie{% endtrans %}</label>
-            <input id="audio" name="audio" class="form-control-file" type="file">
-        </div>
-        <div class="form-group">
-            <label for="transcript">{% trans %}wczytaj_transkrypcję{% endtrans %}</label>
-            <input id="transcript" name="transcript" class="form-control-file" type="file">
-        </div>
-        <div class="form-group">
-            <button id="convert_btn" class="btn btn-primary form-control">
-                {% trans %}rozpocznij{% endtrans %}
-            </button>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="audio">{% trans %}wczytaj_nagranie{% endtrans %}</label>
+                <input id="audio" name="audio" class="form-control-file" type="file">
+            </div>
+            <div class="form-group">
+                <label for="transcript">{% trans %}wczytaj_transkrypcję{% endtrans %}</label>
+                <input id="transcript" name="transcript" class="form-control-file" type="file">
+            </div>
+            <div class="form-group">
+                <button id="convert_btn" class="btn btn-primary form-control">
+                    {% trans %}rozpocznij{% endtrans %}
+                </button>
+            </div>
         </div>
     </div>
 
     <div id="error-msg" class="alert alert-danger fade" role="alert">{% trans %}błąd_admin{% endtrans %}</div>
 
     <div class="card form-group card-block">
-        <h3><a data-toggle="collapse" href="#serviceHelp">
+        <div class="card-body">
+        <h4><a data-toggle="collapse" href="#serviceHelp">
             {% trans %}commandline_tytuł{% endtrans %}
-        </a></h3>
+        </a></h4>
 
         <div class="collapse" id="serviceHelp">
             <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
@@ -108,6 +135,7 @@
 
 
         </div>
+         <div class="card-body">
     </div>
 
 

@@ -7,12 +7,20 @@
     <title>CLARIN-PL mowa</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropdown.js/0.0.2dev/jquery.dropdown.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+
+    <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+
     <script src="{{ url_for('static', filename='js/dropzone.js') }}"></script>
 
     <link rel="stylesheet" type="text/css"
@@ -44,13 +52,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
             integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
             crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
             integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>-->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
 </head>
 <body>
 <div class="container">
-
     <nav class="nav topnav justify-content-end">
         <a class="nav-link" href="//clarin-pl.eu/">{% trans %}CLARIN-PL{% endtrans %}</a></li>
         <a class="nav-link" href="/kontakt">
@@ -61,21 +70,35 @@
         <a class="nav-link" href="/lang/en"><img src="{{ url_for('static', filename='img/gb.svg') }}"></a>
     </nav>
 
-    <div class="container">
-        <img src="{{ url_for('static',filename='img/logo1.png') }}" alt="Clarin PL Logo"/></img>
+    <div class="jumbotron">
+       <img src="{{ url_for('static',filename='img/Claring-logo.png') }}" alt="Clarin PL Logo"/></img>
         <img src="{{ url_for('static',filename='img/logo2.png') }}" alt="CTJ Logo"/></img>
+
+
     </div>
 
-    <nav class="nav breadcrumbs">
-        {%- for breadcrumb in breadcrumbs -%}
-            <a class="nav-link" href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a>
-        {%- endfor -%}
-    </nav>
 
-    <div style="margin-top:2em">&nbsp;</div>
+
+      <ol class="breadcrumb" id="breadcrumb-custom">
+        {%- for breadcrumb in breadcrumbs -%}
+            <li class="breadcrumb-item"><a href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a></li>
+        {%- endfor -%}
+      </ol>
+
+
+
+    <!--<div style="margin-top:2em">&nbsp;</div>-->
 
     {% block body %} {% endblock %}
+
+
+    <footer class="blog-footer">
+      <p>{% trans %}CLARIN-PL{% endtrans %} 2018</p>
+    </footer>
+
 </div>
+
+
 
 <script>
     (function (i, s, o, g, r, a, m) {

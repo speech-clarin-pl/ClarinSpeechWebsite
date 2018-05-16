@@ -1,75 +1,75 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <h1>{% trans %}tool_tytuł{% endtrans %}</h1>
+    <h1 class="tool-title">{% trans %}tool_tytuł{% endtrans %}</h1>
 
-    <div class="tools">
+    <div class="tools animated fadeIn">
         <div class="row form-group">
             <div class="col-lg-3">
-                <a href="ui/phonetize/word" class="btn btn-lg btn-primary"
+                <a href="ui/phonetize/word" data-toggle="tooltip" class="btn btn-lg btn-info"
                    title="{% trans %}g2p_tytuł{% endtrans %}">
                     <div class="main">G2P</div>
-                    <div class="sub">word</div>
+                    <div class="sub">{% trans %}g2p_tytuł{% endtrans %}</div>
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="ui/phonetize/list" class="btn btn-lg btn-success"
+                <a href="ui/phonetize/list" data-toggle="tooltip" class="btn btn-lg btn-info"
                    title="{% trans %}g2p_wordlist_tytuł{% endtrans %}">
                     <div class="main">G2P</div>
-                    <div class="sub">list</div>
+                    <div class="sub">{% trans %}g2p_wordlist_tytuł{% endtrans %}</div>
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="ui/text/normalize" class="btn btn-lg btn-info"
+                <a href="ui/text/normalize" data-toggle="tooltip" class="btn btn-lg btn-info"
                    title="{% trans %}textnorm_tytuł{% endtrans %}">
                     <div class="main">NORM</div>
-                    <div class="sub">text</div>
+                    <div class="sub">{% trans %}textnorm_tytuł{% endtrans %}</div>
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="ui/audio/normalize" class="btn btn-lg btn-warning"
+                <a href="ui/audio/normalize" data-toggle="tooltip" class="btn btn-lg btn-info"
                    title="{% trans %}audionorm_tytuł{% endtrans %}">
                     <div class="main">NORM</div>
-                    <div class="sub">audio</div>
+                    <div class="sub">{% trans %}audionorm_tytuł{% endtrans %}</div>
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="ui/align/forced" class="btn btn-lg btn-info"
+                <a href="ui/align/forced" data-toggle="tooltip" class="btn btn-lg btn-info"
                    title="{% trans %}forcealign_tytuł{% endtrans %}">
                     <div class="main">ALIGN</div>
-                    <div class="sub">forced</div>
+                    <div class="sub">{% trans %}forcealign_tytuł{% endtrans %}</div>
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="ui/align/segment" class="btn btn-lg btn-warning"
+                <a href="ui/align/segment" data-toggle="tooltip" class="btn btn-lg btn-info"
                    title="{% trans %}segalign_tytuł{% endtrans %}">
                     <div class="main">ALIGN</div>
-                    <div class="sub">segment</div>
+                    <div class="sub">{% trans %}segalign_tytuł{% endtrans %}</div>
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="ui/speech/recognize" class="btn btn-lg btn-success"
+                <a href="ui/speech/recognize" data-toggle="tooltip" class="btn btn-lg btn-info"
                    title="{% trans %}reco_tytuł{% endtrans %}">
                     <div class="main">RECO</div>
-                    <div class="sub">speech</div>
+                    <div class="sub">{% trans %}reco_tytuł{% endtrans %}</div>
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="#" class="btn btn-lg btn-info disabled"
+                <a href="#" class="btn btn-lg btn-info disabled" data-toggle="tooltip"
                    title="{% trans %}vad_tytuł{% endtrans %}">
                     <div class="main">VAD</div>
                     <div class="sub">(in development)</div>
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="ui/speech/diarize" class="btn btn-lg btn-info disabled"
+                <a href="ui/speech/diarize" class="btn btn-lg btn-info disabled" data-toggle="tooltip"
                    title="{% trans %}dia_tytuł{% endtrans %}">
                     <div class="main">DIA</div>
                     <div class="sub">(in development)</div>
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="ui/speech/kws" class="btn btn-lg btn-info disabled"
+                <a href="ui/speech/kws" class="btn btn-lg btn-info disabled" data-toggle="tooltip"
                    title="{% trans %}kws_tytuł{% endtrans %}">
                     <div class="main">KWS</div>
                     <div class="sub">(in development)</div>

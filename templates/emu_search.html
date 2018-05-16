@@ -1,9 +1,10 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <h1>{% trans %}emu_search_tytuł{% endtrans %}</h1>
+    <h1 class="tool-title">{% trans %}emu_search_tytuł{% endtrans %}</h1>
 
     <div class="card form-group card-block">
+        <div class="card-body">
         <h3><a data-toggle="collapse" href="#filter" aria-expanded="true" aria-controls="filter">
             {% trans %}filtry{% endtrans %}
         </a></h3>
@@ -40,9 +41,11 @@
                 </div>
             </form>
         </div>
+        </div>
     </div>
 
     <div class="card form-group card-block">
+        <div class="card-body">
         <table class="table">
             <thead class="thead-inverse">
             <tr>
@@ -104,6 +107,7 @@
                 {% endfor %}
             </ul>
         </nav>
+        </div>
     </div>
 
 {% endblock %}

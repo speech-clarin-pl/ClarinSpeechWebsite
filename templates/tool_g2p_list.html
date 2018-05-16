@@ -1,25 +1,51 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <h1>{% trans %}g2p_wordlist_tytuł{% endtrans %}</h1>
+    <h1 class="tool-title">{% trans %}g2p_wordlist_tytuł{% endtrans %}</h1>
+
+ <!-- belka ustawien narzedzia -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light tool-settings">
+      <a class="navbar-brand" href="#">Ustawienia</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Wybór języka
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Polski</a>
+              <a class="dropdown-item" href="#">Angielski</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
     <div class="card form-group card-block">
-        <h4 class="card-title">{% trans %}opis_narzędzia{% endtrans %}</h4>
-        <p class="card-text">{% trans %}opis_g2p_wordlist{% endtrans %}</p>
+        <div class="card-body">
+            <h4 class="card-title">{% trans %}opis_narzędzia{% endtrans %}</h4>
+            <p>{% trans %}opis_g2p_wordlist{% endtrans %}</p>
+        </div>
     </div>
 
     <div class="card form-group card-block">
-        <p>{% trans %}wczytaj_tekstowy{% endtrans %}</p>
-        <span class="input-group">
-                    <input id="file" name="file" class="form-control" type="file">
-                <span class="input-group-btn">
-                    <button id="convert_btn" class="btn btn-primary">{% trans %}konwertuj{% endtrans %}</button>
+        <div class="card-body">
+            <p>{% trans %}wczytaj_tekstowy{% endtrans %}</p>
+            <span class="input-group">
+                        <input id="file" name="file" class="form-control" type="file">
+                    <span class="input-group-btn">
+                        <button id="convert_btn" class="btn btn-info">{% trans %}konwertuj{% endtrans %}</button>
+                    </span>
                 </span>
-            </span>
+        </div>
     </div>
 
     <div class="card form-group card-block">
-
+        <div class="card-body">
         <p>{% trans %}wynik{% endtrans %}</p>
 
         <textarea id="result" class="form-control" style="height: 20em;" readonly="true"></textarea>
@@ -45,12 +71,14 @@
                 </label>
             </div>
         </div>
+        </div>
     </div>
 
     <div class="card form-group card-block">
-        <h3><a data-toggle="collapse" href="#serviceHelp">
+         <div class="card-body">
+        <h4><a data-toggle="collapse" href="#serviceHelp">
             {% trans %}commandline_tytuł{% endtrans %}
-        </a></h3>
+        </a></h4>
 
         <div class="collapse" id="serviceHelp">
 
@@ -96,6 +124,7 @@ sęp&#09;s ɛ̃ p
 śledzić&#09;ɕ l ɛ dʑ i tɕ</code></pre>
             </p>
         </div>
+         </div>
     </div>
 
     <script type="text/javascript">

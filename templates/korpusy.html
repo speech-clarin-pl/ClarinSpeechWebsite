@@ -1,42 +1,50 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <h1>{% trans %}korpusy_tytuł{% endtrans %}</h1>
+    <h1 class="tool-title">{% trans %}korpusy_tytuł{% endtrans %}</h1>
 
     <div class="gap-sm"></div>
 
-    <div class="card form-control card-block">
+    <div class="card ">
+        <div class="card-body">
+            <h2 class="card-title">{% trans %}korpus_studio_tytuł{% endtrans %}</h2>
 
-        <h3 class="card-title">{% trans %}korpus_studio_tytuł{% endtrans %}</h3>
+            <p class="card-text">{% trans %}korpus_opis{% endtrans %}
+            <br><a href="/korpusy/clarin_emu.zip">{% trans %}korpus_link{% endtrans %}</a>
+            </p>
 
-        <p>{% trans %}korpus_opis{% endtrans %}</p>
-        <p><a href="/korpusy/clarin_emu.zip">{% trans %}korpus_link{% endtrans %}</a></p>
 
-        <h4>{% trans %}korpus_webapp_tytuł{% endtrans %}</h4>
+            <h5><b>{% trans %}korpus_webapp_tytuł{% endtrans %}</b></h5>
 
-        <p>{% trans %}korpus_webapp_opis{% endtrans %}</p>
+            <p>{% trans %}korpus_webapp_opis{% endtrans %}
+            <br>
+                <a href="http://ips-lmu.github.io/EMU-webApp/?autoConnect=true&serverUrl=wss%3A%2F%2Fmowa.clarin-pl.eu%3A17891%2Fclarin">
+                    {% trans %}link_do_usługi{% endtrans %}
+                </a>
+            </p>
 
-        <p>
-            <a href="http://ips-lmu.github.io/EMU-webApp/?autoConnect=true&serverUrl=wss%3A%2F%2Fmowa.clarin-pl.eu%3A17891%2Fclarin">
-                {% trans %}link_do_usługi{% endtrans %}
-            </a>
-        </p>
 
-        <h4>{% trans %}korpus_licencja{% endtrans %}</h4>
 
-        <a href="/korpusy/LICENSE">LICENSE</a>
+            <h5><b>{% trans %}korpus_licencja{% endtrans %}</b><br>
+                <a href="/korpusy/LICENSE">LICENSE</a>
+            </h5>
 
+
+        </div>
     </div>
 
-    <div class="card form-control card-block" style="margin-top: 15px">
+    <div class="card" style="margin-top: 15px">
+      <div class="card-body">
+            <h3 class="card-title">{% trans %}kaldi_baseline{% endtrans %}</h3>
 
-        <h3 class="card-title">{% trans %}kaldi_baseline{% endtrans %}</h3>
+            <p class="card-text">{% trans %}kaldi_baseline_opis{% endtrans %}
+                <br><a href="https://github.com/danijel3/ClarinStudioKaldi">
+                    https://github.com/danijel3/ClarinStudioKaldi
+                </a>
+            </p>
 
-        <p>{% trans %}kaldi_baseline_opis{% endtrans %}</p>
 
-        <p><a href="https://github.com/danijel3/ClarinStudioKaldi">
-            https://github.com/danijel3/ClarinStudioKaldi
-        </a></p>
+      </div>
     </div>
 
 {% endblock %}

@@ -1,21 +1,38 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<h1>{% trans %}główny_tytuł{% endtrans %}</h1>
+<h1 class="tool-title">{% trans %}główny_tytuł{% endtrans %}</h1>
 
 <div class="gap-sm">&nbsp;</div>
 
 <div class="row" id="main_buttons">
 
-	<div class="col-lg-4">
+	<!--<div class="col-lg-4">
 		<a class="btn btn-success btn-lg" href="/korpusy">
 			<div class="icon">
 				<i class="fa fa-book" aria-hidden="true"></i>
 			</div>
-			<h4 class="card-title">{% trans %}korpusy{% endtrans %}</h4>
+			<h4 class="card-title">{% trans %}korpus{% endtrans %}</h4>
 		</a>
-	</div>
+	</div>-->
 
+
+	<div class="col-lg-4">
+		<div class="card animated fadeIn">
+
+			<a class="card-img-top btn btn-info btn-lg clearTop" href="/korpusy">
+				<div class="icon">
+					<i class="fa fa-book" aria-hidden="true"></i>
+				</div>
+			</a>
+			<div class="card-body">
+			<h5>{% trans %}korpus{% endtrans %}</h5>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et erat quis felis finibus luctus quis in justo. Praesent ante diam, fringilla ut erat quis, ultricies volutpat ante.</p>
+
+		  </div>
+		</div>
+	</div>
+<!--
 	<div class="col-lg-4">
 		<a class="btn btn-primary btn-lg" href="tools">
 			<div class="icon">
@@ -23,8 +40,26 @@
 			</div>
 			<h4 class="card-title">{% trans %}usługi{% endtrans %}</h4>
 		</a>
+	</div>-->
+
+
+
+	<div class="col-lg-4">
+		<div class="card  animated fadeIn">
+			<a class="card-img-top btn btn-info btn-lg clearTop" href="/tools">
+				<div class="icon">
+					<i class="fa fa-wrench" aria-hidden="true"></i>
+				</div>
+			</a>
+			<div class="card-body">
+			<h5>{% trans %}usługi{% endtrans %}</h5>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et erat quis felis finibus luctus quis in justo. Praesent ante diam, fringilla ut erat quis, ultricies volutpat ante.</p>
+
+		  </div>
+		</div>
 	</div>
 
+	<!--
 	<div class="col-lg-4">
 		<a class="btn btn-danger btn-lg" href="emu">
 			<div class="icon">
@@ -32,6 +67,22 @@
 			</div>
 			<h4 class="card-title">{% trans %}narzędzie_emu{% endtrans %}</h4>
 		</a>
+	</div>-->
+
+
+
+	<div class="col-lg-4">
+		<div class="card  animated fadeIn">
+			<a class="card-img-top btn btn-info btn-lg clearTop"  href="emu">
+				<div class="icon">
+					<img class="strus-icon" src={{ url_for('static', filename='img/emuIcon.png') }}>
+				</div>
+			</a>
+			<div class="card-body">
+			<h5>{% trans %}narzędzie_emu{% endtrans %}</h5>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et erat quis felis finibus luctus quis in justo. Praesent ante diam, fringilla ut erat quis, ultricies volutpat ante.</p>
+		  </div>
+		</div>
 	</div>
 
 </div>
@@ -40,11 +91,11 @@
 
 <div class="row">
 	<div class="col-lg-4">
-		<a class="btn btn-info" href="https://danijel3.github.io/emuR_notebooks"> 
-			<h4 class="card-title">
+		<a class="btn btn-info btn-bg" href="https://danijel3.github.io/emuR_notebooks">
+
 				<i class="fa fa-question-circle"></i> 
 				{% trans %}instrukcje{% endtrans %}
-			</h4>
+
 		</a> 
 	</div>
 </div>
