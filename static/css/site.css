@@ -30,6 +30,10 @@ nav img {
 
 }
 
+input#file, input#word {
+    margin-right:8px;
+}
+
 pre {
     color: #bd4147;
     background-color: #f8f9fa;
@@ -117,12 +121,12 @@ img.strus-icon{
 
 #breadcrumb-custom li:last-child a{
    background: white;
-    padding: 30px 30px 17px 30px;
+    padding: 20px 30px 17px 30px;
     border-radius: 8px 8px 0px 0px;
     border-top: 1px solid #888;
     border-right: 1px solid #888;
     color: #333;
-    font-size:1.6em;
+    font-size:1em;
     text-decoration:none;
 }
 
@@ -135,10 +139,45 @@ img.strus-icon{
 }
 
 .tool-settings {
-    margin: 20px 0px 20px 0px;
+    margin: 0px;
 }
 
 .tool-title {
     display:none;
 }
 
+.btn-g2p {
+    color: #fff;
+    background-color: #7f6caf;
+    border-color: #7f6caf;
+}
+
+.btn-g2p:hover {
+    color: #fff;
+    background-color: #533d87;
+    border-color: #533d87;
+}
+
+.btn-align {
+    color: #fff;
+    background-color: #bd5840;
+    border-color: #bd5840;
+}
+
+.btn-align:hover {
+    color: #fff;
+    background-color: #a83d24;
+    border-color: #a83d24;
+}
+
+.btn-reco {
+    color: #fff;
+    background-color: #5fa86b;
+    border-color: #5fa86b;
+}
+
+.btn-reco:hover {
+    color: #fff;
+    background-color: #449351;
+    border-color: #449351;
+}
