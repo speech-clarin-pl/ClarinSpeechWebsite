@@ -14,39 +14,44 @@
     </div>
 
 
-
     <div class="card form-group card-block">
-              <!-- belka ustawien narzedzia -->
-        <nav class="card-img-top navbar navbar-expand-lg navbar-light bg-light tool-settings">
-          <a class="navbar-brand" href="#">Settings:</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Wybór języka
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Polski</a>
-                  <a class="dropdown-item" href="#">Angielski</a>
-                </div>
-              </li>
-            </ul>
-          </div>
+         <!-- belka ustawien narzedzia -->
+        <nav class="card-img-top navbar navbar-expand-lg navbar-light bg-light tool-settings">
+            <span class="ustawienie" id="ustawienie-lng"><span class="ust-name">Aktualny język: </span><span class="ust-value" id="lng-value">Angielski</span></span>
         </nav>
 
-        <div class="card-body">
-            <p>{% trans %}wpisz_wyraz_g2p{% endtrans %}</p>
 
-            <span class="input-group">
-                    <input id="word" class="form-control" type="text" on>
-                    <span class="input-group-btn">
-                        <button id="convert_btn" class="btn btn-info">{% trans %}konwertuj{% endtrans %}</button>
-                    </span>
-                </span>
+        <div class="card-body">
+             <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p><b>Zmień język:</b></p>
+                            <form id="lang-choice">
+                                <input type="radio" name="lng" value="Angielski" checked> Angielski <br>
+                                <input type="radio" name="lng" value="Polski"> Polski <br>
+                            </form>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>Po tej stronie jest miejsce na ewentualne inne ustawienia</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <p>{% trans %}wpisz_wyraz_g2p{% endtrans %}</p>
+
+                    <span class="input-group">
+                            <input id="word" class="form-control" type="text" on>
+                            <span class="input-group-btn">
+                                <button id="convert_btn" class="btn btn-info">{% trans %}konwertuj{% endtrans %}</button>
+                            </span>
+                        </span>
+                </div>
+              </div>
+
+
+
         </div>
     </div>
 
@@ -104,6 +109,22 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+
+        window.onload=function() {
+          var lngradios = document.getElementById("lang-choice").elements["lng"];
+
+          for (var i = 0; i < lngradios.length; i++){
+            lngradios[i].onclick=radioClicked;
+           }
+        }
+
+        function radioClicked(event) {
+            document.getElementById("lng-value").innerHTML = event.currentTarget.value;
+        }
+
+    </script>
 
     <script type="text/javascript">
 
