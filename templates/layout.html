@@ -66,14 +66,24 @@
             <i class="fa fa-envelope-o" aria-hidden="true"></i>
             {% trans %}kontakt{% endtrans %}
         </a>
-        <a class="nav-link" href="/lang/pl"><img src="{{ url_for('static', filename='img/pl.svg') }}"></a>
-        <a class="nav-link" href="/lang/en"><img src="{{ url_for('static', filename='img/gb.svg') }}"></a>
+        <a class="nav-link" href="/lang/pl"><img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}"></a>
+        <a class="nav-link" href="/lang/en"><img class="flaga-icon" src="{{ url_for('static', filename='img/gb.svg') }}"></a>
     </nav>
 
-    <div class="jumbotron">
-       <img src="{{ url_for('static',filename='img/Claring-logo.png') }}" alt="Clarin PL Logo"/></img>
-        <img src="{{ url_for('static',filename='img/logo2.png') }}" alt="CTJ Logo"/></img>
+    <div class="jumbotron" id="jumbo">
 
+        <div class="row">
+            <div class="col-md">
+                <a href="/">
+                    <img src="{{ url_for('static',filename='img/Claring-logo.png') }}" class="img-fluid push-left" alt="Clarin PL Logo"/></img>
+                </a>
+            </div>
+            <div class="col-md">
+                <a href="/">
+                    <img src="{{ url_for('static',filename='img/logo2.png') }}" class="img-fluid push-right" alt="CTJ Logo"/></img>
+                </a>
+            </div>
+      </div>
 
     </div>
 
@@ -89,8 +99,9 @@
 
     <!--<div style="margin-top:2em">&nbsp;</div>-->
 
-    {% block body %} {% endblock %}
-
+    <div id="mainblock">
+        {% block body %} {% endblock %}
+    </div>
 
     <footer class="blog-footer">
       <p>{% trans %}CLARIN-PL{% endtrans %} 2018</p>
@@ -98,7 +109,24 @@
 
 </div>
 
+<script>
+window.onscroll = function() {checkfixed()};
+window.onresize = function() {checkfixed()};
 
+var breadcrump = document.getElementById("breadcrumb-custom");
+var sticky = breadcrump.offsetTop;
+
+function checkfixed() {
+  if (window.pageYOffset >= sticky) {
+    breadcrump.classList.add("breadcrumb-fixed");
+    var jumbowidth = document.getElementById("jumbo").offsetWidth;
+    breadcrump.style.width = jumbowidth+"px";
+  } else {
+    breadcrump.classList.remove("breadcrumb-fixed");
+    breadcrump.style.width = "100%";
+  }
+}
+</script>
 
 <script>
     (function (i, s, o, g, r, a, m) {

@@ -2,14 +2,37 @@
 {% block body %}
     <h1 class="tool-title">{% trans %}g2p_tytuł{% endtrans %}</h1>
 
-
-
-
-
     <div class="card form-group card-block">
         <div class="card-body">
-            <h4 class="card-title">{% trans %}opis_narzędzia{% endtrans %}</h4>
+            <h5 class="card-title"><b>{% trans %}opis_narzędzia{% endtrans %}</b></h5>
             <p>{% trans %}opis_g2p{% endtrans %}</p>
+
+            <p><a class="command-link" data-toggle="collapse" href="#serviceHelp">
+                {% trans %}commandline_tytuł{% endtrans %}
+            </a></p>
+
+            <div class="collapse" id="serviceHelp">
+                <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
+
+                <p><code>curl {{ server_url }}tools/phonetize/word/wstążka</code></p>
+
+                <p>{% trans %}help_gen_result_JSON{% endtrans %}</p>
+
+                <p><code>["f s t o~ Z k a", "f s t o n Z k a"]</code></p>
+
+                <p>{% trans %}help_result_ipa{% endtrans %}</p>
+
+                <p><code>curl {{ server_url }}tools/phonetize/word/wstążka?ipa</code></p>
+
+                <p>{% trans %}help_gen_result_utf8{% endtrans %}</p>
+
+                <p><code>["f s t \u0254\u0303 \u0290 k a", "f s t \u0254 n \u0290 k a"]</code></p>
+
+                <p>{% trans %}help_503_odśwież{% endtrans %}
+                </p>
+            </div>
+
+
         </div>
     </div>
 
@@ -17,46 +40,49 @@
     <div class="card form-group card-block">
 
          <!-- belka ustawien narzedzia -->
+        <!--
         <nav class="card-img-top navbar navbar-expand-lg navbar-light bg-light tool-settings">
-            <span class="ustawienie" id="ustawienie-lng"><span class="ust-name">Aktualny język: </span><span class="ust-value" id="lng-value">Angielski</span></span>
+            <span><b>Phonetization of a single world</b></span>
         </nav>
+        -->
 
 
-        <div class="card-body">
+        <div class="card-body" id="toolbody">
              <div class="row">
                 <div class="col-sm-12 col-md-6">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p><b>Zmień język:</b></p>
-                            <form id="lang-choice">
-                                <input type="radio" name="lng" value="Angielski" checked> Angielski <br>
-                                <input type="radio" name="lng" value="Polski"> Polski <br>
-                            </form>
-                        </div>
-                        <div class="col-sm-6">
-                            <p>Po tej stronie jest miejsce na ewentualne inne ustawienia</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                  <p>{% trans %}wpisz_wyraz_g2p{% endtrans %}</p>
+                   <p>{% trans %}wpisz_wyraz_g2p{% endtrans %}</p>
 
-                    <span class="input-group">
+                    <div class="input-group">
                             <input id="word" class="form-control" type="text" on>
                             <span class="input-group-btn">
                                 <button id="convert_btn" class="btn btn-info">{% trans %}konwertuj{% endtrans %}</button>
                             </span>
-                        </span>
+                    </div>
+
+
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="ustawienia">
+                        <p><b>Aktualne ustawienia narzędzia: </b></p>
+                        <p id="ustawienie-lng" class="ust-name">Wybrany język: <span class="ust-value" id="lng-value">Polski</span><button type="button" class="btn btn-info btn-micro btn-outline-secondary" id="zmien-lng-btn">v</button></p>
+                    </div>
+
+                    <div id="ustawienia-panel">
+                        <div id="ustawienia-jezyk">
+                            <form id="lang-choice">
+                                <input type="radio" name="lng" value="Polski" checked><img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}"> Polski <br>
+                                <input type="radio" name="lng" value="Angielski" ><img class="flaga-icon" src="{{ url_for('static', filename='img/gb.svg') }}"> Angielski <br>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+
+
                 </div>
               </div>
 
-
-
-        </div>
-    </div>
-
-    <div class="card form-group card-block">
-        <div class="card-body">
             <p>{% trans %}wynik{% endtrans %}</p>
 
             <textarea id="result" class="form-control" style="height: 10em;" readonly="true"></textarea>
@@ -80,37 +106,19 @@
         </div>
     </div>
 
-    <div class="card form-group card-block">
 
-        <div class="card-body">
-            <h4><a data-toggle="collapse" href="#serviceHelp">
-                {% trans %}commandline_tytuł{% endtrans %}
-            </a></h4>
-
-            <div class="collapse" id="serviceHelp">
-                <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
-
-                <p><code>curl {{ server_url }}tools/phonetize/word/wstążka</code></p>
-
-                <p>{% trans %}help_gen_result_JSON{% endtrans %}</p>
-
-                <p><code>["f s t o~ Z k a", "f s t o n Z k a"]</code></p>
-
-                <p>{% trans %}help_result_ipa{% endtrans %}</p>
-
-                <p><code>curl {{ server_url }}tools/phonetize/word/wstążka?ipa</code></p>
-
-                <p>{% trans %}help_gen_result_utf8{% endtrans %}</p>
-
-                <p><code>["f s t \u0254\u0303 \u0290 k a", "f s t \u0254 n \u0290 k a"]</code></p>
-
-                <p>{% trans %}help_503_odśwież{% endtrans %}
-                </p>
-            </div>
-        </div>
-    </div>
 
     <script type="text/javascript">
+
+        $(document).ready(function(){
+            $('#ustawienia-panel').hide();
+
+            $('#zmien-lng-btn').click(function(){
+                $('#ustawienia-panel').toggle(200);
+            });
+        });
+
+
 
         window.onload=function() {
           var lngradios = document.getElementById("lang-choice").elements["lng"];
@@ -121,7 +129,9 @@
         }
 
         function radioClicked(event) {
-            document.getElementById("lng-value").innerHTML = event.currentTarget.value;
+            var wybranyJezyk = event.currentTarget.value;
+            localStorage.setItem("wybranyJezyk", wybranyJezyk);
+            document.getElementById("lng-value").innerHTML = wybranyJezyk;
         }
 
     </script>

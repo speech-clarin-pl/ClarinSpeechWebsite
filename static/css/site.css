@@ -121,7 +121,7 @@ img.strus-icon{
 
 #breadcrumb-custom li:last-child a{
    background: white;
-    padding: 20px 30px 17px 30px;
+    padding: 20px 30px 16px 30px;
     border-radius: 8px 8px 0px 0px;
     border-top: 1px solid #888;
     border-right: 1px solid #888;
@@ -132,10 +132,21 @@ img.strus-icon{
 
 .breadcrumb-item + .breadcrumb-item::before {
     content: " / ";
+    color: black;
 }
+
+.breadcrumb-fixed .breadcrumb-item + .breadcrumb-item::before {
+    content: " / ";
+}
+
 
 .breadcrumb-item:last-child::before {
     content: "  " !important;
+}
+
+.breadcrumb-item a {
+    color: #333;
+
 }
 
 .tool-settings {
@@ -180,4 +191,58 @@ img.strus-icon{
     color: #fff;
     background-color: #449351;
     border-color: #449351;
+}
+
+.jumbotron {
+    padding: 3em 2em;
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.breadcrumb-fixed {
+  position: fixed !important;
+  top: 0px !important;
+  z-index:999999;
+}
+
+.breadcrumb-fixed .breadcrumb-item:last-child a{
+    position:relative;
+    top:-2px;
+}
+
+.breadcrumb-fixed .breadcrumb-item a{
+
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.breadcrumb-fixed + #mainblock {
+  padding-top: 60px;
+}
+
+.ustawienia .ust-name {
+    font-weight:normal;
+    font-size:0.9em;
+}
+
+.ustawienia .ust-value {
+    font-weight:bold;
+}
+
+.btn-micro {
+    font-size: 0.68rem;
+    margin:1em;
+}
+
+.command-link{
+
+}
+
+.flaga-icon{
+    height:0.9em;
+    margin:0.4em;
+    position: relative;
+    top:-0.1em;
+}
+
+.card-body#toolbody {
+    background: #f8f9fa;
 }
