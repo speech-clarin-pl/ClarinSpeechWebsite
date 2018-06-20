@@ -1,151 +1,192 @@
 {% extends "layout.html" %}
 {% block body %}
-
     <h1 class="tool-title">{% trans %}g2p_wordlist_tytuł{% endtrans %}</h1>
 
+	<!-- tool desc card -->
+    <div class="card form-group card-block" id="tool-desc">
 
+         <!-- the title of card -->
+        <div class="tool-small-tab">
+            {% trans %}opis_narzędzia{% endtrans %}
+        </div>
 
-    <div class="card form-group card-block">
+		<!-- the main body of the tab-->
         <div class="card-body">
-            <h4 class="card-title">{% trans %}opis_narzędzia{% endtrans %}</h4>
             <p>{% trans %}opis_g2p_wordlist{% endtrans %}</p>
+
+
+
+			<a type="button" data-toggle="collapse" id="command-btn-info" class="btn btn-outline-clarin3" href="#serviceHelp">{% trans %}commandline_tytuł{% endtrans %} <i class="fa fa-angle-down"></i></a>
+
+
+            <div class="collapse" id="serviceHelp">
+
+				<p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
+
+				<p><code>curl -s -F "file=@word_list_txt" {{ server_url }}tools/phonetize/list </code></p>
+
+				<p>{% trans %}help_gen_result{% endtrans %}</p>
+
+				<p>
+				<pre><code>ala&#09;a l a
+						ma&#09;m a
+						kota&#09;k o t a
+						sęp&#09;s en p
+						śledzić&#09;si l e dzi i tsi</code></pre>
+				</p>
+
+				<p>{% trans %}help_result_sampa{% endtrans %}</p>
+
+				<p><code>curl -s -F "file=@word_list_txt" {{ server_url }}tools/phonetize/list?sampa </code></p>
+
+				<p>{% trans %}help_gen_result{% endtrans %}</p>
+
+				<p>
+				<pre><code>ala&#09;a l a
+						ma&#09;m a
+						kota&#09;k o t a
+						sęp&#09;s e~ p
+						śledzić&#09;s' l e dz' i ts'</code></pre>
+				</p>
+
+				<p>{% trans %}help_result_ipa{% endtrans %}</p>
+
+				<p><code>curl -s -F "file=@word_list_txt" {{ server_url }}tools/phonetize/list?ipa </code></p>
+
+				<p>{% trans %}help_gen_result{% endtrans %}</p>
+
+				<p>
+				<pre><code>ala&#09;a l a
+					ma&#09;m a
+					kota&#09;k ɔ t a
+					sęp&#09;s ɛ̃ p
+					śledzić&#09;ɕ l ɛ dʑ i tɕ</code></pre>
+				</p>
+			</div>
+
         </div>
     </div>
 
 
+	<!-- the main card of a tool -->
+    <div class="card form-group card-block" id="main-tool">
 
-    <div class="card form-group card-block">
+        <!-- the place for the title tab -->
+        <div class="tool-small-tab">
 
-                        <!-- belka ustawien narzedzia -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light tool-settings card-img-top">
-          <a class="navbar-brand" href="#">Settings:</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Wybór języka
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Polski</a>
-                  <a class="dropdown-item" href="#">Angielski</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
-
-        <div class="card-body">
-            <p>{% trans %}wczytaj_tekstowy{% endtrans %}</p>
-            <form class="input-group" id="upload-form">
-
-                <input id="file" name="file" class="form-control" type="file">
-                        <span class="input-group-btn">
-                            <button id="convert_btn" type="submit" class="btn btn-info">{% trans %}konwertuj{% endtrans %}</button>
-                        </span>
-            </form>
-
-            <p>
-                <div class="progress" id="progress">
-                          <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">25%</div>
-                </div>
-            </p>
         </div>
-    </div>
+
+		<!-- main body of a tool -->
+        <div class="card-body" id="toolbody">
+             <div class="row">
+
+				<!-- tool input -->
+                <div class="col-sm-12 col-md-6">
+                    <table style="height: 100%; width:100%">
+					  <tbody>
+						<tr>
+						  <td class="align-middle">
+                                <div class="input-group mb-3 align-middle" id="enter-input">
+                                    <form class="input-group" id="upload-form">
+                                        <div class="custom-file">
+
+                                            <label for="file" id="fileLabel" class="btn btn-clarin3">Upload a file (tag do zmiany)</label>
+                                            <input id="file" name="file" onchange="pressed()" class="form-control" type="file">
+
+                                            <span class="input-group-btn">
+                                                <button id="convert_btn" type="submit" class="btn btn-clarin3">{% trans %}konwertuj{% endtrans %}</button>
+                                            </span>
+                                        </div>
+                                    </form>
+
+                                    <!-- progress bar -->
+                                     <p>
+                                        <div class="progress" id="progress">
+                                                  <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                        </div>
+                                    </p>
+                                </div>
+                          </td>
+						</tr>
+					  </tbody>
+					</table>
+                </div>
+
+				<!-- tool settings -->
+                <div class="col-sm-12 col-md-6">
+                    <span id="settings-label">Settings:</span>
+                    <table style="height: 100%; width:100%">
+					  <tbody>
+						<tr>
+						  <td class="align-middle">
+
+                            <nav class="navbar navbar-expand-lg navbar-light bg-light belka-ustawien">
+                                  <div class="navbar-collapse" id="navbarText">
+                                        <span class="navbar-text ust-name">Język transkrypcji: </span>
+                                        <ul class="navbar-nav mr-auto" id="ust-lng">
+                                           <li class="nav-item dropdown ">
+                                                <a id="curr-lng" class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                  <img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}">Polski
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                  <span class="dropdown-item" value="Polski"><img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}"> Polski</span>
+                                                  <span class="dropdown-item" value="Angielski"><img class="flaga-icon" src="{{ url_for('static', filename='img/gb.svg') }}"> Angielski </span>
+                                                </div>
+                                          </li>
+                                       </ul>
+                                  </div>
+                                </nav>
+
+                            </td>
+						</tr>
+					  </tbody>
+					</table>
+
+                </div>
+              </div>
 
 
+			<!-- output -->
+            <div id="output-area">
+                <div id="label-output">{% trans %}wynik{% endtrans %}</div>
+                <textarea id="result" class="form-control" style="height: 20em;" readonly="true"></textarea>
+            </div>
 
-    <div class="card form-group card-block">
-        <div class="card-body">
-        <p>{% trans %}wynik{% endtrans %}</p>
 
-        <textarea id="result" class="form-control" style="height: 20em;" readonly="true"></textarea>
-
-        <p id="ident" style="font-size: 8pt" data-toggle="tooltip" data-placement="left"
+           <p id="ident" style="font-size: 8pt" data-toggle="tooltip" data-placement="left"
            title="{% trans %}ident_admin{% endtrans %}"></p>
 
+			<button type="button" class="btn btn-clarin3 btn-sm" id="alpha" >ALPHA</button>
+            <button type="button" class="btn btn-outline-clarin3 btn-sm" id="sampa" >SAMPA</button>
+            <button type="button" class="btn btn-outline-clarin3 btn-sm"id="ipa" >IPA</button>
 
-        <div class="form-group text-center">
-            <div class="form-check form-check-inline">
-                <label class="form-check-label" for="alpha">
-                    <input class="form-check-input" name="script" type="radio" id="alpha" checked> ALPHA
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <label class="form-check-label" for="smapa">
-                    <input class="form-check-input" name="script" type="radio" id="sampa"> SAMPA
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <label class="form-check-label" for="ipa">
-                    <input class="form-check-input" name="script" type="radio" id="ipa"> IPA
-                </label>
-            </div>
         </div>
-        </div>
-    </div>
-
-    <div class="card form-group card-block">
-         <div class="card-body">
-        <h4><a data-toggle="collapse" href="#serviceHelp">
-            {% trans %}commandline_tytuł{% endtrans %}
-        </a></h4>
-
-        <div class="collapse" id="serviceHelp">
-
-            <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
-
-            <p><code>curl -s -F "file=@word_list_txt" {{ server_url }}tools/phonetize/list </code></p>
-
-            <p>{% trans %}help_gen_result{% endtrans %}</p>
-
-            <p>
-            <pre><code>ala&#09;a l a
-ma&#09;m a
-kota&#09;k o t a
-sęp&#09;s en p
-śledzić&#09;si l e dzi i tsi</code></pre>
-            </p>
-
-            <p>{% trans %}help_result_sampa{% endtrans %}</p>
-
-            <p><code>curl -s -F "file=@word_list_txt" {{ server_url }}tools/phonetize/list?sampa </code></p>
-
-            <p>{% trans %}help_gen_result{% endtrans %}</p>
-
-            <p>
-            <pre><code>ala&#09;a l a
-ma&#09;m a
-kota&#09;k o t a
-sęp&#09;s e~ p
-śledzić&#09;s' l e dz' i ts'</code></pre>
-            </p>
-
-            <p>{% trans %}help_result_ipa{% endtrans %}</p>
-
-            <p><code>curl -s -F "file=@word_list_txt" {{ server_url }}tools/phonetize/list?ipa </code></p>
-
-            <p>{% trans %}help_gen_result{% endtrans %}</p>
-
-            <p>
-            <pre><code>ala&#09;a l a
-ma&#09;m a
-kota&#09;k ɔ t a
-sęp&#09;s ɛ̃ p
-śledzić&#09;ɕ l ɛ dʑ i tɕ</code></pre>
-            </p>
-        </div>
-         </div>
     </div>
 
 
     <script>
-        $(document).ready(function(){
 
+
+        //obsluga file input
+		window.pressed = function(){
+			var a = document.getElementById('file');
+			if(a.value == "")
+			{
+			    $('#fileLabel').html("");
+			}
+			else
+			{
+				var theSplit = a.value.split('\\');
+				$('#fileLabel').html(""+theSplit[theSplit.length-1]);
+				$("#convert_btn").show();
+				$("#fileLabel").removeClass('btn-clarin3').addClass('btn-light');
+
+			}
+		};
+
+
+        $(document).ready(function(){
+            var script = 'alpha'; //domyslnie sampa
 
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
@@ -153,13 +194,48 @@ sęp&#09;s ɛ̃ p
 
             $.ajaxSetup({cache: false});
 
-
             $('#progress').hide();
+            $("#convert_btn").hide();
 
+            function convert(evt){
 
-            function convert(){
-            var formData = new FormData($('#upload-form')[0]);
+                var whichBtn = $(evt.currentTarget).attr('id');
 
+				switch (whichBtn) {
+					case 'alpha':
+						script = 'alpha';
+						$('#alpha').removeClass('btn-outline-clarin3').addClass('btn-clarin3');
+						$('#sampa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
+						$('#ipa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
+						break;
+					case 'sampa':
+						script = 'sampa';
+						$('#alpha').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
+						$('#sampa').removeClass('btn-outline-clarin3').addClass('btn-clarin3');
+						$('#ipa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
+						break;
+					case 'ipa':
+						script = 'ipa';
+						$('#alpha').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
+						$('#sampa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
+						$('#ipa').removeClass('btn-outline-clarin3').addClass('btn-clarin3');
+						break;
+					default:
+						//domyślnie alpha
+						script = 'alpha';
+						$('#alpha').removeClass('btn-outline-clarin3').addClass('btn-clarin3');
+						$('#sampa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
+						$('#ipa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
+				}
+
+                display();
+            }
+
+            function display() {
+
+                var formData = new FormData($('#upload-form')[0]);
+
+                $('#progressBar').removeClass('bg-danger').removeClass('bg-success').addClass('bg-info');
 
                 $.ajax({
                     xhr: function(){
@@ -168,12 +244,7 @@ sęp&#09;s ɛ̃ p
                         xhr.upload.addEventListener('progress', function(e){
 
                             if(e.lengthComputable){
-                                console.log('bytes loaded: ' + e.loaded);
-                                console.log('total size: ' + e.total);
-                                console.log('percentage: ' + e.loaded / e.total);
-
                                 var percent = Math.round((e.loaded / e.total) * 100);
-
                                 $('#progressBar').attr('aria-valuenow',percent).css('width',percent + "%").text(percent + "%");
                             }
 
@@ -181,12 +252,11 @@ sęp&#09;s ɛ̃ p
                         return xhr;
                     },
                     type: 'POST',
-                    url: '/tools/phonetize/list?sampa',
+                    url: '/tools/phonetize/list?'+script,
                     data: formData,
                     processData: false,
                     contentType: false,
                     success: function(data){
-                        alert('file uploaded');
                         $('#progressBar').addClass('bg-success');
                         $('#progressBar').text('The file has been uploaded');
                         $('#result').val(data);
@@ -209,14 +279,13 @@ sęp&#09;s ɛ̃ p
 
                 event.preventDefault();
 
-                convert();
+                display();
 
             });
 
             $('#alpha').click(convert);
             $('#sampa').click(convert);
             $('#ipa').click(convert);
-
 
         });
     </script>

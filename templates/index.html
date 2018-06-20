@@ -7,6 +7,43 @@
 
 <div class="row" id="main_buttons">
 
+	<div class="col-lg-4">
+		<div class="card animated fadeIn">
+			<a class="card-img-top btn btn-clarin btn-lg clearTop" href="/tools">
+
+				<div class="icon">
+					<i class="fa fa-wrench" aria-hidden="true"></i>
+				</div>
+				<h3 class="card-title">{% trans %}usługi{% endtrans %}</h3>
+
+			</a>
+			<div class="card-body">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et erat quis felis finibus luctus quis in justo. Praesent ante diam, fringilla ut erat quis, ultricies volutpat ante.</p>
+		  </div>
+		</div>
+	</div>
+
+
+		<div class="col-lg-4">
+		<div class="card  animated fadeIn">
+			<a class="card-img-top btn btn-clarin3 btn-lg clearTop"  href="emu">
+				<div class="icon">
+
+					<i class="fa fa-magic" aria-hidden="true"></i>
+					<h3 class="card-title">{% trans %}narzędzie_emu{% endtrans %}</h3>
+
+					<!--
+					<img class="strus-icon" src={{ url_for('static', filename='img/emuIcon.png') }}>
+					-->
+
+				</div>
+			</a>
+			<div class="card-body">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et erat quis felis finibus luctus quis in justo. Praesent ante diam, fringilla ut erat quis, ultricies volutpat ante.</p>
+		  </div>
+		</div>
+	</div>
+
 	<!--<div class="col-lg-4">
 		<a class="btn btn-success btn-lg" href="/korpusy">
 			<div class="icon">
@@ -20,14 +57,17 @@
 	<div class="col-lg-4">
 		<div class="card animated fadeIn">
 
-			<a class="card-img-top btn btn-g2p btn-lg clearTop" href="/korpusy">
+			<a class="card-img-top btn btn-clarin2 btn-lg clearTop" href="/korpusy">
+
 				<div class="icon">
 					<i class="fa fa-book" aria-hidden="true"></i>
 				</div>
+				<h3 class="card-title">{% trans %}korpus{% endtrans %}</h3>
+
 			</a>
 			<div class="card-body">
-			<h5>{% trans %}korpus{% endtrans %}</h5>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et erat quis felis finibus luctus quis in justo. Praesent ante diam, fringilla ut erat quis, ultricies volutpat ante.</p>
+
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et erat quis felis finibus luctus quis in justo. Praesent ante diam, fringilla ut erat quis, ultricies volutpat ante.</p>
 
 		  </div>
 		</div>
@@ -44,20 +84,7 @@
 
 
 
-	<div class="col-lg-4">
-		<div class="card  animated fadeIn">
-			<a class="card-img-top btn btn-align btn-lg clearTop" href="/tools">
-				<div class="icon">
-					<i class="fa fa-wrench" aria-hidden="true"></i>
-				</div>
-			</a>
-			<div class="card-body">
-			<h5>{% trans %}usługi{% endtrans %}</h5>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et erat quis felis finibus luctus quis in justo. Praesent ante diam, fringilla ut erat quis, ultricies volutpat ante.</p>
 
-		  </div>
-		</div>
-	</div>
 
 	<!--
 	<div class="col-lg-4">
@@ -70,36 +97,7 @@
 	</div>-->
 
 
-
-	<div class="col-lg-4">
-		<div class="card  animated fadeIn">
-			<a class="card-img-top btn btn-reco btn-lg clearTop"  href="emu">
-				<div class="icon">
-					<img class="strus-icon" src={{ url_for('static', filename='img/emuIcon.png') }}>
-				</div>
-			</a>
-			<div class="card-body">
-			<h5>{% trans %}narzędzie_emu{% endtrans %}</h5>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et erat quis felis finibus luctus quis in justo. Praesent ante diam, fringilla ut erat quis, ultricies volutpat ante.</p>
-		  </div>
-		</div>
-	</div>
-
 </div>
 
-<div class="gap-sm">&nbsp;</div> 
-
-<div class="row">
-	<div class="col-lg-4">
-		<a class="btn btn-info btn-bg" href="https://danijel3.github.io/emuR_notebooks">
-
-				<i class="fa fa-question-circle"></i> 
-				{% trans %}instrukcje{% endtrans %}
-
-		</a> 
-	</div>
-</div>
-
-<div class="gap-md">&nbsp;</div> 
 
 {% endblock %}

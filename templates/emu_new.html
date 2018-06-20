@@ -29,17 +29,17 @@
             <div class="form-group">
                 {{ form.visibility.label }}
                 <div class="btn-group form-control" data-toggle="buttons">
-                    <label class="btn btn-primary active">
+                    <label class="btn btn-clarin3 active">
                         <input checked name="{{ form.visibility.name }}" type="radio" value="public">
                         <i class="fa fa-globe"></i>
                         {% trans %}publiczny{% endtrans %}
                     </label>
-                    <label class="btn btn-primary">
+                    <label class="btn btn-clarin3">
                         <input name="{{ form.visibility.name }}" type="radio" value="viewonly">
                         <i class="fa fa-eye"></i>
                         {% trans %}tylko_do_odczytu{% endtrans %}
                     </label>
-                    <label class="btn btn-primary">
+                    <label class="btn btn-clarin3">
                         <input name="{{ form.visibility.name }}" type="radio" value="private">
                         <i class="fa fa-lock"></i>
                         {% trans %}prywatny{% endtrans %}
@@ -68,8 +68,8 @@
                     {% trans %}hasło_opis{% endtrans %}
                 </small>
             </div>
-            <button type="submit" class="btn btn-primary">{% trans %}stwórz{% endtrans %}</button>
-            <a href="/emu" class="btn btn-info">{% trans %}anuluj{% endtrans %}</a>
+            <button type="submit" class="btn btn-clarin3">{% trans %}stwórz{% endtrans %}</button>
+            <a href="/emu" class="btn btn-clarin3">{% trans %}anuluj{% endtrans %}</a>
         </form>
         </div>
     </div>

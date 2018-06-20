@@ -2,120 +2,205 @@
 {% block body %}
     <h1 class="tool-title">{% trans %}textnorm_tytuł{% endtrans %}</h1>
 
+    <!-- tool desc card -->
+    <div class="card form-group card-block" id="tool-desc">
 
+         <!-- the title of card -->
+        <div class="tool-small-tab">
+            {% trans %}opis_narzędzia{% endtrans %}
+        </div>
 
-    <div class="card form-group card-block">
+		<!-- the main body of the tab-->
         <div class="card-body">
-            <h4 class="card-title">{% trans %}opis_narzędzia{% endtrans %}</h4>
-            <p class="card-text">{% trans %}opis_textnorm{% endtrans %}</p>
-            <p class="card-text">{% trans %}opis_textnorm_wip{% endtrans %}</p>
+
+            <p>{% trans %}opis_textnorm{% endtrans %}</p>
+            <p>{% trans %}opis_textnorm_wip{% endtrans %}</p>
+
+			<a type="button" data-toggle="collapse" id="command-btn-info" class="btn btn-outline-info" href="#serviceHelp">{% trans %}commandline_tytuł{% endtrans %}<i class="fa fa-angle-down"></i></a>
+
+
+            <div class="collapse" id="serviceHelp">
+				<p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
+
+				<p><code>curl -s -F "file=@test.txt" {{ server_url }}tools/text/normalize </code></p>
+
+				<p>{% trans %}help_ident_io{% endtrans %}</p>
+
+				<p><code>{"input": "599565d139ec782642683890", "output": "599871a739ec781a48838f70"}</code></p>
+
+				<p>{% trans %}help_download{% endtrans %}</p>
+
+				<p><code>curl {{ server_url }}tools/download/599871a739ec781a48838f70</code></p>
+
+				<p>{% trans %}help_gen_result{% endtrans %}</p>
+
+				<p>
+				<pre><code>ala ma kota</code></pre>
+				</p>
+
+				<p>{% trans %}help_final_download{% endtrans %}</p>
+
+				<p>{% trans %}help_upload{% endtrans %}</p>
+
+				<p><code>curl -s -F "file=@test.txt" {{ server_url }}tools/upload/transcript</code>
+
+				<p>{% trans %}help_trans_normalize{% endtrans %}</p>
+
+				<p><code>curl {{ server_url }}tools/text/normalize/599565d139ec782642683890</code></p>
+
+				<p>{% trans %}help_result_download{% endtrans %}</p>
+			</div>
+
         </div>
     </div>
 
 
+    <div id="error-msg" class="alert alert-danger" role="alert">{% trans %}błąd_admin{% endtrans %}</div>
 
-    <div class="card form-group card-block">
+	<!-- the main card of a tool -->
+    <div class="card form-group card-block" id="main-tool">
 
-         <!-- belka ustawien narzedzia -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light tool-settings card-img-top">
-          <a class="navbar-brand" href="#">Settings:</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+        <!-- the place for the title tab -->
+        <div class="tool-small-tab">
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Wybór języka
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Polski</a>
-                  <a class="dropdown-item" href="#">Angielski</a>
+        </div>
+
+		<!-- main body of a tool -->
+        <div class="card-body" id="toolbody">
+             <div class="row">
+
+				<!-- tool input -->
+                <div class="col-sm-12 col-md-6">
+                    <table style="height: 100%; width:100%">
+					  <tbody>
+						<tr>
+						  <td class="align-middle">
+
+
+
+                            <div class="input-group mb-3 align-middle" id="enter-input">
+
+                                    <form class="input-group" id="upload-form">
+                                        <div class="custom-file">
+
+                                            <label for="file" id="fileLabel" class="btn btn-info">{% trans %}wczytaj_tekstowy{% endtrans %}</label>
+                                            <input id="file" name="file" class="form-control" onchange="pressed()" type="file">
+
+                                            <span class="input-group-btn">
+                                                <button id="convert_btn" type="submit" class="btn btn-info">{% trans %}konwertuj{% endtrans %}</button>
+                                            </span>
+                                        </div>
+                                    </form>
+
+                                    <!-- progress bar -->
+                                     <p>
+                                        <div class="progress" id="progress">
+                                                  <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                        </div>
+                                    </p>
+                            </div>
+                         </td>
+						</tr>
+					  </tbody>
+					</table>
+
                 </div>
-              </li>
-            </ul>
-          </div>
-        </nav>
 
-        <div class="card-body">
-            <p>{% trans %}wczytaj_tekstowy{% endtrans %}</p>
+				<!-- tool settings -->
+                <div class="col-sm-12 col-md-6">
 
-            <span class="input-group">
-                        <input id="file" name="file" class="form-control" type="file">
-                    <span class="input-group-btn">
-                        <button id="convert_btn" class="btn btn-primary">{% trans %}konwertuj{% endtrans %}</button>
-                    </span>
-                </span>
+                    <span id="settings-label">Settings:</span>
+
+                    <table style="height: 100%; width:100%">
+					  <tbody>
+						<tr>
+						  <td class="align-middle">
+
+                              <!--
+                                <nav class="navbar navbar-expand-lg navbar-light bg-light belka-ustawien">
+                                      <div class="navbar-collapse" id="navbarText">
+                                            <span class="navbar-text ust-name">Język transkrypcji: </span>
+                                            <ul class="navbar-nav mr-auto" id="ust-lng">
+                                               <li class="nav-item dropdown ">
+                                                    <a id="curr-lng" class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                      <img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}">Polski
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                      <span class="dropdown-item" value="Polski"><img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}"> Polski</span>
+                                                      <span class="dropdown-item" value="Angielski"><img class="flaga-icon" src="{{ url_for('static', filename='img/gb.svg') }}"> Angielski </span>
+                                                    </div>
+                                              </li>
+                                           </ul>
+                                      </div>
+                                </nav>
+                                -->
+                            </td>
+						</tr>
+					  </tbody>
+					</table>
+
+                </div>
+              </div>
+
+
         </div>
+
     </div>
 
-    <div id="error-msg" class="alert alert-danger fade" role="alert">{% trans %}błąd_admin{% endtrans %}</div>
 
-    <div class="card form-group card-block">
-        <div class="card-body">
-        <h4><a data-toggle="collapse" href="#serviceHelp">
-            {% trans %}commandline_tytuł{% endtrans %}
-        </a></h4>
 
-        <div class="collapse" id="serviceHelp">
-            <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
 
-            <p><code>curl -s -F "file=@test.txt" {{ server_url }}tools/text/normalize </code></p>
-
-            <p>{% trans %}help_ident_io{% endtrans %}</p>
-
-            <p><code>{"input": "599565d139ec782642683890", "output": "599871a739ec781a48838f70"}</code></p>
-
-            <p>{% trans %}help_download{% endtrans %}</p>
-
-            <p><code>curl {{ server_url }}tools/download/599871a739ec781a48838f70</code></p>
-
-            <p>{% trans %}help_gen_result{% endtrans %}</p>
-
-            <p>
-            <pre><code>ala ma kota</code></pre>
-            </p>
-
-            <p>{% trans %}help_final_download{% endtrans %}</p>
-
-            <p>{% trans %}help_upload{% endtrans %}</p>
-
-            <p><code>curl -s -F "file=@test.txt" {{ server_url }}tools/upload/transcript</code>
-
-            <p>{% trans %}help_trans_normalize{% endtrans %}</p>
-
-            <p><code>curl {{ server_url }}tools/text/normalize/599565d139ec782642683890</code></p>
-
-            <p>{% trans %}help_result_download{% endtrans %}</p>
-        </div>
-        </div>
-    </div>
 
     <script type="text/javascript">
 
-        function convert() {
-            var fd = new FormData();
-            var input = document.getElementById('file');
-            //fd.append('file', $('#file').prop('files')[0]);
-            fd.append('file', input.files[0]);
-            $.ajax({
-                url: '/tools/text/normalize',
-                data: fd,
-                processData: false,
-                contentType: false,
-                type: 'POST',
-                success: function (data) {
-                    res = JSON.parse(data);
-                    id = res['output'];
-                    window.location = '/tools/ui/view/' + id;
-                },
-                error: function (data) {
-                    $("#error-msg").addClass('show');
-                }
-            });
-        }
+        //obsluga file input
+		window.pressed = function(){
+			var a = document.getElementById('file');
+			if(a.value == "")
+			{
+			    $('#fileLabel').html("");
+			}
+			else
+			{
+				var theSplit = a.value.split('\\');
+				$('#fileLabel').html(""+theSplit[theSplit.length-1]);
+				$("#convert_btn").show();
+				$("#fileLabel").removeClass('btn-clarin3').addClass('btn-light');
 
-        $('#convert_btn').click(convert);
+			}
+		};
+
+		 $(document).ready(function(){
+
+            $('#progress').hide();
+            $("#convert_btn").hide();
+            $("#error-msg").hide();
+
+            function convert() {
+                var fd = new FormData();
+                var input = document.getElementById('file');
+                //fd.append('file', $('#file').prop('files')[0]);
+                fd.append('file', input.files[0]);
+                $.ajax({
+                    url: '/tools/text/normalize',
+                    data: fd,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function (data) {
+                        res = JSON.parse(data);
+                        id = res['output'];
+                        window.location = '/tools/ui/view/' + id;
+                    },
+                    error: function (data) {
+                        $("#error-msg").addClass('show');
+                    }
+                });
+            }
+
+            $('#convert_btn').click(convert);
+
+        });
     </script>
+
 {% endblock %}

@@ -2,155 +2,158 @@
 {% block body %}
     <h1 class="tool-title">{% trans %}g2p_tytuł{% endtrans %}</h1>
 
-    <div class="card form-group card-block">
+	<!-- tool desc card -->
+    <div class="card form-group card-block" id="tool-desc">
+
+         <!-- the title of card -->
+        <div class="tool-small-tab">
+            {% trans %}opis_narzędzia{% endtrans %}
+        </div>
+
+		<!-- the main body of the tab-->
         <div class="card-body">
-            <h5 class="card-title"><b>{% trans %}opis_narzędzia{% endtrans %}</b></h5>
             <p>{% trans %}opis_g2p{% endtrans %}</p>
 
-            <p><a class="command-link" data-toggle="collapse" href="#serviceHelp">
-                {% trans %}commandline_tytuł{% endtrans %}
-            </a></p>
+            <a type="button" data-toggle="collapse" id="command-btn-info" class="btn btn-outline-clarin3" href="#serviceHelp">{% trans %}commandline_tytuł{% endtrans %} <i class="fa fa-angle-down"></i></a>
+
 
             <div class="collapse" id="serviceHelp">
-                <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
+                        <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
 
-                <p><code>curl {{ server_url }}tools/phonetize/word/wstążka</code></p>
+                        <p><code>curl {{ server_url }}tools/phonetize/word/wstążka</code></p>
 
-                <p>{% trans %}help_gen_result_JSON{% endtrans %}</p>
+                        <p>{% trans %}help_gen_result_JSON{% endtrans %}</p>
 
-                <p><code>["f s t o~ Z k a", "f s t o n Z k a"]</code></p>
+                        <p><code>["f s t o~ Z k a", "f s t o n Z k a"]</code></p>
 
-                <p>{% trans %}help_result_ipa{% endtrans %}</p>
+                        <p>{% trans %}help_result_ipa{% endtrans %}</p>
 
-                <p><code>curl {{ server_url }}tools/phonetize/word/wstążka?ipa</code></p>
+                        <p><code>curl {{ server_url }}tools/phonetize/word/wstążka?ipa</code></p>
 
-                <p>{% trans %}help_gen_result_utf8{% endtrans %}</p>
+                        <p>{% trans %}help_gen_result_utf8{% endtrans %}</p>
 
-                <p><code>["f s t \u0254\u0303 \u0290 k a", "f s t \u0254 n \u0290 k a"]</code></p>
+                        <p><code>["f s t \u0254\u0303 \u0290 k a", "f s t \u0254 n \u0290 k a"]</code></p>
 
-                <p>{% trans %}help_503_odśwież{% endtrans %}
-                </p>
+                        <p>{% trans %}help_503_odśwież{% endtrans %}</p>
             </div>
-
-
         </div>
     </div>
 
 
-    <div class="card form-group card-block">
+	<!-- the main card of a tool -->
+    <div class="card form-group card-block" id="main-tool">
 
-         <!-- belka ustawien narzedzia -->
-        <!--
-        <nav class="card-img-top navbar navbar-expand-lg navbar-light bg-light tool-settings">
-            <span><b>Phonetization of a single world</b></span>
-        </nav>
-        -->
+        <!-- the place for the title tab -->
+        <div class="tool-small-tab">
 
+        </div>
 
+		<!-- main body of a tool -->
         <div class="card-body" id="toolbody">
              <div class="row">
+
+				<!-- tool input -->
                 <div class="col-sm-12 col-md-6">
-                   <p>{% trans %}wpisz_wyraz_g2p{% endtrans %}</p>
-
-                    <div class="input-group">
-                            <input id="word" class="form-control" type="text" on>
-                            <span class="input-group-btn">
-                                <button id="convert_btn" class="btn btn-info">{% trans %}konwertuj{% endtrans %}</button>
-                            </span>
-                    </div>
-
-
+                    <table style="height: 100%; width:100%">
+					  <tbody>
+						<tr>
+						  <td class="align-middle">
+                                <div class="input-group mb-3 align-middle" id="enter-input">
+                                  <input type="text" id="word" class="form-control" placeholder="{% trans %}wpisz_wyraz_g2p{% endtrans %}" aria-label="{% trans %}wpisz_wyraz_g2p{% endtrans %}" aria-describedby="basic-addon2">
+                                  <div class="input-group-append">
+                                      <button id="convert_btn" class="btn btn-clarin3" type="button"><i class="fa fa-cogs"></i> {% trans %}konwertuj{% endtrans %}</button>
+                                  </div>
+                                </div>
+                            </td>
+						</tr>
+					  </tbody>
+					</table>
                 </div>
+
+				<!-- tool settings -->
                 <div class="col-sm-12 col-md-6">
-                    <div class="ustawienia">
-                        <p><b>Aktualne ustawienia narzędzia: </b></p>
-                        <p id="ustawienie-lng" class="ust-name">Wybrany język: <span class="ust-value" id="lng-value">Polski</span><button type="button" class="btn btn-info btn-micro btn-outline-secondary" id="zmien-lng-btn">v</button></p>
-                    </div>
+                    <span id="settings-label">Settings:</span>
+                    <table style="height: 100%; width:100%">
+					  <tbody>
+						<tr>
+						  <td class="align-middle">
 
-                    <div id="ustawienia-panel">
-                        <div id="ustawienia-jezyk">
-                            <form id="lang-choice">
-                                <input type="radio" name="lng" value="Polski" checked><img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}"> Polski <br>
-                                <input type="radio" name="lng" value="Angielski" ><img class="flaga-icon" src="{{ url_for('static', filename='img/gb.svg') }}"> Angielski <br>
-                            </form>
-                        </div>
-                    </div>
+                            <nav class="navbar navbar-expand-lg navbar-light bg-light belka-ustawien">
+                                  <div class="navbar-collapse" id="navbarText">
+                                        <span class="navbar-text ust-name">Język transkrypcji: </span>
+                                        <ul class="navbar-nav mr-auto" id="ust-lng">
+                                           <li class="nav-item dropdown ">
+                                                <a id="curr-lng" class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                  <img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}">Polski
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                  <span class="dropdown-item" value="Polski"><img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}"> Polski</span>
+                                                  <span class="dropdown-item" value="Angielski"><img class="flaga-icon" src="{{ url_for('static', filename='img/gb.svg') }}"> Angielski </span>
+                                                </div>
+                                          </li>
+                                       </ul>
+                                  </div>
+                                </nav>
 
-
-
-
+                            </td>
+						</tr>
+					  </tbody>
+					</table>
 
                 </div>
               </div>
 
-            <p>{% trans %}wynik{% endtrans %}</p>
 
-            <textarea id="result" class="form-control" style="height: 10em;" readonly="true"></textarea>
+			<!-- output -->
+            <div id="output-area">
+                <div id="label-output">{% trans %}wynik{% endtrans %}</div>
+                <textarea id="result" class="form-control" style="height: 10em;" readonly="true"></textarea>
+            </div>
 
-        <p id="ident" style="font-size: 8pt" data-toggle="tooltip" data-placement="left"
+
+           <p id="ident" style="font-size: 8pt" data-toggle="tooltip" data-placement="left"
            title="{% trans %}ident_admin{% endtrans %}"></p>
 
-        <div class="form-group text-center">
-            <div class="form-check form-check-inline">
-                <label class="form-check-label" for="smapa">
-                    <input class="form-check-input" name="script" type="radio" id="sampa" checked> SAMPA
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <label class="form-check-label" for="ipa">
-                    <input class="form-check-input" name="script" type="radio" id="ipa"> IPA
-                </label>
-            </div>
+            <button type="button" class="btn btn-clarin3 btn-sm" id="sampa" >SAMPA</button>
+            <button type="button" class="btn btn-outline-clarin3 btn-sm"id="ipa" >IPA</button>
 
-        </div>
         </div>
     </div>
 
-
-
-    <script type="text/javascript">
-
-        $(document).ready(function(){
-            $('#ustawienia-panel').hide();
-
-            $('#zmien-lng-btn').click(function(){
-                $('#ustawienia-panel').toggle(200);
-            });
-        });
-
-
-
-        window.onload=function() {
-          var lngradios = document.getElementById("lang-choice").elements["lng"];
-
-          for (var i = 0; i < lngradios.length; i++){
-            lngradios[i].onclick=radioClicked;
-           }
-        }
-
-        function radioClicked(event) {
-            var wybranyJezyk = event.currentTarget.value;
-            localStorage.setItem("wybranyJezyk", wybranyJezyk);
-            document.getElementById("lng-value").innerHTML = wybranyJezyk;
-        }
-
-    </script>
 
     <script type="text/javascript">
 
         var fail_count;
         var time_delay;
 
-        function convert() {
+        function convert(evt) {
             fail_count = 5;
             time_delay = 100;
-            display();
+            var whichbtn = $(evt.currentTarget).attr('id');
+            display(whichbtn);
         }
 
-        function display() {
-            var script;
-            if ($('#sampa').is(':checked')) script = 'sampa';
-            if ($('#ipa').is(':checked')) script = 'ipa';
+        function display(whichBtn) {
+
+            var script = 'sampa'; //domyslnie sampa
+
+			switch (whichBtn) {
+				case 'sampa':
+					script = 'sampa';
+					$('#sampa').removeClass('btn-outline-clarin3').addClass('btn-clarin3');
+					$('#ipa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
+					break;
+				case 'ipa':
+					script = 'ipa';
+					$('#ipa').removeClass('btn-outline-clarin3').addClass('btn-clarin3');
+					$('#sampa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
+					break;
+				default:
+					script = 'sampa';
+					$('#sampa').removeClass('btn-outline-clarin3').addClass('btn-clarin3');
+					$('#ipa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
+			}
+
 
             $('#convert_btn').html('<span class="fa fa-refresh fa-spin"></span>\
                 {% trans %}pracuję{% endtrans %}');

@@ -1,3 +1,250 @@
+/* ---- responsivness ---- */
+
+@media (min-width: 1px) {
+
+
+
+
+    #top-bar .navbar-nav {
+        flex-direction: row !important;
+    }
+
+    .jumbotron  {
+        display:block !important;
+
+    }
+
+    .jumbotron img {
+        display:none !important;
+    }
+
+    .breadcrumb{
+        display: block;
+    }
+
+
+    .breadcrumb-custom {
+        margin-top: 80px;
+        background: #e9ecef !important;
+    }
+
+    .card-title {
+        font-size: 1.3em;
+    }
+
+
+
+
+}
+
+@media (min-width: 576px) {
+
+    .breadcrumb{
+        display: flex;
+    }
+
+    .jumbotron  {
+        display:block !important;
+        height: inherit;
+    }
+
+    .jumbotron img {
+        display:block !important;
+    }
+
+    .jumbotron  {
+        display:block !important;
+    }
+
+    #top-bar .navbar-nav {
+        flex-direction: row !important;
+    }
+
+    .jumbotron #logo-left {
+        padding: 2rem 1rem 2.5rem;
+        position: relative;
+        top: -11px;
+        left: 12px;
+    }
+
+    .jumbotron #logo-right {
+        padding: 2.2rem 2rem 0rem;
+        position: relative;
+        left: -15px;
+        top: -12px;
+    }
+
+    .breadcrumb-custom {
+        margin-top: 0px;
+        background: none;
+    }
+
+    .breadcrumb-fixed{
+        background: #e9ecef !important;
+    }
+
+    .card-title {
+        font-size: 1.3em;
+    }
+
+}
+
+
+@media (min-width: 768px) {
+
+
+
+    .breadcrumb{
+        display: flex;
+    }
+    .jumbotron  {
+        display:block !important;
+        height: inherit;
+    }
+
+    .jumbotron img {
+        display:block !important;
+    }
+
+    .jumbotron  {
+        display:block !important;
+    }
+
+      .jumbotron #logo-left, .jumbotron #logo-right  {
+        padding:2.5rem 1rem 3.5rem 1rem;
+    }
+
+    .jumbotron #logo-left {
+        position: relative;
+        top: -11px;
+        left: 12px;
+    }
+
+    .jumbotron #logo-right {
+        position: relative;
+        left: -15px;
+        top: -12px;
+    }
+
+    .breadcrumb-custom {
+        margin-top: 0px;
+        background: none !important;
+    }
+
+    .breadcrumb-fixed{
+        background: #e9ecef !important;
+    }
+
+    .card-title {
+        font-size: 1.3em;
+    }
+
+
+}
+
+
+@media (min-width: 992px) {
+    .breadcrumb{
+        display: flex;
+    }
+
+    .jumbotron  {
+        display:block !important;
+        height: inherit;
+    }
+
+    .jumbotron img {
+        display:block !important;
+    }
+
+    .jumbotron  {
+        display:block !important;
+    }
+
+    .jumbotron #logo-left, .jumbotron #logo-right  {
+        padding:2.5rem 1rem 3.5rem 1rem;
+    }
+
+    .jumbotron #logo-left {
+        position:relative;
+        top: 0px;
+    }
+
+    .jumbotron #logo-right {
+        position: relative;
+        left: -22px;
+        top: -12px;
+    }
+
+    .breadcrumb-custom {
+        margin-top: 0px;
+        background: none;
+    }
+
+    .breadcrumb-fixed{
+        background: #e9ecef !important;
+    }
+
+    .card-title {
+        font-size: 1.2em;
+    }
+
+
+}
+
+
+@media (min-width: 1200px) {
+    .breadcrumb{
+        display: flex;
+    }
+    .jumbotron  {
+        display:block !important;
+        height: inherit;
+    }
+
+    .jumbotron img {
+        display:block !important;
+    }
+
+    .jumbotron  {
+        display:block !important;
+    }
+
+    .jumbotron #logo-left, .jumbotron #logo-right  {
+        padding:2.5rem 1rem 3.5rem 1rem;
+    }
+
+    .jumbotron #logo-left {
+        position:relative;
+        top: 2px;
+        left:70px;
+    }
+
+    .jumbotron #logo-right {
+        position: relative;
+        left: -50px;
+        top: -12px;
+    }
+
+    .breadcrumb-custom {
+        margin-top: 0px;
+        background: none;
+    }
+
+    .breadcrumb-fixed{
+        background: #e9ecef !important;
+    }
+
+    .card-title {
+        font-size: 1.2em;
+    }
+
+
+
+}
+
+
+
 .topnav {
     background-color: black;
     color: white;
@@ -12,9 +259,7 @@ nav img {
     height: 28px;
 }
 
-.breadcrumbs {
-    background-color: #eee;
-}
+
 
 #main_buttons .fa {
     font-size: 4em;
@@ -25,7 +270,7 @@ nav img {
 
 #main_buttons .btn {
     white-space: normal;
-    height: 12em;
+    height: 13em;
     width: 100%;
 
 }
@@ -69,7 +314,7 @@ pre {
     width: 100%;
     font-size: 48pt;
     height: 3em;
-    margin-top:5%;
+    margin-top:1.75rem;
     position: relative;
 }
 
@@ -83,10 +328,18 @@ pre {
     white-space: normal;
 }
 
-#breadcrumb-custom {
+.breadcrumb {
+    background: none !important;
+}
+
+ .breadcrumb-fixed{
+        background: #e9ecef !important;
+    }
+
+.breadcrumb-custom {
     position: relative;
-    top: -37px;
-    border-bottom: 1px solid #888;
+    top: -80px;
+    border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
 h4.card-title{
@@ -104,35 +357,48 @@ img.strus-icon{
 }
 
 .blog-footer {
-    padding: 1rem 0;
-    color: #999;
+    padding: 2.5rem 1rem;
     text-align: center;
     border-top: .05rem solid #e5e5e5;
     margin-top:2em;
+    background: #e9ecef;
+    color: #333;
 }
 
 .clearTop{
     margin-top:0px;
 }
 
-#breadcrumb-custom li:last-child{
+.breadcrumb-custom li:last-child{
    position:relative;
 }
 
-#breadcrumb-custom li:last-child a{
-   background: white;
-    padding: 20px 30px 16px 30px;
+
+.breadcrumb-custom li:last-child a{
+    background: white;
+    padding: 16px 30px 16px 30px;
     border-radius: 8px 8px 0px 0px;
-    border-top: 1px solid #888;
-    border-right: 1px solid #888;
+    border-top: 1px solid rgba(0,0,0,.125);
+    border-right: 1px solid rgba(0,0,0,.125);
     color: #333;
-    font-size:1em;
     text-decoration:none;
+    font-weight:bold;
+}
+
+.mobile-version .breadcrumb-custom li:last-child a {
+    background: none !important;
+    padding: inherit !important;
+    border-radius: 0px !important;
+    border-top: none !important;
+    border-right: none !impoartant;
+    color: inherit !impoartant;
+    text-decoration:none;
+    font-weight:bold;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
     content: " / ";
-    color: black;
+    color: #212529;
 }
 
 .breadcrumb-fixed .breadcrumb-item + .breadcrumb-item::before {
@@ -144,10 +410,32 @@ img.strus-icon{
     content: "  " !important;
 }
 
+.mobile-version .breadcrumb-item:last-child::before {
+     content: " / " !important;
+}
+
 .breadcrumb-item a {
-    color: #333;
+    color: #212529;
+    font-size:0.9em;
+}
+
+.breadcrumb-fixed {
+  position: fixed !important;
+  top: 0px !important;
+  z-index:999999;
+  background: #e9ecef !important;
+}
+
+
+.breadcrumb-fixed .breadcrumb-item:last-child a{
+    position:relative;
+    top:0px;
+}
+
+.breadcrumb-fixed .breadcrumb-item a{
 
 }
+
 
 .tool-settings {
     margin: 0px;
@@ -181,36 +469,98 @@ img.strus-icon{
     border-color: #a83d24;
 }
 
-.btn-reco {
+.btn-clarin{
     color: #fff;
-    background-color: #5fa86b;
-    border-color: #5fa86b;
+    background-color: #7a6d9c;
+    border-color: #7a6d9c;
 }
 
-.btn-reco:hover {
+.btn-clarin:hover{
     color: #fff;
-    background-color: #449351;
-    border-color: #449351;
+    background-color: #655492;
+    border-color: #655492;
 }
+
+.btn-outline-clarin {
+    color: #7f6caf;
+    background-color: transparent;
+    background-image: none;
+    border-color: #7a6d9c;
+}
+
+.btn-outline-clarin:hover {
+    color: #fff;
+    background-color: #7a6d9c;
+    border-color: #7a6d9c;
+}
+
+.btn-clarin2 {
+    color: #fff;
+    background-color: #829dbf;
+    border-color: #829dbf;
+}
+
+.btn-clarin2:hover {
+    color: #fff;
+    background-color: #6885aa;
+    border-color: #6885aa;
+}
+
+.btn-outline-clarin2 {
+    color: #6885aa;
+    background-color: transparent;
+    background-image: none;
+    border-color: #6885aa;
+}
+
+.btn-outline-clarin2:hover {
+    color: #fff;
+    background-color: #6885aa;
+    border-color: #6885aa;
+}
+
+
+.btn-clarin3 {
+    color: #fff;
+    background-color: #52958e;
+    border-color: #52958e;
+}
+
+.btn-clarin3:hover {
+    color: #fff;
+    background-color: #44867f;
+    border-color: #44867f;
+}
+
+.btn-outline-clarin3 {
+    color: #52958e;
+    background-color: transparent;
+    background-image: none;
+    border-color: #52958e;
+}
+
+.btn-outline-clarin3:hover {
+    color: #fff;
+    background-color: #52958e;
+    border-color: #52958e;
+}
+
+
+
+
+
 
 .jumbotron {
-    padding: 3em 2em;
-}
-
-/* The sticky class is added to the navbar with JS when it reaches its scroll position */
-.breadcrumb-fixed {
-  position: fixed !important;
-  top: 0px !important;
-  z-index:999999;
-}
-
-.breadcrumb-fixed .breadcrumb-item:last-child a{
+    padding: 0px;
     position:relative;
-    top:-2px;
+
 }
 
-.breadcrumb-fixed .breadcrumb-item a{
 
+
+.jumbotron a {
+    display:block;
+    text-align:center;
 }
 
 /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
@@ -218,9 +568,8 @@ img.strus-icon{
   padding-top: 60px;
 }
 
-.ustawienia .ust-name {
-    font-weight:normal;
-    font-size:0.9em;
+.ust-name {
+    float:left;
 }
 
 .ustawienia .ust-value {
@@ -238,11 +587,206 @@ img.strus-icon{
 
 .flaga-icon{
     height:0.9em;
-    margin:0.4em;
+    margin:0.5em;
     position: relative;
     top:-0.1em;
 }
 
 .card-body#toolbody {
     background: #f8f9fa;
+}
+
+#title-ustawienia {
+    margin-bottom:8px;
+}
+
+.radio-label{
+    margin-right:20px;
+    float:left;
+}
+
+.card#tool-desc {
+    margin-bottom:3rem;
+    margin-top: 3rem;
+}
+
+#mainblock{
+    position:relative;
+    top:-80px;
+}
+
+#enter-input{
+    padding: .5rem 1rem;
+    padding-left:0px;
+    padding-right:0px;
+    margin-top: 1rem;
+}
+
+.belka-ustawien {
+    padding-left:0px;
+}
+
+#output-area {
+    position:relative;
+    margin-top:2rem;
+}
+
+#output-area #label-output{
+    position: absolute;
+    background: #e9ecef;
+    top: -28px;
+    left: 0px;
+    padding: 7px 10px;
+    font-size: 0.9rem;
+    border: 1px solid #ced4da;
+    border-bottom: none;
+    padding-bottom: 0px;
+    border-radius: 3px 3px 0px 0px;
+}
+
+#output-area textarea {
+    border-radius:0px 3px 3px 3px;
+}
+
+.dropdown-menu .dropdown-item {
+    cursor: pointer;
+}
+
+.navbar-brand#main {
+    font-size:1em;
+}
+
+#top-bar{
+
+}
+
+#command-btn-info {
+    margin-bottom: 15px;
+}
+
+.card#main-tool{
+    position: relative;
+    margin-top:2rem;
+}
+
+.card#main-tool .tool-small-tab{
+    position: absolute;
+    padding: 10px;
+    top: -31px;
+    background: #f8f9fa;
+    padding-bottom: 0px;
+    border: 1px solid #dfdfdf;
+    border-radius:3px 3px 0px 0px;
+    left: -1px;
+    border-bottom: none;
+    font-size: 0.9em;
+
+}
+
+.card#tool-desc .tool-small-tab{
+    position: absolute;
+    padding: 10px;
+    top: -31px;
+    background: white;
+    padding-bottom: 0px;
+    border: 1px solid #dfdfdf;
+    border-radius:3px 3px 0px 0px;
+    left: -1px;
+    border-bottom: none;
+    font-size: 0.9em;
+}
+
+/*
+----------------------------------------------
+*/
+
+
+canvas {
+    display: block;
+    vertical-align: bottom;
+}
+
+
+/* ---- particles.js container ---- */
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #e9ecef;
+    background-image: url("");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e8ebed+0,e5e8ea+100 */
+    background: #e8ebed; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, #e8ebed 0%, #e5e8ea 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover, #e8ebed 0%,#e5e8ea 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center, #e8ebed 0%,#e5e8ea 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8ebed', endColorstr='#e5e8ea',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+#main-logo{
+    margin-top:3rem;
+    width:40%;
+}
+
+
+
+#progress {
+    width: 100%;
+    margin: 15px 0px 15px 0px;
+    height:20px;
+}
+
+#main_buttons .card > a {
+    position: relative;
+}
+
+footer ul li {
+    list-style: none;
+    text-align: left;
+    margin: 0.8rem 0rem;
+    line-height: 1.1rem;
+    font-size: 0.85em;
+}
+
+footer ul li:first-child a {
+    font-weight:bold;
+    font-size:1.2em;
+}
+
+footer ul li:first-child {
+    margin-bottom:1rem;
+}
+
+footer ul li a {
+    text-decoration:none;
+    color: #4d545c;
+}
+
+footer ul li a:hover {
+    text-decoration:none;
+    color: #312453;
+}
+
+input[type=file]{
+    display:none;
+}
+
+label#fileLabel, label#fileLabel2, label#fileLabel3 {
+    margin-bottom: 0px !important;
+    margin-right: 1rem;
+}
+
+#toolbody .row > div {
+    position: relative;
+}
+
+#settings-label {
+    position: absolute;
+    z-index: 9999999;
+    font-size: 0.85em;
+    color: #999;
 }
