@@ -3,178 +3,190 @@
     <h1 class="tool-title">{% trans %}reco_tytuł{% endtrans %}</h1>
 
     <!-- tool desc card -->
-    <div class="card form-group card-block" id="tool-desc">
-
-         <!-- the title of card -->
-        <div class="tool-small-tab">
-            {% trans %}opis_narzędzia{% endtrans %}
-        </div>
-
-		<!-- the main body of the tab-->
+    <div class="card" id="tool-desc">
         <div class="card-body">
 
-            <p>{% trans %}opis_reco{% endtrans %}</p>
-            <p>{% trans %}opis_pliki_audio{% endtrans %}</p>
+            <!-- the title of card -->
+            <div class="tool-small-tab">
+                {% trans %}opis_narzędzia{% endtrans %}
+            </div>
 
-			<a type="button" data-toggle="collapse" id="command-btn-info" class="btn btn-outline-clarin" href="#serviceHelp">{% trans %}commandline_tytuł{% endtrans %}<i class="fa fa-angle-down"></i></a>
+            <!-- the main body of the tab-->
+            <div class="card-body">
+
+                <p>{% trans %}opis_reco{% endtrans %}</p>
+                <p>{% trans %}opis_pliki_audio{% endtrans %}</p>
+
+                <a type="button" data-toggle="collapse" id="command-btn-info" class="btn btn-outline-clarin"
+                   href="#serviceHelp">{% trans %}commandline_tytuł{% endtrans %}<i class="fa fa-angle-down"></i></a>
 
 
-            <div class="collapse" id="serviceHelp">
-					<p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
+                <div class="collapse" id="serviceHelp">
+                    <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
 
-				{% if forced %}
-					<p>
-						<code>curl -s -F "audio=@audio.wav" -F "transcript=@trans.txt" {{ server_url }}tools/speech/forcealign</code>
-					</p>
-				{% else %}
-					<p>
-						<code>curl -s -F "audio=@audio.wav" -F "transcript=@trans.txt" {{ server_url }}tools/speech/segmentalign</code>
-					</p>
-				{% endif %}
+                    {% if forced %}
+                        <p>
+                            <code>curl -s -F "audio=@audio.wav" -F "transcript=@trans.txt" {{ server_url }}tools/speech/forcealign</code>
+                        </p>
+                    {% else %}
+                        <p>
+                            <code>curl -s -F "audio=@audio.wav" -F "transcript=@trans.txt" {{ server_url }}tools/speech/segmentalign</code>
+                        </p>
+                    {% endif %}
 
-				<p>{% trans %}help_ident_io{% endtrans %}</p>
+                    <p>{% trans %}help_ident_io{% endtrans %}</p>
 
-				<p>
-					<code>
-						{"output": "59aeffa039ec7803291c5e1f", "audio": "59ad218239ec782dcfa73599", "transcript":
-						"59ad217639ec782dcfa73597"}
-					</code>
-				</p>
+                    <p>
+                        <code>
+                            {"output": "59aeffa039ec7803291c5e1f", "audio": "59ad218239ec782dcfa73599", "transcript":
+                            "59ad217639ec782dcfa73597"}
+                        </code>
+                    </p>
 
-				<p>{% trans %}help_download{% endtrans %}</p>
+                    <p>{% trans %}help_download{% endtrans %}</p>
 
-				<p><code>curl {{ server_url }}/tools/download/59aeffa039ec7803291c5e1f -o output.ctm</code></p>
+                    <p><code>curl {{ server_url }}/tools/download/59aeffa039ec7803291c5e1f -o output.ctm</code></p>
 
-				<p>{% trans %}help_download_textgrid{% endtrans %}</p>
+                    <p>{% trans %}help_download_textgrid{% endtrans %}</p>
 
-				<p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o output.TextGrid</code></p>
+                    <p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o output.TextGrid</code></p>
 
-				<p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o
-					output.TextGrid?script=sampa</code></p>
+                    <p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o
+                        output.TextGrid?script=sampa</code></p>
 
-				<p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o output.TextGrid?script=ipa</code>
-				</p>
+                    <p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o
+                        output.TextGrid?script=ipa</code>
+                    </p>
 
-				<p>{% trans %}help_download_annot{% endtrans %}</p>
+                    <p>{% trans %}help_download_annot{% endtrans %}</p>
 
-				<p><code>curl {{ server_url }}/tools/annot/59aeffa039ec7803291c5e1f -o output_annot.json</code></p>
+                    <p><code>curl {{ server_url }}/tools/annot/59aeffa039ec7803291c5e1f -o output_annot.json</code></p>
 
-				<p>{% trans %}help_download_status_codes{% endtrans %}</p>
+                    <p>{% trans %}help_download_status_codes{% endtrans %}</p>
 
-				<p><code>curl {{ server_url }}/tools/status/59aeffa039ec7803291c5e1f</code></p>
+                    <p><code>curl {{ server_url }}/tools/status/59aeffa039ec7803291c5e1f</code></p>
 
-				<p>{% trans %}help_status_status_codes{% endtrans %}</p>
+                    <p>{% trans %}help_status_status_codes{% endtrans %}</p>
 
-				<p>{% trans %}help_upload{% endtrans %}</p>
+                    <p>{% trans %}help_upload{% endtrans %}</p>
 
-				<p><code>curl -s -F "file=@audio.wav" {{ server_url }}tools/upload/audio</code></p>
+                    <p><code>curl -s -F "file=@audio.wav" {{ server_url }}tools/upload/audio</code></p>
 
-				<p>{% trans %}help_upload_result{% endtrans %}</p>
+                    <p>{% trans %}help_upload_result{% endtrans %}</p>
 
-				{% if forced %}
-					<p>
-						<code>curl {{ server_url }}tools/speech/forcealign/59ad218239ec782dcfa73599/59ad217639ec782dcfa73597</code>
-					</p>
-				{% else %}
-					<p>
-						<code>curl {{ server_url }}tools/speech/segmentalign/59ad218239ec782dcfa73599/59ad217639ec782dcfa73597</code>
-					</p>
-				{% endif %}
+                    {% if forced %}
+                        <p>
+                            <code>curl {{ server_url }}tools/speech/forcealign/59ad218239ec782dcfa73599/59ad217639ec782dcfa73597</code>
+                        </p>
+                    {% else %}
+                        <p>
+                            <code>curl {{ server_url }}tools/speech/segmentalign/59ad218239ec782dcfa73599/59ad217639ec782dcfa73597</code>
+                        </p>
+                    {% endif %}
 
-				<p>{% trans %}help_final_download{% endtrans %}</p>
-			</div>
+                    <p>{% trans %}help_final_download{% endtrans %}</p>
+                </div>
 
+            </div>
         </div>
     </div>
 
-	<div id="error-msg" class="alert alert-danger" role="alert">{% trans %}błąd_admin{% endtrans %}</div>
+    <div id="error-msg" class="alert alert-danger" role="alert">{% trans %}błąd_admin{% endtrans %}</div>
 
-	<!-- the main card of a tool -->
-    <div class="card form-group card-block" id="main-tool">
+    <!-- the main card of a tool -->
+    <div class="card" id="main-tool">
+        <div class="card-body">
+            <!-- the place for the title tab -->
+            <div class="tool-small-tab">
 
-        <!-- the place for the title tab -->
-        <div class="tool-small-tab">
+            </div>
 
-        </div>
+            <!-- main body of a tool -->
+            <div class="card-body" id="toolbody">
+                <div class="row">
 
-		<!-- main body of a tool -->
-        <div class="card-body" id="toolbody">
-             <div class="row">
+                    <!-- tool input -->
+                    <div class="col-sm-12 col-md-6">
+                        <table style="height: 100%; width:100%">
+                            <tbody>
+                            <tr>
+                                <td class="align-middle">
+                                    <div class="input-group mb-3 align-middle" id="enter-input">
+                                        <form class="input-group" id="upload-form">
 
-				<!-- tool input -->
-                <div class="col-sm-12 col-md-6">
-					<table style="height: 100%; width:100%">
-					  <tbody>
-						<tr>
-						  <td class="align-middle">
-							<div class="input-group mb-3 align-middle" id="enter-input">
-								<form class="input-group" id="upload-form">
+                                            <div class="custom-file">
 
-									<div class="custom-file">
-
-										<label for="audio" id="fileLabel" class="btn btn-clarin">{% trans %}wczytaj_audio{% endtrans %}</label>
-										<input id="audio" onchange="pressed()" name="audio" class="form-control" type="file">
+                                                <label for="audio" id="fileLabel" class="btn btn-clarin">{% trans %}
+                                                    wczytaj_audio{% endtrans %}</label>
+                                                <input id="audio" onchange="pressed()" name="audio" class="form-control"
+                                                       type="file">
 
 
-										<span class="input-group-btn">
+                                                <span class="input-group-btn">
 											<button id="convert_btn" type="submit" class="btn btn-clarin">
 											 {% trans %}rozpocznij{% endtrans %}
 											</button>
 										</span>
-									</div>
-								</form>
+                                            </div>
+                                        </form>
 
-								<!-- progress bar -->
-								 <p>
-									<div class="progress" id="progress">
-											  <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">25%</div>
-									</div>
-								</p>
-							</div>
-						   </td>
-						</tr>
-					  </tbody>
-					</table>
+                                        <!-- progress bar -->
+                                        <p>
+                                        <div class="progress" id="progress">
+                                            <div class="progress-bar" id="progressBar" role="progressbar"
+                                                 style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                                                 aria-valuemax="100">25%
+                                            </div>
+                                        </div>
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
 
+                    </div>
+
+                    <!-- tool settings -->
+                    <div class="col-sm-12 col-md-6">
+
+                        <span id="settings-label">Settings:</span>
+
+                        <table style="height: 100%; width:100%">
+                            <tbody>
+                            <tr>
+                                <td class="align-middle">
+                                    <nav class="navbar navbar-expand-lg navbar-light bg-light belka-ustawien">
+                                        <div class="navbar-collapse" id="navbarText">
+                                            <span class="navbar-text ust-name">Język transkrypcji: </span>
+                                            <ul class="navbar-nav mr-auto" id="ust-lng">
+                                                <li class="nav-item dropdown ">
+                                                    <a id="curr-lng" class="nav-link dropdown-toggle active" href="#"
+                                                       id="navbarDropdown" role="button" data-toggle="dropdown"
+                                                       aria-haspopup="true" aria-expanded="false">
+                                                        <img class="flaga-icon"
+                                                             src="{{ url_for('static', filename='img/pl.svg') }}">Polski
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                        <span class="dropdown-item" value="Polski"><img
+                                                                class="flaga-icon"
+                                                                src="{{ url_for('static', filename='img/pl.svg') }}"> Polski</span>
+                                                        <span class="dropdown-item" value="Angielski"><img
+                                                                class="flaga-icon"
+                                                                src="{{ url_for('static', filename='img/gb.svg') }}"> Angielski </span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </nav>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
-				<!-- tool settings -->
-                <div class="col-sm-12 col-md-6">
-
-                    <span id="settings-label">Settings:</span>
-
-					<table style="height: 100%; width:100%">
-					  <tbody>
-						<tr>
-						  <td class="align-middle">
-							  <nav class="navbar navbar-expand-lg navbar-light bg-light belka-ustawien">
-								  <div class="navbar-collapse" id="navbarText">
-										<span class="navbar-text ust-name">Język transkrypcji: </span>
-										<ul class="navbar-nav mr-auto" id="ust-lng">
-										   <li class="nav-item dropdown ">
-												<a id="curr-lng" class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												  <img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}">Polski
-												</a>
-												<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-												  <span class="dropdown-item" value="Polski"><img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}"> Polski</span>
-												  <span class="dropdown-item" value="Angielski"><img class="flaga-icon" src="{{ url_for('static', filename='img/gb.svg') }}"> Angielski </span>
-												</div>
-										  </li>
-									   </ul>
-								  </div>
-							</nav>
-						  </td>
-						</tr>
-					  </tbody>
-					</table>
-
-
-                </div>
-              </div>
-
-
+            </div>
         </div>
-
     </div>
 
 
@@ -182,54 +194,48 @@
     <script type="text/javascript">
 
 
-		//obsluga file input
-		window.pressed = function(){
-			var a = document.getElementById('audio');
-			if(a.value == "")
-			{
-			    $('#fileLabel').html("");
-				//fileLabel.innerHTML = "";
-			}
-			else
-			{
-				var theSplit = a.value.split('\\');
-				$('#fileLabel').html(""+theSplit[theSplit.length-1]);
-				$("#convert_btn").show();
-				$("#fileLabel").removeClass('btn-clarin').addClass('btn-light');
+        //obsluga file input
+        window.pressed = function () {
+            var a = document.getElementById('audio');
+            if (a.value == "") {
+                $('#fileLabel').html("");
+                //fileLabel.innerHTML = "";
+            }
+            else {
+                var theSplit = a.value.split('\\');
+                $('#fileLabel').html("" + theSplit[theSplit.length - 1]);
+                $("#convert_btn").show();
+                $("#fileLabel").removeClass('btn-clarin').addClass('btn-light');
 
-			}
-		};
+            }
+        };
 
 
+        $(document).ready(function () {
 
 
-		$(document).ready(function(){
+            $('#progress').hide();
+            $("#error-msg").hide();
+            $("#convert_btn").hide();
 
 
+            function convert() {
 
-			$('#progress').hide();
-			$("#error-msg").hide();
-			$("#convert_btn").hide();
+                $('#progressBar').removeClass('bg-danger').removeClass('bg-success').addClass('bg-info');
 
+                var fd = new FormData();
+                var audio = document.getElementById('audio');
+                fd.append('file', audio.files[0]);
 
-
-			function convert() {
-
-				$('#progressBar').removeClass('bg-danger').removeClass('bg-success').addClass('bg-info');
-
-				var fd = new FormData();
-				var audio = document.getElementById('audio');
-				fd.append('file', audio.files[0]);
-
-				$.ajax({
-                    xhr: function(){
+                $.ajax({
+                    xhr: function () {
                         var xhr = new window.XMLHttpRequest();
 
-                        xhr.upload.addEventListener('progress', function(e){
+                        xhr.upload.addEventListener('progress', function (e) {
 
-                            if(e.lengthComputable){
+                            if (e.lengthComputable) {
                                 var percent = Math.round((e.loaded / e.total) * 100);
-                                $('#progressBar').attr('aria-valuenow',percent).css('width',percent + "%").text(percent + "%");
+                                $('#progressBar').attr('aria-valuenow', percent).css('width', percent + "%").text(percent + "%");
                             }
 
                         });
@@ -240,29 +246,29 @@
                     data: fd,
                     processData: false,
                     contentType: false,
-                    success: function(data){
-						$('#progressBar').addClass('bg-success');
+                    success: function (data) {
+                        $('#progressBar').addClass('bg-success');
                         $('#progressBar').text('The file has been uploaded');
                         res = JSON.parse(data);
-						id = res['output'];
-						window.location = '/tools/ui/view/' + id;
+                        id = res['output'];
+                        window.location = '/tools/ui/view/' + id;
                     },
                     error: function (data) {
-                       // alert('error occured');
-                       $('#progressBar').addClass('bg-danger');
-                       $('#progressBar').text('Error');
-                       $("#error-msg").show();
+                        // alert('error occured');
+                        $('#progressBar').addClass('bg-danger');
+                        $('#progressBar').text('Error');
+                        $("#error-msg").show();
                     },
-                    beforeSend: function(){
+                    beforeSend: function () {
                         $('#progress').show();
                     }
                 });
 
-			}
+            }
 
 
-			$('#convert_btn').click(convert);
-		});
+            $('#convert_btn').click(convert);
+        });
     </script>
 
 {% endblock %}

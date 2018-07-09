@@ -2,121 +2,138 @@
 {% block body %}
     <h1 class="tool-title">{% trans %}g2p_tytuł{% endtrans %}</h1>
 
-	<!-- tool desc card -->
-    <div class="card form-group card-block" id="tool-desc">
-
-         <!-- the title of card -->
-        <div class="tool-small-tab">
-            {% trans %}opis_narzędzia{% endtrans %}
-        </div>
-
-		<!-- the main body of the tab-->
+    <!-- tool desc card -->
+    <div class="card" id="tool-desc">
         <div class="card-body">
-            <p>{% trans %}opis_g2p{% endtrans %}</p>
 
-            <a type="button" data-toggle="collapse" id="command-btn-info" class="btn btn-outline-clarin3" href="#serviceHelp">{% trans %}commandline_tytuł{% endtrans %} <i class="fa fa-angle-down"></i></a>
+            <!-- the title of card -->
+            <div class="tool-small-tab">
+                {% trans %}opis_narzędzia{% endtrans %}
+            </div>
+
+            <!-- the main body of the tab-->
+            <div class="card-body">
+                <p>{% trans %}opis_g2p{% endtrans %}</p>
+
+                <a type="button" data-toggle="collapse" id="command-btn-info" class="btn btn-outline-clarin3"
+                   href="#serviceHelp">{% trans %}commandline_tytuł{% endtrans %} <i class="fa fa-angle-down"></i></a>
 
 
-            <div class="collapse" id="serviceHelp">
-                        <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
+                <div class="collapse" id="serviceHelp">
+                    <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
 
-                        <p><code>curl {{ server_url }}tools/phonetize/word/wstążka</code></p>
+                    <p><code>curl {{ server_url }}tools/phonetize/word/wstążka</code></p>
 
-                        <p>{% trans %}help_gen_result_JSON{% endtrans %}</p>
+                    <p>{% trans %}help_gen_result_JSON{% endtrans %}</p>
 
-                        <p><code>["f s t o~ Z k a", "f s t o n Z k a"]</code></p>
+                    <p><code>["f s t o~ Z k a", "f s t o n Z k a"]</code></p>
 
-                        <p>{% trans %}help_result_ipa{% endtrans %}</p>
+                    <p>{% trans %}help_result_ipa{% endtrans %}</p>
 
-                        <p><code>curl {{ server_url }}tools/phonetize/word/wstążka?ipa</code></p>
+                    <p><code>curl {{ server_url }}tools/phonetize/word/wstążka?ipa</code></p>
 
-                        <p>{% trans %}help_gen_result_utf8{% endtrans %}</p>
+                    <p>{% trans %}help_gen_result_utf8{% endtrans %}</p>
 
-                        <p><code>["f s t \u0254\u0303 \u0290 k a", "f s t \u0254 n \u0290 k a"]</code></p>
+                    <p><code>["f s t \u0254\u0303 \u0290 k a", "f s t \u0254 n \u0290 k a"]</code></p>
 
-                        <p>{% trans %}help_503_odśwież{% endtrans %}</p>
+                    <p>{% trans %}help_503_odśwież{% endtrans %}</p>
+                </div>
             </div>
         </div>
     </div>
 
 
-	<!-- the main card of a tool -->
-    <div class="card form-group card-block" id="main-tool">
+    <!-- the main card of a tool -->
+    <div class="card" id="main-tool">
+        <div class="card-body">
 
-        <!-- the place for the title tab -->
-        <div class="tool-small-tab">
+            <!-- the place for the title tab -->
+            <div class="tool-small-tab">
 
-        </div>
-
-		<!-- main body of a tool -->
-        <div class="card-body" id="toolbody">
-             <div class="row">
-
-				<!-- tool input -->
-                <div class="col-sm-12 col-md-6">
-                    <table style="height: 100%; width:100%">
-					  <tbody>
-						<tr>
-						  <td class="align-middle">
-                                <div class="input-group mb-3 align-middle" id="enter-input">
-                                  <input type="text" id="word" class="form-control" placeholder="{% trans %}wpisz_wyraz_g2p{% endtrans %}" aria-label="{% trans %}wpisz_wyraz_g2p{% endtrans %}" aria-describedby="basic-addon2">
-                                  <div class="input-group-append">
-                                      <button id="convert_btn" class="btn btn-clarin3" type="button"><i class="fa fa-cogs"></i> {% trans %}konwertuj{% endtrans %}</button>
-                                  </div>
-                                </div>
-                            </td>
-						</tr>
-					  </tbody>
-					</table>
-                </div>
-
-				<!-- tool settings -->
-                <div class="col-sm-12 col-md-6">
-                    <span id="settings-label">Settings:</span>
-                    <table style="height: 100%; width:100%">
-					  <tbody>
-						<tr>
-						  <td class="align-middle">
-
-                            <nav class="navbar navbar-expand-lg navbar-light bg-light belka-ustawien">
-                                  <div class="navbar-collapse" id="navbarText">
-                                        <span class="navbar-text ust-name">Język transkrypcji: </span>
-                                        <ul class="navbar-nav mr-auto" id="ust-lng">
-                                           <li class="nav-item dropdown ">
-                                                <a id="curr-lng" class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                  <img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}">Polski
-                                                </a>
-                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                  <span class="dropdown-item" value="Polski"><img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}"> Polski</span>
-                                                  <span class="dropdown-item" value="Angielski"><img class="flaga-icon" src="{{ url_for('static', filename='img/gb.svg') }}"> Angielski </span>
-                                                </div>
-                                          </li>
-                                       </ul>
-                                  </div>
-                                </nav>
-
-                            </td>
-						</tr>
-					  </tbody>
-					</table>
-
-                </div>
-              </div>
-
-
-			<!-- output -->
-            <div id="output-area">
-                <div id="label-output">{% trans %}wynik{% endtrans %}</div>
-                <textarea id="result" class="form-control" style="height: 10em;" readonly="true"></textarea>
             </div>
 
+            <!-- main body of a tool -->
+            <div class="card-body" id="toolbody">
+                <div class="row">
 
-           <p id="ident" style="font-size: 8pt" data-toggle="tooltip" data-placement="left"
-           title="{% trans %}ident_admin{% endtrans %}"></p>
+                    <!-- tool input -->
+                    <div class="col-sm-12 col-md-12">
+                        <table style="height: 100%; width:100%">
+                            <tbody>
+                            <tr>
+                                <td class="align-middle">
+                                    <div class="input-group mb-3 align-middle" id="enter-input">
+                                        <input type="text" id="word" class="form-control"
+                                               placeholder="{% trans %}wpisz_wyraz_g2p{% endtrans %}"
+                                               aria-label="{% trans %}wpisz_wyraz_g2p{% endtrans %}"
+                                               aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button id="convert_btn" class="btn btn-clarin3" type="button"><i
+                                                    class="fa fa-cogs"></i> {% trans %}konwertuj{% endtrans %}</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-            <button type="button" class="btn btn-clarin3 btn-sm" id="sampa" >SAMPA</button>
-            <button type="button" class="btn btn-outline-clarin3 btn-sm"id="ipa" >IPA</button>
+                    <!-- tool settings -->
+                    <!--
+                    <div class="col-sm-12 col-md-6">
+                        <span id="settings-label">Settings:</span>
+                        <table style="height: 100%; width:100%">
+                            <tbody>
+                            <tr>
+                                <td class="align-middle">
 
+                                    <nav class="navbar navbar-expand-lg navbar-light bg-light belka-ustawien">
+                                        <div class="navbar-collapse" id="navbarText">
+                                            <span class="navbar-text ust-name">Język transkrypcji: </span>
+                                            <ul class="navbar-nav mr-auto" id="ust-lng">
+                                                <li class="nav-item dropdown ">
+                                                    <a id="curr-lng" class="nav-link dropdown-toggle active" href="#"
+                                                       id="navbarDropdown" role="button" data-toggle="dropdown"
+                                                       aria-haspopup="true" aria-expanded="false">
+                                                        <img class="flaga-icon"
+                                                             src="{{ url_for('static', filename='img/pl.svg') }}">Polski
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    <span class="dropdown-item" value="Polski"><img class="flaga-icon"
+                                                                                                    src="{{ url_for('static', filename='img/pl.svg') }}"> Polski</span>
+                                                        <span class="dropdown-item" value="Angielski"><img
+                                                                class="flaga-icon"
+                                                                src="{{ url_for('static', filename='img/gb.svg') }}"> Angielski </span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </nav>
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    -->
+                </div>
+
+
+                <!-- output -->
+                <div id="output-area">
+                    <div id="label-output">{% trans %}wynik{% endtrans %}</div>
+                    <textarea id="result" class="form-control" style="height: 10em;" readonly="true"></textarea>
+                </div>
+
+
+                <p id="ident" style="font-size: 8pt" data-toggle="tooltip" data-placement="left"
+                   title="{% trans %}ident_admin{% endtrans %}"></p>
+
+                <button type="button" class="btn btn-clarin3 btn-sm" id="sampa">SAMPA</button>
+                <button type="button" class="btn btn-outline-clarin3 btn-sm" id="ipa">IPA</button>
+
+            </div>
         </div>
     </div>
 
@@ -137,22 +154,22 @@
 
             var script = 'sampa'; //domyslnie sampa
 
-			switch (whichBtn) {
-				case 'sampa':
-					script = 'sampa';
-					$('#sampa').removeClass('btn-outline-clarin3').addClass('btn-clarin3');
-					$('#ipa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
-					break;
-				case 'ipa':
-					script = 'ipa';
-					$('#ipa').removeClass('btn-outline-clarin3').addClass('btn-clarin3');
-					$('#sampa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
-					break;
-				default:
-					script = 'sampa';
-					$('#sampa').removeClass('btn-outline-clarin3').addClass('btn-clarin3');
-					$('#ipa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
-			}
+            switch (whichBtn) {
+                case 'sampa':
+                    script = 'sampa';
+                    $('#sampa').removeClass('btn-outline-clarin3').addClass('btn-clarin3');
+                    $('#ipa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
+                    break;
+                case 'ipa':
+                    script = 'ipa';
+                    $('#ipa').removeClass('btn-outline-clarin3').addClass('btn-clarin3');
+                    $('#sampa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
+                    break;
+                default:
+                    script = 'sampa';
+                    $('#sampa').removeClass('btn-outline-clarin3').addClass('btn-clarin3');
+                    $('#ipa').removeClass('btn-clarin3').addClass('btn-outline-clarin3');
+            }
 
 
             $('#convert_btn').html('<span class="fa fa-refresh fa-spin"></span>\

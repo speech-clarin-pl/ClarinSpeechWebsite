@@ -2,14 +2,16 @@
 {% block body %}
     <h1>{% trans %}zasoby{% endtrans %}</h1>
 
-    <div class="card form-group card-block">
-        <p>{% trans %}ident_pierwszy{% endtrans %}</p>
+    <div class="card">
+        <div class="card-body">
+            <p>{% trans %}ident_pierwszy{% endtrans %}</p>
 
-        <p><a href="/tools/ui/view/{{ res_a }}">{{ res_a }}</a></p>
+            <p><a href="/tools/ui/view/{{ res_a }}">{{ res_a }}</a></p>
 
-        <p>{% trans %}ident_drugi{% endtrans %}</p>
+            <p>{% trans %}ident_drugi{% endtrans %}</p>
 
-        <p><a href="/tools/ui/view/{{ res_b }}">{{ res_b }}</a></p>
+            <p><a href="/tools/ui/view/{{ res_b }}">{{ res_b }}</a></p>
+        </div>
     </div>
 
 {% endblock %}

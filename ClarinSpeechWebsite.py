@@ -1,4 +1,5 @@
 import sys
+from logging import Formatter, DEBUG
 from logging.handlers import RotatingFileHandler
 
 from flask import Flask, render_template, session, abort, redirect, request, logging
@@ -25,12 +26,12 @@ except IOError:
     print(f'head -c 24 /dev/urandom > {filename}')
     sys.exit(-1)
 
-formatter = logging.Formatter('[%(asctime)s] %(levelname)s - %(message)s')
-handler = RotatingFileHandler(config.proj_root / 'debug.log', maxBytes=10*1024*1024, backupCount=5)
-handler.setLevel(logging.DEBUG)
+formatter = Formatter('[%(asctime)s] %(levelname)s - %(message)s')
+handler = RotatingFileHandler(config.proj_root / 'debug.log', maxBytes=10 * 1024 * 1024, backupCount=5)
+handler.setLevel(DEBUG)
 handler.setFormatter(formatter)
 app.logger.addHandler(handler)
-app.logger.setLevel(logging.DEBUG)
+app.logger.setLevel(DEBUG)
 
 
 # @app.before_request

@@ -1,100 +1,104 @@
 {% extends "layout.html" %}
 {% block body %}
     {% if forced %}
-		<h1 class="tool-title">{% trans %}forcealign_tytuł{% endtrans %}</h1>
+        <h1 class="tool-title">{% trans %}forcealign_tytuł{% endtrans %}</h1>
     {% else %}
         <h1 class="tool-title">{% trans %}segalign_tytuł{% endtrans %}</h1>
     {% endif %}
 
     <!-- tool desc card -->
-    <div class="card form-group card-block" id="tool-desc">
-
-         <!-- the title of card -->
-        <div class="tool-small-tab">
-            {% trans %}opis_narzędzia{% endtrans %}
-        </div>
-
-		<!-- the main body of the tab-->
+    <div class="card" id="tool-desc">
         <div class="card-body">
 
-            <p >{% trans %}opis_align{% endtrans %}</p>
+            <!-- the title of card -->
+            <div class="tool-small-tab">
+                {% trans %}opis_narzędzia{% endtrans %}
+            </div>
 
-            {% if forced %}
-                <p >{% trans %}opis_forced{% endtrans %}</p>
-            {% else %}
-                <p >{% trans %}opis_segment{% endtrans %}</p>
-            {% endif %}
+            <!-- the main body of the tab-->
+            <div class="card-body">
 
-            <p >{% trans %}opis_pliki_audio{% endtrans %}</p>
+                <p>{% trans %}opis_align{% endtrans %}</p>
 
-			<a type="button" data-toggle="collapse" id="command-btn-info" class="btn btn-outline-clarin2" href="#serviceHelp">{% trans %}commandline_tytuł{% endtrans %}<i class="fa fa-angle-down"></i></a>
+                {% if forced %}
+                    <p>{% trans %}opis_forced{% endtrans %}</p>
+                {% else %}
+                    <p>{% trans %}opis_segment{% endtrans %}</p>
+                {% endif %}
+
+                <p>{% trans %}opis_pliki_audio{% endtrans %}</p>
+
+                <a type="button" data-toggle="collapse" id="command-btn-info" class="btn btn-outline-clarin2"
+                   href="#serviceHelp">{% trans %}commandline_tytuł{% endtrans %}<i class="fa fa-angle-down"></i></a>
 
 
-            <div class="collapse" id="serviceHelp">
-					<p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
+                <div class="collapse" id="serviceHelp">
+                    <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
 
-				{% if forced %}
-					<p>
-						<code>curl -s -F "audio=@audio.wav" -F "transcript=@trans.txt" {{ server_url }}tools/speech/forcealign</code>
-					</p>
-				{% else %}
-					<p>
-						<code>curl -s -F "audio=@audio.wav" -F "transcript=@trans.txt" {{ server_url }}tools/speech/segmentalign</code>
-					</p>
-				{% endif %}
+                    {% if forced %}
+                        <p>
+                            <code>curl -s -F "audio=@audio.wav" -F "transcript=@trans.txt" {{ server_url }}tools/speech/forcealign</code>
+                        </p>
+                    {% else %}
+                        <p>
+                            <code>curl -s -F "audio=@audio.wav" -F "transcript=@trans.txt" {{ server_url }}tools/speech/segmentalign</code>
+                        </p>
+                    {% endif %}
 
-				<p>{% trans %}help_ident_io{% endtrans %}</p>
+                    <p>{% trans %}help_ident_io{% endtrans %}</p>
 
-				<p>
-					<code>
-						{"output": "59aeffa039ec7803291c5e1f", "audio": "59ad218239ec782dcfa73599", "transcript":
-						"59ad217639ec782dcfa73597"}
-					</code>
-				</p>
+                    <p>
+                        <code>
+                            {"output": "59aeffa039ec7803291c5e1f", "audio": "59ad218239ec782dcfa73599", "transcript":
+                            "59ad217639ec782dcfa73597"}
+                        </code>
+                    </p>
 
-				<p>{% trans %}help_download{% endtrans %}</p>
+                    <p>{% trans %}help_download{% endtrans %}</p>
 
-				<p><code>curl {{ server_url }}/tools/download/59aeffa039ec7803291c5e1f -o output.ctm</code></p>
+                    <p><code>curl {{ server_url }}/tools/download/59aeffa039ec7803291c5e1f -o output.ctm</code></p>
 
-				<p>{% trans %}help_download_textgrid{% endtrans %}</p>
+                    <p>{% trans %}help_download_textgrid{% endtrans %}</p>
 
-				<p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o output.TextGrid</code></p>
+                    <p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o output.TextGrid</code></p>
 
-				<p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o
-					output.TextGrid?script=sampa</code></p>
+                    <p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o
+                        output.TextGrid?script=sampa</code></p>
 
-				<p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o output.TextGrid?script=ipa</code>
-				</p>
+                    <p><code>curl {{ server_url }}/tools/textgrid/59aeffa039ec7803291c5e1f -o
+                        output.TextGrid?script=ipa</code>
+                    </p>
 
-				<p>{% trans %}help_download_annot{% endtrans %}</p>
+                    <p>{% trans %}help_download_annot{% endtrans %}</p>
 
-				<p><code>curl {{ server_url }}/tools/annot/59aeffa039ec7803291c5e1f -o output_annot.json</code></p>
+                    <p><code>curl {{ server_url }}/tools/annot/59aeffa039ec7803291c5e1f -o output_annot.json</code></p>
 
-				<p>{% trans %}help_download_status_codes{% endtrans %}</p>
+                    <p>{% trans %}help_download_status_codes{% endtrans %}</p>
 
-				<p><code>curl {{ server_url }}/tools/status/59aeffa039ec7803291c5e1f</code></p>
+                    <p><code>curl {{ server_url }}/tools/status/59aeffa039ec7803291c5e1f</code></p>
 
-				<p>{% trans %}help_status_status_codes{% endtrans %}</p>
+                    <p>{% trans %}help_status_status_codes{% endtrans %}</p>
 
-				<p>{% trans %}help_upload{% endtrans %}</p>
+                    <p>{% trans %}help_upload{% endtrans %}</p>
 
-				<p><code>curl -s -F "file=@audio.wav" {{ server_url }}tools/upload/audio</code></p>
+                    <p><code>curl -s -F "file=@audio.wav" {{ server_url }}tools/upload/audio</code></p>
 
-				<p>{% trans %}help_upload_result{% endtrans %}</p>
+                    <p>{% trans %}help_upload_result{% endtrans %}</p>
 
-				{% if forced %}
-					<p>
-						<code>curl {{ server_url }}tools/speech/forcealign/59ad218239ec782dcfa73599/59ad217639ec782dcfa73597</code>
-					</p>
-				{% else %}
-					<p>
-						<code>curl {{ server_url }}tools/speech/segmentalign/59ad218239ec782dcfa73599/59ad217639ec782dcfa73597</code>
-					</p>
-				{% endif %}
+                    {% if forced %}
+                        <p>
+                            <code>curl {{ server_url }}tools/speech/forcealign/59ad218239ec782dcfa73599/59ad217639ec782dcfa73597</code>
+                        </p>
+                    {% else %}
+                        <p>
+                            <code>curl {{ server_url }}tools/speech/segmentalign/59ad218239ec782dcfa73599/59ad217639ec782dcfa73597</code>
+                        </p>
+                    {% endif %}
 
-				<p>{% trans %}help_final_download{% endtrans %}</p>
-			</div>
+                    <p>{% trans %}help_final_download{% endtrans %}</p>
+                </div>
 
+            </div>
         </div>
     </div>
 
@@ -103,81 +107,96 @@
 
 
 
-	<!-- the main card of a tool -->
-    <div class="card form-group card-block" id="main-tool">
+    <!-- the main card of a tool -->
+    <div class="card" id="main-tool">
+        <div class="card-body">
 
-        <!-- the place for the title tab -->
-        <div class="tool-small-tab">
+            <!-- the place for the title tab -->
+            <div class="tool-small-tab">
 
-        </div>
+            </div>
 
-		<!-- main body of a tool -->
-        <div class="card-body" id="toolbody">
-             <div class="row">
+            <!-- main body of a tool -->
+            <div class="card-body" id="toolbody">
+                <div class="row">
 
-				<!-- tool input -->
-                <div class="col-sm-12 col-md-6">
-                    <table style="height: 100%; width:100%">
-					  <tbody>
-						<tr>
-						  <td class="align-middle">
-                            <div class="input-group mb-3 align-middle" id="enter-input">
-                                <form class="" id="upload-form">
+                    <!-- tool input -->
+                    <div class="col-sm-12 col-md-12">
+                        <table style="height: 100%; width:100%">
+                            <tbody>
+                            <tr>
+                                <td class="align-middle">
+                                    <div class="input-group mb-3 align-middle" id="enter-input">
+                                        <form class="" id="upload-form">
 
-                                    <div class="">
-                                        <div class="form-group">
+                                            <div class="">
+                                                <div class="form-group">
 
-                                            <label for="audio" id="fileLabel" class="btn btn-clarin2">{% trans %}wczytaj_nagranie{% endtrans %}</label>
-                                            <input id="audio" name="audio" onchange="pressed1()" class="form-control" type="file">
+                                                    <label for="audio" id="fileLabel" class="btn btn-clarin2">
+                                                        {% trans %}wczytaj_nagranie{% endtrans %}
+                                                    </label>
+                                                    <input id="audio" name="audio" onchange="pressed1()"
+                                                           class="form-control" type="file">
 
 
-                                        </div>
+                                                </div>
 
 
-                                        <!-- progress bar -->
-                                         <p>
-                                            <div class="progress" id="progress">
-                                                      <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                                <!-- progress bar -->
+                                                <p>
+                                                <div class="progress" id="progress">
+                                                    <div class="progress-bar" id="progressBar" role="progressbar"
+                                                         style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                                                         aria-valuemax="100">25%
+                                                    </div>
+                                                </div>
+                                                </p>
+
+
+                                                <div class="form-group">
+
+                                                    <label for="transcript" id="fileLabel2" class="btn btn-clarin2">
+                                                        {% trans %}wczytaj_transkrypcję{% endtrans %}
+                                                    </label>
+                                                    <input id="transcript" name="transcript" onchange="pressed2()"
+                                                           class="form-control" type="file">
+                                                </div>
+
+
+                                                <!-- progress bar -->
+                                                <p>
+                                                <div class="progress" id="progress2">
+                                                    <div class="progress-bar" id="progressBar2" role="progressbar"
+                                                         style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                                                         aria-valuemax="100">25%
+                                                    </div>
+                                                </div>
+                                                </p>
+
                                             </div>
-                                        </p>
 
-
-                                        <div class="form-group">
-
-                                            <label for="transcript" id="fileLabel2" class="btn btn-clarin2">{% trans %}wczytaj_transkrypcję{% endtrans %}</label>
-                                            <input id="transcript" name="transcript" onchange="pressed2()" class="form-control" type="file">
-                                        </div>
-
-
-                                         <!-- progress bar -->
-                                         <p>
-                                            <div class="progress" id="progress2">
-                                                      <div class="progress-bar" id="progressBar2" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                            <div class="">
+                                                <button id="convert_btn" type="submit" class="btn btn-clarin2">
+                                                    {% trans %}
+                                                        rozpocznij{% endtrans %}
+                                                </button>
                                             </div>
-                                        </p>
 
+                                        </form>
                                     </div>
 
-                                    <div class="">
-                                        <button id="convert_btn" type="submit" class="btn btn-clarin2">{% trans %}rozpocznij{% endtrans %}
-                                        </button>
-                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                                </form>
-                            </div>
-
-                            </td>
-						</tr>
-					  </tbody>
-					</table>
-                </div>
-
-				<!-- tool settings -->
-                <div class="col-sm-12 col-md-6">
-
-                    <span id="settings-label">Settings:</span>
-
+                    <!-- tool settings -->
                     <!--
+                    <div class="col-sm-12 col-md-6">
+
+                        <span id="settings-label">Settings:</span>
+
                     <table style="height: 100%; width:100%">
 					  <tbody>
 						<tr>
@@ -202,75 +221,67 @@
 						</tr>
 					  </tbody>
 					</table>
-					-->
+                    </div>
+                    					-->
                 </div>
-              </div>
-
-
+            </div>
         </div>
-
     </div>
 
 
 
     <script type="text/javascript">
 
-    //obsluga file input
+        //obsluga file input
 
-    var a = null;
-    var a2 = null;
+        var a = null;
+        var a2 = null;
 
-		window.pressed1 = function(){
-			 a = document.getElementById('audio');
-
-
-			if(a.value == "")
-			{
-			    $('#fileLabel').html("");
-			}
-			else
-			{
-				var theSplit = a.value.split('\\');
-				$('#fileLabel').html(""+theSplit[theSplit.length-1]);
-				$("#fileLabel").removeClass('btn-clarin2').addClass('btn-light');
-			}
-
-			if(a2.value != "" && a.value != ""){
-			    $("#convert_btn").show();
-			}
+        window.pressed1 = function () {
+            a = document.getElementById('audio');
 
 
+            if (a.value == "") {
+                $('#fileLabel').html("");
+            }
+            else {
+                var theSplit = a.value.split('\\');
+                $('#fileLabel').html("" + theSplit[theSplit.length - 1]);
+                $("#fileLabel").removeClass('btn-clarin2').addClass('btn-light');
+            }
 
-		};
-
-		window.pressed2 = function(){
-			a2 = document.getElementById('transcript');
-
-			if(a2.value == "")
-			{
-			    $('#fileLabel2').html("");
-			}
-			else
-			{
-				var theSplit2 = a2.value.split('\\');
-				$('#fileLabel2').html(""+theSplit2[theSplit2.length-1]);
-				$("#fileLabel2").removeClass('btn-clarin2').addClass('btn-light');
-			}
-
-			if(a2.value != "" && a.value != ""){
-			    $("#convert_btn").show();
-			}
-
-		};
+            if (a2.value != "" && a.value != "") {
+                $("#convert_btn").show();
+            }
 
 
+        };
 
-     $(document).ready(function(){
+        window.pressed2 = function () {
+            a2 = document.getElementById('transcript');
 
-             $('#progress').hide();
-             $('#progress2').hide();
-             $("#convert_btn").hide();
-             $("#error-msg").hide();
+            if (a2.value == "") {
+                $('#fileLabel2').html("");
+            }
+            else {
+                var theSplit2 = a2.value.split('\\');
+                $('#fileLabel2').html("" + theSplit2[theSplit2.length - 1]);
+                $("#fileLabel2").removeClass('btn-clarin2').addClass('btn-light');
+            }
+
+            if (a2.value != "" && a.value != "") {
+                $("#convert_btn").show();
+            }
+
+        };
+
+
+        $(document).ready(function () {
+
+            $('#progress').hide();
+            $('#progress2').hide();
+            $("#convert_btn").hide();
+            $("#error-msg").hide();
 
             function convert() {
 
@@ -303,7 +314,7 @@
 
             $('#convert_btn').click(convert);
 
-         });
+        });
     </script>
 
 {% endblock %}

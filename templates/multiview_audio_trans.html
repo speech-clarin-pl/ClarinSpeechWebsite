@@ -4,64 +4,70 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
 
-    <div class="card form-group card-block">
-        <p>{% trans %}zoom{% endtrans %}</p>
-        <div>
-            <input id="slider" type="range" min="1" max="200" value="1" style="width: 100%">
-        </div>
-        <div id="waveform"></div>
-        <div>
-            <button class="btn btn-primary" onclick="wavesurfer.playPause()">
-                <span class="fa fa-play"></span>
-                {% trans %}play_pause{% endtrans %}
-            </button>
-            <a id="link" class="btn btn-info" target="_blank">
-                <span class="fa fa-download"></span>
-                {% trans %}pobierz{% endtrans %}
-            </a>
-        </div>
-        <div id="progress-msg-audio" class="alert alert-info fade show" role="alert">
-            <span class="fa fa-refresh fa-spin"></span>
-            {% trans %}pracuję{% endtrans %}
+    <div class="card">
+        <div class="card-body">
+            <p>{% trans %}zoom{% endtrans %}</p>
+            <div>
+                <input id="slider" type="range" min="1" max="200" value="1" style="width: 100%">
+            </div>
+            <div id="waveform"></div>
+            <div>
+                <button class="btn btn-primary" onclick="wavesurfer.playPause()">
+                    <span class="fa fa-play"></span>
+                    {% trans %}play_pause{% endtrans %}
+                </button>
+                <a id="link" class="btn btn-info" target="_blank">
+                    <span class="fa fa-download"></span>
+                    {% trans %}pobierz{% endtrans %}
+                </a>
+            </div>
+            <div id="progress-msg-audio" class="alert alert-info fade show" role="alert">
+                <span class="fa fa-refresh fa-spin"></span>
+                {% trans %}pracuję{% endtrans %}
+            </div>
         </div>
     </div>
 
-    <div class="card form-group card-block">
+    <div class="card">
+        <div class="card-body">
 
-        <form id="edit-form" action="/tools/text/modify/{{ trans_id }}" method="POST">
-            <input type="hidden" name="redirect_url" value="{{ request.url }}">
-            <textarea id="result" name="text" class="form-control" style="height: 20em;" readonly="true"></textarea>
-            <div class="row form-group">
-                <div class="col-2">
-                    <button id="edit-btn" class="btn btn-info" type="button" style="width:100%;">
-                        {% trans %}edytuj{% endtrans %}
-                    </button>
+            <form id="edit-form" action="/tools/text/modify/{{ trans_id }}" method="POST">
+                <input type="hidden" name="redirect_url" value="{{ request.url }}">
+                <textarea id="result" name="text" class="form-control" style="height: 20em;" readonly="true"></textarea>
+                <div class="row form-group">
+                    <div class="col-2">
+                        <button id="edit-btn" class="btn btn-info" type="button" style="width:100%;">
+                            {% trans %}edytuj{% endtrans %}
+                        </button>
+                    </div>
+                    <div class="col-2">
+                        <button id="save-btn" class="btn btn-primary invisible" type="submit" style="width:100%;">
+                            {% trans %}zapisz{% endtrans %}
+                        </button>
+                    </div>
                 </div>
-                <div class="col-2">
-                    <button id="save-btn" class="btn btn-primary invisible" type="submit" style="width:100%;">
-                        {% trans %}zapisz{% endtrans %}
-                    </button>
-                </div>
+            </form>
+
+            <div id="progress-msg-trans" class="alert alert-info fade show" role="alert">
+                <span class="fa fa-refresh fa-spin"></span>
+                {% trans %}pracuję{% endtrans %}
             </div>
-        </form>
-
-        <div id="progress-msg-trans" class="alert alert-info fade show" role="alert">
-            <span class="fa fa-refresh fa-spin"></span>
-            {% trans %}pracuję{% endtrans %}
         </div>
     </div>
 
     <div id="error-msg" class="alert fade" role="alert">
     </div>
 
-    <div class="card form-group card-block">
-        <p>{% trans %}ident_audio{% endtrans %}</p>
+    <div class="card">
+        <div class="card-body">
+            <p>{% trans %}ident_audio{% endtrans %}</p>
 
-        <p><a href="/tools/ui/view/{{ audio_id }}">{{ audio_id }}</a></p>
+            <p><a href="/tools/ui/view/{{ audio_id }}">{{ audio_id }}</a></p>
 
-        <p>{% trans %}ident_trans{% endtrans %}</p>
+            <p>{% trans %}ident_trans{% endtrans %}</p>
 
-        <p><a href="/tools/ui/view/{{ trans_id }}">{{ trans_id }}</a></p>
+            <p><a href="/tools/ui/view/{{ trans_id }}">{{ trans_id }}</a></p>
+        </div>
     </div>
 
     <script type="text/javascript">

@@ -3,78 +3,81 @@
 
     <h1>{% trans %}zmień_projekt{% endtrans %}</h1>
 
-    <div class="card form-group card-block">
-        <form method="post">
-            {{ form.hidden_tag() }}
-            <div class="form-group">
-                {{ form.owner.label }}
-                <small class="form-text text-danger">
-                    {% for error in form.owner.errors %}
-                        {{ error }}<br>
-                    {% endfor %}
-                </small>
-                {{ form.owner(class_="form-control") }}
-                <small class="form-text text-muted">
-                    {% trans %}właściciel_opis{% endtrans %}
-                </small>
-            </div>
-            <div class="form-group">
-                {{ form.description.label }}
-                {{ form.description(rows="3",class_="form-control") }}
-                <small class="form-text text-muted">
-                    {% trans %}opis_opis{% endtrans %}
-                </small>
-            </div>
-            <div class="form-group">
-                {{ form.visibility.label }}
-                <div class="btn-group form-control" data-toggle="buttons">
-                    <label class="btn btn-primary {{ vis2['public'] }}">
-                        <input {{ vis['public'] }} name="{{ form.visibility.name }}" type="radio" value="public">
-                        <i class="fa fa-globe"></i>
-                        {% trans %}publiczny{% endtrans %}
-                    </label>
-                    <label class="btn btn-primary {{ vis2['viewonly'] }}">
-                        <input {{ vis['viewonly'] }} name="{{ form.visibility.name }}" type="radio" value="viewonly">
-                        <i class="fa fa-eye"></i>
-                        {% trans %}tylko_do_odczytu{% endtrans %}
-                    </label>
-                    <label class="btn btn-primary {{ vis2['private'] }}">
-                        <input {{ vis['private'] }}name="{{ form.visibility.name }}" type="radio" value="private">
-                        <i class="fa fa-lock"></i>
-                        {% trans %}prywatny{% endtrans %}
-                    </label>
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.owner.label }}
+                    <small class="form-text text-danger">
+                        {% for error in form.owner.errors %}
+                            {{ error }}<br>
+                        {% endfor %}
+                    </small>
+                    {{ form.owner(class_="form-control") }}
+                    <small class="form-text text-muted">
+                        {% trans %}właściciel_opis{% endtrans %}
+                    </small>
                 </div>
-                <small class="form-text text-muted">
-                    {% trans %}widoczność_opis{% endtrans %}
-                </small>
-            </div>
-            <div class="form-group">
-                {{ form.password.label }}
-                <small class="form-text text-danger">
-                    {% for error in form.password.errors %}
-                        {{ error }}<br>
-                    {% endfor %}
-                </small>
-                <div class="row">
-                    <div class="col-6">
-                        {{ form.password(class_="form-control",placeholder=gettext("hasło_bez_zmian")) }}
-                    </div>
-                    <div class="col-6">
-                        {{ form.confirm(class_="form-control",placeholder=gettext("powtórz_hasło")) }}
-                    </div>
+                <div class="form-group">
+                    {{ form.description.label }}
+                    {{ form.description(rows="3",class_="form-control") }}
+                    <small class="form-text text-muted">
+                        {% trans %}opis_opis{% endtrans %}
+                    </small>
                 </div>
-                <small class="form-text text-muted">
-                    {% trans %}hasło_opis_modyfikacja{% endtrans %}
-                </small>
-            </div>
-            <button type="submit" class="btn btn-primary">{% trans %}zmień{% endtrans %}</button>
-            <a href="/emu/project/{{ proj._id }}" class="btn btn-info">{% trans %}anuluj{% endtrans %}</a>
-            <a class="btn btn-danger" href="/emu/project/remove/{{ proj._id }}"
-               onclick="return confirm('{% trans %}czy_usunąć_projekt{% endtrans %}')">
-                <i class="fa fa-trash" aria-hidden="true"></i>
-                {% trans %}usuń{% endtrans %}
-            </a>
+                <div class="form-group">
+                    {{ form.visibility.label }}
+                    <div class="btn-group form-control" data-toggle="buttons">
+                        <label class="btn btn-primary {{ vis2['public'] }}">
+                            <input {{ vis['public'] }} name="{{ form.visibility.name }}" type="radio" value="public">
+                            <i class="fa fa-globe"></i>
+                            {% trans %}publiczny{% endtrans %}
+                        </label>
+                        <label class="btn btn-primary {{ vis2['viewonly'] }}">
+                            <input {{ vis['viewonly'] }} name="{{ form.visibility.name }}" type="radio"
+                                                         value="viewonly">
+                            <i class="fa fa-eye"></i>
+                            {% trans %}tylko_do_odczytu{% endtrans %}
+                        </label>
+                        <label class="btn btn-primary {{ vis2['private'] }}">
+                            <input {{ vis['private'] }}name="{{ form.visibility.name }}" type="radio" value="private">
+                            <i class="fa fa-lock"></i>
+                            {% trans %}prywatny{% endtrans %}
+                        </label>
+                    </div>
+                    <small class="form-text text-muted">
+                        {% trans %}widoczność_opis{% endtrans %}
+                    </small>
+                </div>
+                <div class="form-group">
+                    {{ form.password.label }}
+                    <small class="form-text text-danger">
+                        {% for error in form.password.errors %}
+                            {{ error }}<br>
+                        {% endfor %}
+                    </small>
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form.password(class_="form-control",placeholder=gettext("hasło_bez_zmian")) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form.confirm(class_="form-control",placeholder=gettext("powtórz_hasło")) }}
+                        </div>
+                    </div>
+                    <small class="form-text text-muted">
+                        {% trans %}hasło_opis_modyfikacja{% endtrans %}
+                    </small>
+                </div>
+                <button type="submit" class="btn btn-primary">{% trans %}zmień{% endtrans %}</button>
+                <a href="/emu/project/{{ proj._id }}" class="btn btn-info">{% trans %}anuluj{% endtrans %}</a>
+                <a class="btn btn-danger" href="/emu/project/remove/{{ proj._id }}"
+                   onclick="return confirm('{% trans %}czy_usunąć_projekt{% endtrans %}')">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    {% trans %}usuń{% endtrans %}
+                </a>
 
-        </form>
+            </form>
+        </div>
     </div>
 {% endblock %}

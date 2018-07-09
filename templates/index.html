@@ -1,103 +1,67 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<h1 class="tool-title">{% trans %}główny_tytuł{% endtrans %}</h1>
+    <h1 class="tool-title">{% trans %}główny_tytuł{% endtrans %}</h1>
 
-<div class="gap-sm">&nbsp;</div>
+    <div class="gap-sm">&nbsp;</div>
 
-<div class="row" id="main_buttons">
+    <div class="row" id="main_buttons">
 
-	<div class="col-lg-4">
-		<div class="card animated fadeIn">
-			<a class="card-img-top btn btn-clarin btn-lg clearTop" href="/tools">
+        <div class="col-lg-4">
+            <div class="card animated fadeIn">
+                <a class="card-img-top btn btn-clarin btn-lg clearTop" href="/tools">
 
-				<div class="icon">
-					<i class="fa fa-wrench" aria-hidden="true"></i>
-				</div>
-				<h3 class="card-title">{% trans %}usługi{% endtrans %}</h3>
+                    <div class="icon">
+                        <i class="fa fa-wrench" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="card-title">{% trans %}usługi{% endtrans %}</h3>
 
-			</a>
-			<div class="card-body">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et erat quis felis finibus luctus quis in justo. Praesent ante diam, fringilla ut erat quis, ultricies volutpat ante.</p>
-		  </div>
-		</div>
-	</div>
-
-
-		<div class="col-lg-4">
-		<div class="card  animated fadeIn">
-			<a class="card-img-top btn btn-clarin3 btn-lg clearTop"  href="emu">
-				<div class="icon">
-
-					<i class="fa fa-magic" aria-hidden="true"></i>
-					<h3 class="card-title">{% trans %}narzędzie_emu{% endtrans %}</h3>
-
-					<!--
-					<img class="strus-icon" src={{ url_for('static', filename='img/emuIcon.png') }}>
-					-->
-
-				</div>
-			</a>
-			<div class="card-body">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et erat quis felis finibus luctus quis in justo. Praesent ante diam, fringilla ut erat quis, ultricies volutpat ante.</p>
-		  </div>
-		</div>
-	</div>
-
-	<!--<div class="col-lg-4">
-		<a class="btn btn-success btn-lg" href="/korpusy">
-			<div class="icon">
-				<i class="fa fa-book" aria-hidden="true"></i>
-			</div>
-			<h4 class="card-title">{% trans %}korpus{% endtrans %}</h4>
-		</a>
-	</div>-->
+                </a>
+                <div class="card-body">
+                    <p>{% trans %}usługi_desc{% endtrans %}</p>
+                </div>
+            </div>
+        </div>
 
 
-	<div class="col-lg-4">
-		<div class="card animated fadeIn">
+        <div class="col-lg-4">
+            <div class="card  animated fadeIn">
+                <a class="card-img-top btn btn-clarin3 btn-lg clearTop" href="emu">
+                    <div class="icon">
 
-			<a class="card-img-top btn btn-clarin2 btn-lg clearTop" href="/korpusy">
+                        <i class="fa fa-magic" aria-hidden="true"></i>
+                        <!-- <img class="strus-icon" src={{ url_for('static', filename='img/emuIcon.png') }}> -->
+                        <h3 class="card-title">{% trans %}narzędzie_emu{% endtrans %}</h3>
 
-				<div class="icon">
-					<i class="fa fa-book" aria-hidden="true"></i>
-				</div>
-				<h3 class="card-title">{% trans %}korpus{% endtrans %}</h3>
-
-			</a>
-			<div class="card-body">
-
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et erat quis felis finibus luctus quis in justo. Praesent ante diam, fringilla ut erat quis, ultricies volutpat ante.</p>
-
-		  </div>
-		</div>
-	</div>
-<!--
-	<div class="col-lg-4">
-		<a class="btn btn-primary btn-lg" href="tools">
-			<div class="icon">
-				<i class="fa fa-wrench" aria-hidden="true"></i>
-			</div>
-			<h4 class="card-title">{% trans %}usługi{% endtrans %}</h4>
-		</a>
-	</div>-->
+                    </div>
+                </a>
+                <div class="card-body">
+                    <p>{% trans %}emu_desc{% endtrans %}</p>
+                </div>
+            </div>
+        </div>
 
 
+        <div class="col-lg-4">
+            <div class="card animated fadeIn">
 
+                <a class="card-img-top btn btn-clarin2 btn-lg clearTop" href="/korpusy">
 
+                    <div class="icon">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="card-title">{% trans %}korpus{% endtrans %}</h3>
 
-	<!--
-	<div class="col-lg-4">
-		<a class="btn btn-danger btn-lg" href="emu">
-			<div class="icon">
-				<img src={{ url_for('static', filename='img/emuIcon.png') }}>
-			</div>
-			<h4 class="card-title">{% trans %}narzędzie_emu{% endtrans %}</h4>
-		</a>
-	</div>-->
+                </a>
+                <div class="card-body">
 
+                    <p>{% trans %}korpus_desc{% endtrans %}</p>
 
-</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
 {% endblock %}

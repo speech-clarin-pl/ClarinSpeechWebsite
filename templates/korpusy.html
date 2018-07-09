@@ -7,22 +7,21 @@
 
     <div class="card ">
         <div class="card-body">
-            <h2 class="card-title">{% trans %}korpus_studio_tytuł{% endtrans %}</h2>
+            <h2 class="card-title"><b>{% trans %}korpus_studio_tytuł{% endtrans %}</b></h2>
 
             <p class="card-text">{% trans %}korpus_opis{% endtrans %}
-            <br><a href="/korpusy/clarin_emu.zip">{% trans %}korpus_link{% endtrans %}</a>
+                <br><a href="/korpusy/clarin_emu.zip">{% trans %}korpus_link{% endtrans %}</a>
             </p>
 
 
             <h5><b>{% trans %}korpus_webapp_tytuł{% endtrans %}</b></h5>
 
             <p>{% trans %}korpus_webapp_opis{% endtrans %}
-            <br>
+                <br>
                 <a href="http://ips-lmu.github.io/EMU-webApp/?autoConnect=true&serverUrl=wss%3A%2F%2Fmowa.clarin-pl.eu%3A17891%2Fclarin">
                     {% trans %}link_do_usługi{% endtrans %}
                 </a>
             </p>
-
 
 
             <h5><b>{% trans %}korpus_licencja{% endtrans %}</b><br>
@@ -34,8 +33,8 @@
     </div>
 
     <div class="card" style="margin-top: 15px">
-      <div class="card-body">
-            <h3 class="card-title">{% trans %}kaldi_baseline{% endtrans %}</h3>
+        <div class="card-body">
+            <h3 class="card-title"><b>{% trans %}kaldi_baseline{% endtrans %}</b></h3>
 
             <p class="card-text">{% trans %}kaldi_baseline_opis{% endtrans %}
                 <br><a href="https://github.com/danijel3/ClarinStudioKaldi">
@@ -44,7 +43,7 @@
             </p>
 
 
-      </div>
+        </div>
     </div>
 
 {% endblock %}

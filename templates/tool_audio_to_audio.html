@@ -3,117 +3,126 @@
     <h1 class="tool-title">{% trans %}audionorm_tytuł{% endtrans %}</h1>
 
     <!-- tool desc card -->
-    <div class="card form-group card-block" id="tool-desc">
-
-         <!-- the title of card -->
-        <div class="tool-small-tab">
-            {% trans %}opis_narzędzia{% endtrans %}
-        </div>
-
-		<!-- the main body of the tab-->
+    <div class="card" id="tool-desc">
         <div class="card-body">
 
-            <p class="card-text">{% trans %}opis_audionorm{% endtrans %}</p>
+            <!-- the title of card -->
+            <div class="tool-small-tab">
+                {% trans %}opis_narzędzia{% endtrans %}
+            </div>
 
-			<a type="button" data-toggle="collapse" id="command-btn-info" class="btn btn-outline-info" href="#serviceHelp">{% trans %}commandline_tytuł{% endtrans %}<i class="fa fa-angle-down"></i></a>
+            <!-- the main body of the tab-->
+            <div class="card-body">
+
+                <p class="card-text">{% trans %}opis_audionorm{% endtrans %}</p>
+
+                <a type="button" data-toggle="collapse" id="command-btn-info" class="btn btn-outline-info"
+                   href="#serviceHelp">{% trans %}commandline_tytuł{% endtrans %}<i class="fa fa-angle-down"></i></a>
 
 
-            <div class="collapse" id="serviceHelp">
-				<p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
+                <div class="collapse" id="serviceHelp">
+                    <p>{% trans %}usługę_uruchamiamy_poleceniem{% endtrans %}</p>
 
-				<p><code>curl -s -F "file=@audio.mp3" {{ server_url }}tools/audio/normalize</code></p>
+                    <p><code>curl -s -F "file=@audio.mp3" {{ server_url }}tools/audio/normalize</code></p>
 
-				<p>{% trans %}help_ident_io{% endtrans %}</p>
+                    <p>{% trans %}help_ident_io{% endtrans %}</p>
 
-				<p><code>{"input": "59a29a9939ec7816a70529e3", "output": "59a2eaad39ec785da49ac86a"}</code></p>
+                    <p><code>{"input": "59a29a9939ec7816a70529e3", "output": "59a2eaad39ec785da49ac86a"}</code></p>
 
-				<p>{% trans %}help_download{% endtrans %}</p>
+                    <p>{% trans %}help_download{% endtrans %}</p>
 
-				<p><code>curl {{ server_url }}/tools/download/59a2eaad39ec785da49ac86a -o output.wav</code></p>
+                    <p><code>curl {{ server_url }}/tools/download/59a2eaad39ec785da49ac86a -o output.wav</code></p>
 
-				<p>{% trans %}help_download_status_codes{% endtrans %}
-				</p>
+                    <p>{% trans %}help_download_status_codes{% endtrans %}
+                    </p>
 
-				<p><code>curl {{ server_url }}/tools/status/59a2eaad39ec785da49ac86a</code></p>
+                    <p><code>curl {{ server_url }}/tools/status/59a2eaad39ec785da49ac86a</code></p>
 
-				<p>{% trans %}help_status_status_codes{% endtrans %}</p>
+                    <p>{% trans %}help_status_status_codes{% endtrans %}</p>
 
-				<p>{% trans %}help_upload{% endtrans %}</p>
+                    <p>{% trans %}help_upload{% endtrans %}</p>
 
-				<p><code>curl -s -F "file=@audio.mp3" {{ server_url }}tools/upload/audio</code></p>
+                    <p><code>curl -s -F "file=@audio.mp3" {{ server_url }}tools/upload/audio</code></p>
 
-				<p>{% trans %}help_upload_result{% endtrans %}</p>
+                    <p>{% trans %}help_upload_result{% endtrans %}</p>
 
-				<p><code>curl {{ server_url }}/tools/audio/normalize/59a29a9939ec7816a70529e3</code></p>
+                    <p><code>curl {{ server_url }}/tools/audio/normalize/59a29a9939ec7816a70529e3</code></p>
 
-				<p>{% trans %}help_final_download{% endtrans %}</p>
-			</div>
+                    <p>{% trans %}help_final_download{% endtrans %}</p>
+                </div>
 
+            </div>
         </div>
     </div>
 
     <div id="error-msg" class="alert alert-danger" role="alert">{% trans %}błąd_admin{% endtrans %}</div>
 
-	<!-- the main card of a tool -->
-    <div class="card form-group card-block" id="main-tool">
+    <!-- the main card of a tool -->
+    <div class="card" id="main-tool">
+        <div class="card-body">
 
-        <!-- the place for the title tab -->
-        <div class="tool-small-tab">
+            <!-- the place for the title tab -->
+            <div class="tool-small-tab">
 
-        </div>
+            </div>
 
-		<!-- main body of a tool -->
-        <div class="card-body" id="toolbody">
-             <div class="row">
+            <!-- main body of a tool -->
+            <div class="card-body" id="toolbody">
+                <div class="row">
 
-				<!-- tool input -->
-                <div class="col-sm-12 col-md-6">
+                    <!-- tool input -->
+                    <div class="col-sm-12 col-md-12">
 
-                    <table style="height: 100%; width:100%">
-					  <tbody>
-						<tr>
-						  <td class="align-middle">
+                        <table style="height: 100%; width:100%">
+                            <tbody>
+                            <tr>
+                                <td class="align-middle">
 
-                            <div class="input-group mb-3 align-middle" id="enter-input">
+                                    <div class="input-group mb-3 align-middle" id="enter-input">
 
-                                    <form class="input-group" id="upload-form">
-                                        <div class="custom-file">
+                                        <form class="input-group" id="upload-form">
+                                            <div class="custom-file">
 
 
+                                                <label for="file" id="fileLabel" class="btn btn-info">{% trans %}
+                                                    wczytaj_audio{% endtrans %}</label>
+                                                <input id="file" name="file" onchange="pressed()" class="form-control"
+                                                       type="file">
 
-                                            <label for="file" id="fileLabel" class="btn btn-info">{% trans %}wczytaj_audio{% endtrans %}</label>
-                                            <input id="file" name="file" onchange="pressed()" class="form-control" type="file">
-
-                                            <span class="input-group-btn">
-                                                <button id="convert_btn" type="submit" class="btn btn-info">{% trans %}konwertuj{% endtrans %}</button>
+                                                <span class="input-group-btn">
+                                                <button id="convert_btn" type="submit" class="btn btn-info">{% trans %}
+                                                    konwertuj{% endtrans %}</button>
                                             </span>
-                                        </div>
-                                    </form>
+                                            </div>
+                                        </form>
 
-                                    <!-- progress bar -->
-                                     <p>
+                                        <!-- progress bar -->
+                                        <p>
                                         <div class="progress" id="progress">
-                                                  <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                            <div class="progress-bar" id="progressBar" role="progressbar"
+                                                 style="width: 0%;"
+                                                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">25%
+                                            </div>
                                         </div>
-                                    </p>
-                                </div>
-                            </td>
-						</tr>
-					  </tbody>
-					</table>
-                </div>
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-				<!-- tool settings -->
-                <div class="col-sm-12 col-md-6">
+                    <!-- tool settings -->
+                    <!--
+                    <div class="col-sm-12 col-md-6">
 
-                    <span id="settings-label">Settings:</span>
+                        <span id="settings-label">Settings:</span>
 
-                    <table style="height: 100%; width:100%">
-					  <tbody>
-						<tr>
-						  <td class="align-middle">
+                        <table style="height: 100%; width:100%">
+                            <tbody>
+                            <tr>
+                                <td class="align-middle">
 
-                                <!--
                                 <nav class="navbar navbar-expand-lg navbar-light bg-light belka-ustawien">
                                       <div class="navbar-collapse" id="navbarText">
                                             <span class="navbar-text ust-name">Język transkrypcji: </span>
@@ -130,15 +139,14 @@
                                            </ul>
                                       </div>
                                 </nav>
-                                -->
-                            </td>
-						</tr>
-					  </tbody>
-					</table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                                                    -->
                 </div>
-              </div>
-
-
+            </div>
         </div>
 
     </div>
@@ -147,25 +155,23 @@
 
     <script type="text/javascript">
 
-    //obsluga file input
-		window.pressed = function(){
-			var a = document.getElementById('file');
-			if(a.value == "")
-			{
-			    $('#fileLabel').html("");
-			}
-			else
-			{
-				var theSplit = a.value.split('\\');
-				$('#fileLabel').html(""+theSplit[theSplit.length-1]);
-				$("#convert_btn").show();
-				$("#fileLabel").removeClass('btn-clarin3').addClass('btn-light');
+        //obsluga file input
+        window.pressed = function () {
+            var a = document.getElementById('file');
+            if (a.value == "") {
+                $('#fileLabel').html("");
+            }
+            else {
+                var theSplit = a.value.split('\\');
+                $('#fileLabel').html("" + theSplit[theSplit.length - 1]);
+                $("#convert_btn").show();
+                $("#fileLabel").removeClass('btn-clarin3').addClass('btn-light');
 
-			}
-		};
+            }
+        };
 
 
-     $(document).ready(function(){
+        $(document).ready(function () {
 
 
             $('#progress').hide();
@@ -175,7 +181,7 @@
 
             function convert() {
 
-                 $('#progressBar').removeClass('bg-danger').removeClass('bg-success').addClass('bg-info');
+                $('#progressBar').removeClass('bg-danger').removeClass('bg-success').addClass('bg-info');
 
                 var fd = new FormData();
                 var input = document.getElementById('file');
@@ -183,14 +189,14 @@
                 fd.append('file', input.files[0]);
 
                 $.ajax({
-                    xhr: function(){
+                    xhr: function () {
                         var xhr = new window.XMLHttpRequest();
 
-                        xhr.upload.addEventListener('progress', function(e){
+                        xhr.upload.addEventListener('progress', function (e) {
 
-                            if(e.lengthComputable){
+                            if (e.lengthComputable) {
                                 var percent = Math.round((e.loaded / e.total) * 100);
-                                $('#progressBar').attr('aria-valuenow',percent).css('width',percent + "%").text(percent + "%");
+                                $('#progressBar').attr('aria-valuenow', percent).css('width', percent + "%").text(percent + "%");
                             }
 
                         });
@@ -201,7 +207,7 @@
                     data: fd,
                     processData: false,
                     contentType: false,
-                    success: function(data){
+                    success: function (data) {
                         $('#progressBar').addClass('bg-success');
                         $('#progressBar').text('The file has been uploaded');
                         res = JSON.parse(data);
@@ -211,7 +217,7 @@
                     error: function (data) {
                         $("#error-msg").addClass('show');
                     },
-                    beforeSend: function(){
+                    beforeSend: function () {
                         $('#progress').show();
                     }
                 });
@@ -219,7 +225,7 @@
             }
 
             $('#convert_btn').click(convert);
-       });
+        });
     </script>
 
 {% endblock %}

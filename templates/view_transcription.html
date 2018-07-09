@@ -2,42 +2,46 @@
 {% block body %}
     <h1>{% trans %}view_trans_tytuł{% endtrans %}</h1>
 
-    <div class="card form-group card-block">
-        <textarea id="result" class="form-control" style="height: 20em;" readonly="true"></textarea>
-        <div id="progress-msg" class="alert alert-info fade show" role="alert">
-            <span class="fa fa-refresh fa-spin"></span>
-            {% trans %}pracuję{% endtrans %}
+    <div class="card">
+        <div class="card-body">
+            <textarea id="result" class="form-control" style="height: 20em;" readonly="true"></textarea>
+            <div id="progress-msg" class="alert alert-info fade show" role="alert">
+                <span class="fa fa-refresh fa-spin"></span>
+                {% trans %}pracuję{% endtrans %}
+            </div>
         </div>
     </div>
 
     <div id="error-msg" class="alert fade" role="alert">
     </div>
 
-    <div class="card form-group card-block">
-        <p>{% trans %}ident_res{% endtrans %}</p>
+    <div class="card">
+        <div class="card-body">
+            <p>{% trans %}ident_res{% endtrans %}</p>
 
-        <p><a href="/tools/ui/view/{{ res_id }}">{{ res_id }}</a></p>
+            <p><a href="/tools/ui/view/{{ res_id }}">{{ res_id }}</a></p>
 
-        <p>{% trans %}ident_from{% endtrans %}</p>
-        {% if from_id %}
-            <p><a href="/tools/ui/view/{{ from_id }}" target="_blank">{{ from_id }}</a></p>
-        {% else %}
-            <p>{% trans %}nieznany_f5{% endtrans %}</p>
-        {% endif %}
+            <p>{% trans %}ident_from{% endtrans %}</p>
+            {% if from_id %}
+                <p><a href="/tools/ui/view/{{ from_id }}" target="_blank">{{ from_id }}</a></p>
+            {% else %}
+                <p>{% trans %}nieznany_f5{% endtrans %}</p>
+            {% endif %}
 
-        {% if from_audio %}
-            <p><a href="/tools/ui/multiview/{{ from_id }}/{{ res_id }}" class="btn btn-info">
-                {% trans %}otwórz_z_audio{% endtrans %}
-            </a></p>
-        {% endif %}
+            {% if from_audio %}
+                <p><a href="/tools/ui/multiview/{{ from_id }}/{{ res_id }}" class="btn btn-info">
+                    {% trans %}otwórz_z_audio{% endtrans %}
+                </a></p>
+            {% endif %}
 
-        {% if allow_delete %}
-            <p><a href="/tools/delete/{{ res_id }}" class="btn btn-danger"
-                  onclick="return confirm('{% trans %}czy_usunąć_zasób{% endtrans %}')">
-                <i class="fa fa-trash" aria-hidden="true"></i>
-                {% trans %}usuń{% endtrans %}
-            </a></p>
-        {% endif %}
+            {% if allow_delete %}
+                <p><a href="/tools/delete/{{ res_id }}" class="btn btn-danger"
+                      onclick="return confirm('{% trans %}czy_usunąć_zasób{% endtrans %}')">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    {% trans %}usuń{% endtrans %}
+                </a></p>
+            {% endif %}
+        </div>
     </div>
 
     <script type="text/javascript">

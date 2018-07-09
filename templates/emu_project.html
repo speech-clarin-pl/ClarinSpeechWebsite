@@ -1,263 +1,271 @@
 {% extends "layout.html" %}
 {% block body %}
-    <h1>{% trans %}emu_projekt_tytuł{% endtrans %}</h1>
 
-    <div class="card form-control card-block">
-        <div class="form-group row">
-            <p class="col-2">{% trans %}stworzony_przez{% endtrans %}</p>
-            <p class="col-6"><b>{{ proj.owner }}</b></p>
-            <p class="col-4">{{ create_date }}</p>
-        </div>
-        <div class="form-group row">
-            <p class="col-2">{% trans %}widoczność{% endtrans %}</p>
-            <p class="col-10">
-                {% if proj.visibility == 'public' %}
-                    <i class="fa fa-globe"></i>&nbsp;
-                    {% trans %}publiczny{% endtrans %}
-                {% elif proj.visibility == 'viewonly' %}
-                    <i class="fa fa-eye"></i>&nbsp;
-                    {% trans %}tylko_do_odczytu{% endtrans %}
-                {% else %}
-                    <i class="fa fa-lock"></i>&nbsp;
-                    {% trans %}prywatny{% endtrans %}
-                {% endif %}
-            </p>
-        </div>
-        <div class="form-group row">
-            <p class="col-2">{% trans %}opis{% endtrans %}</p>
-            <p class="col-10"><b>{{ proj.description }}</b></p>
-        </div>
-        <div class="form-group row">
-            <div class="col-2">
-                {% if logged_in %}
-                    <a href="logout/{{ proj._id }}" class="btn btn-warning">
-                        {% trans %}wyloguj_się{% endtrans %}
-                    </a>
-                {% else %}
-                    <a href="password/{{ proj._id }}" class="btn btn-success">
-                        <i class="fa fa-key"></i>
-                        {% trans %}zaloguj_się{% endtrans %}
-                    </a>
-                {% endif %}
+    <div class="card form-control">
+        <div class="card-body">
+            <h1>{% trans %}emu_projekt_tytuł{% endtrans %}</h1>
+
+            <div class="form-group row">
+                <p class="col-2">{% trans %}stworzony_przez{% endtrans %}</p>
+                <p class="col-6"><b>{{ proj.owner }}</b></p>
+                <p class="col-4">{{ create_date }}</p>
             </div>
-            {% if can_admin %}
+            <div class="form-group row">
+                <p class="col-2">{% trans %}widoczność{% endtrans %}</p>
+                <p class="col-10">
+                    {% if proj.visibility == 'public' %}
+                        <i class="fa fa-globe"></i>&nbsp;
+                        {% trans %}publiczny{% endtrans %}
+                    {% elif proj.visibility == 'viewonly' %}
+                        <i class="fa fa-eye"></i>&nbsp;
+                        {% trans %}tylko_do_odczytu{% endtrans %}
+                    {% else %}
+                        <i class="fa fa-lock"></i>&nbsp;
+                        {% trans %}prywatny{% endtrans %}
+                    {% endif %}
+                </p>
+            </div>
+            <div class="form-group row">
+                <p class="col-2">{% trans %}opis{% endtrans %}</p>
+                <p class="col-10"><b>{{ proj.description }}</b></p>
+            </div>
+            <div class="form-group row">
                 <div class="col-2">
-                    <a id="btn_modify" class="btn btn-info" href="modify/{{ proj._id }}">
-                        {% trans %}modyfikuj{% endtrans %}
-                    </a>
+                    {% if logged_in %}
+                        <a href="logout/{{ proj._id }}" class="btn btn-warning">
+                            {% trans %}wyloguj_się{% endtrans %}
+                        </a>
+                    {% else %}
+                        <a href="password/{{ proj._id }}" class="btn btn-success">
+                            <i class="fa fa-key"></i>
+                            {% trans %}zaloguj_się{% endtrans %}
+                        </a>
+                    {% endif %}
                 </div>
-            {% endif %}
-        </div>
-
-    </div>
-
-    <div class="card form-control card-block">
-
-        {% if can_modify %}
-            <form action="add_audio/{{ proj._id }}" class="dropzone form-group" id="addAudio">
-                <div class="dz-message needsclick">
-                    {% trans %}pliki_click_drag_opis{% endtrans %}
-                </div>
-            </form>
-            <div class="progress form-group">
-                <div id="uploadProgress" class="progress-bar progress-bar-striped progress-bar-animated"
-                     role="progressbar"
-                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0"></div>
-            </div>
-        {% endif %}
-
-        {% if refresh_req %}
-            <div class="alert alert-info fade show" role="alert">
-                <span class="fa fa-refresh fa-spin"></span>
-                {% trans %}w trakcie przetwarzania, odświeżam za {% endtrans %}
-                <span id="refresh-sec">5</span> s...
-                {% trans %}kliknij <a id="refresh-link" href="#">tutaj</a> żeby odświeżyć natychmiast{% endtrans %}
-                <button id="refresh-stop" type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="fa fa-ban" aria-hidden="true"></i>
-                </button>
-            </div>
-        {% endif %}
-
-        <div class="form-group row">
-            <a href="/emu/project/download/{{ proj._id }}" class="btn btn-success form-control col-3">
-                {% trans %}ściągnij_projekt{% endtrans %}
-            </a>
-            <div class="col-1">&nbsp;</div>
-            <a href="/emu/project/webapp/{{ proj._id }}" class="btn btn-warning form-control col-3">
-                {% trans %}otwórz_webapp{% endtrans %}
-            </a>
-            <div class="col-1">&nbsp;</div>
-            {% if can_modify %}
-                <div class="dropdown col-3">
-                    <button class="btn btn-info form-control" type="button" id="project_menu"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {% trans %}wykonaj_dla_projektu{% endtrans %}
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="project_menu">
-                        <a class="dropdown-item  ask-any" href="/emu/project/reco/{{ proj._id }}">
-                            {% trans %}wygeneruj_wszystkie_transkrypcje{% endtrans %}
-                        </a>
-                        <a class="dropdown-item  ask-any" href="/emu/project/align/{{ proj._id }}">
-                            {% trans %}wygeneruj_wszystkie_segmentacje{% endtrans %}
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item ask-delete" href="/emu/project/remove_bndl/{{ proj._id }}?audio">
-                            {% trans %}usuń_wszystkie_audio{% endtrans %}
-                        </a>
-                        <a class="dropdown-item ask-delete" href="/emu/project/remove_bndl/{{ proj._id }}?trans">
-                            {% trans %}usuń_wszystkie_transkrypcje{% endtrans %}
-                        </a>
-                        <a class="dropdown-item ask-delete" href="/emu/project/remove_bndl/{{ proj._id }}?seg">
-                            {% trans %}usuń_wszystkie_segmentacje{% endtrans %}
+                {% if can_admin %}
+                    <div class="col-2">
+                        <a id="btn_modify" class="btn btn-info" href="modify/{{ proj._id }}">
+                            {% trans %}modyfikuj{% endtrans %}
                         </a>
                     </div>
-                </div>
-            {% endif %}
+                {% endif %}
+            </div>
+
         </div>
 
-        <table class="table table-striped">
-            <thead class="thead-inverse">
-            <tr>
-                <th style="width: 15%">{% trans %}sesja{% endtrans %}</th>
-                <th style="width: 25%">{% trans %}paczka{% endtrans %}</th>
-                <th style="width: 55%">{% trans %}pliki{% endtrans %}</th>
-                <th style="width: 5%">&nbsp;</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for bundle_id,bundle in bundles %}
-                <tr>
-                    <td>
-                        {{ bundle.session }}
-                    </td>
-                    <td>
-                        {{ bundle.name }}
-                    </td>
-                    <td>
-                        {% for type in ['audio','audio+trans','trans','seg'] %}
-                            {% if type == 'audio' %}
-                                {% set icon='fa-file-audio-o' %}
-                            {% elif type == 'trans' %}
-                                {% set icon='fa-file-text-o' %}
-                            {% else %}
-                                {% set icon='fa-file-code-o' %}
-                            {% endif %}
-                            {% if type in bundle %}
-                                {% if bundle[type].file %}
-                                    <a href="/emu/project/{{ proj._id }}/view/{{ bundle[type]._id }}"
-                                       class="btn btn-secondary">
-                                        <i class="fa {{ icon }}" aria-hidden="true"></i>
-                                        <i class="fa fa-check-circle text-success"></i>
-                                    </a>
-                                {% else %}
-                                    <a href="#" class="btn btn-secondary">
-                                        <i class="fa {{ icon }}" aria-hidden="true"></i>
-                                        {% if 'error' in bundle[type] %}
-                                            <i class="fa fa-times-circle text-danger"></i>
+        <div class="card form-control">
+            <div class="card-body">
+
+                {% if can_modify %}
+                    <form action="add_audio/{{ proj._id }}" class="dropzone form-group" id="addAudio">
+                        <div class="dz-message needsclick">
+                            {% trans %}pliki_click_drag_opis{% endtrans %}
+                        </div>
+                    </form>
+                    <div class="progress form-group">
+                        <div id="uploadProgress" class="progress-bar progress-bar-striped progress-bar-animated"
+                             role="progressbar"
+                             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0"></div>
+                    </div>
+                {% endif %}
+
+                {% if refresh_req %}
+                    <div class="alert alert-info fade show" role="alert">
+                        <span class="fa fa-refresh fa-spin"></span>
+                        {% trans %}w trakcie przetwarzania, odświeżam za {% endtrans %}
+                        <span id="refresh-sec">5</span> s...
+                        {% trans %}kliknij <a id="refresh-link" href="#">tutaj</a> żeby odświeżyć
+                            natychmiast{% endtrans %}
+                        <button id="refresh-stop" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="fa fa-ban" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                {% endif %}
+
+                <div class="form-group row">
+                    <a href="/emu/project/download/{{ proj._id }}" class="btn btn-success form-control col-3">
+                        {% trans %}ściągnij_projekt{% endtrans %}
+                    </a>
+                    <div class="col-1">&nbsp;</div>
+                    <a href="/emu/project/webapp/{{ proj._id }}" class="btn btn-warning form-control col-3">
+                        {% trans %}otwórz_webapp{% endtrans %}
+                    </a>
+                    <div class="col-1">&nbsp;</div>
+                    {% if can_modify %}
+                        <div class="dropdown col-3">
+                            <button class="btn btn-info form-control" type="button" id="project_menu"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {% trans %}wykonaj_dla_projektu{% endtrans %}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="project_menu">
+                                <a class="dropdown-item  ask-any" href="/emu/project/reco/{{ proj._id }}">
+                                    {% trans %}wygeneruj_wszystkie_transkrypcje{% endtrans %}
+                                </a>
+                                <a class="dropdown-item  ask-any" href="/emu/project/align/{{ proj._id }}">
+                                    {% trans %}wygeneruj_wszystkie_segmentacje{% endtrans %}
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item ask-delete"
+                                   href="/emu/project/remove_bndl/{{ proj._id }}?audio">
+                                    {% trans %}usuń_wszystkie_audio{% endtrans %}
+                                </a>
+                                <a class="dropdown-item ask-delete"
+                                   href="/emu/project/remove_bndl/{{ proj._id }}?trans">
+                                    {% trans %}usuń_wszystkie_transkrypcje{% endtrans %}
+                                </a>
+                                <a class="dropdown-item ask-delete" href="/emu/project/remove_bndl/{{ proj._id }}?seg">
+                                    {% trans %}usuń_wszystkie_segmentacje{% endtrans %}
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <table class="table table-striped">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th style="width: 15%">{% trans %}sesja{% endtrans %}</th>
+                        <th style="width: 25%">{% trans %}paczka{% endtrans %}</th>
+                        <th style="width: 55%">{% trans %}pliki{% endtrans %}</th>
+                        <th style="width: 5%">&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for bundle_id,bundle in bundles %}
+                        <tr>
+                            <td>
+                                {{ bundle.session }}
+                            </td>
+                            <td>
+                                {{ bundle.name }}
+                            </td>
+                            <td>
+                                {% for type in ['audio','audio+trans','trans','seg'] %}
+                                    {% if type == 'audio' %}
+                                        {% set icon='fa-file-audio-o' %}
+                                    {% elif type == 'trans' %}
+                                        {% set icon='fa-file-text-o' %}
+                                    {% else %}
+                                        {% set icon='fa-file-code-o' %}
+                                    {% endif %}
+                                    {% if type in bundle %}
+                                        {% if bundle[type].file %}
+                                            <a href="/emu/project/{{ proj._id }}/view/{{ bundle[type]._id }}"
+                                               class="btn btn-secondary">
+                                                <i class="fa {{ icon }}" aria-hidden="true"></i>
+                                                <i class="fa fa-check-circle text-success"></i>
+                                            </a>
                                         {% else %}
-                                            <i class="fa fa-refresh fa-spin fa-fw text-warning"></i>
+                                            <a href="#" class="btn btn-secondary">
+                                                <i class="fa {{ icon }}" aria-hidden="true"></i>
+                                                {% if 'error' in bundle[type] %}
+                                                    <i class="fa fa-times-circle text-danger"></i>
+                                                {% else %}
+                                                    <i class="fa fa-refresh fa-spin fa-fw text-warning"></i>
+                                                {% endif %}
+                                            </a>
                                         {% endif %}
-                                    </a>
+                                    {% endif %}
+                                    {% if type == 'audio+trans' %}
+                                        {% if 'audio' in bundle and 'trans' in bundle and bundle['audio'].file and bundle['trans'].file %}
+                                            <a href="/emu/project/{{ proj._id }}/multiview/{{ bundle['audio']._id }}/{{ bundle['trans']._id }}"
+                                               class="btn btn-light btn-sm">&#8644;</a>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% if can_modify %}
+                                    <div class="dropdown">
+                                        <button class="btn btn-info" type="button" id="menu_{{ bundle_id|urlencode }}"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-bars"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="menu_{{ bundle_id|urlencode }}">
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#renameDialog"
+                                               data-name="{{ bundle_id }}">
+                                                {% trans %}zmień_nazwę{% endtrans %}
+                                            </a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#sessionDialog"
+                                               data-name="{{ bundle_id }}">
+                                                {% trans %}zmień_sesję{% endtrans %}
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#addFileDialog"
+                                               data-name="{{ bundle_id }}" data-type="audio">
+                                                {% trans %}wgraj_audio{% endtrans %}
+                                            </a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#addFileDialog"
+                                               data-name="{{ bundle_id }}" data-type="trans">
+                                                {% trans %}wgraj_transkrypcję{% endtrans %}
+                                            </a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#addFileDialog"
+                                               data-name="{{ bundle_id }}" data-type="seg">
+                                                {% trans %}wgraj_segmentację{% endtrans %}
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item ask-any"
+                                               href="/emu/project/reco/{{ proj._id }}/{{ bundle_id|urlencode }}">
+                                                {% trans %}wygeneruj_transkrypcję{% endtrans %}
+                                            </a>
+                                            <a class="dropdown-item ask-any"
+                                               href="/emu/project/align/{{ proj._id }}/{{ bundle_id|urlencode }}">
+                                                {% trans %}wygeneruj_segmentację{% endtrans %}
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item ask-any"
+                                               href="/emu/project/split/{{ proj._id }}/{{ bundle_id|urlencode }}">
+                                                {% trans %}podziel_paczkę{% endtrans %}
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item ask-delete"
+                                               href="/emu/project/remove_bndl/{{ proj._id }}/{{ bundle_id|urlencode }}?audio">
+                                                {% trans %}usuń_audio{% endtrans %}
+                                            </a>
+                                            <a class="dropdown-item ask-delete"
+                                               href="/emu/project/remove_bndl/{{ proj._id }}/{{ bundle_id|urlencode }}?trans">
+                                                {% trans %}usuń_transkrypcję{% endtrans %}
+                                            </a>
+                                            <a class="dropdown-item ask-delete"
+                                               href="/emu/project/remove_bndl/{{ proj._id }}/{{ bundle_id|urlencode }}?seg">
+                                                {% trans %}usuń_segmentację{% endtrans %}
+                                            </a>
+                                            <a class="dropdown-item ask-delete"
+                                               href="/emu/project/remove_bndl/{{ proj._id }}/{{ bundle_id|urlencode }}">
+                                                {% trans %}usuń_paczkę{% endtrans %}
+                                            </a>
+                                        </div>
+                                    </div>
                                 {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <nav>
+                    <ul class="pagination">
+                        {% for p in range(pagination_start,pagination_end) %}
+                            {% set text = (p + 1)|string %}
+                            {% if p == pagination_start and p>0 %}
+                                {% set text = '...' + text %}
+                            {% elif p==pagination_end-1 and p<(page_num-1) %}
+                                {% set text = text + '...' %}
                             {% endif %}
-                            {% if type == 'audio+trans' %}
-                                {% if 'audio' in bundle and 'trans' in bundle and bundle['audio'].file and bundle['trans'].file %}
-                                    <a href="/emu/project/{{ proj._id }}/multiview/{{ bundle['audio']._id }}/{{ bundle['trans']._id }}"
-                                       class="btn btn-light btn-sm">&#8644;</a>
-                                {% endif %}
+                            {% if p == page %}
+                                <li class="page-item active">
+                                    <a class="page-link" href="/emu/project/{{ proj._id }}/{{ p }}">{{ p + 1 }}</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="/emu/project/{{ proj._id }}/{{ p }}">{{ text }}</a>
+                                </li>
                             {% endif %}
                         {% endfor %}
-                    </td>
-                    <td>
-                        {% if can_modify %}
-                            <div class="dropdown">
-                                <button class="btn btn-info" type="button" id="menu_{{ bundle_id|urlencode }}"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-bars"></i>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="menu_{{ bundle_id|urlencode }}">
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#renameDialog"
-                                       data-name="{{ bundle_id }}">
-                                        {% trans %}zmień_nazwę{% endtrans %}
-                                    </a>
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#sessionDialog"
-                                       data-name="{{ bundle_id }}">
-                                        {% trans %}zmień_sesję{% endtrans %}
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#addFileDialog"
-                                       data-name="{{ bundle_id }}" data-type="audio">
-                                        {% trans %}wgraj_audio{% endtrans %}
-                                    </a>
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#addFileDialog"
-                                       data-name="{{ bundle_id }}" data-type="trans">
-                                        {% trans %}wgraj_transkrypcję{% endtrans %}
-                                    </a>
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#addFileDialog"
-                                       data-name="{{ bundle_id }}" data-type="seg">
-                                        {% trans %}wgraj_segmentację{% endtrans %}
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item ask-any"
-                                       href="/emu/project/reco/{{ proj._id }}/{{ bundle_id|urlencode }}">
-                                        {% trans %}wygeneruj_transkrypcję{% endtrans %}
-                                    </a>
-                                    <a class="dropdown-item ask-any"
-                                       href="/emu/project/align/{{ proj._id }}/{{ bundle_id|urlencode }}">
-                                        {% trans %}wygeneruj_segmentację{% endtrans %}
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item ask-any"
-                                       href="/emu/project/split/{{ proj._id }}/{{ bundle_id|urlencode }}">
-                                        {% trans %}podziel_paczkę{% endtrans %}
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item ask-delete"
-                                       href="/emu/project/remove_bndl/{{ proj._id }}/{{ bundle_id|urlencode }}?audio">
-                                        {% trans %}usuń_audio{% endtrans %}
-                                    </a>
-                                    <a class="dropdown-item ask-delete"
-                                       href="/emu/project/remove_bndl/{{ proj._id }}/{{ bundle_id|urlencode }}?trans">
-                                        {% trans %}usuń_transkrypcję{% endtrans %}
-                                    </a>
-                                    <a class="dropdown-item ask-delete"
-                                       href="/emu/project/remove_bndl/{{ proj._id }}/{{ bundle_id|urlencode }}?seg">
-                                        {% trans %}usuń_segmentację{% endtrans %}
-                                    </a>
-                                    <a class="dropdown-item ask-delete"
-                                       href="/emu/project/remove_bndl/{{ proj._id }}/{{ bundle_id|urlencode }}">
-                                        {% trans %}usuń_paczkę{% endtrans %}
-                                    </a>
-                                </div>
-                            </div>
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
-        <nav>
-            <ul class="pagination">
-                {% for p in range(pagination_start,pagination_end) %}
-                    {% set text = (p + 1)|string %}
-                    {% if p == pagination_start and p>0 %}
-                        {% set text = '...' + text %}
-                    {% elif p==pagination_end-1 and p<(page_num-1) %}
-                        {% set text = text + '...' %}
-                    {% endif %}
-                    {% if p == page %}
-                        <li class="page-item active">
-                            <a class="page-link" href="/emu/project/{{ proj._id }}/{{ p }}">{{ p + 1 }}</a>
-                        </li>
-                    {% else %}
-                        <li class="page-item">
-                            <a class="page-link" href="/emu/project/{{ proj._id }}/{{ p }}">{{ text }}</a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </nav>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </div>
 
     <div class="gap-lg">&nbsp;</div>

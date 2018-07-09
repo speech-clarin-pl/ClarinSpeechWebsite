@@ -9,10 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropdown.js/0.0.2dev/jquery.dropdown.min.css"/>
 
 
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
@@ -36,10 +34,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
             integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
             crossorigin="anonymous"></script>
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-            crossorigin="anonymous"></script>-->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
 
     <script src="{{ url_for('static', filename='js/toolSettings.js') }}"></script>
 
@@ -48,35 +45,37 @@
 <div class="container">
 
 
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark" id="top-bar">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" id="top-bar">
 
-    <a class="navbar-brand" id="main" href="//clarin-pl.eu/">{% trans %}CLARIN-PL{% endtrans %}</a>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/kontakt">
+        <a class="navbar-brand" id="main" href="//clarin-pl.eu/">{% trans %}CLARIN-PL{% endtrans %}</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/kontakt">
                     <i class="fa fa-envelope-o" aria-hidden="true"></i>
                     {% trans %}kontakt{% endtrans %}
                 </a>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="https://danijel3.github.io/emuR_notebooks">
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="https://danijel3.github.io/emuR_notebooks">
                     <i class="fa fa-question-circle"></i>
                     {% trans %}instrukcje{% endtrans %}
-            </a>
-        </li>
-          <li class="nav-item">
-                <a class="nav-link" href="/lang/pl"><img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}"></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/lang/en"><img class="flaga-icon" src="{{ url_for('static', filename='img/gb.svg') }}"></a>
-          </li>
-    </ul>
-  </nav>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/lang/pl"><img class="flaga-icon"
+                                                         src="{{ url_for('static', filename='img/pl.svg') }}"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/lang/en"><img class="flaga-icon"
+                                                         src="{{ url_for('static', filename='img/gb.svg') }}"></a>
+            </li>
+        </ul>
+    </nav>
 
 
-    <div class="jumbotron" id="jumbo" >
+    <div class="jumbotron" id="jumbo">
 
         <!-- particles.js container -->
         <div id="particles-js">
@@ -87,94 +86,70 @@
         <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
         <div class="row">
-             <div class="col-sm">
+            <div class="col-sm">
                 <a href="/">
-                    <img id="logo-left" src="{{ url_for('static',filename='img/logo-clarinOK.png') }}" class="img-fluid push-left" alt="Clarin PL Logo"/></img>
+                    <img id="logo-left" src="{{ url_for('static',filename='img/logo-clarinOK.png') }}"
+                         class="img-fluid push-left" alt="Clarin PL Logo"/></img>
                 </a>
             </div>
             <div class="col-sm">
                 <a href="/">
-                    <img id="logo-right"src="{{ url_for('static',filename='img/logo-clarin2OK.png') }}" class="img-fluid push-right" alt="CTJ Logo"/></img>
+                    <img id="logo-right" src="{{ url_for('static',filename='img/logo-clarin2OK.png') }}"
+                         class="img-fluid push-right" alt="CTJ Logo"/></img>
                 </a>
             </div>
-      </div>
-
-<!--
-        <div class="row">
-            <div class="col-md">
-                <a href="/">
-                     <img src="{{ url_for('static',filename='img/clarin-big.png') }}" class="img-fluid push-left" alt="Clarin PL Logo"/></img>
-
-                    <img src="{{ url_for('static',filename='img/logo-clarin.png') }}" class="img-fluid push-left" alt="Clarin PL Logo"/></img>
-                </a>
-            </div>
-            <div class="col-md">
-                <a href="/">
-                    <img src="{{ url_for('static',filename='img/logo-clarin2.png') }}" class="img-fluid push-right" alt="CTJ Logo"/></img>
-                </a>
-            </div>
-      </div>
-      -->
-
-
-
+        </div>
     </div>
 
 
-
-      <ol class="breadcrumb breadcrumb-custom">
+    <ol class="breadcrumb breadcrumb-custom">
         {%- for breadcrumb in breadcrumbs -%}
             <li class="breadcrumb-item"><a href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a></li>
         {%- endfor -%}
-      </ol>
+    </ol>
 
-
-
-    <!--<div style="margin-top:2em">&nbsp;</div>-->
 
     <div id="mainblock">
         {% block body %} {% endblock %}
     </div>
 
     <footer class="blog-footer">
-
-        <!--
-         <p>{% trans %}CLARIN-PL{% endtrans %} 2018</p>
-         -->
-
-
-         <div class="row">
-                <div class="col-sm">
-                  <ul>
-                      <li><a href="/tools">{% trans %}usługi{% endtrans %}</a></li>
-                      <li><a href="ui/phonetize/word">{% trans %}g2p_tytuł{% endtrans %}</a></li>
-                      <li><a href="ui/phonetize/list">{% trans %}g2p_wordlist_tytuł{% endtrans %}</a></li>
-                      <li><a href="ui/text/normalize">{% trans %}textnorm_tytuł{% endtrans %}</a></li>
-                      <li><a href="ui/audio/normalize">{% trans %}audionorm_tytuł{% endtrans %}</a></li>
-                      <li><a href="ui/align/forced">{% trans %}forcealign_tytuł{% endtrans %}</a></li>
-                      <li><a href="ui/align/segment">{% trans %}segalign_tytuł{% endtrans %}</a></li>
-                      <li><a href="ui/speech/recognize">{% trans %}reco_tytuł{% endtrans %}</a></li>
-                  </ul>
-                </div>
-                <div class="col-sm">
-                  <ul>
-                      <li><a href="emu">{% trans %}narzędzie_emu{% endtrans %}</a></li>
-                      <li><a href="new">{% trans %}nowy_projekt{% endtrans %}</a></li>
-                      <li><a href="search">{% trans %}szukaj_projekt{% endtrans %}</a></li>
-                  </ul>
-                </div>
-                <div class="col-sm">
-                  <ul>
-                      <li><a href="/korpusy">{% trans %}korpus{% endtrans %}</a></li>
-                      <li><a href="/korpusy/clarin_emu.zip">{% trans %}korpus_studio_tytuł{% endtrans %}</a></li>
-                      <li><a target="blank" href="http://ips-lmu.github.io/EMU-webApp/?autoConnect=true&serverUrl=wss%3A%2F%2Fmowa.clarin-pl.eu%3A17891%2Fclarin">{% trans %}korpus_webapp_tytuł{% endtrans %}</a></li>
-                      <li><a target="blank" href="https://github.com/danijel3/ClarinStudioKaldi">{% trans %}kaldi_baseline{% endtrans %}</a></li>
-                      <li><a href="https://danijel3.github.io/emuR_notebooks" target="blank"><b>{% trans %}instrukcje{% endtrans %}</b></a></li>
-                      <li><a href="//clarin-pl.eu/" target="blank">{% trans %}CLARIN-PL{% endtrans %}</a></li>
-                      <li><a href="/kontakt">{% trans %}kontakt{% endtrans %}</a></li>
-                  </ul>
-                </div>
-          </div>
+        <div class="row">
+            <div class="col-sm">
+                <ul>
+                    <li><a href="/tools">{% trans %}usługi{% endtrans %}</a></li>
+                    <li><a href="ui/phonetize/word">{% trans %}g2p_tytuł{% endtrans %}</a></li>
+                    <li><a href="ui/phonetize/list">{% trans %}g2p_wordlist_tytuł{% endtrans %}</a></li>
+                    <li><a href="ui/text/normalize">{% trans %}textnorm_tytuł{% endtrans %}</a></li>
+                    <li><a href="ui/audio/normalize">{% trans %}audionorm_tytuł{% endtrans %}</a></li>
+                    <li><a href="ui/align/forced">{% trans %}forcealign_tytuł{% endtrans %}</a></li>
+                    <li><a href="ui/align/segment">{% trans %}segalign_tytuł{% endtrans %}</a></li>
+                    <li><a href="ui/speech/recognize">{% trans %}reco_tytuł{% endtrans %}</a></li>
+                </ul>
+            </div>
+            <div class="col-sm">
+                <ul>
+                    <li><a href="emu">{% trans %}narzędzie_emu{% endtrans %}</a></li>
+                    <li><a href="new">{% trans %}nowy_projekt{% endtrans %}</a></li>
+                    <li><a href="search">{% trans %}szukaj_projekt{% endtrans %}</a></li>
+                </ul>
+            </div>
+            <div class="col-sm">
+                <ul>
+                    <li><a href="/korpusy">{% trans %}korpus{% endtrans %}</a></li>
+                    <li><a href="/korpusy/clarin_emu.zip">{% trans %}korpus_studio_tytuł{% endtrans %}</a></li>
+                    <li><a target="blank"
+                           href="http://ips-lmu.github.io/EMU-webApp/?autoConnect=true&serverUrl=wss%3A%2F%2Fmowa.clarin-pl.eu%3A17891%2Fclarin">
+                        {% trans %}korpus_webapp_tytuł{% endtrans %}</a></li>
+                    <li><a target="blank" href="https://github.com/danijel3/ClarinStudioKaldi">{% trans %}
+                        kaldi_baseline{% endtrans %}</a></li>
+                    <li><a href="https://danijel3.github.io/emuR_notebooks" target="blank"><b>{% trans %}
+                        instrukcje{% endtrans %}</b></a></li>
+                    <li><a href="//clarin-pl.eu/" target="blank">{% trans %}CLARIN-PL{% endtrans %}</a></li>
+                    <li><a href="/kontakt">{% trans %}kontakt{% endtrans %}</a></li>
+                </ul>
+            </div>
+        </div>
     </footer>
 
 </div>
@@ -182,78 +157,149 @@
 <script>
 
     //particle.js
-     particlesJS("particles-js", {"particles":{"number":{"value":104,"density":{"enable":true,"value_area":800}},"color":{"value":"#b6b6b6"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.38,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":7.3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":284.0931509876182,"color":"#a4a4a4","opacity":0.2244776885211732,"width":1},"move":{"enable":true,"speed":2.2,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});var count_particles, stats, update; stats = new Stats; stats.setMode(0); stats.domElement.style.position = 'absolute'; stats.domElement.style.left = '0px'; stats.domElement.style.top = '0px'; document.body.appendChild(stats.domElement); count_particles = document.querySelector('.js-count-particles'); update = function() { stats.begin(); stats.end(); if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) { count_particles.innerText = window.pJSDom[0].pJS.particles.array.length; } requestAnimationFrame(update); }; requestAnimationFrame(update);;
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {"value": 104, "density": {"enable": true, "value_area": 800}},
+            "color": {"value": "#b6b6b6"},
+            "shape": {
+                "type": "circle",
+                "stroke": {"width": 0, "color": "#000000"},
+                "polygon": {"nb_sides": 5},
+                "image": {"src": "img/github.svg", "width": 100, "height": 100}
+            },
+            "opacity": {
+                "value": 0.38,
+                "random": false,
+                "anim": {"enable": false, "speed": 1, "opacity_min": 0.1, "sync": false}
+            },
+            "size": {
+                "value": 7.3,
+                "random": true,
+                "anim": {"enable": false, "speed": 40, "size_min": 0.1, "sync": false}
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 284.0931509876182,
+                "color": "#a4a4a4",
+                "opacity": 0.2244776885211732,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 2.2,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {"enable": false, "rotateX": 600, "rotateY": 1200}
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {"enable": true, "mode": "repulse"},
+                "onclick": {"enable": false, "mode": "push"},
+                "resize": true
+            },
+            "modes": {
+                "grab": {"distance": 400, "line_linked": {"opacity": 1}},
+                "bubble": {"distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3},
+                "repulse": {"distance": 200, "duration": 0.4},
+                "push": {"particles_nb": 4},
+                "remove": {"particles_nb": 2}
+            }
+        },
+        "retina_detect": true
+    });
+    var count_particles, stats, update;
+    stats = new Stats;
+    stats.setMode(0);
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.top = '0px';
+    document.body.appendChild(stats.domElement);
+    count_particles = document.querySelector('.js-count-particles');
+    update = function () {
+        stats.begin();
+        stats.end();
+        if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+            count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
+        }
+        requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+    ;
 
 </script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         // COOCKIECONSET
 
-         window.cookieconsent.initialise({
-                "palette": {
-                    "popup": {
-                        "background": "#000"
-                    },
-                    "button": {
-                        "background": "#f1d600"
-                    }
+        window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#000"
                 },
-                "position": "top"
-            });
+                "button": {
+                    "background": "#f1d600"
+                }
+            },
+            "position": "top"
+        });
 
 
-            // ADDING MOBILE CLASS TO BODY ON MOBILE
+        // ADDING MOBILE CLASS TO BODY ON MOBILE
 
-            var whenMovile = 768; //pixels
+        var whenMovile = 768; //pixels
 
-            var current_width = $(window).width();
+        var current_width = $(window).width();
 
+        setBodyMobile(current_width);
+
+        $(window).resize(function () {
+            current_width = $(window).width();
             setBodyMobile(current_width);
-
-             $(window).resize(function(){
-                current_width = $(window).width();
-                setBodyMobile(current_width);
-                checkToFixBreadCrumb();
-              });
+            checkToFixBreadCrumb();
+        });
 
 
-            //FIXING THE BREADCRUMB WHEN BEYOUD THE SCREEN
+        //FIXING THE BREADCRUMB WHEN BEYOND THE SCREEN
 
-            var breadcrump = document.getElementsByClassName("breadcrumb-custom")[0];
-            var sticky = breadcrump.offsetTop;
+        var breadcrump = document.getElementsByClassName("breadcrumb-custom")[0];
+        var sticky = breadcrump.offsetTop;
 
-            $(window).scroll(function() {
-                  checkToFixBreadCrumb();
-            });
+        $(window).scroll(function () {
+            checkToFixBreadCrumb();
+        });
 
-            function setBodyMobile(current_width){
+        function setBodyMobile(current_width) {
 
-                    if(current_width < whenMovile){
-                      $('body').addClass("mobile-version");
-                    } else {
-                       $('body').removeClass("mobile-version");
-                    }
-              }
+            if (current_width < whenMovile) {
+                $('body').addClass("mobile-version");
+            } else {
+                $('body').removeClass("mobile-version");
+            }
+        }
 
-            function checkToFixBreadCrumb(){
-                if(current_width > whenMovile){
-                    if (window.pageYOffset >= sticky) {
+        function checkToFixBreadCrumb() {
+            if (current_width > whenMovile) {
+                if (window.pageYOffset >= sticky) {
 
-                            breadcrump.classList.add("breadcrumb-fixed");
-                            var jumbowidth = document.getElementById("jumbo").offsetWidth;
-                            breadcrump.style.width = jumbowidth+"px";
+                    breadcrump.classList.add("breadcrumb-fixed");
+                    var jumbowidth = document.getElementById("jumbo").offsetWidth;
+                    breadcrump.style.width = jumbowidth + "px";
 
-                      } else {
-                        breadcrump.classList.remove("breadcrumb-fixed");
-                        breadcrump.style.width = "100%";
-                      }
+                } else {
+                    breadcrump.classList.remove("breadcrumb-fixed");
+                    breadcrump.style.width = "100%";
                 }
             }
+        }
     });
 
 </script>
-
 
 
 <script>
