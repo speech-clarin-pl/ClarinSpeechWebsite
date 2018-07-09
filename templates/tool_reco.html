@@ -112,23 +112,19 @@
                             <tr>
                                 <td class="align-middle">
                                     <div class="input-group mb-3 align-middle" id="enter-input">
-                                        <form class="input-group" id="upload-form">
 
-                                            <div class="custom-file">
+                                        <div class="custom-file">
 
-                                                <label for="audio" id="fileLabel" class="btn btn-clarin">{% trans %}
-                                                    wczytaj_audio{% endtrans %}</label>
-                                                <input id="audio" onchange="pressed()" name="audio" class="form-control"
-                                                       type="file">
-
-
-                                                <span class="input-group-btn">
-											<button id="convert_btn" class="btn btn-clarin">
-											 {% trans %}rozpocznij{% endtrans %}
-											</button>
-										</span>
-                                            </div>
-                                        </form>
+                                            <label for="audio" id="fileLabel" class="btn btn-clarin">{% trans %}
+                                                wczytaj_audio{% endtrans %}</label>
+                                            <input id="audio" onchange="pressed()" name="audio" class="form-control"
+                                                   type="file">
+                                            <span class="input-group-btn">
+                                                <button id="convert_btn" class="btn btn-clarin">
+                                                 {% trans %}rozpocznij{% endtrans %}
+                                                </button>
+                                            </span>
+                                        </div>
 
                                         <!-- progress bar -->
                                         <p>
@@ -148,7 +144,7 @@
                     </div>
 
                     <!-- tool settings -->
-                <!--
+                    <!--
                     <div class="col-sm-12 col-md-6">
 
                         <span id="settings-label">Settings:</span>

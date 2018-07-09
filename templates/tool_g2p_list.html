@@ -90,22 +90,20 @@
                             <tr>
                                 <td class="align-middle">
                                     <div class="input-group mb-3 align-middle" id="enter-input">
-                                        <form class="input-group" id="upload-form">
-                                            <div class="custom-file">
+                                        <div class="custom-file">
 
-                                                <label for="file" id="fileLabel" class="btn btn-clarin3">
-                                                    {% trans %}wgraj_plik{% endtrans %}
-                                                </label>
-                                                <input id="file" name="file" onchange="pressed()" class="form-control"
-                                                       type="file">
+                                            <label for="file" id="fileLabel" class="btn btn-clarin3">
+                                                {% trans %}wgraj_plik{% endtrans %}
+                                            </label>
+                                            <input id="file" name="file" onchange="pressed()" class="form-control"
+                                                   type="file">
 
-                                                <span class="input-group-btn">
+                                            <span class="input-group-btn">
                                                 <button id="convert_btn" type="submit" class="btn btn-clarin3">
                                                     {% trans %}konwertuj{% endtrans %}
                                                 </button>
                                             </span>
-                                            </div>
-                                        </form>
+                                        </div>
 
                                         <!-- progress bar -->
                                         <p>
