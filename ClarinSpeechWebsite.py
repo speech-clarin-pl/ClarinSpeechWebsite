@@ -75,6 +75,10 @@ def kontakt():
     return render_template('kontakt.html')
 
 
+@app.route('/transcriber/')
+def g2p_redirect():
+    return redirect('/tools/ui/phonetize/word')
+
 @babel.localeselector
 def get_locale():
     if 'lang' in session:
