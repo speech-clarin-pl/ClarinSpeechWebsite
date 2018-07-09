@@ -96,7 +96,7 @@ def ui_view(id):
             if 'from' in file:
                 from_id = file['from']['input']
                 from_file = tools.utils.get_file(from_id)
-                if from_file['type'] == 'audio':
+                if from_file != None and from_file['type'] == 'audio':
                     from_audio = True
             return render_template('view_transcription.html', res_id=id, from_id=from_id, from_audio=from_audio,
                                    allow_delete=config.allow_res_delete)
