@@ -174,6 +174,11 @@ def project(id, page):
         if 'seg' not in bundle or not bundle['seg']['file']:
             disable['emu'] = True
 
+        if 'session' not in b:
+            b['session'] = 'UNKNOWN'
+        if 'name' not in b:
+            b['name'] = 'UNKOWN
+            
         bundle['session'] = b['session']
         bundle['name'] = b['name']
         bundles.append((name, bundle))
