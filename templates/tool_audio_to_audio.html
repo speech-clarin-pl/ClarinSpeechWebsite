@@ -80,19 +80,21 @@
 
                                     <div class="input-group mb-3 align-middle" id="enter-input">
 
-                                            <div class="custom-file">
+                                        <div class="custom-file">
 
 
-                                                <label for="file" id="fileLabel" class="btn btn-info">{% trans %}
-                                                    wczytaj_audio{% endtrans %}</label>
-                                                <input id="file" name="file" onchange="pressed()" class="form-control"
-                                                       type="file">
+                                            <label for="file" id="fileLabel" class="btn btn-info">
+                                                {% trans %}wczytaj_audio{% endtrans %}
+                                            </label>
+                                            <input id="file" name="file" onchange="pressed()" class="form-control"
+                                                   type="file">
 
-                                                <span class="input-group-btn">
-                                                <button id="convert_btn" type="submit" class="btn btn-info">{% trans %}
-                                                    konwertuj{% endtrans %}</button>
+                                            <span class="input-group-btn">
+                                                <button id="convert_btn" type="submit" class="btn btn-info">
+                                                    {% trans %}konwertuj{% endtrans %}
+                                                </button>
                                             </span>
-                                            </div>
+                                        </div>
 
                                         <!-- progress bar -->
                                         <p>

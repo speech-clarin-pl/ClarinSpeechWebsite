@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-09 18:04+0200\n"
+"POT-Creation-Date: 2018-07-09 19:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgid "korpusy"
 msgstr ""
 
 #: ClarinSpeechWebsite.py:73 templates/kontakt.html:4 templates/layout.html:55
-#: templates/layout.html:149
+#: templates/layout.html:151
 msgid "kontakt"
 msgstr ""
 
@@ -34,11 +34,11 @@ msgstr ""
 msgid "EMU"
 msgstr ""
 
-#: EMU.py:39 EMU.py:276 templates/emu_search.html:54
+#: EMU.py:39 EMU.py:281 templates/emu_search.html:54
 msgid "właściciel"
 msgstr ""
 
-#: EMU.py:40 EMU.py:277 templates/emu_project.html:29
+#: EMU.py:40 EMU.py:282 templates/emu_project.html:29
 #: templates/emu_search.html:55
 msgid "opis"
 msgstr ""
@@ -87,27 +87,27 @@ msgstr ""
 msgid "emu_projekt_tytuł"
 msgstr ""
 
-#: EMU.py:204 templates/emu_modify.html:4
+#: EMU.py:209 templates/emu_modify.html:4
 msgid "zmień_projekt"
 msgstr ""
 
-#: EMU.py:257
+#: EMU.py:262
 msgid "hasło_tytuł"
 msgstr ""
 
-#: EMU.py:278
+#: EMU.py:283
 msgid "po_dacie"
 msgstr ""
 
-#: EMU.py:279
+#: EMU.py:284
 msgid "przed_datą"
 msgstr ""
 
-#: EMU.py:284 templates/emu.html:33 templates/layout.html:134
+#: EMU.py:289 templates/emu.html:33 templates/layout.html:134
 msgid "szukaj_projekt"
 msgstr ""
 
-#: EMU.py:680 EMU.py:686 Tools.py:87 Tools.py:126 templates/view_any.html:3
+#: EMU.py:685 EMU.py:691 Tools.py:87 Tools.py:126 templates/view_any.html:3
 msgid "view_any_tytuł"
 msgstr ""
 
@@ -478,7 +478,7 @@ msgstr ""
 msgid "korpus_licencja"
 msgstr ""
 
-#: templates/korpusy.html:37
+#: templates/korpusy.html:37 templates/layout.html:145
 msgid "kaldi_baseline"
 msgstr ""
 
@@ -486,24 +486,12 @@ msgstr ""
 msgid "kaldi_baseline_opis"
 msgstr ""
 
-#: templates/layout.html:50 templates/layout.html:148
+#: templates/layout.html:50 templates/layout.html:150
 msgid "CLARIN-PL"
 msgstr ""
 
-#: templates/layout.html:63
+#: templates/layout.html:63 templates/layout.html:148
 msgid "instrukcje"
-msgstr ""
-
-#: templates/layout.html:144
-msgid ""
-"\n"
-"                        kaldi_baseline"
-msgstr ""
-
-#: templates/layout.html:146
-msgid ""
-"\n"
-"                        instrukcje"
 msgstr ""
 
 #: templates/multiview_any.html:3
@@ -662,18 +650,16 @@ msgstr ""
 msgid "help_final_download"
 msgstr ""
 
-#: templates/tool_align.html:136
+#: templates/tool_align.html:135
 msgid "wczytaj_nagranie"
 msgstr ""
 
-#: templates/tool_align.html:159
+#: templates/tool_align.html:158
 msgid "wczytaj_transkrypcję"
 msgstr ""
 
-#: templates/tool_align.html:180
-msgid ""
-"\n"
-"                                                        rozpocznij"
+#: templates/tool_align.html:179 templates/tool_reco.html:124
+msgid "rozpocznij"
 msgstr ""
 
 #: templates/tool_audio_to_audio.html:17
@@ -681,15 +667,14 @@ msgid "opis_audionorm"
 msgstr ""
 
 #: templates/tool_audio_to_audio.html:87 templates/tool_reco.html:119
-msgid ""
-"\n"
-"                                                    wczytaj_audio"
+msgid "wczytaj_audio"
 msgstr ""
 
-#: templates/tool_audio_to_audio.html:93 templates/tool_text_to_text.html:95
-msgid ""
-"\n"
-"                                                    konwertuj"
+#: templates/tool_audio_to_audio.html:94 templates/tool_g2p_list.html:103
+#: templates/tool_g2p_list.html:278 templates/tool_g2p_list.html:285
+#: templates/tool_g2p_word.html:72 templates/tool_g2p_word.html:183
+#: templates/tool_g2p_word.html:192 templates/tool_text_to_text.html:96
+msgid "konwertuj"
 msgstr ""
 
 #: templates/tool_g2p_list.html:16
@@ -709,25 +694,19 @@ msgstr ""
 msgid "help_result_ipa"
 msgstr ""
 
-#: templates/tool_g2p_list.html:97
+#: templates/tool_g2p_list.html:96
 msgid "wgraj_plik"
 msgstr ""
 
-#: templates/tool_g2p_list.html:104 templates/tool_g2p_list.html:280
-#: templates/tool_g2p_list.html:287 templates/tool_g2p_word.html:72
-#: templates/tool_g2p_word.html:183 templates/tool_g2p_word.html:192
-msgid "konwertuj"
-msgstr ""
-
-#: templates/tool_g2p_list.html:169 templates/tool_g2p_word.html:125
+#: templates/tool_g2p_list.html:167 templates/tool_g2p_word.html:125
 msgid "wynik"
 msgstr ""
 
-#: templates/tool_g2p_list.html:175 templates/tool_g2p_word.html:131
+#: templates/tool_g2p_list.html:173 templates/tool_g2p_word.html:131
 msgid "ident_admin"
 msgstr ""
 
-#: templates/tool_g2p_list.html:285 templates/tool_g2p_list.html:286
+#: templates/tool_g2p_list.html:283 templates/tool_g2p_list.html:284
 #: templates/tool_g2p_word.html:191
 msgid "błąd_konwersji"
 msgstr ""
@@ -756,10 +735,6 @@ msgstr ""
 msgid "opis_reco"
 msgstr ""
 
-#: templates/tool_reco.html:127
-msgid "rozpocznij"
-msgstr ""
-
 #: templates/tool_text_to_text.html:17
 msgid "opis_textnorm"
 msgstr ""
@@ -777,9 +752,7 @@ msgid "help_result_download"
 msgstr ""
 
 #: templates/tool_text_to_text.html:89
-msgid ""
-"\n"
-"                                                    wczytaj_tekstowy"
+msgid "wczytaj_tekstowy"
 msgstr ""
 
 #: templates/tools.html:61

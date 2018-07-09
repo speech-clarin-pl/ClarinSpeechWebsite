@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-09 18:04+0200\n"
+"POT-Creation-Date: 2018-07-09 19:36+0200\n"
 "PO-Revision-Date: 2017-09-05 11:46+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -27,7 +27,7 @@ msgid "korpusy"
 msgstr "Corpora and other resources"
 
 #: ClarinSpeechWebsite.py:73 templates/kontakt.html:4 templates/layout.html:55
-#: templates/layout.html:149
+#: templates/layout.html:151
 msgid "kontakt"
 msgstr "Contact"
 
@@ -35,11 +35,11 @@ msgstr "Contact"
 msgid "EMU"
 msgstr "EMU"
 
-#: EMU.py:39 EMU.py:276 templates/emu_search.html:54
+#: EMU.py:39 EMU.py:281 templates/emu_search.html:54
 msgid "właściciel"
 msgstr "Owner"
 
-#: EMU.py:40 EMU.py:277 templates/emu_project.html:29
+#: EMU.py:40 EMU.py:282 templates/emu_project.html:29
 #: templates/emu_search.html:55
 msgid "opis"
 msgstr "Description"
@@ -88,27 +88,27 @@ msgstr "The project has been removed!"
 msgid "emu_projekt_tytuł"
 msgstr "EMU project"
 
-#: EMU.py:204 templates/emu_modify.html:4
+#: EMU.py:209 templates/emu_modify.html:4
 msgid "zmień_projekt"
 msgstr "Modify project"
 
-#: EMU.py:257
+#: EMU.py:262
 msgid "hasło_tytuł"
 msgstr "This project is password protected"
 
-#: EMU.py:278
+#: EMU.py:283
 msgid "po_dacie"
 msgstr "Date after"
 
-#: EMU.py:279
+#: EMU.py:284
 msgid "przed_datą"
 msgstr "Date before"
 
-#: EMU.py:284 templates/emu.html:33 templates/layout.html:134
+#: EMU.py:289 templates/emu.html:33 templates/layout.html:134
 msgid "szukaj_projekt"
 msgstr "Project search"
 
-#: EMU.py:680 EMU.py:686 Tools.py:87 Tools.py:126 templates/view_any.html:3
+#: EMU.py:685 EMU.py:691 Tools.py:87 Tools.py:126 templates/view_any.html:3
 msgid "view_any_tytuł"
 msgstr "Download file"
 
@@ -253,7 +253,6 @@ msgid ""
 msgstr ""
 "click <a id=\"refresh-link\" href=\"#\">here</a> to refresh\n"
 "immediately"
-
 
 #: templates/emu_project.html:87
 msgid "ściągnij_projekt"
@@ -423,8 +422,9 @@ msgstr "Speech services"
 
 #: templates/index.html:21
 msgid "usługi_desc"
-msgstr "You will find various standalone services "
-" here, like G2P, speech alignment and speech recognition."
+msgstr ""
+"You will find various standalone services  here, like G2P, speech "
+"alignment and speech recognition."
 
 #: templates/index.html:34 templates/layout.html:132
 msgid "narzędzie_emu"
@@ -432,9 +432,10 @@ msgstr "A tool to create EMU-SDMS corpus"
 
 #: templates/index.html:39
 msgid "emu_desc"
-msgstr "This is a tool that lets you convert a collection of files "
-"into a format that can be easily analyzed using the R package. See "
-"Instructions for some examples."
+msgstr ""
+"This is a tool that lets you convert a collection of files into a format "
+"that can be easily analyzed using the R package. See Instructions for "
+"some examples."
 
 #: templates/index.html:53 templates/layout.html:139
 msgid "korpus"
@@ -500,7 +501,7 @@ msgstr "Link to the service"
 msgid "korpus_licencja"
 msgstr "Corpus license"
 
-#: templates/korpusy.html:37
+#: templates/korpusy.html:37 templates/layout.html:145
 msgid "kaldi_baseline"
 msgstr "Kaldi baseline"
 
@@ -512,24 +513,12 @@ msgstr ""
 "Kaldi LVSCR. It contains all the descriptions and scripts allowing you to"
 " train the system personally. "
 
-#: templates/layout.html:50 templates/layout.html:148
+#: templates/layout.html:50 templates/layout.html:150
 msgid "CLARIN-PL"
 msgstr "CLARIN-PL project"
 
-#: templates/layout.html:63
+#: templates/layout.html:63 templates/layout.html:148
 msgid "instrukcje"
-msgstr "Instructions"
-
-#: templates/layout.html:144
-msgid ""
-"\n"
-"                        kaldi_baseline"
-msgstr "Kaldi baseline"
-
-#: templates/layout.html:146
-msgid ""
-"\n"
-"                        instrukcje"
 msgstr "Instructions"
 
 #: templates/multiview_any.html:3
@@ -715,18 +704,16 @@ msgstr ""
 "Which will generate an identifier for the output file that can be used in"
 " <code>download</code> and <code>status</code> commands."
 
-#: templates/tool_align.html:136
+#: templates/tool_align.html:135
 msgid "wczytaj_nagranie"
 msgstr "Upload file"
 
-#: templates/tool_align.html:159
+#: templates/tool_align.html:158
 msgid "wczytaj_transkrypcję"
 msgstr "Upload transcript"
 
-#: templates/tool_align.html:180
-msgid ""
-"\n"
-"                                                        rozpocznij"
+#: templates/tool_align.html:179 templates/tool_reco.html:124
+msgid "rozpocznij"
 msgstr "Start"
 
 #: templates/tool_audio_to_audio.html:17
@@ -736,15 +723,14 @@ msgstr ""
 " sampling frequency of 16 kHz, mono and resolution of 16 bits."
 
 #: templates/tool_audio_to_audio.html:87 templates/tool_reco.html:119
-msgid ""
-"\n"
-"                                                    wczytaj_audio"
-msgstr "Load audio"
+msgid "wczytaj_audio"
+msgstr "Load audio file"
 
-#: templates/tool_audio_to_audio.html:93 templates/tool_text_to_text.html:95
-msgid ""
-"\n"
-"                                                    konwertuj"
+#: templates/tool_audio_to_audio.html:94 templates/tool_g2p_list.html:103
+#: templates/tool_g2p_list.html:278 templates/tool_g2p_list.html:285
+#: templates/tool_g2p_word.html:72 templates/tool_g2p_word.html:183
+#: templates/tool_g2p_word.html:192 templates/tool_text_to_text.html:96
+msgid "konwertuj"
 msgstr "Convert"
 
 #: templates/tool_g2p_list.html:16
@@ -764,25 +750,19 @@ msgstr "You may also download the output in SAMPA:"
 msgid "help_result_ipa"
 msgstr "You may also download the output in IPA:"
 
-#: templates/tool_g2p_list.html:97
+#: templates/tool_g2p_list.html:96
 msgid "wgraj_plik"
 msgstr "Load file"
 
-#: templates/tool_g2p_list.html:104 templates/tool_g2p_list.html:280
-#: templates/tool_g2p_list.html:287 templates/tool_g2p_word.html:72
-#: templates/tool_g2p_word.html:183 templates/tool_g2p_word.html:192
-msgid "konwertuj"
-msgstr "Convert"
-
-#: templates/tool_g2p_list.html:169 templates/tool_g2p_word.html:125
+#: templates/tool_g2p_list.html:167 templates/tool_g2p_word.html:125
 msgid "wynik"
 msgstr "Output"
 
-#: templates/tool_g2p_list.html:175 templates/tool_g2p_word.html:131
+#: templates/tool_g2p_list.html:173 templates/tool_g2p_word.html:131
 msgid "ident_admin"
 msgstr "In case of an error, please send these data to the administrator!"
 
-#: templates/tool_g2p_list.html:285 templates/tool_g2p_list.html:286
+#: templates/tool_g2p_list.html:283 templates/tool_g2p_list.html:284
 #: templates/tool_g2p_word.html:191
 msgid "błąd_konwersji"
 msgstr "Conversion error..."
@@ -814,10 +794,6 @@ msgstr "Enter the word you would like to phonetize:"
 msgid "opis_reco"
 msgstr "Converting audio file into ortographic transcription."
 
-#: templates/tool_reco.html:127
-msgid "rozpocznij"
-msgstr "Start"
-
 #: templates/tool_text_to_text.html:17
 msgid "opis_textnorm"
 msgstr ""
@@ -844,9 +820,7 @@ msgstr ""
 "<code>download</code> command, as described above."
 
 #: templates/tool_text_to_text.html:89
-msgid ""
-"\n"
-"                                                    wczytaj_tekstowy"
+msgid "wczytaj_tekstowy"
 msgstr "Load text file"
 
 #: templates/tools.html:61
@@ -890,17 +864,3 @@ msgstr "Transcript"
 #: templates/view_transcription.html:33
 msgid "otwórz_z_audio"
 msgstr "Open with audio"
-
-#~ msgid ""
-#~ "kliknij <a id=\"refresh-link\" "
-#~ "href=\"#\">tutaj</a> żeby odświeżyć natychmiast"
-#~ msgstr ""
-#~ "Click <a id=\"refresh-link\" "
-#~ "href=\"#\">here</a> to refresh immediately!"
-
-#~ msgid "wczytaj_audio"
-#~ msgstr "Upload audio file:"
-
-#~ msgid "wczytaj_tekstowy"
-#~ msgstr "Upload text file"
-
