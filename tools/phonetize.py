@@ -30,8 +30,10 @@ def phonetize_word(word, script, use_cache=True):
              '--nbest=100', '--beam=500', '--thresh=10', '--pmass=0.8', f'--word={word}'.encode('utf-8')], stdout=PIPE, stderr=DEVNULL)
         out = proc.stdout.decode('utf-8').strip().split('\n')
         for t in out:
-            t = t.split('\t')[2]
-            trans_arr.append(t)
+            tok=t.split('\t')
+            if len(tok)>1:
+                t = tok[2]
+                trans_arr.append(t)
 
         if use_cache:
             db.clarin.phonetizer.insert_one({'text': word, 'output': trans_arr})
