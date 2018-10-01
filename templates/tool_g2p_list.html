@@ -99,7 +99,7 @@
                                                    type="file">
 
                                             <span class="input-group-btn">
-                                                <button id="convert_btn" type="submit" class="btn btn-clarin3">
+                                                <button id="convert_btn" class="btn btn-clarin3">
                                                     {% trans %}konwertuj{% endtrans %}
                                                 </button>
                                             </span>
@@ -248,7 +248,9 @@
 
             function display() {
 
-                var formData = new FormData($('#upload-form')[0]);
+                var fd = new FormData();
+                var wl = document.getElementById('file');
+                fd.append('file', wl.files[0]);
 
                 $('#progressBar').removeClass('bg-danger').removeClass('bg-success').addClass('bg-info');
 
@@ -268,7 +270,7 @@
                     },
                     type: 'POST',
                     url: '/tools/phonetize/list?' + script,
-                    data: formData,
+                    data: fd,
                     processData: false,
                     contentType: false,
                     success: function (data) {
@@ -298,6 +300,7 @@
 
             });
 
+            $('#convert_btn').click(convert);
             $('#alpha').click(convert);
             $('#sampa').click(convert);
             $('#ipa').click(convert);
