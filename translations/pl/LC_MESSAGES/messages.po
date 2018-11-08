@@ -274,7 +274,7 @@ msgstr "Wygeneruj wszystkie transkrypcje"
 
 #: templates/emu_project.html:105
 msgid "wygeneruj_wszystkie_segmentacje"
-msgstr "Wygeneruj wsyzstkie segmentacje"
+msgstr "Wygeneruj wszystkie segmentacje"
 
 #: templates/emu_project.html:110
 msgid "usuń_wszystkie_audio"
