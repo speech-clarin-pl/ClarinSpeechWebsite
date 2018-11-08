@@ -212,7 +212,7 @@
                         $('#progressBar').text('The file has been uploaded');
                         res = JSON.parse(data);
                         id = res['output'];
-                        //window.location = '/tools/ui/view/' + id;
+                        window.location = '/tools/ui/view/' + id;
                     },
                     error: function (data) {
                         $("#error-msg").addClass('show');

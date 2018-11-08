@@ -425,7 +425,7 @@ msgstr "Usługi mowy"
 #: templates/index.html:21
 msgid "usługi_desc"
 msgstr ""
-"Tutaj znajdziesz różne samodzielne usługi typu konbwersja G2P, "
+"Tutaj znajdziesz różne samodzielne usługi typu konwersja G2P, "
 "dopasowanie czasowe nagrań i automatyczne rozpoznawanie mowy."
 
 #: templates/index.html:34 templates/layout.html:132
