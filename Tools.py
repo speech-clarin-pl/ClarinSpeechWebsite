@@ -23,6 +23,12 @@ def index():
     return render_template('tools.html')
 
 
+@tools_page.route('annotationpro')
+@register_breadcrumb(tools_page, '.tool_annotationpro', lazy_gettext(u'annotation_tytuł'))
+def annotationpro():
+    return render_template('annotationpro.html')
+
+
 @tools_page.route('upload/<type>', methods=['POST'])
 def upload(type):
     if 'file' not in request.files:

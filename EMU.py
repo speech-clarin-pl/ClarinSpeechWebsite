@@ -10,6 +10,7 @@ from pathlib import Path
 
 import bcrypt as bcrypt
 from bson import ObjectId
+from bson.json_util import dumps
 from dateutil.parser import parse
 from flask import Blueprint, render_template, abort, request, redirect, session
 from flask_babel import lazy_gettext as _
@@ -104,6 +105,9 @@ def project(id, page):
     proj, resp = check_project(id)
     if not proj:
         return resp
+
+    if 'json' in request.args:
+        return dumps(proj)
 
     if 'password' in proj:
         pass_check = proj['password']

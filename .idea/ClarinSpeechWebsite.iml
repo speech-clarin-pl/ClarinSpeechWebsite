@@ -4,7 +4,7 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/work" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (ClarinSpeechWebsite)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Remote Python 3.6.3 (sftp://guest@mowa.clarin-pl.eu:9222/usr/bin/python3)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">

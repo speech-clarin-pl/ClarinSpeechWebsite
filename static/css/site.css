@@ -3,22 +3,20 @@
 @media (min-width: 1px) {
 
 
-
-
     #top-bar .navbar-nav {
         flex-direction: row !important;
     }
 
-    .jumbotron  {
-        display:block !important;
+    .jumbotron {
+        display: block !important;
 
     }
 
     .jumbotron img {
-        display:none !important;
+        display: none !important;
     }
 
-    .breadcrumb{
+    .breadcrumb {
         display: block;
     }
 
@@ -33,27 +31,25 @@
     }
 
 
-
-
 }
 
 @media (min-width: 576px) {
 
-    .breadcrumb{
+    .breadcrumb {
         display: flex;
     }
 
-    .jumbotron  {
-        display:block !important;
+    .jumbotron {
+        display: block !important;
         height: inherit;
     }
 
     .jumbotron img {
-        display:block !important;
+        display: block !important;
     }
 
-    .jumbotron  {
-        display:block !important;
+    .jumbotron {
+        display: block !important;
     }
 
     #top-bar .navbar-nav {
@@ -79,7 +75,7 @@
         background: none;
     }
 
-    .breadcrumb-fixed{
+    .breadcrumb-fixed {
         background: #e9ecef !important;
     }
 
@@ -93,25 +89,25 @@
 @media (min-width: 768px) {
 
 
-
-    .breadcrumb{
+    .breadcrumb {
         display: flex;
     }
-    .jumbotron  {
-        display:block !important;
+
+    .jumbotron {
+        display: block !important;
         height: inherit;
     }
 
     .jumbotron img {
-        display:block !important;
+        display: block !important;
     }
 
-    .jumbotron  {
-        display:block !important;
+    .jumbotron {
+        display: block !important;
     }
 
-      .jumbotron #logo-left, .jumbotron #logo-right  {
-        padding:2.5rem 1rem 3.5rem 1rem;
+    .jumbotron #logo-left, .jumbotron #logo-right {
+        padding: 2.5rem 1rem 3.5rem 1rem;
     }
 
     .jumbotron #logo-left {
@@ -131,7 +127,7 @@
         background: none !important;
     }
 
-    .breadcrumb-fixed{
+    .breadcrumb-fixed {
         background: #e9ecef !important;
     }
 
@@ -144,29 +140,29 @@
 
 
 @media (min-width: 992px) {
-    .breadcrumb{
+    .breadcrumb {
         display: flex;
     }
 
-    .jumbotron  {
-        display:block !important;
+    .jumbotron {
+        display: block !important;
         height: inherit;
     }
 
     .jumbotron img {
-        display:block !important;
+        display: block !important;
     }
 
-    .jumbotron  {
-        display:block !important;
+    .jumbotron {
+        display: block !important;
     }
 
-    .jumbotron #logo-left, .jumbotron #logo-right  {
-        padding:2.5rem 1rem 3.5rem 1rem;
+    .jumbotron #logo-left, .jumbotron #logo-right {
+        padding: 2.5rem 1rem 3.5rem 1rem;
     }
 
     .jumbotron #logo-left {
-        position:relative;
+        position: relative;
         top: 0px;
     }
 
@@ -181,7 +177,7 @@
         background: none;
     }
 
-    .breadcrumb-fixed{
+    .breadcrumb-fixed {
         background: #e9ecef !important;
     }
 
@@ -194,30 +190,31 @@
 
 
 @media (min-width: 1200px) {
-    .breadcrumb{
+    .breadcrumb {
         display: flex;
     }
-    .jumbotron  {
-        display:block !important;
+
+    .jumbotron {
+        display: block !important;
         height: inherit;
     }
 
     .jumbotron img {
-        display:block !important;
+        display: block !important;
     }
 
-    .jumbotron  {
-        display:block !important;
+    .jumbotron {
+        display: block !important;
     }
 
-    .jumbotron #logo-left, .jumbotron #logo-right  {
-        padding:2.5rem 1rem 3.5rem 1rem;
+    .jumbotron #logo-left, .jumbotron #logo-right {
+        padding: 2.5rem 1rem 3.5rem 1rem;
     }
 
     .jumbotron #logo-left {
-        position:relative;
+        position: relative;
         top: 2px;
-        left:70px;
+        left: 70px;
     }
 
     .jumbotron #logo-right {
@@ -231,7 +228,7 @@
         background: none;
     }
 
-    .breadcrumb-fixed{
+    .breadcrumb-fixed {
         background: #e9ecef !important;
     }
 
@@ -240,9 +237,7 @@
     }
 
 
-
 }
-
 
 
 .topnav {
@@ -252,7 +247,7 @@
 
 .topnav a {
     color: white;
-    font-size:0.9em;
+    font-size: 0.9em;
 }
 
 nav img {
@@ -260,12 +255,10 @@ nav img {
 }
 
 
-
 #main_buttons .fa {
     font-size: 4em;
-    line-height:2em;
+    line-height: 2em;
 }
-
 
 
 #main_buttons .btn {
@@ -276,7 +269,7 @@ nav img {
 }
 
 input#file, input#word {
-    margin-right:8px;
+    margin-right: 8px;
 }
 
 pre {
@@ -314,7 +307,7 @@ pre {
     width: 100%;
     font-size: 48pt;
     height: 3em;
-    margin-top:1.75rem;
+    margin-top: 1.75rem;
     position: relative;
 }
 
@@ -332,57 +325,57 @@ pre {
     background: none !important;
 }
 
- .breadcrumb-fixed{
-        background: #e9ecef !important;
-    }
+.breadcrumb-fixed {
+    background: #e9ecef !important;
+}
 
 .breadcrumb-custom {
     position: relative;
     top: -80px;
-    border-bottom: 1px solid rgba(0,0,0,.125);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
 }
 
-h4.card-title{
+h4.card-title {
     height: 2em;
     text-align: left;
     line-height: 2em;
 }
 
-p.card-text{
- margin-top:2em;
+p.card-text {
+    margin-top: 2em;
 }
 
-img.strus-icon{
-   width: 10em;
+img.strus-icon {
+    width: 10em;
 }
 
 .blog-footer {
     padding: 2.5rem 1rem;
     text-align: center;
     border-top: .05rem solid #e5e5e5;
-    margin-top:2em;
+    margin-top: 2em;
     background: #e9ecef;
     color: #333;
 }
 
-.clearTop{
-    margin-top:0px;
+.clearTop {
+    margin-top: 0px;
 }
 
-.breadcrumb-custom li:last-child{
-   position:relative;
+.breadcrumb-custom li:last-child {
+    position: relative;
 }
 
 
-.breadcrumb-custom li:last-child a{
+.breadcrumb-custom li:last-child a {
     background: white;
     padding: 16px 30px 16px 30px;
     border-radius: 8px 8px 0px 0px;
-    border-top: 1px solid rgba(0,0,0,.125);
-    border-right: 1px solid rgba(0,0,0,.125);
+    border-top: 1px solid rgba(0, 0, 0, .125);
+    border-right: 1px solid rgba(0, 0, 0, .125);
     color: #333;
-    text-decoration:none;
-    font-weight:bold;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .mobile-version .breadcrumb-custom li:last-child a {
@@ -390,10 +383,10 @@ img.strus-icon{
     padding: inherit !important;
     border-radius: 0px !important;
     border-top: none !important;
-    border-right: none !impoartant;
-    color: inherit !impoartant;
-    text-decoration:none;
-    font-weight:bold;
+    border-right: none ! impoartant;
+    color: inherit ! impoartant;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
@@ -411,28 +404,28 @@ img.strus-icon{
 }
 
 .mobile-version .breadcrumb-item:last-child::before {
-     content: " / " !important;
+    content: " / " !important;
 }
 
 .breadcrumb-item a {
     color: #212529;
-    font-size:0.9em;
+    font-size: 0.9em;
 }
 
 .breadcrumb-fixed {
-  position: fixed !important;
-  top: 0px !important;
-  z-index:999999;
-  background: #e9ecef !important;
+    position: fixed !important;
+    top: 0px !important;
+    z-index: 999999;
+    background: #e9ecef !important;
 }
 
 
-.breadcrumb-fixed .breadcrumb-item:last-child a{
-    position:relative;
-    top:0px;
+.breadcrumb-fixed .breadcrumb-item:last-child a {
+    position: relative;
+    top: 0px;
 }
 
-.breadcrumb-fixed .breadcrumb-item a{
+.breadcrumb-fixed .breadcrumb-item a {
 
 }
 
@@ -442,7 +435,7 @@ img.strus-icon{
 }
 
 .tool-title {
-    display:none;
+    display: none;
 }
 
 .btn-g2p {
@@ -469,13 +462,13 @@ img.strus-icon{
     border-color: #a83d24;
 }
 
-.btn-clarin{
+.btn-clarin {
     color: #fff;
     background-color: #7a6d9c;
     border-color: #7a6d9c;
 }
 
-.btn-clarin:hover{
+.btn-clarin:hover {
     color: #fff;
     background-color: #655492;
     border-color: #655492;
@@ -546,50 +539,58 @@ img.strus-icon{
 }
 
 
+.btn-clarin4 {
+    color: #fff;
+    background-color: #e50;
+    border-color: #e50;
+}
 
-
+.btn-clarin4:hover {
+    color: #fff;
+    background-color: #c30;
+    border-color: #c30;
+}
 
 
 .jumbotron {
     padding: 0px;
-    position:relative;
+    position: relative;
 
 }
 
 
-
 .jumbotron a {
-    display:block;
-    text-align:center;
+    display: block;
+    text-align: center;
 }
 
 /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
 .breadcrumb-fixed + #mainblock {
-  padding-top: 60px;
+    padding-top: 60px;
 }
 
 .ust-name {
-    float:left;
+    float: left;
 }
 
 .ustawienia .ust-value {
-    font-weight:bold;
+    font-weight: bold;
 }
 
 .btn-micro {
     font-size: 0.68rem;
-    margin:1em;
+    margin: 1em;
 }
 
-.command-link{
+.command-link {
 
 }
 
-.flaga-icon{
-    height:0.9em;
-    margin:0.5em;
+.flaga-icon {
+    height: 0.9em;
+    margin: 0.5em;
     position: relative;
-    top:-0.1em;
+    top: -0.1em;
 }
 
 .card-body#toolbody {
@@ -597,41 +598,41 @@ img.strus-icon{
 }
 
 #title-ustawienia {
-    margin-bottom:8px;
+    margin-bottom: 8px;
 }
 
-.radio-label{
-    margin-right:20px;
-    float:left;
+.radio-label {
+    margin-right: 20px;
+    float: left;
 }
 
 .card#tool-desc {
-    margin-bottom:3rem;
+    margin-bottom: 3rem;
     margin-top: 3rem;
 }
 
-#mainblock{
-    position:relative;
-    top:-80px;
+#mainblock {
+    position: relative;
+    top: -80px;
 }
 
-#enter-input{
+#enter-input {
     padding: .5rem 1rem;
-    padding-left:0px;
-    padding-right:0px;
+    padding-left: 0px;
+    padding-right: 0px;
     margin-top: 1rem;
 }
 
 .belka-ustawien {
-    padding-left:0px;
+    padding-left: 0px;
 }
 
 #output-area {
-    position:relative;
-    margin-top:2rem;
+    position: relative;
+    margin-top: 2rem;
 }
 
-#output-area #label-output{
+#output-area #label-output {
     position: absolute;
     background: #e9ecef;
     top: -28px;
@@ -645,7 +646,7 @@ img.strus-icon{
 }
 
 #output-area textarea {
-    border-radius:0px 3px 3px 3px;
+    border-radius: 0px 3px 3px 3px;
 }
 
 .dropdown-menu .dropdown-item {
@@ -653,10 +654,10 @@ img.strus-icon{
 }
 
 .navbar-brand#main {
-    font-size:1em;
+    font-size: 1em;
 }
 
-#top-bar{
+#top-bar {
 
 }
 
@@ -664,33 +665,33 @@ img.strus-icon{
     margin-bottom: 15px;
 }
 
-.card#main-tool{
+.card#main-tool {
     position: relative;
-    margin-top:2rem;
+    margin-top: 2rem;
 }
 
-.card#main-tool .tool-small-tab{
+.card#main-tool .tool-small-tab {
     position: absolute;
     padding: 10px;
     top: -31px;
     background: #f8f9fa;
     padding-bottom: 0px;
     border: 1px solid #dfdfdf;
-    border-radius:3px 3px 0px 0px;
+    border-radius: 3px 3px 0px 0px;
     left: -1px;
     border-bottom: none;
     font-size: 0.9em;
 
 }
 
-.card#tool-desc .tool-small-tab{
+.card#tool-desc .tool-small-tab {
     position: absolute;
     padding: 10px;
     top: -31px;
     background: white;
     padding-bottom: 0px;
     border: 1px solid #dfdfdf;
-    border-radius:3px 3px 0px 0px;
+    border-radius: 3px 3px 0px 0px;
     left: -1px;
     border-bottom: none;
     font-size: 0.9em;
@@ -721,23 +722,22 @@ canvas {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e8ebed+0,e5e8ea+100 */
     background: #e8ebed; /* Old browsers */
     background: -moz-radial-gradient(center, ellipse cover, #e8ebed 0%, #e5e8ea 100%); /* FF3.6-15 */
-    background: -webkit-radial-gradient(center, ellipse cover, #e8ebed 0%,#e5e8ea 100%); /* Chrome10-25,Safari5.1-6 */
-    background: radial-gradient(ellipse at center, #e8ebed 0%,#e5e8ea 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8ebed', endColorstr='#e5e8ea',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background: -webkit-radial-gradient(center, ellipse cover, #e8ebed 0%, #e5e8ea 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center, #e8ebed 0%, #e5e8ea 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e8ebed', endColorstr='#e5e8ea', GradientType=1); /* IE6-9 fallback on horizontal gradient */
 
 }
 
-#main-logo{
-    margin-top:3rem;
-    width:40%;
+#main-logo {
+    margin-top: 3rem;
+    width: 40%;
 }
-
 
 
 #progress {
     width: 100%;
     margin: 15px 0px 15px 0px;
-    height:20px;
+    height: 20px;
 }
 
 #main_buttons .card > a {
@@ -753,26 +753,26 @@ footer ul li {
 }
 
 footer ul li:first-child a {
-    font-weight:bold;
-    font-size:1.2em;
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 footer ul li:first-child {
-    margin-bottom:1rem;
+    margin-bottom: 1rem;
 }
 
 footer ul li a {
-    text-decoration:none;
+    text-decoration: none;
     color: #4d545c;
 }
 
 footer ul li a:hover {
-    text-decoration:none;
+    text-decoration: none;
     color: #312453;
 }
 
-input[type=file]{
-    display:none;
+input[type=file] {
+    display: none;
 }
 
 label#fileLabel, label#fileLabel2, label#fileLabel3 {

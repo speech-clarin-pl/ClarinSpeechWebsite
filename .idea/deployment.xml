@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="clarin-www">
+    <serverData>
+      <paths name="clarin-www">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/var/www/ClarinSpeechWebsite" local="$PROJECT_DIR$" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/var/www/ClarinSpeechWebsite/secret_key" />
+            <excludedPath path="/var/www/ClarinSpeechWebsite/*.log" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

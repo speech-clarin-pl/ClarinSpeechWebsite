@@ -1,14 +1,14 @@
 # Translations template for PROJECT.
-# Copyright (C) 2018 ORGANIZATION
+# Copyright (C) 2019 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-09 19:36+0200\n"
+"POT-Creation-Date: 2019-04-12 11:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,84 +30,84 @@ msgstr ""
 msgid "kontakt"
 msgstr ""
 
-#: EMU.py:33
+#: EMU.py:34
 msgid "EMU"
 msgstr ""
 
-#: EMU.py:39 EMU.py:281 templates/emu_search.html:54
+#: EMU.py:40 EMU.py:285 templates/emu_search.html:54
 msgid "właściciel"
 msgstr ""
 
-#: EMU.py:40 EMU.py:282 templates/emu_project.html:29
+#: EMU.py:41 EMU.py:286 templates/emu_project.html:29
 #: templates/emu_search.html:55
 msgid "opis"
 msgstr ""
 
-#: EMU.py:41 templates/emu_new.html:61
+#: EMU.py:42 templates/emu_new.html:61
 msgid "hasło"
 msgstr ""
 
-#: EMU.py:42
+#: EMU.py:43
 msgid "hasła_się_różnią"
 msgstr ""
 
-#: EMU.py:44 templates/emu_modify.html:65 templates/emu_new.html:64
+#: EMU.py:45 templates/emu_modify.html:65 templates/emu_new.html:64
 msgid "powtórz_hasło"
 msgstr ""
 
-#: EMU.py:45 templates/emu_project.html:14
+#: EMU.py:46 templates/emu_project.html:14
 msgid "widoczność"
 msgstr ""
 
-#: EMU.py:46 templates/emu_modify.html:35 templates/emu_new.html:35
+#: EMU.py:47 templates/emu_modify.html:35 templates/emu_new.html:35
 #: templates/emu_project.html:18
 msgid "publiczny"
 msgstr ""
 
-#: EMU.py:46 templates/emu_modify.html:41 templates/emu_new.html:40
+#: EMU.py:47 templates/emu_modify.html:41 templates/emu_new.html:40
 #: templates/emu_project.html:21
 msgid "tylko_do_odczytu"
 msgstr ""
 
-#: EMU.py:47 templates/emu_modify.html:46 templates/emu_new.html:45
+#: EMU.py:48 templates/emu_modify.html:46 templates/emu_new.html:45
 #: templates/emu_project.html:24
 msgid "prywatny"
 msgstr ""
 
-#: EMU.py:55 templates/emu.html:17 templates/emu_new.html:4
+#: EMU.py:56 templates/emu.html:17 templates/emu_new.html:4
 #: templates/layout.html:133
 msgid "nowy_projekt"
 msgstr ""
 
-#: EMU.py:74 templates/emu_deleted.html:6
+#: EMU.py:75 templates/emu_deleted.html:6
 msgid "projekt_usunięty"
 msgstr ""
 
-#: EMU.py:102 templates/emu_project.html:6
+#: EMU.py:103 templates/emu_project.html:6
 msgid "emu_projekt_tytuł"
 msgstr ""
 
-#: EMU.py:209 templates/emu_modify.html:4
+#: EMU.py:213 templates/emu_modify.html:4
 msgid "zmień_projekt"
 msgstr ""
 
-#: EMU.py:262
+#: EMU.py:266
 msgid "hasło_tytuł"
 msgstr ""
 
-#: EMU.py:283
+#: EMU.py:287
 msgid "po_dacie"
 msgstr ""
 
-#: EMU.py:284
+#: EMU.py:288
 msgid "przed_datą"
 msgstr ""
 
-#: EMU.py:289 templates/emu.html:33 templates/layout.html:134
+#: EMU.py:293 templates/emu.html:33 templates/layout.html:134
 msgid "szukaj_projekt"
 msgstr ""
 
-#: EMU.py:685 EMU.py:691 Tools.py:87 Tools.py:126 templates/view_any.html:3
+#: EMU.py:689 EMU.py:695 Tools.py:93 Tools.py:132 templates/view_any.html:3
 msgid "view_any_tytuł"
 msgstr ""
 
@@ -115,39 +115,72 @@ msgstr ""
 msgid "tool_tytuł"
 msgstr ""
 
-#: Tools.py:141 templates/layout.html:121 templates/tool_g2p_word.html:3
+#: Tools.py:27 templates/annotationpro.html:4 templates/tools.html:82
+#: templates/tools.html:84
+msgid "annotation_tytuł"
+msgstr ""
+
+#: Tools.py:147 templates/layout.html:121 templates/tool_g2p_word.html:3
 #: templates/tools.html:10 templates/tools.html:12
 msgid "g2p_tytuł"
 msgstr ""
 
-#: Tools.py:147 templates/layout.html:122 templates/tool_g2p_list.html:3
+#: Tools.py:153 templates/layout.html:122 templates/tool_g2p_list.html:3
 #: templates/tools.html:17 templates/tools.html:19
 msgid "g2p_wordlist_tytuł"
 msgstr ""
 
-#: Tools.py:153 templates/layout.html:123 templates/tool_text_to_text.html:3
+#: Tools.py:159 templates/layout.html:123 templates/tool_text_to_text.html:3
 #: templates/tools.html:45 templates/tools.html:47
 msgid "textnorm_tytuł"
 msgstr ""
 
-#: Tools.py:159 templates/layout.html:124 templates/tool_audio_to_audio.html:3
+#: Tools.py:165 templates/layout.html:124 templates/tool_audio_to_audio.html:3
 #: templates/tools.html:52 templates/tools.html:54
 msgid "audionorm_tytuł"
 msgstr ""
 
-#: Tools.py:165 templates/layout.html:125 templates/tool_align.html:4
+#: Tools.py:171 templates/layout.html:125 templates/tool_align.html:4
 #: templates/tools.html:24 templates/tools.html:26
 msgid "forcealign_tytuł"
 msgstr ""
 
-#: Tools.py:171 templates/layout.html:126 templates/tool_align.html:6
+#: Tools.py:177 templates/layout.html:126 templates/tool_align.html:6
 #: templates/tools.html:31 templates/tools.html:33
 msgid "segalign_tytuł"
 msgstr ""
 
-#: Tools.py:177 templates/layout.html:127 templates/tool_reco.html:3
+#: Tools.py:183 templates/layout.html:127 templates/tool_reco.html:3
 #: templates/tools.html:38 templates/tools.html:40
 msgid "reco_tytuł"
+msgstr ""
+
+#: templates/annotationpro.html:11
+msgid "annotation_opis"
+msgstr ""
+
+#: templates/annotationpro.html:13
+msgid "annotation_link"
+msgstr ""
+
+#: templates/annotationpro.html:15
+msgid "annotation_par1"
+msgstr ""
+
+#: templates/annotationpro.html:21
+msgid "annotation_par2"
+msgstr ""
+
+#: templates/annotationpro.html:27
+msgid "annotation_par3"
+msgstr ""
+
+#: templates/annotationpro.html:33
+msgid "annotation_par4"
+msgstr ""
+
+#: templates/annotationpro.html:39
+msgid "annotation_par5"
 msgstr ""
 
 #: templates/emu.html:4
@@ -671,7 +704,7 @@ msgid "wczytaj_audio"
 msgstr ""
 
 #: templates/tool_audio_to_audio.html:94 templates/tool_g2p_list.html:103
-#: templates/tool_g2p_list.html:278 templates/tool_g2p_list.html:285
+#: templates/tool_g2p_list.html:280 templates/tool_g2p_list.html:287
 #: templates/tool_g2p_word.html:72 templates/tool_g2p_word.html:183
 #: templates/tool_g2p_word.html:192 templates/tool_text_to_text.html:96
 msgid "konwertuj"
@@ -706,7 +739,7 @@ msgstr ""
 msgid "ident_admin"
 msgstr ""
 
-#: templates/tool_g2p_list.html:283 templates/tool_g2p_list.html:284
+#: templates/tool_g2p_list.html:285 templates/tool_g2p_list.html:286
 #: templates/tool_g2p_word.html:191
 msgid "błąd_konwersji"
 msgstr ""

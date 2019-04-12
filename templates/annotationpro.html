@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <h1>{% trans %}annotation_tytuł{% endtrans %}</h1>
+
+    <div class="gap-sm"></div>
+
+    <div class="card">
+        <div class="card-body">
+
+            <p>{% trans %}annotation_opis{% endtrans %}</p>
+
+            <a href="/korpusy/CLARIN_Align.zip">{% trans %}annotation_link{% endtrans %}</a>
+
+            <div class="gap-sm"></div>
+
+            <p>{% trans %}annotation_par1{% endtrans %}</p>
+
+            <div class="text-center">
+                <img src="{{ url_for('static',filename='img/annotationpro_segmodule.png') }}">
+            </div>
+
+            <p>{% trans %}annotation_par2{% endtrans %}</p>
+
+            <div class="text-center">
+                <img src="{{ url_for('static',filename='img/annotationpro_plugindest.png') }}">
+            </div>
+
+            <p>{% trans %}annotation_par3{% endtrans %}</p>
+
+            <div class="text-center">
+                <img style="width: 80%" src="{{ url_for('static',filename='img/annotationpro_screen1.png') }}">
+            </div>
+
+            <p>{% trans %}annotation_par4{% endtrans %}</p>
+
+            <div class="text-center">
+                <img style="width: 80%" src="{{ url_for('static',filename='img/annotationpro_screen2.png') }}">
+            </div>
+
+            <p>{% trans %}annotation_par5{% endtrans %}</p>
+
+            <div class="text-center">
+                <img style="width: 80%" src="{{ url_for('static',filename='img/annotationpro_screen3.png') }}">
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
