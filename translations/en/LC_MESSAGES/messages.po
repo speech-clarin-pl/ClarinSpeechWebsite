@@ -119,7 +119,7 @@ msgstr "Speech services"
 #: Tools.py:27 templates/annotationpro.html:4 templates/tools.html:82
 #: templates/tools.html:84
 msgid "annotation_tytuł"
-msgstr ""
+msgstr "Annotation Pro plugin"
 
 #: Tools.py:147 templates/layout.html:121 templates/tool_g2p_word.html:3
 #: templates/tools.html:10 templates/tools.html:12
@@ -159,30 +159,48 @@ msgstr "Full speech recognition"
 #: templates/annotationpro.html:11
 msgid "annotation_opis"
 msgstr ""
+"This page contains the plugin for Annotation Pro. You can download "
+"the file below and install it using the instructions below."
 
 #: templates/annotationpro.html:13
 msgid "annotation_link"
-msgstr ""
+msgstr "Download the plugin here"
 
 #: templates/annotationpro.html:15
 msgid "annotation_par1"
 msgstr ""
+"Annotation Pro includes the ability to add a custom automatic segmentation "
+"module provided by the user. This adds the option to use a personal tool "
+"within Annotation Pro, thus allowing the user to perform automatic segmentation "
+"of personal data collections on multiple levels of annotation. The ability to "
+"work in a desktop environment can often be more effective, especially with longer "
+"audio or video file or in the presence of lots of noise in the data. Such a tool "
+"allows for a tighter supervision of the process. Using the tool offline also allows "
+"for the annotation of sensitive data, which cannot be transmitted to external servers."
 
 #: templates/annotationpro.html:21
 msgid "annotation_par2"
 msgstr ""
+"To install a module, it needs to be placed in the Documents -> Annotation Pro -> Segmentation Modules "
+"folder. The name of the folder containg the module will be used as the name of the tool "
+"within the Annotation Pro interface."
 
 #: templates/annotationpro.html:27
 msgid "annotation_par3"
 msgstr ""
+"In the example below, the name will be My Segmentator. After placing the module in the correct folder "
+"the segmentation option will be made available under the Auto Segmentation menu option:"
 
 #: templates/annotationpro.html:33
 msgid "annotation_par4"
 msgstr ""
+"The user chooses the module from the list (there can be several such modules at the same time) "
+"- here, for example, we choose the CLARIN Align module:"
 
 #: templates/annotationpro.html:39
 msgid "annotation_par5"
-msgstr ""
+msgstr "Sample segmentation result:"
+
 
 #: templates/emu.html:4
 msgid "emu_tool_tytuł"
