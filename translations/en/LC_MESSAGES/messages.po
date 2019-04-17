@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-12 11:10+0200\n"
+"POT-Creation-Date: 2019-04-18 00:10+0200\n"
 "PO-Revision-Date: 2017-09-05 11:46+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -156,51 +156,69 @@ msgstr "Align long audio files"
 msgid "reco_tytuł"
 msgstr "Full speech recognition"
 
+#: Tools.py:188 templates/tool_diar.html:3 templates/tools.html:70
+msgid "diar_tytuł"
+msgstr "Speaker diarization"
+
+#: Tools.py:193 templates/tool_vad.html:3 templates/tools.html:61
+#: templates/tools.html:63
+msgid "vad_tytuł"
+msgstr "Voice activity detection"
+
+#: Tools.py:198 templates/tool_kws.html:3 templates/tools.html:75
+#: templates/tools.html:77
+msgid "kws_tytuł"
+msgstr "Keyword spotting"
+
 #: templates/annotationpro.html:11
 msgid "annotation_opis"
 msgstr ""
-"This page contains the plugin for Annotation Pro. You can download "
-"the file below and install it using the instructions below."
+"This page contains the plugin for Annotation Pro. You can download the "
+"file below and install it using the instructions below."
 
 #: templates/annotationpro.html:13
 msgid "annotation_link"
 msgstr "Download the plugin here"
 
-#: templates/annotationpro.html:15
+#: templates/annotationpro.html:17
 msgid "annotation_par1"
 msgstr ""
-"Annotation Pro includes the ability to add a custom automatic segmentation "
-"module provided by the user. This adds the option to use a personal tool "
-"within Annotation Pro, thus allowing the user to perform automatic segmentation "
-"of personal data collections on multiple levels of annotation. The ability to "
-"work in a desktop environment can often be more effective, especially with longer "
-"audio or video file or in the presence of lots of noise in the data. Such a tool "
-"allows for a tighter supervision of the process. Using the tool offline also allows "
-"for the annotation of sensitive data, which cannot be transmitted to external servers."
+"Annotation Pro includes the ability to add a custom automatic "
+"segmentation module provided by the user. This adds the option to use a "
+"personal tool within Annotation Pro, thus allowing the user to perform "
+"automatic segmentation of personal data collections on multiple levels of"
+" annotation. The ability to work in a desktop environment can often be "
+"more effective, especially with longer audio or video file or in the "
+"presence of lots of noise in the data. Such a tool allows for a tighter "
+"supervision of the process. Using the tool offline also allows for the "
+"annotation of sensitive data, which cannot be transmitted to external "
+"servers."
 
-#: templates/annotationpro.html:21
+#: templates/annotationpro.html:23
 msgid "annotation_par2"
 msgstr ""
-"To install a module, it needs to be placed in the Documents -> Annotation Pro -> Segmentation Modules "
-"folder. The name of the folder containg the module will be used as the name of the tool "
-"within the Annotation Pro interface."
+"To install a module, it needs to be placed in the Documents -> Annotation"
+" Pro -> Segmentation Modules folder. The name of the folder containg the "
+"module will be used as the name of the tool within the Annotation Pro "
+"interface."
 
-#: templates/annotationpro.html:27
+#: templates/annotationpro.html:29
 msgid "annotation_par3"
 msgstr ""
-"In the example below, the name will be My Segmentator. After placing the module in the correct folder "
-"the segmentation option will be made available under the Auto Segmentation menu option:"
+"In the example below, the name will be My Segmentator. After placing the "
+"module in the correct folder the segmentation option will be made "
+"available under the Auto Segmentation menu option:"
 
-#: templates/annotationpro.html:33
+#: templates/annotationpro.html:35
 msgid "annotation_par4"
 msgstr ""
-"The user chooses the module from the list (there can be several such modules at the same time) "
-"- here, for example, we choose the CLARIN Align module:"
+"The user chooses the module from the list (there can be several such "
+"modules at the same time) - here, for example, we choose the CLARIN Align"
+" module:"
 
-#: templates/annotationpro.html:39
+#: templates/annotationpro.html:41
 msgid "annotation_par5"
 msgstr "Sample segmentation result:"
-
 
 #: templates/emu.html:4
 msgid "emu_tool_tytuł"
@@ -635,11 +653,13 @@ msgstr "Resource is still being processed! Press F5 to try again in a moment..."
 #: templates/multiview_audio_trans.html:117
 #: templates/multiview_audio_trans.html:123
 #: templates/multiview_audio_trans.html:154 templates/tool_align.html:106
-#: templates/tool_audio_to_audio.html:58 templates/tool_reco.html:94
-#: templates/tool_text_to_text.html:61 templates/view_any.html:63
-#: templates/view_any.html:71 templates/view_audio.html:102
-#: templates/view_audio.html:108 templates/view_segmentation.html:105
-#: templates/view_segmentation.html:113 templates/view_transcription.html:75
+#: templates/tool_audio_to_audio.html:58 templates/tool_diar.html:30
+#: templates/tool_kws.html:33 templates/tool_reco.html:32
+#: templates/tool_text_to_text.html:61 templates/tool_vad.html:30
+#: templates/view_any.html:63 templates/view_any.html:71
+#: templates/view_audio.html:102 templates/view_audio.html:108
+#: templates/view_segmentation.html:105 templates/view_segmentation.html:113
+#: templates/view_transcription.html:75
 msgid "błąd_admin"
 msgstr "Resource processing error! Contact the administrator!"
 
@@ -652,8 +672,10 @@ msgid "czy_modyfikuj"
 msgstr "Are you sure you want to modify this resource?"
 
 #: templates/tool_align.html:15 templates/tool_audio_to_audio.html:11
-#: templates/tool_g2p_list.html:11 templates/tool_g2p_word.html:11
+#: templates/tool_diar.html:11 templates/tool_g2p_list.html:11
+#: templates/tool_g2p_word.html:11 templates/tool_kws.html:11
 #: templates/tool_reco.html:11 templates/tool_text_to_text.html:11
+#: templates/tool_vad.html:11
 msgid "opis_narzędzia"
 msgstr "Tool description"
 
@@ -675,7 +697,9 @@ msgstr ""
 "This tool is designed to process fairly long audio files. Very short "
 "audio files (a few seconds) may cause an error."
 
-#: templates/tool_align.html:29 templates/tool_reco.html:18
+#: templates/tool_align.html:29 templates/tool_diar.html:18
+#: templates/tool_kws.html:18 templates/tool_reco.html:18
+#: templates/tool_vad.html:18
 msgid "opis_pliki_audio"
 msgstr ""
 "WARNING: The files uploaded to this service must be formatted accordingly"
@@ -683,45 +707,46 @@ msgstr ""
 "you can use the audio normalization service."
 
 #: templates/tool_align.html:32 templates/tool_audio_to_audio.html:20
-#: templates/tool_g2p_list.html:20 templates/tool_g2p_word.html:19
+#: templates/tool_diar.html:21 templates/tool_g2p_list.html:20
+#: templates/tool_g2p_word.html:19 templates/tool_kws.html:21
 #: templates/tool_reco.html:21 templates/tool_text_to_text.html:21
+#: templates/tool_vad.html:21
 msgid "commandline_tytuł"
 msgstr "An example of using the service from the command-line"
 
 #: templates/tool_align.html:36 templates/tool_audio_to_audio.html:24
 #: templates/tool_g2p_list.html:25 templates/tool_g2p_word.html:23
-#: templates/tool_reco.html:25 templates/tool_text_to_text.html:25
+#: templates/tool_text_to_text.html:25
 msgid "usługę_uruchamiamy_poleceniem"
 msgstr "The service is started with the following command:"
 
 #: templates/tool_align.html:48 templates/tool_audio_to_audio.html:28
-#: templates/tool_reco.html:37 templates/tool_text_to_text.html:29
+#: templates/tool_text_to_text.html:29
 msgid "help_ident_io"
 msgstr ""
 "Which will generate identifiers for input and output files in JSON "
 "format, e.g.:"
 
 #: templates/tool_align.html:57 templates/tool_audio_to_audio.html:32
-#: templates/tool_reco.html:46 templates/tool_text_to_text.html:33
+#: templates/tool_text_to_text.html:33
 msgid "help_download"
 msgstr ""
 "You may download the file according to the identifier using the "
 "<code>download</code> command, e.g.:"
 
-#: templates/tool_align.html:61 templates/tool_reco.html:50
+#: templates/tool_align.html:61
 msgid "help_download_textgrid"
 msgstr ""
 "Files can also be downloaded in the TextGrid format, with an optional "
 "argument containing the phonetic script used for the phoneme tier, e.g.:"
 
-#: templates/tool_align.html:72 templates/tool_reco.html:61
+#: templates/tool_align.html:72
 msgid "help_download_annot"
 msgstr ""
 "Files can also be downloaded in the annot.json format used by the EMU-"
 "SDMS system, e.g.:"
 
 #: templates/tool_align.html:76 templates/tool_audio_to_audio.html:36
-#: templates/tool_reco.html:65
 msgid "help_download_status_codes"
 msgstr ""
 "If the file is still being processed, you will receive the status code of"
@@ -729,7 +754,6 @@ msgstr ""
 "may also check the status using the <code>status</code> command, e.g.:"
 
 #: templates/tool_align.html:80 templates/tool_audio_to_audio.html:41
-#: templates/tool_reco.html:69
 msgid "help_status_status_codes"
 msgstr ""
 "This command may return <code>ok</code> if the file is ready for a "
@@ -737,25 +761,24 @@ msgstr ""
 "<code>error</code> (with a description) if an error has occurred."
 
 #: templates/tool_align.html:82 templates/tool_audio_to_audio.html:43
-#: templates/tool_reco.html:71 templates/tool_text_to_text.html:45
+#: templates/tool_text_to_text.html:45
 msgid "help_upload"
 msgstr "An input file may be uploaded using the <code>upload</code> command, e.g.:"
 
 #: templates/tool_align.html:86 templates/tool_audio_to_audio.html:47
-#: templates/tool_reco.html:75
 msgid "help_upload_result"
 msgstr ""
 "Which will generate an identifier for the input file that can be used in "
 "the command above:"
 
 #: templates/tool_align.html:98 templates/tool_audio_to_audio.html:51
-#: templates/tool_reco.html:87 templates/tool_text_to_text.html:43
+#: templates/tool_text_to_text.html:43
 msgid "help_final_download"
 msgstr ""
 "Which will generate an identifier for the output file that can be used in"
 " <code>download</code> and <code>status</code> commands."
 
-#: templates/tool_align.html:135
+#: templates/tool_align.html:135 templates/tool_kws.html:62
 msgid "wczytaj_nagranie"
 msgstr "Upload file"
 
@@ -763,7 +786,9 @@ msgstr "Upload file"
 msgid "wczytaj_transkrypcję"
 msgstr "Upload transcript"
 
-#: templates/tool_align.html:179 templates/tool_reco.html:124
+#: templates/tool_align.html:179 templates/tool_diar.html:60
+#: templates/tool_kws.html:106 templates/tool_reco.html:62
+#: templates/tool_vad.html:60
 msgid "rozpocznij"
 msgstr "Start"
 
@@ -773,7 +798,8 @@ msgstr ""
 "Converting a multimedia file (audio or video) into a WAV audio file, with"
 " sampling frequency of 16 kHz, mono and resolution of 16 bits."
 
-#: templates/tool_audio_to_audio.html:87 templates/tool_reco.html:119
+#: templates/tool_audio_to_audio.html:87 templates/tool_diar.html:55
+#: templates/tool_reco.html:57 templates/tool_vad.html:55
 msgid "wczytaj_audio"
 msgstr "Load audio file"
 
@@ -783,6 +809,11 @@ msgstr "Load audio file"
 #: templates/tool_g2p_word.html:192 templates/tool_text_to_text.html:96
 msgid "konwertuj"
 msgstr "Convert"
+
+#: templates/tool_diar.html:17
+msgid "opis_diar"
+msgstr "Tool to separate audio into segments spoken by individual speakers. "
+"The speakers are not identified, but simply numbered using consecutive numbers."
 
 #: templates/tool_g2p_list.html:16
 msgid "opis_g2p_wordlist"
@@ -841,6 +872,15 @@ msgstr ""
 msgid "wpisz_wyraz_g2p"
 msgstr "Enter the word you would like to phonetize:"
 
+#: templates/tool_kws.html:17
+msgid "opis_kws"
+msgstr "This tool searches for keywords in the audio and retreives their location "
+"and the confidence of the found results."
+
+#: templates/tool_kws.html:85
+msgid "wczytaj_słowa_kluczowe"
+msgstr "Load keywords"
+
 #: templates/tool_reco.html:17
 msgid "opis_reco"
 msgstr "Converting audio file into ortographic transcription."
@@ -874,17 +914,13 @@ msgstr ""
 msgid "wczytaj_tekstowy"
 msgstr "Load text file"
 
-#: templates/tools.html:61
-msgid "vad_tytuł"
-msgstr "Voice activity detection"
+#: templates/tool_vad.html:17
+msgid "opis_vad"
+msgstr "This tool marks segments containing speech in the recoridng."
 
 #: templates/tools.html:68
 msgid "dia_tytuł"
 msgstr "Speaker diarization"
-
-#: templates/tools.html:75
-msgid "kws_tytuł"
-msgstr "Keyword spotting"
 
 #: templates/view_any.html:21 templates/view_audio.html:37
 #: templates/view_segmentation.html:30 templates/view_transcription.html:20

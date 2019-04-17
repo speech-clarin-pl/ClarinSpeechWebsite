@@ -184,6 +184,21 @@ def ui_align_segment():
 def ui_speech_recognize():
     return render_template('tool_reco.html', server_url=request.url_root)
 
+@tools_page.route('ui/speech/diarize')
+@register_breadcrumb(tools_page, '.tool_diar', lazy_gettext(u'diar_tytuł'))
+def ui_speech_diarize():
+    return render_template('tool_diar.html', server_url=request.url_root)
+
+@tools_page.route('ui/speech/vad')
+@register_breadcrumb(tools_page, '.tool_vad', lazy_gettext(u'vad_tytuł'))
+def ui_speech_vad():
+    return render_template('tool_vad.html', server_url=request.url_root)
+
+@tools_page.route('ui/speech/kws')
+@register_breadcrumb(tools_page, '.tool_kws', lazy_gettext(u'kws_tytuł'))
+def ui_speech_kws():
+    return render_template('tool_kws.html', server_url=request.url_root)
+
 
 @tools_page.route('phonetize/word/<word>')
 def phonetize_word(word):
@@ -408,6 +423,75 @@ def speech_recognize_file():
 @tools_page.route('speech/reco/<audio_id>')
 def speech_recognize_id(audio_id):
     output_id = tools.tasks.start_speech_recognize(audio_id)
+
+    time.sleep(0.1)
+
+    return output_id
+
+
+@tools_page.route('speech/vad', methods=['POST'])
+def speech_vad_file():
+    if 'file' not in request.files:
+        return abort(404)
+    audio = request.files['file']
+    audio_id = tools.utils.upload_file(audio, 'audio')
+
+    output_id = tools.tasks.start_speech_vad(audio_id)
+
+    time.sleep(0.1)
+
+    return json.dumps({'audio': audio_id, 'output': output_id})
+
+
+@tools_page.route('speech/vad/<audio_id>')
+def speech_vad_id(audio_id):
+    output_id = tools.tasks.start_speech_vad(audio_id)
+
+    time.sleep(0.1)
+
+    return output_id
+
+@tools_page.route('speech/diarize', methods=['POST'])
+def speech_diarize_file():
+    if 'file' not in request.files:
+        return abort(404)
+    audio = request.files['file']
+    audio_id = tools.utils.upload_file(audio, 'audio')
+
+    output_id = tools.tasks.start_speech_diarize(audio_id)
+
+    time.sleep(0.1)
+
+    return json.dumps({'audio': audio_id, 'output': output_id})
+
+
+@tools_page.route('speech/diarize/<audio_id>')
+def speech_diarize_id(audio_id):
+    output_id = tools.tasks.start_speech_diarize(audio_id)
+
+    time.sleep(0.1)
+
+    return output_id
+
+@tools_page.route('speech/kws', methods=['POST'])
+def speech_kws_file():
+    if 'audio' not in request.files or 'keywords' not in request.files:
+        return abort(404)
+    audio = request.files['audio']
+    keywords = request.files['keywords']
+    audio_id = tools.utils.upload_file(audio, 'audio')
+    keywords_id = tools.utils.upload_file(keywords, 'wordlist')
+
+    output_id = tools.tasks.start_speech_kws(audio_id, keywords_id)
+
+    time.sleep(0.1)
+
+    return json.dumps({'audio': audio_id, 'keywords': keywords_id, 'output': output_id})
+
+
+@tools_page.route('speech/kws/<audio_id>/<keywords_id>')
+def speech_kws_id(audio_id, keywords_id):
+    output_id = tools.tasks.start_speech_kws(audio_id, keywords_id)
 
     time.sleep(0.1)
 

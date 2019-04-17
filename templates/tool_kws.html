@@ -1,0 +1,238 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1 class="tool-title">{% trans %}kws_tytuł{% endtrans %}</h1>
+
+    <!-- tool desc card -->
+    <div class="card" id="tool-desc">
+        <div class="card-body">
+
+            <!-- the title of card -->
+            <div class="tool-small-tab">
+                {% trans %}opis_narzędzia{% endtrans %}
+            </div>
+
+            <!-- the main body of the tab-->
+            <div class="card-body">
+
+                <p>{% trans %}opis_kws{% endtrans %}</p>
+                <p>{% trans %}opis_pliki_audio{% endtrans %}</p>
+
+                <a type="button" data-toggle="collapse" id="command-btn-info" class="btn btn-outline-clarin2"
+                   href="#serviceHelp">{% trans %}commandline_tytuł{% endtrans %}<i class="fa fa-angle-down"></i></a>
+
+
+                <div class="collapse" id="serviceHelp">
+                    <p>WIP</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="error-msg" class="alert alert-danger" role="alert">{% trans %}błąd_admin{% endtrans %}</div>
+
+
+
+    <!-- the main card of a tool -->
+    <div class="card" id="main-tool">
+        <div class="card-body">
+
+            <!-- the place for the title tab -->
+            <div class="tool-small-tab">
+
+            </div>
+
+            <!-- main body of a tool -->
+            <div class="card-body" id="toolbody">
+                <div class="row">
+
+                    <!-- tool input -->
+                    <div class="col-sm-12 col-md-12">
+                        <table style="height: 100%; width:100%">
+                            <tbody>
+                            <tr>
+                                <td class="align-middle">
+                                    <div class="input-group mb-3 align-middle" id="enter-input">
+
+                                        <div class="">
+                                            <div class="form-group">
+
+                                                <label for="audio" id="fileLabel" class="btn btn-clarin2">
+                                                    {% trans %}wczytaj_nagranie{% endtrans %}
+                                                </label>
+                                                <input id="audio" name="audio" onchange="pressed1()"
+                                                       class="form-control" type="file">
+
+
+                                            </div>
+
+
+                                            <!-- progress bar -->
+                                            <p>
+                                            <div class="progress" id="progress">
+                                                <div class="progress-bar" id="progressBar" role="progressbar"
+                                                     style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                                                     aria-valuemax="100">25%
+                                                </div>
+                                            </div>
+                                            </p>
+
+
+                                            <div class="form-group">
+
+                                                <label for="transcript" id="fileLabel2" class="btn btn-clarin2">
+                                                    {% trans %}wczytaj_słowa_kluczowe{% endtrans %}
+                                                </label>
+                                                <input id="transcript" name="transcript" onchange="pressed2()"
+                                                       class="form-control" type="file">
+                                            </div>
+
+
+                                            <!-- progress bar -->
+                                            <p>
+                                            <div class="progress" id="progress2">
+                                                <div class="progress-bar" id="progressBar2" role="progressbar"
+                                                     style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                                                     aria-valuemax="100">25%
+                                                </div>
+                                            </div>
+                                            </p>
+
+                                        </div>
+
+                                        <div class="">
+                                            <button id="convert_btn" type="submit" class="btn btn-clarin2">
+                                                {% trans %}rozpocznij{% endtrans %}
+                                            </button>
+                                        </div>
+
+                                    </div>
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- tool settings -->
+                    <!--
+                    <div class="col-sm-12 col-md-6">
+
+                        <span id="settings-label">Settings:</span>
+
+                    <table style="height: 100%; width:100%">
+					  <tbody>
+						<tr>
+						  <td class="align-middle">
+                                <nav class="navbar navbar-expand-lg navbar-light bg-light belka-ustawien">
+                                      <div class="navbar-collapse" id="navbarText">
+                                            <span class="navbar-text ust-name">Język transkrypcji: </span>
+                                            <ul class="navbar-nav mr-auto" id="ust-lng">
+                                               <li class="nav-item dropdown ">
+                                                    <a id="curr-lng" class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                      <img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}">Polski
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                      <span class="dropdown-item" value="Polski"><img class="flaga-icon" src="{{ url_for('static', filename='img/pl.svg') }}"> Polski</span>
+                                                      <span class="dropdown-item" value="Angielski"><img class="flaga-icon" src="{{ url_for('static', filename='img/gb.svg') }}"> Angielski </span>
+                                                    </div>
+                                              </li>
+                                           </ul>
+                                      </div>
+                                </nav>
+                             </td>
+						</tr>
+					  </tbody>
+					</table>
+                    </div>
+                    					-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+
+        //obsluga file input
+
+        var a = null;
+        var a2 = null;
+
+        window.pressed1 = function () {
+            a = document.getElementById('audio');
+
+
+            if (a.value == "") {
+                $('#fileLabel').html("");
+            } else {
+                var theSplit = a.value.split('\\');
+                $('#fileLabel').html("" + theSplit[theSplit.length - 1]);
+                $("#fileLabel").removeClass('btn-clarin2').addClass('btn-light');
+            }
+
+            if (a2.value != "" && a.value != "") {
+                $("#convert_btn").show();
+            }
+
+
+        };
+
+        window.pressed2 = function () {
+            a2 = document.getElementById('transcript');
+
+            if (a2.value == "") {
+                $('#fileLabel2').html("");
+            } else {
+                var theSplit2 = a2.value.split('\\');
+                $('#fileLabel2').html("" + theSplit2[theSplit2.length - 1]);
+                $("#fileLabel2").removeClass('btn-clarin2').addClass('btn-light');
+            }
+
+            if (a2.value != "" && a.value != "") {
+                $("#convert_btn").show();
+            }
+
+        };
+
+
+        $(document).ready(function () {
+
+            $('#progress').hide();
+            $('#progress2').hide();
+            $("#convert_btn").hide();
+            $("#error-msg").hide();
+
+            function convert() {
+
+
+                var fd = new FormData();
+                var audio = document.getElementById('audio');
+                var transcript = document.getElementById('transcript');
+                fd.append('audio', audio.files[0]);
+                fd.append('keywords', transcript.files[0]);
+                $.ajax({
+                    url: '/tools/speech/kws',
+                    data: fd,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function (data) {
+                        res = JSON.parse(data);
+                        id = res['output'];
+                        window.location = '/tools/ui/view/' + id;
+                    },
+                    error: function (data) {
+                        $("#error-msg").addClass('show');
+                    }
+                });
+            }
+
+            $('#convert_btn').click(convert);
+
+        });
+    </script>
+
+{% endblock %}

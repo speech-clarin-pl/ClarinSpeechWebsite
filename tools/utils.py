@@ -12,7 +12,7 @@ from dateutil.tz import tz
 
 from config import config, db
 
-allowed_types = ['wordlist', 'lexicon', 'audio', 'transcript', 'segmentation', 'archive']
+allowed_types = ['wordlist', 'lexicon', 'audio', 'transcript', 'segmentation', 'archive', 'keywords']
 
 
 def file_hash(file_path):

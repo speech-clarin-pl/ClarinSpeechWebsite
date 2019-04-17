@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-12 11:10+0200\n"
+"POT-Creation-Date: 2019-04-18 00:10+0200\n"
 "PO-Revision-Date: 2017-09-05 11:46+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -157,6 +157,20 @@ msgstr "Segmentacja długich nagrań"
 msgid "reco_tytuł"
 msgstr "Pełne rozpoznawanie mowy"
 
+#: Tools.py:188 templates/tool_diar.html:3 templates/tools.html:70
+msgid "diar_tytuł"
+msgstr "Diaryzacja mówców"
+
+#: Tools.py:193 templates/tool_vad.html:3 templates/tools.html:61
+#: templates/tools.html:63
+msgid "vad_tytuł"
+msgstr "Detekcja mowy"
+
+#: Tools.py:198 templates/tool_kws.html:3 templates/tools.html:75
+#: templates/tools.html:77
+msgid "kws_tytuł"
+msgstr "Detekcja słów kluczowych"
+
 #: templates/annotationpro.html:11
 msgid "annotation_opis"
 msgstr ""
@@ -167,7 +181,7 @@ msgstr ""
 msgid "annotation_link"
 msgstr "Pobierz tutaj"
 
-#: templates/annotationpro.html:15
+#: templates/annotationpro.html:17
 msgid "annotation_par1"
 msgstr ""
 "Annotation Pro posiada mechanizm umożliwiający włączenie własnego modułu "
@@ -177,37 +191,38 @@ msgstr ""
 "wykonania automatycznej segmentacji/transkrypcji danych dla plików "
 "zawartych w kolekcji, jednoczesnego przetworzenia wielu plików i wielu "
 "warstw anotacji. Działanie narzędzi desktopowych może być efektywniejsze "
-"w przypadku anotacji plików audio czy wideo, szczególnie o dłuższym czasie "
-"trwania i obecności różnego rodzaju dźwięków dodatkowych. "
+"w przypadku anotacji plików audio czy wideo, szczególnie o dłuższym "
+"czasie trwania i obecności różnego rodzaju dźwięków dodatkowych. "
 "Narzędzie dedykowane do anotacji i eksploracji anotacji od razu zapewni "
-"możliwość nadzoru nad procesem. Uruchomienie wersji offline umożliwi anotację "
-"danych 'wrażliwych', których z uwagi na ochronę danych lub inne obostrzenia "
-"nie można przesyłać na zewnętrzne serwery."
+"możliwość nadzoru nad procesem. Uruchomienie wersji offline umożliwi "
+"anotację danych 'wrażliwych', których z uwagi na ochronę danych lub inne "
+"obostrzenia nie można przesyłać na zewnętrzne serwery."
 
-#: templates/annotationpro.html:21
+#: templates/annotationpro.html:23
 msgid "annotation_par2"
 msgstr ""
 "Instalacja przygotowanego modułu polega na umieszczeniu go w folderze "
-"Dokumenty -> Annotation Pro -> Segmentation Modules. Nazwa folderu w którym "
-"umieścimy narzędzia segmentacyjne będzie brana jako nazwa mechanizmu segmentacji."
+"Dokumenty -> Annotation Pro -> Segmentation Modules. Nazwa folderu w "
+"którym umieścimy narzędzia segmentacyjne będzie brana jako nazwa "
+"mechanizmu segmentacji."
 
-#: templates/annotationpro.html:27
+#: templates/annotationpro.html:29
 msgid "annotation_par3"
 msgstr ""
-"W podanym przykładzie będzie to My Segmentator. Pod tą nazwą będzie on widoczny w "
-"programie Annotation PRO w oknie segmentacji. Użytkownik może nadać własną nazwę "
-"swojemu narzędziu. Po umieszczeniu modułu w katalogu "
-"Dokumenty -> Annotation Pro -> Segmentation Modules, opcje segmentacji będą dostępne "
-"dla użytkownika w menu Auto Segmentation:"
+"W podanym przykładzie będzie to My Segmentator. Pod tą nazwą będzie on "
+"widoczny w programie Annotation PRO w oknie segmentacji. Użytkownik może "
+"nadać własną nazwę swojemu narzędziu. Po umieszczeniu modułu w katalogu "
+"Dokumenty -> Annotation Pro -> Segmentation Modules, opcje segmentacji "
+"będą dostępne dla użytkownika w menu Auto Segmentation:"
 
-#: templates/annotationpro.html:33
+#: templates/annotationpro.html:35
 msgid "annotation_par4"
 msgstr ""
-"Użytkownik wybiera moduł segmentacji z listy wybieralnej Annontation Module "
-"(w Annotation Pro może  być wykorzystywanych kilka różnych modułów), "
-"tutaj przykład z modułem CLARIN Align:"
+"Użytkownik wybiera moduł segmentacji z listy wybieralnej Annontation "
+"Module (w Annotation Pro może  być wykorzystywanych kilka różnych "
+"modułów), tutaj przykład z modułem CLARIN Align:"
 
-#: templates/annotationpro.html:39
+#: templates/annotationpro.html:41
 msgid "annotation_par5"
 msgstr "Przykładowy wynik segmentacji:"
 
@@ -647,11 +662,13 @@ msgstr ""
 #: templates/multiview_audio_trans.html:117
 #: templates/multiview_audio_trans.html:123
 #: templates/multiview_audio_trans.html:154 templates/tool_align.html:106
-#: templates/tool_audio_to_audio.html:58 templates/tool_reco.html:94
-#: templates/tool_text_to_text.html:61 templates/view_any.html:63
-#: templates/view_any.html:71 templates/view_audio.html:102
-#: templates/view_audio.html:108 templates/view_segmentation.html:105
-#: templates/view_segmentation.html:113 templates/view_transcription.html:75
+#: templates/tool_audio_to_audio.html:58 templates/tool_diar.html:30
+#: templates/tool_kws.html:33 templates/tool_reco.html:32
+#: templates/tool_text_to_text.html:61 templates/tool_vad.html:30
+#: templates/view_any.html:63 templates/view_any.html:71
+#: templates/view_audio.html:102 templates/view_audio.html:108
+#: templates/view_segmentation.html:105 templates/view_segmentation.html:113
+#: templates/view_transcription.html:75
 msgid "błąd_admin"
 msgstr "Błąd przetwarzania zasobu! Skontaktuj się z administratorem!"
 
@@ -664,8 +681,10 @@ msgid "czy_modyfikuj"
 msgstr "Czy na pewno chcesz zmodyfikować ten zasób?"
 
 #: templates/tool_align.html:15 templates/tool_audio_to_audio.html:11
-#: templates/tool_g2p_list.html:11 templates/tool_g2p_word.html:11
+#: templates/tool_diar.html:11 templates/tool_g2p_list.html:11
+#: templates/tool_g2p_word.html:11 templates/tool_kws.html:11
 #: templates/tool_reco.html:11 templates/tool_text_to_text.html:11
+#: templates/tool_vad.html:11
 msgid "opis_narzędzia"
 msgstr "Opis narzędzia"
 
@@ -688,7 +707,9 @@ msgstr ""
 "spodowować powstanie błędu na bardzo krótkich nagraniach (kilka sekund "
 "długości)."
 
-#: templates/tool_align.html:29 templates/tool_reco.html:18
+#: templates/tool_align.html:29 templates/tool_diar.html:18
+#: templates/tool_kws.html:18 templates/tool_reco.html:18
+#: templates/tool_vad.html:18
 msgid "opis_pliki_audio"
 msgstr ""
 "UWAGA: Pliki audio przekazywane do tej usługi muszą być w odpowiednim "
@@ -697,43 +718,44 @@ msgstr ""
 "przekonwertowania pliku."
 
 #: templates/tool_align.html:32 templates/tool_audio_to_audio.html:20
-#: templates/tool_g2p_list.html:20 templates/tool_g2p_word.html:19
+#: templates/tool_diar.html:21 templates/tool_g2p_list.html:20
+#: templates/tool_g2p_word.html:19 templates/tool_kws.html:21
 #: templates/tool_reco.html:21 templates/tool_text_to_text.html:21
+#: templates/tool_vad.html:21
 msgid "commandline_tytuł"
 msgstr "Przykład korzystania z usługi z linii poleceń"
 
 #: templates/tool_align.html:36 templates/tool_audio_to_audio.html:24
 #: templates/tool_g2p_list.html:25 templates/tool_g2p_word.html:23
-#: templates/tool_reco.html:25 templates/tool_text_to_text.html:25
+#: templates/tool_text_to_text.html:25
 msgid "usługę_uruchamiamy_poleceniem"
 msgstr "Usługę uruchamiamy następującym poleceniem:"
 
 #: templates/tool_align.html:48 templates/tool_audio_to_audio.html:28
-#: templates/tool_reco.html:37 templates/tool_text_to_text.html:29
+#: templates/tool_text_to_text.html:29
 msgid "help_ident_io"
 msgstr "Co wygeneruje identyfikatory plików wejścia i wyjścia w formacie JSON, np:"
 
 #: templates/tool_align.html:57 templates/tool_audio_to_audio.html:32
-#: templates/tool_reco.html:46 templates/tool_text_to_text.html:33
+#: templates/tool_text_to_text.html:33
 msgid "help_download"
 msgstr ""
 "Plik można pobrać według identyfikatora poleceniem <code>download</code>,"
 " np:"
 
-#: templates/tool_align.html:61 templates/tool_reco.html:50
+#: templates/tool_align.html:61
 msgid "help_download_textgrid"
 msgstr ""
 "Pliki można też ściągnąć w formacie TextGrid, podając opcjonalnie alfabet"
 " fonetyczny używany w wartstwie fonetycznej, np:"
 
-#: templates/tool_align.html:72 templates/tool_reco.html:61
+#: templates/tool_align.html:72
 msgid "help_download_annot"
 msgstr ""
 "Pliki można również ściągnąć w formacie annot.json używanym przez system "
 "EMU-SDMS, np:"
 
 #: templates/tool_align.html:76 templates/tool_audio_to_audio.html:36
-#: templates/tool_reco.html:65
 msgid "help_download_status_codes"
 msgstr ""
 "Jeśli plik jest jeszcze przetwarzany, otrzymamy kod statusu 503. W "
@@ -741,7 +763,6 @@ msgstr ""
 "poleceniem <code>status</code>, np:"
 
 #: templates/tool_align.html:80 templates/tool_audio_to_audio.html:41
-#: templates/tool_reco.html:69
 msgid "help_status_status_codes"
 msgstr ""
 "Polecenie to może zwrócić wartości <code>ok</code>, kiedy plik jest "
@@ -749,26 +770,25 @@ msgstr ""
 "oraz <code>error</code> (z opisem), jeśli wystąpił błąd."
 
 #: templates/tool_align.html:82 templates/tool_audio_to_audio.html:43
-#: templates/tool_reco.html:71 templates/tool_text_to_text.html:45
+#: templates/tool_text_to_text.html:45
 msgid "help_upload"
 msgstr "Plik wejściowy można też nagrać poleceniem <code>upload</code>, np:"
 
 #: templates/tool_align.html:86 templates/tool_audio_to_audio.html:47
-#: templates/tool_reco.html:75
 msgid "help_upload_result"
 msgstr ""
 "Co wygeneruje identyfikator pliku wejściowego, który można przekazać do "
 "pierwszego polecenia, jak wyżej:"
 
 #: templates/tool_align.html:98 templates/tool_audio_to_audio.html:51
-#: templates/tool_reco.html:87 templates/tool_text_to_text.html:43
+#: templates/tool_text_to_text.html:43
 msgid "help_final_download"
 msgstr ""
 "Co wygeneruje identyfikator pliku wyjściowego, który można przekazać do "
 "poleceń <code>download</code> oraz <code>status</code>, tak jak pokazano "
 "wyżej."
 
-#: templates/tool_align.html:135
+#: templates/tool_align.html:135 templates/tool_kws.html:62
 msgid "wczytaj_nagranie"
 msgstr "Wczytaj nagranie"
 
@@ -776,7 +796,9 @@ msgstr "Wczytaj nagranie"
 msgid "wczytaj_transkrypcję"
 msgstr "Wczytaj transkrypcję"
 
-#: templates/tool_align.html:179 templates/tool_reco.html:124
+#: templates/tool_align.html:179 templates/tool_diar.html:60
+#: templates/tool_kws.html:106 templates/tool_reco.html:62
+#: templates/tool_vad.html:60
 msgid "rozpocznij"
 msgstr "Rozpocznij"
 
@@ -787,7 +809,8 @@ msgstr ""
 " o częstotliwości próbkowania 16 kHz, jednym kanale (mono) oraz "
 "rozdzielczości 16 bitów."
 
-#: templates/tool_audio_to_audio.html:87 templates/tool_reco.html:119
+#: templates/tool_audio_to_audio.html:87 templates/tool_diar.html:55
+#: templates/tool_reco.html:57 templates/tool_vad.html:55
 msgid "wczytaj_audio"
 msgstr "Wczytaj plik audio"
 
@@ -797,6 +820,11 @@ msgstr "Wczytaj plik audio"
 #: templates/tool_g2p_word.html:192 templates/tool_text_to_text.html:96
 msgid "konwertuj"
 msgstr "Konwertuj"
+
+#: templates/tool_diar.html:17
+msgid "opis_diar"
+msgstr "Narzędzie to dzieli sygnał na segmenty mówione przez pospzczególnych mówców. "
+"Mówcy nie są identyfikowani, tylko numerowani po kolei."
 
 #: templates/tool_g2p_list.html:16
 msgid "opis_g2p_wordlist"
@@ -855,6 +883,15 @@ msgstr ""
 msgid "wpisz_wyraz_g2p"
 msgstr "Wpisz wyraz, który chcesz przetranskrybować:"
 
+#: templates/tool_kws.html:17
+msgid "opis_kws"
+msgstr "Narzędzie to wyszukuje słowa kluczowe z listy wyrazów i "
+"podaje ich lokalizację oraz wiarygodność każdego znalezionego hasłą."
+
+#: templates/tool_kws.html:85
+msgid "wczytaj_słowa_kluczowe"
+msgstr "Wczytaj słowa kluczowe"
+
 #: templates/tool_reco.html:17
 msgid "opis_reco"
 msgstr "Zamiana nagrania mowy na zapis ortograficzny."
@@ -888,17 +925,13 @@ msgstr ""
 msgid "wczytaj_tekstowy"
 msgstr "Wczytaj plik tekstowy"
 
-#: templates/tools.html:61
-msgid "vad_tytuł"
-msgstr "Detekcja mowy"
+#: templates/tool_vad.html:17
+msgid "opis_vad"
+msgstr "Narzędzie to zaznacza w sygnale segmenty zawierające mowę."
 
 #: templates/tools.html:68
 msgid "dia_tytuł"
 msgstr "Diaryzacja mówców"
-
-#: templates/tools.html:75
-msgid "kws_tytuł"
-msgstr "Detekcja słów kluczowych"
 
 #: templates/view_any.html:21 templates/view_audio.html:37
 #: templates/view_segmentation.html:30 templates/view_transcription.html:20

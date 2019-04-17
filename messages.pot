@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-12 11:10+0200\n"
+"POT-Creation-Date: 2019-04-18 00:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,6 +155,20 @@ msgstr ""
 msgid "reco_tytuł"
 msgstr ""
 
+#: Tools.py:188 templates/tool_diar.html:3 templates/tools.html:70
+msgid "diar_tytuł"
+msgstr ""
+
+#: Tools.py:193 templates/tool_vad.html:3 templates/tools.html:61
+#: templates/tools.html:63
+msgid "vad_tytuł"
+msgstr ""
+
+#: Tools.py:198 templates/tool_kws.html:3 templates/tools.html:75
+#: templates/tools.html:77
+msgid "kws_tytuł"
+msgstr ""
+
 #: templates/annotationpro.html:11
 msgid "annotation_opis"
 msgstr ""
@@ -163,23 +177,23 @@ msgstr ""
 msgid "annotation_link"
 msgstr ""
 
-#: templates/annotationpro.html:15
+#: templates/annotationpro.html:17
 msgid "annotation_par1"
 msgstr ""
 
-#: templates/annotationpro.html:21
+#: templates/annotationpro.html:23
 msgid "annotation_par2"
 msgstr ""
 
-#: templates/annotationpro.html:27
+#: templates/annotationpro.html:29
 msgid "annotation_par3"
 msgstr ""
 
-#: templates/annotationpro.html:33
+#: templates/annotationpro.html:35
 msgid "annotation_par4"
 msgstr ""
 
-#: templates/annotationpro.html:39
+#: templates/annotationpro.html:41
 msgid "annotation_par5"
 msgstr ""
 
@@ -590,11 +604,13 @@ msgstr ""
 #: templates/multiview_audio_trans.html:117
 #: templates/multiview_audio_trans.html:123
 #: templates/multiview_audio_trans.html:154 templates/tool_align.html:106
-#: templates/tool_audio_to_audio.html:58 templates/tool_reco.html:94
-#: templates/tool_text_to_text.html:61 templates/view_any.html:63
-#: templates/view_any.html:71 templates/view_audio.html:102
-#: templates/view_audio.html:108 templates/view_segmentation.html:105
-#: templates/view_segmentation.html:113 templates/view_transcription.html:75
+#: templates/tool_audio_to_audio.html:58 templates/tool_diar.html:30
+#: templates/tool_kws.html:33 templates/tool_reco.html:32
+#: templates/tool_text_to_text.html:61 templates/tool_vad.html:30
+#: templates/view_any.html:63 templates/view_any.html:71
+#: templates/view_audio.html:102 templates/view_audio.html:108
+#: templates/view_segmentation.html:105 templates/view_segmentation.html:113
+#: templates/view_transcription.html:75
 msgid "błąd_admin"
 msgstr ""
 
@@ -607,8 +623,10 @@ msgid "czy_modyfikuj"
 msgstr ""
 
 #: templates/tool_align.html:15 templates/tool_audio_to_audio.html:11
-#: templates/tool_g2p_list.html:11 templates/tool_g2p_word.html:11
+#: templates/tool_diar.html:11 templates/tool_g2p_list.html:11
+#: templates/tool_g2p_word.html:11 templates/tool_kws.html:11
 #: templates/tool_reco.html:11 templates/tool_text_to_text.html:11
+#: templates/tool_vad.html:11
 msgid "opis_narzędzia"
 msgstr ""
 
@@ -624,66 +642,67 @@ msgstr ""
 msgid "opis_segment"
 msgstr ""
 
-#: templates/tool_align.html:29 templates/tool_reco.html:18
+#: templates/tool_align.html:29 templates/tool_diar.html:18
+#: templates/tool_kws.html:18 templates/tool_reco.html:18
+#: templates/tool_vad.html:18
 msgid "opis_pliki_audio"
 msgstr ""
 
 #: templates/tool_align.html:32 templates/tool_audio_to_audio.html:20
-#: templates/tool_g2p_list.html:20 templates/tool_g2p_word.html:19
+#: templates/tool_diar.html:21 templates/tool_g2p_list.html:20
+#: templates/tool_g2p_word.html:19 templates/tool_kws.html:21
 #: templates/tool_reco.html:21 templates/tool_text_to_text.html:21
+#: templates/tool_vad.html:21
 msgid "commandline_tytuł"
 msgstr ""
 
 #: templates/tool_align.html:36 templates/tool_audio_to_audio.html:24
 #: templates/tool_g2p_list.html:25 templates/tool_g2p_word.html:23
-#: templates/tool_reco.html:25 templates/tool_text_to_text.html:25
+#: templates/tool_text_to_text.html:25
 msgid "usługę_uruchamiamy_poleceniem"
 msgstr ""
 
 #: templates/tool_align.html:48 templates/tool_audio_to_audio.html:28
-#: templates/tool_reco.html:37 templates/tool_text_to_text.html:29
+#: templates/tool_text_to_text.html:29
 msgid "help_ident_io"
 msgstr ""
 
 #: templates/tool_align.html:57 templates/tool_audio_to_audio.html:32
-#: templates/tool_reco.html:46 templates/tool_text_to_text.html:33
+#: templates/tool_text_to_text.html:33
 msgid "help_download"
 msgstr ""
 
-#: templates/tool_align.html:61 templates/tool_reco.html:50
+#: templates/tool_align.html:61
 msgid "help_download_textgrid"
 msgstr ""
 
-#: templates/tool_align.html:72 templates/tool_reco.html:61
+#: templates/tool_align.html:72
 msgid "help_download_annot"
 msgstr ""
 
 #: templates/tool_align.html:76 templates/tool_audio_to_audio.html:36
-#: templates/tool_reco.html:65
 msgid "help_download_status_codes"
 msgstr ""
 
 #: templates/tool_align.html:80 templates/tool_audio_to_audio.html:41
-#: templates/tool_reco.html:69
 msgid "help_status_status_codes"
 msgstr ""
 
 #: templates/tool_align.html:82 templates/tool_audio_to_audio.html:43
-#: templates/tool_reco.html:71 templates/tool_text_to_text.html:45
+#: templates/tool_text_to_text.html:45
 msgid "help_upload"
 msgstr ""
 
 #: templates/tool_align.html:86 templates/tool_audio_to_audio.html:47
-#: templates/tool_reco.html:75
 msgid "help_upload_result"
 msgstr ""
 
 #: templates/tool_align.html:98 templates/tool_audio_to_audio.html:51
-#: templates/tool_reco.html:87 templates/tool_text_to_text.html:43
+#: templates/tool_text_to_text.html:43
 msgid "help_final_download"
 msgstr ""
 
-#: templates/tool_align.html:135
+#: templates/tool_align.html:135 templates/tool_kws.html:62
 msgid "wczytaj_nagranie"
 msgstr ""
 
@@ -691,7 +710,9 @@ msgstr ""
 msgid "wczytaj_transkrypcję"
 msgstr ""
 
-#: templates/tool_align.html:179 templates/tool_reco.html:124
+#: templates/tool_align.html:179 templates/tool_diar.html:60
+#: templates/tool_kws.html:106 templates/tool_reco.html:62
+#: templates/tool_vad.html:60
 msgid "rozpocznij"
 msgstr ""
 
@@ -699,7 +720,8 @@ msgstr ""
 msgid "opis_audionorm"
 msgstr ""
 
-#: templates/tool_audio_to_audio.html:87 templates/tool_reco.html:119
+#: templates/tool_audio_to_audio.html:87 templates/tool_diar.html:55
+#: templates/tool_reco.html:57 templates/tool_vad.html:55
 msgid "wczytaj_audio"
 msgstr ""
 
@@ -708,6 +730,10 @@ msgstr ""
 #: templates/tool_g2p_word.html:72 templates/tool_g2p_word.html:183
 #: templates/tool_g2p_word.html:192 templates/tool_text_to_text.html:96
 msgid "konwertuj"
+msgstr ""
+
+#: templates/tool_diar.html:17
+msgid "opis_diar"
 msgstr ""
 
 #: templates/tool_g2p_list.html:16
@@ -764,6 +790,14 @@ msgstr ""
 msgid "wpisz_wyraz_g2p"
 msgstr ""
 
+#: templates/tool_kws.html:17
+msgid "opis_kws"
+msgstr ""
+
+#: templates/tool_kws.html:85
+msgid "wczytaj_słowa_kluczowe"
+msgstr ""
+
 #: templates/tool_reco.html:17
 msgid "opis_reco"
 msgstr ""
@@ -788,16 +822,12 @@ msgstr ""
 msgid "wczytaj_tekstowy"
 msgstr ""
 
-#: templates/tools.html:61
-msgid "vad_tytuł"
+#: templates/tool_vad.html:17
+msgid "opis_vad"
 msgstr ""
 
 #: templates/tools.html:68
 msgid "dia_tytuł"
-msgstr ""
-
-#: templates/tools.html:75
-msgid "kws_tytuł"
 msgstr ""
 
 #: templates/view_any.html:21 templates/view_audio.html:37
