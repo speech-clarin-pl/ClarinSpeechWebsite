@@ -175,7 +175,10 @@ msgstr "Detekcja słów kluczowych"
 msgid "annotation_opis"
 msgstr ""
 "Strona ta zawiera wtyczkę do programu Annotation Pro. Pobierz plik "
-"poniższy plik i zainstaluj go zgodnie z instrukcją poniżej."
+"poniższy plik i zainstaluj go zgodnie z instrukcją poniżej. Wewnątz "
+"archiwum znajduje się róznież instalator o nazwie vc_redist.x64.exe, "
+"który należy jednorazowo zainstalować na komputerze gdzie ma być "
+"używane narzędzie."
 
 #: templates/annotationpro.html:13
 msgid "annotation_link"

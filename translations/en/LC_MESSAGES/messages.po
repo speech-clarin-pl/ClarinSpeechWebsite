@@ -174,7 +174,9 @@ msgstr "Keyword spotting"
 msgid "annotation_opis"
 msgstr ""
 "This page contains the plugin for Annotation Pro. You can download the "
-"file below and install it using the instructions below."
+"file below and install it using the instructions below. Inside the archive "
+"you will also find the vc_redist.x64.exe setup that needs to be installed on "
+"the machine that the tool is to be used on."
 
 #: templates/annotationpro.html:13
 msgid "annotation_link"
