@@ -1,3 +1,4 @@
+import os
 import sys
 from logging import Formatter, DEBUG
 from logging.handlers import RotatingFileHandler
@@ -32,6 +33,8 @@ handler.setLevel(DEBUG)
 handler.setFormatter(formatter)
 app.logger.addHandler(handler)
 app.logger.setLevel(DEBUG)
+
+app.config['MONGO_URI'] = f'mongodb://{os.getenv("DB_HOST", "localhost")}:{os.getenv("DB_PORT", "27017")}/'
 
 
 # @app.before_request

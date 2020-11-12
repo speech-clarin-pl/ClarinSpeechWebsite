@@ -184,15 +184,22 @@ def ui_align_segment():
 def ui_speech_recognize():
     return render_template('tool_reco.html', server_url=request.url_root)
 
+@tools_page.route('ui/speech/adapt/am')
+@register_breadcrumb(tools_page, '.tool_adapt_am', lazy_gettext(u'adapt_am_tytuł'))
+def ui_speech_adapt_am():
+    return render_template('tool_adapt_am.html', server_url=request.url_root)
+
 @tools_page.route('ui/speech/diarize')
 @register_breadcrumb(tools_page, '.tool_diar', lazy_gettext(u'diar_tytuł'))
 def ui_speech_diarize():
     return render_template('tool_diar.html', server_url=request.url_root)
 
+
 @tools_page.route('ui/speech/vad')
 @register_breadcrumb(tools_page, '.tool_vad', lazy_gettext(u'vad_tytuł'))
 def ui_speech_vad():
     return render_template('tool_vad.html', server_url=request.url_root)
+
 
 @tools_page.route('ui/speech/kws')
 @register_breadcrumb(tools_page, '.tool_kws', lazy_gettext(u'kws_tytuł'))
@@ -429,6 +436,29 @@ def speech_recognize_id(audio_id):
     return output_id
 
 
+@tools_page.route('speech/adapt/am', methods=['POST'])
+def speech_adapt_am_file():
+    if 'file' not in request.files:
+        return abort(404)
+    archive = request.files['file']
+    archive_id = tools.utils.upload_file(archive, 'archive')
+
+    output_id = tools.tasks.start_speech_adapt_am(archive_id)
+
+    time.sleep(0.1)
+
+    return json.dumps({'archive': archive_id, 'output': output_id})
+
+
+@tools_page.route('speech/adapt/am/<archive_id>')
+def speech_adapt_am_id(archive_id):
+    output_id = tools.tasks.start_speech_adapt_am(archive_id)
+
+    time.sleep(0.1)
+
+    return output_id
+
+
 @tools_page.route('speech/vad', methods=['POST'])
 def speech_vad_file():
     if 'file' not in request.files:
@@ -451,6 +481,7 @@ def speech_vad_id(audio_id):
 
     return output_id
 
+
 @tools_page.route('speech/diarize', methods=['POST'])
 def speech_diarize_file():
     if 'file' not in request.files:
@@ -472,6 +503,7 @@ def speech_diarize_id(audio_id):
     time.sleep(0.1)
 
     return output_id
+
 
 @tools_page.route('speech/kws', methods=['POST'])
 def speech_kws_file():

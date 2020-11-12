@@ -79,12 +79,17 @@ def start_speech_recognize(audio_id):
     return run_task('recognize', {'input': str(audio_id)}, 'transcript')
 
 
+def start_speech_adapt_am(archive_id):
+    return run_task('adapt-am', {'input': str(archive_id)}, 'archive')
+
+
 def start_speech_vad(audio_id):
     return run_task('vad', {'input': str(audio_id)}, 'segmentation')
 
 
 def start_speech_diarize(audio_id):
     return run_task('diarize', {'input': str(audio_id)}, 'segmentation')
+
 
 def start_speech_kws(audio_id, keywords_id):
     return run_task('kws', {'audio': str(audio_id), 'keywords': str(keywords_id)}, 'keywords')

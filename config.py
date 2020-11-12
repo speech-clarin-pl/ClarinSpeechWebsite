@@ -14,7 +14,7 @@ class Config:
         self.emu.projects_per_page = 10
         self.emu.webapp_port = 17890
         self.emu.master_password = 'masterpassword'
-        self.corpora_dir = Path('/dane/korpusy')
+        self.corpora_dir = self.proj_root / 'korpusy'
         self.allow_res_delete = True
 
     def load(self, config_path):
