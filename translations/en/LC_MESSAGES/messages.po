@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-18 00:10+0200\n"
+"POT-Creation-Date: 2020-11-12 23:52+0100\n"
 "PO-Revision-Date: 2017-09-05 11:46+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -16,17 +16,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.9.0\n"
 
-#: ClarinSpeechWebsite.py:48
+#: ClarinSpeechWebsite.py:51
 msgid "strona_główna"
 msgstr "Home page"
 
-#: ClarinSpeechWebsite.py:67
+#: ClarinSpeechWebsite.py:70
 msgid "korpusy"
 msgstr "Corpora and other resources"
 
-#: ClarinSpeechWebsite.py:73 templates/kontakt.html:4 templates/layout.html:55
+#: ClarinSpeechWebsite.py:76 templates/kontakt.html:4 templates/layout.html:55
 #: templates/layout.html:151
 msgid "kontakt"
 msgstr "Contact"
@@ -116,8 +116,8 @@ msgstr "Download file"
 msgid "tool_tytuł"
 msgstr "Speech services"
 
-#: Tools.py:27 templates/annotationpro.html:4 templates/tools.html:82
-#: templates/tools.html:84
+#: Tools.py:27 templates/annotationpro.html:4 templates/tools.html:89
+#: templates/tools.html:91
 msgid "annotation_tytuł"
 msgstr "Annotation Pro plugin"
 
@@ -132,12 +132,12 @@ msgid "g2p_wordlist_tytuł"
 msgstr "Phonetization of a word list"
 
 #: Tools.py:159 templates/layout.html:123 templates/tool_text_to_text.html:3
-#: templates/tools.html:45 templates/tools.html:47
+#: templates/tools.html:52 templates/tools.html:54
 msgid "textnorm_tytuł"
 msgstr "Text normalization"
 
 #: Tools.py:165 templates/layout.html:124 templates/tool_audio_to_audio.html:3
-#: templates/tools.html:52 templates/tools.html:54
+#: templates/tools.html:59 templates/tools.html:61
 msgid "audionorm_tytuł"
 msgstr "Audio normalization"
 
@@ -156,17 +156,23 @@ msgstr "Align long audio files"
 msgid "reco_tytuł"
 msgstr "Full speech recognition"
 
-#: Tools.py:188 templates/tool_diar.html:3 templates/tools.html:70
+#: Tools.py:188 templates/tool_adapt_am.html:3 templates/tools.html:45
+#: templates/tools.html:47
+#, fuzzy
+msgid "adapt_am_tytuł"
+msgstr "Adapt acoustic model"
+
+#: Tools.py:193 templates/tool_diar.html:3 templates/tools.html:77
 msgid "diar_tytuł"
 msgstr "Speaker diarization"
 
-#: Tools.py:193 templates/tool_vad.html:3 templates/tools.html:61
-#: templates/tools.html:63
+#: Tools.py:199 templates/tool_vad.html:3 templates/tools.html:68
+#: templates/tools.html:70
 msgid "vad_tytuł"
 msgstr "Voice activity detection"
 
-#: Tools.py:198 templates/tool_kws.html:3 templates/tools.html:75
-#: templates/tools.html:77
+#: Tools.py:205 templates/tool_kws.html:3 templates/tools.html:82
+#: templates/tools.html:84
 msgid "kws_tytuł"
 msgstr "Keyword spotting"
 
@@ -174,9 +180,9 @@ msgstr "Keyword spotting"
 msgid "annotation_opis"
 msgstr ""
 "This page contains the plugin for Annotation Pro. You can download the "
-"file below and install it using the instructions below. Inside the archive "
-"you will also find the vc_redist.x64.exe setup that needs to be installed on "
-"the machine that the tool is to be used on."
+"file below and install it using the instructions below. Inside the "
+"archive you will also find the vc_redist.x64.exe setup that needs to be "
+"installed on the machine that the tool is to be used on."
 
 #: templates/annotationpro.html:13
 msgid "annotation_link"
@@ -654,14 +660,14 @@ msgstr "Resource is still being processed! Press F5 to try again in a moment..."
 
 #: templates/multiview_audio_trans.html:117
 #: templates/multiview_audio_trans.html:123
-#: templates/multiview_audio_trans.html:154 templates/tool_align.html:106
-#: templates/tool_audio_to_audio.html:58 templates/tool_diar.html:30
-#: templates/tool_kws.html:33 templates/tool_reco.html:32
-#: templates/tool_text_to_text.html:61 templates/tool_vad.html:30
-#: templates/view_any.html:63 templates/view_any.html:71
-#: templates/view_audio.html:102 templates/view_audio.html:108
-#: templates/view_segmentation.html:105 templates/view_segmentation.html:113
-#: templates/view_transcription.html:75
+#: templates/multiview_audio_trans.html:154 templates/tool_adapt_am.html:31
+#: templates/tool_align.html:106 templates/tool_audio_to_audio.html:58
+#: templates/tool_diar.html:30 templates/tool_kws.html:33
+#: templates/tool_reco.html:32 templates/tool_text_to_text.html:61
+#: templates/tool_vad.html:30 templates/view_any.html:63
+#: templates/view_any.html:71 templates/view_audio.html:102
+#: templates/view_audio.html:108 templates/view_segmentation.html:105
+#: templates/view_segmentation.html:113 templates/view_transcription.html:75
 msgid "błąd_admin"
 msgstr "Resource processing error! Contact the administrator!"
 
@@ -673,13 +679,39 @@ msgstr "Read-only"
 msgid "czy_modyfikuj"
 msgstr "Are you sure you want to modify this resource?"
 
-#: templates/tool_align.html:15 templates/tool_audio_to_audio.html:11
-#: templates/tool_diar.html:11 templates/tool_g2p_list.html:11
-#: templates/tool_g2p_word.html:11 templates/tool_kws.html:11
-#: templates/tool_reco.html:11 templates/tool_text_to_text.html:11
-#: templates/tool_vad.html:11
+#: templates/tool_adapt_am.html:11 templates/tool_align.html:15
+#: templates/tool_audio_to_audio.html:11 templates/tool_diar.html:11
+#: templates/tool_g2p_list.html:11 templates/tool_g2p_word.html:11
+#: templates/tool_kws.html:11 templates/tool_reco.html:11
+#: templates/tool_text_to_text.html:11 templates/tool_vad.html:11
 msgid "opis_narzędzia"
 msgstr "Tool description"
+
+#: templates/tool_adapt_am.html:17
+#, fuzzy
+msgid "opis_adapt_am"
+msgstr "This tool adapts the acoustic model using the data in the provided corpus. "
+"The corpus should be an archive with a selection of audio WAV files and matching TXT transcriptions. "
+"Each file should contain a reasonably short utterance."
+
+#: templates/tool_adapt_am.html:20 templates/tool_align.html:32
+#: templates/tool_audio_to_audio.html:20 templates/tool_diar.html:21
+#: templates/tool_g2p_list.html:20 templates/tool_g2p_word.html:19
+#: templates/tool_kws.html:21 templates/tool_reco.html:21
+#: templates/tool_text_to_text.html:21 templates/tool_vad.html:21
+msgid "commandline_tytuł"
+msgstr "An example of using the service from the command-line"
+
+#: templates/tool_adapt_am.html:56
+#, fuzzy
+msgid "wczytaj_archiwum"
+msgstr "Load archive"
+
+#: templates/tool_adapt_am.html:61 templates/tool_align.html:179
+#: templates/tool_diar.html:60 templates/tool_kws.html:106
+#: templates/tool_reco.html:62 templates/tool_vad.html:60
+msgid "rozpocznij"
+msgstr "Start"
 
 #: templates/tool_align.html:21
 msgid "opis_align"
@@ -707,14 +739,6 @@ msgstr ""
 "WARNING: The files uploaded to this service must be formatted accordingly"
 " (WAV, 16kHz, mono, 16bit). If the files are not in the correct format, "
 "you can use the audio normalization service."
-
-#: templates/tool_align.html:32 templates/tool_audio_to_audio.html:20
-#: templates/tool_diar.html:21 templates/tool_g2p_list.html:20
-#: templates/tool_g2p_word.html:19 templates/tool_kws.html:21
-#: templates/tool_reco.html:21 templates/tool_text_to_text.html:21
-#: templates/tool_vad.html:21
-msgid "commandline_tytuł"
-msgstr "An example of using the service from the command-line"
 
 #: templates/tool_align.html:36 templates/tool_audio_to_audio.html:24
 #: templates/tool_g2p_list.html:25 templates/tool_g2p_word.html:23
@@ -788,12 +812,6 @@ msgstr "Upload file"
 msgid "wczytaj_transkrypcję"
 msgstr "Upload transcript"
 
-#: templates/tool_align.html:179 templates/tool_diar.html:60
-#: templates/tool_kws.html:106 templates/tool_reco.html:62
-#: templates/tool_vad.html:60
-msgid "rozpocznij"
-msgstr "Start"
-
 #: templates/tool_audio_to_audio.html:17
 msgid "opis_audionorm"
 msgstr ""
@@ -814,8 +832,10 @@ msgstr "Convert"
 
 #: templates/tool_diar.html:17
 msgid "opis_diar"
-msgstr "Tool to separate audio into segments spoken by individual speakers. "
-"The speakers are not identified, but simply numbered using consecutive numbers."
+msgstr ""
+"Tool to separate audio into segments spoken by individual speakers. The "
+"speakers are not identified, but simply numbered using consecutive "
+"numbers."
 
 #: templates/tool_g2p_list.html:16
 msgid "opis_g2p_wordlist"
@@ -876,8 +896,9 @@ msgstr "Enter the word you would like to phonetize:"
 
 #: templates/tool_kws.html:17
 msgid "opis_kws"
-msgstr "This tool searches for keywords in the audio and retreives their location "
-"and the confidence of the found results."
+msgstr ""
+"This tool searches for keywords in the audio and retreives their location"
+" and the confidence of the found results."
 
 #: templates/tool_kws.html:85
 msgid "wczytaj_słowa_kluczowe"
@@ -920,7 +941,7 @@ msgstr "Load text file"
 msgid "opis_vad"
 msgstr "This tool marks segments containing speech in the recoridng."
 
-#: templates/tools.html:68
+#: templates/tools.html:75
 msgid "dia_tytuł"
 msgstr "Speaker diarization"
 

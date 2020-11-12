@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-18 00:10+0200\n"
+"POT-Creation-Date: 2020-11-12 23:52+0100\n"
 "PO-Revision-Date: 2017-09-05 11:46+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -17,17 +17,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.9.0\n"
 
-#: ClarinSpeechWebsite.py:48
+#: ClarinSpeechWebsite.py:51
 msgid "strona_główna"
 msgstr "Strona główna"
 
-#: ClarinSpeechWebsite.py:67
+#: ClarinSpeechWebsite.py:70
 msgid "korpusy"
 msgstr "Korpusy i inne zasoby"
 
-#: ClarinSpeechWebsite.py:73 templates/kontakt.html:4 templates/layout.html:55
+#: ClarinSpeechWebsite.py:76 templates/kontakt.html:4 templates/layout.html:55
 #: templates/layout.html:151
 msgid "kontakt"
 msgstr "Kontakt"
@@ -117,8 +117,8 @@ msgstr "Pobierz plik"
 msgid "tool_tytuł"
 msgstr "Usługi mowy"
 
-#: Tools.py:27 templates/annotationpro.html:4 templates/tools.html:82
-#: templates/tools.html:84
+#: Tools.py:27 templates/annotationpro.html:4 templates/tools.html:89
+#: templates/tools.html:91
 msgid "annotation_tytuł"
 msgstr "Wtyczka do Annotation Pro"
 
@@ -133,12 +133,12 @@ msgid "g2p_wordlist_tytuł"
 msgstr "Transkrypcja listy wyrazów"
 
 #: Tools.py:159 templates/layout.html:123 templates/tool_text_to_text.html:3
-#: templates/tools.html:45 templates/tools.html:47
+#: templates/tools.html:52 templates/tools.html:54
 msgid "textnorm_tytuł"
 msgstr "Normalizacja tekstu"
 
 #: Tools.py:165 templates/layout.html:124 templates/tool_audio_to_audio.html:3
-#: templates/tools.html:52 templates/tools.html:54
+#: templates/tools.html:59 templates/tools.html:61
 msgid "audionorm_tytuł"
 msgstr "Normalizacja audio"
 
@@ -157,17 +157,23 @@ msgstr "Segmentacja długich nagrań"
 msgid "reco_tytuł"
 msgstr "Pełne rozpoznawanie mowy"
 
-#: Tools.py:188 templates/tool_diar.html:3 templates/tools.html:70
+#: Tools.py:188 templates/tool_adapt_am.html:3 templates/tools.html:45
+#: templates/tools.html:47
+#, fuzzy
+msgid "adapt_am_tytuł"
+msgstr "Adaptacja modelu akustycznego"
+
+#: Tools.py:193 templates/tool_diar.html:3 templates/tools.html:77
 msgid "diar_tytuł"
 msgstr "Diaryzacja mówców"
 
-#: Tools.py:193 templates/tool_vad.html:3 templates/tools.html:61
-#: templates/tools.html:63
+#: Tools.py:199 templates/tool_vad.html:3 templates/tools.html:68
+#: templates/tools.html:70
 msgid "vad_tytuł"
 msgstr "Detekcja mowy"
 
-#: Tools.py:198 templates/tool_kws.html:3 templates/tools.html:75
-#: templates/tools.html:77
+#: Tools.py:205 templates/tool_kws.html:3 templates/tools.html:82
+#: templates/tools.html:84
 msgid "kws_tytuł"
 msgstr "Detekcja słów kluczowych"
 
@@ -177,8 +183,8 @@ msgstr ""
 "Strona ta zawiera wtyczkę do programu Annotation Pro. Pobierz plik "
 "poniższy plik i zainstaluj go zgodnie z instrukcją poniżej. Wewnątz "
 "archiwum znajduje się róznież instalator o nazwie vc_redist.x64.exe, "
-"który należy jednorazowo zainstalować na komputerze gdzie ma być "
-"używane narzędzie."
+"który należy jednorazowo zainstalować na komputerze gdzie ma być używane "
+"narzędzie."
 
 #: templates/annotationpro.html:13
 msgid "annotation_link"
@@ -664,14 +670,14 @@ msgstr ""
 
 #: templates/multiview_audio_trans.html:117
 #: templates/multiview_audio_trans.html:123
-#: templates/multiview_audio_trans.html:154 templates/tool_align.html:106
-#: templates/tool_audio_to_audio.html:58 templates/tool_diar.html:30
-#: templates/tool_kws.html:33 templates/tool_reco.html:32
-#: templates/tool_text_to_text.html:61 templates/tool_vad.html:30
-#: templates/view_any.html:63 templates/view_any.html:71
-#: templates/view_audio.html:102 templates/view_audio.html:108
-#: templates/view_segmentation.html:105 templates/view_segmentation.html:113
-#: templates/view_transcription.html:75
+#: templates/multiview_audio_trans.html:154 templates/tool_adapt_am.html:31
+#: templates/tool_align.html:106 templates/tool_audio_to_audio.html:58
+#: templates/tool_diar.html:30 templates/tool_kws.html:33
+#: templates/tool_reco.html:32 templates/tool_text_to_text.html:61
+#: templates/tool_vad.html:30 templates/view_any.html:63
+#: templates/view_any.html:71 templates/view_audio.html:102
+#: templates/view_audio.html:108 templates/view_segmentation.html:105
+#: templates/view_segmentation.html:113 templates/view_transcription.html:75
 msgid "błąd_admin"
 msgstr "Błąd przetwarzania zasobu! Skontaktuj się z administratorem!"
 
@@ -683,13 +689,40 @@ msgstr "Tylko do odczytu"
 msgid "czy_modyfikuj"
 msgstr "Czy na pewno chcesz zmodyfikować ten zasób?"
 
-#: templates/tool_align.html:15 templates/tool_audio_to_audio.html:11
-#: templates/tool_diar.html:11 templates/tool_g2p_list.html:11
-#: templates/tool_g2p_word.html:11 templates/tool_kws.html:11
-#: templates/tool_reco.html:11 templates/tool_text_to_text.html:11
-#: templates/tool_vad.html:11
+#: templates/tool_adapt_am.html:11 templates/tool_align.html:15
+#: templates/tool_audio_to_audio.html:11 templates/tool_diar.html:11
+#: templates/tool_g2p_list.html:11 templates/tool_g2p_word.html:11
+#: templates/tool_kws.html:11 templates/tool_reco.html:11
+#: templates/tool_text_to_text.html:11 templates/tool_vad.html:11
 msgid "opis_narzędzia"
 msgstr "Opis narzędzia"
+
+#: templates/tool_adapt_am.html:17
+#, fuzzy
+msgid "opis_adapt_am"
+msgstr "Narzędzie to służy do adaptacji modelu akustycznego do podanego korpusu. "
+"Korpus powinien być spakowany w archiwum zawierające pliki audio w formacie WAV "
+"oraz transkrypcje w formacie TXT. Każdy plik audio powinien zawierać stosunkowo "
+"krótką wypowiedź."
+
+#: templates/tool_adapt_am.html:20 templates/tool_align.html:32
+#: templates/tool_audio_to_audio.html:20 templates/tool_diar.html:21
+#: templates/tool_g2p_list.html:20 templates/tool_g2p_word.html:19
+#: templates/tool_kws.html:21 templates/tool_reco.html:21
+#: templates/tool_text_to_text.html:21 templates/tool_vad.html:21
+msgid "commandline_tytuł"
+msgstr "Przykład korzystania z usługi z linii poleceń"
+
+#: templates/tool_adapt_am.html:56
+#, fuzzy
+msgid "wczytaj_archiwum"
+msgstr "Wczytaj archiwum"
+
+#: templates/tool_adapt_am.html:61 templates/tool_align.html:179
+#: templates/tool_diar.html:60 templates/tool_kws.html:106
+#: templates/tool_reco.html:62 templates/tool_vad.html:60
+msgid "rozpocznij"
+msgstr "Rozpocznij"
 
 #: templates/tool_align.html:21
 msgid "opis_align"
@@ -719,14 +752,6 @@ msgstr ""
 "formacie (WAV, 16kHz, mono, 16-bit). Jeśli plik nie jest w odpowiednim "
 "formacie, można skorzystać z usługi normalizacji audio do odpowiedniego "
 "przekonwertowania pliku."
-
-#: templates/tool_align.html:32 templates/tool_audio_to_audio.html:20
-#: templates/tool_diar.html:21 templates/tool_g2p_list.html:20
-#: templates/tool_g2p_word.html:19 templates/tool_kws.html:21
-#: templates/tool_reco.html:21 templates/tool_text_to_text.html:21
-#: templates/tool_vad.html:21
-msgid "commandline_tytuł"
-msgstr "Przykład korzystania z usługi z linii poleceń"
 
 #: templates/tool_align.html:36 templates/tool_audio_to_audio.html:24
 #: templates/tool_g2p_list.html:25 templates/tool_g2p_word.html:23
@@ -799,12 +824,6 @@ msgstr "Wczytaj nagranie"
 msgid "wczytaj_transkrypcję"
 msgstr "Wczytaj transkrypcję"
 
-#: templates/tool_align.html:179 templates/tool_diar.html:60
-#: templates/tool_kws.html:106 templates/tool_reco.html:62
-#: templates/tool_vad.html:60
-msgid "rozpocznij"
-msgstr "Rozpocznij"
-
 #: templates/tool_audio_to_audio.html:17
 msgid "opis_audionorm"
 msgstr ""
@@ -826,8 +845,9 @@ msgstr "Konwertuj"
 
 #: templates/tool_diar.html:17
 msgid "opis_diar"
-msgstr "Narzędzie to dzieli sygnał na segmenty mówione przez pospzczególnych mówców. "
-"Mówcy nie są identyfikowani, tylko numerowani po kolei."
+msgstr ""
+"Narzędzie to dzieli sygnał na segmenty mówione przez pospzczególnych "
+"mówców. Mówcy nie są identyfikowani, tylko numerowani po kolei."
 
 #: templates/tool_g2p_list.html:16
 msgid "opis_g2p_wordlist"
@@ -888,8 +908,9 @@ msgstr "Wpisz wyraz, który chcesz przetranskrybować:"
 
 #: templates/tool_kws.html:17
 msgid "opis_kws"
-msgstr "Narzędzie to wyszukuje słowa kluczowe z listy wyrazów i "
-"podaje ich lokalizację oraz wiarygodność każdego znalezionego hasłą."
+msgstr ""
+"Narzędzie to wyszukuje słowa kluczowe z listy wyrazów i podaje ich "
+"lokalizację oraz wiarygodność każdego znalezionego hasłą."
 
 #: templates/tool_kws.html:85
 msgid "wczytaj_słowa_kluczowe"
@@ -932,7 +953,7 @@ msgstr "Wczytaj plik tekstowy"
 msgid "opis_vad"
 msgstr "Narzędzie to zaznacza w sygnale segmenty zawierające mowę."
 
-#: templates/tools.html:68
+#: templates/tools.html:75
 msgid "dia_tytuł"
 msgstr "Diaryzacja mówców"
 
